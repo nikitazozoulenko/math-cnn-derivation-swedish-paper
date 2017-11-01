@@ -1,1 +1,0 @@
-# swedish-article-about-convolutional-neural-networks
