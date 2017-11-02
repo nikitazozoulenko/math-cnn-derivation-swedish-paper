@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6350 64-bit) (preloaded format=pdflatex 2017.10.25)  1 NOV 2017 22:00
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6350 64-bit) (preloaded format=pdflatex 2017.10.25)  2 NOV 2017 21:35
 entering extended mode
 **./test.tex
 (test.tex
@@ -555,18 +555,18 @@ Package: parskip 2001/04/09 non-zero parskip adjustments
 ) (test.aux)
 \openout1 = `test.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 35.
-LaTeX Font Info:    ... okay on input line 35.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 35.
-LaTeX Font Info:    ... okay on input line 35.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 35.
-LaTeX Font Info:    ... okay on input line 35.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 35.
-LaTeX Font Info:    ... okay on input line 35.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 35.
-LaTeX Font Info:    ... okay on input line 35.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 35.
-LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -657,19 +657,19 @@ Package grfext Info: Graphics extension search list:
 G,.JBIG2,.JB2,.eps]
 (grfext)             \AppendGraphicsExtensions on input line 456.
 )
-LaTeX Font Info:    Try loading font information for U+msa on input line 40.
+LaTeX Font Info:    Try loading font information for U+msa on input line 42.
 
 (E:\MiKTeX\tex\latex\amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 40.
+LaTeX Font Info:    Try loading font information for U+msb on input line 42.
  (E:\MiKTeX\tex\latex\amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 [1
 
 {C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}]
-Underfull \hbox (badness 10000) in paragraph at lines 45--47
+Underfull \hbox (badness 10000) in paragraph at lines 47--49
 
  []
 
@@ -678,44 +678,44 @@ Underfull \hbox (badness 10000) in paragraph at lines 45--47
 \openout3 = `test.toc'.
 
 
-Overfull \hbox (1.5956pt too wide) in paragraph at lines 57--58
+Overfull \hbox (1.5956pt too wide) in paragraph at lines 59--60
 \T1/cmr/m/n/14.4 Syftet med ar-be-tet är att re-do-gö-ra för den un-der-lig-gan
 -de ma-te-ma-ti-ken bakom
  []
 
 [3]
-Underfull \hbox (badness 10000) in paragraph at lines 59--63
+Underfull \hbox (badness 10000) in paragraph at lines 61--65
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 59--63
+Underfull \hbox (badness 10000) in paragraph at lines 61--65
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 59--63
+Underfull \hbox (badness 10000) in paragraph at lines 61--65
 
  []
 
 
-Overfull \hbox (60.51633pt too wide) in paragraph at lines 59--63
+Overfull \hbox (60.51633pt too wide) in paragraph at lines 61--65
 \T1/cmr/m/n/14.4 Hur kan man tilläm-pa mo-del-len för att im-ple-men-te-ra sif-
 ferav-läs-ning,ansiktsigenkänning
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 59--63
+Underfull \hbox (badness 10000) in paragraph at lines 61--65
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 59--63
+Underfull \hbox (badness 10000) in paragraph at lines 61--65
 
  []
 
 [4] [5]
-Overfull \hbox (5.04915pt too wide) in paragraph at lines 74--75
+Overfull \hbox (5.04915pt too wide) in paragraph at lines 76--77
 []\T1/cmr/m/n/14.4 Om $\OML/cmm/m/it/14.4 X$ \T1/cmr/m/n/14.4 är en ma-tris de-
 fi-nie-ras funk-tio-nen $\OML/cmm/m/it/14.4 f\OT1/cmr/m/n/14.4 (\OML/cmm/m/it/1
 4.4 X\OT1/cmr/m/n/14.4 )$ \T1/cmr/m/n/14.4 ge-nom att ele-ment-vis ap-pli-ce-ra
@@ -723,7 +723,7 @@ fi-nie-ras funk-tio-nen $\OML/cmm/m/it/14.4 f\OT1/cmr/m/n/14.4 (\OML/cmm/m/it/1
  []
 
 
-Overfull \hbox (47.92114pt too wide) in paragraph at lines 123--124
+Overfull \hbox (47.92114pt too wide) in paragraph at lines 125--126
 \T1/cmr/m/n/14.4 upp-bygg-da re-kur-sivt så att re-sul-ta-tet av ett la-ger är 
 in-mat-ning-en till nästin-til-lig-gan-de
  []
@@ -731,28 +731,28 @@ in-mat-ning-en till nästin-til-lig-gan-de
 [6] <FCC.png, id=36, 793.46437pt x 352.31625pt>
 File: FCC.png Graphic file (type png)
  <use FCC.png>
-Package pdftex.def Info: FCC.png used on input line 129.
+Package pdftex.def Info: FCC.png used on input line 131.
 (pdftex.def)             Requested size: 317.38013pt x 140.924pt.
 
-Underfull \hbox (badness 1546) in paragraph at lines 130--130
+Underfull \hbox (badness 1546) in paragraph at lines 132--132
 []\T1/cmr/m/n/10.95 Figur 1: Ett ex-em-pel på ett en-kelt feed-forward neu-ralt
  nät-verk. In-put-neu-ro-ner-na är
  []
 
 
-Underfull \hbox (badness 3849) in paragraph at lines 130--130
+Underfull \hbox (badness 3849) in paragraph at lines 132--132
 \T1/cmr/m/n/10.95 blå-mar-ke-ra-de me-dan res-te-ran-de neu-ro-ner är oran-gea.
  Rö-da neu-ro-ner är så kal-la-de
  []
 
 
-Overfull \hbox (30.82253pt too wide) in paragraph at lines 138--139
+Overfull \hbox (30.82253pt too wide) in paragraph at lines 140--141
 []\T1/cmr/m/n/14.4 Nätverket kan fram-stäl-las ge-nom att re-pre-sen-te-ra neu-
 ro-ner-na och de-ras kopp-ling-ar
  []
 
 [7 <./FCC.png>]
-Overfull \hbox (12.57782pt too wide) in paragraph at lines 153--155
+Overfull \hbox (12.57782pt too wide) in paragraph at lines 155--157
 \T1/cmr/m/n/14.4 nät-ver-ket lä-ra sig olin-jä-ra sam-band. De-fi-ni-tio-ner-na
  av funk-tio-ner-na ges av: 
  []
@@ -761,16 +761,16 @@ Overfull \hbox (12.57782pt too wide) in paragraph at lines 153--155
 File: activationfunction.png Graphic file (type png)
 
 <use activationfunction.png>
-Package pdftex.def Info: activationfunction.png used on input line 158.
+Package pdftex.def Info: activationfunction.png used on input line 160.
 (pdftex.def)             Requested size: 321.60193pt x 218.61702pt.
  [8 <./activationfunction.png>]
-Overfull \hbox (11.05467pt too wide) in paragraph at lines 214--215
+Overfull \hbox (11.05467pt too wide) in paragraph at lines 216--217
 \T1/cmr/m/n/14.4 mo-del-len kom-mer vik-ter-na $\OML/cmm/m/it/14.4 W[]$ \T1/cmr
 /m/n/14.4 va-ra slum-pa-de och nät-ver-kets pro-gnos kom-mer
  []
 
 [9]
-Overfull \hbox (13.8354pt too wide) in paragraph at lines 236--237
+Overfull \hbox (13.8354pt too wide) in paragraph at lines 238--239
 \T1/cmr/m/n/14.4 funk-tio-nens mi-ni-mum. Den mest grund-läg-gan-de al-go-rit-m
 en för \T1/cmr/m/it/14.4 gra-di-ent descent
  []
@@ -778,7 +778,7 @@ en för \T1/cmr/m/it/14.4 gra-di-ent descent
 <SGD.png, id=52, 650.43pt x 341.77687pt>
 File: SGD.png Graphic file (type png)
  <use SGD.png>
-Package pdftex.def Info: SGD.png used on input line 246.
+Package pdftex.def Info: SGD.png used on input line 248.
 (pdftex.def)             Requested size: 325.2142pt x 170.88802pt.
 
 
@@ -786,33 +786,33 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 [10]
 
-LaTeX Warning: Reference `F' on page 11 undefined on input line 256.
+LaTeX Warning: Reference `F' on page 11 undefined on input line 258.
 
 
-Overfull \hbox (2.29388pt too wide) in paragraph at lines 256--257
+Overfull \hbox (2.29388pt too wide) in paragraph at lines 258--259
 []\T1/cmr/m/n/14.4 Detta skul-le in-te ska-pa någ-ra pro-blem för det lil-la ne
 u-ra-la nät-ver-ket i []IGUR
  []
 
 
-Overfull \hbox (0.96661pt too wide) in paragraph at lines 256--257
+Overfull \hbox (0.96661pt too wide) in paragraph at lines 258--259
 \T1/cmr/m/n/14.4 1 med 24 pa-ra-met-rar, men i själ-va ver-ket har dju-pa neu-r
 a-la nät-verk mil-jon-tals
  []
 
 [11 <./SGD.png>] [12]
-LaTeX Font Info:    Try loading font information for T1+cmtt on input line 343.
+LaTeX Font Info:    Try loading font information for T1+cmtt on input line 345.
 
  (E:\MiKTeX\tex\latex\base\t1cmtt.fd
 File: t1cmtt.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
-Overfull \hbox (0.5146pt too wide) in paragraph at lines 343--344
+Overfull \hbox (0.5146pt too wide) in paragraph at lines 345--346
 []\T1/cmr/m/n/14.4 Två im-ple-men-ta-tio-ner av ett feed-for-ward neu-ralt nät-
 verk kan hit-tas på git-hub
  []
 
 
-Overfull \hbox (19.73502pt too wide) in paragraph at lines 346--347
+Overfull \hbox (19.73502pt too wide) in paragraph at lines 348--349
 \T1/cmr/m/n/14.4 päls-lik-nan-de. Des-sa ka-rak-te-ris-tis-ka drag är lo-ka-la 
 in-om bil-den och kan ex-tra-he-ras
  []
@@ -820,10 +820,10 @@ in-om bil-den och kan ex-tra-he-ras
 <katter.png, id=62, 1181.16281pt x 475.02469pt>
 File: katter.png Graphic file (type png)
  <use katter.png>
-Package pdftex.def Info: katter.png used on input line 350.
+Package pdftex.def Info: katter.png used on input line 352.
 (pdftex.def)             Requested size: 389.78494pt x 156.75862pt.
 
-Overfull \hbox (3.72403pt too wide) in paragraph at lines 354--355
+Overfull \hbox (3.72403pt too wide) in paragraph at lines 356--357
 []\T1/cmr/m/n/14.4 Till skill-nad från \T1/cmr/m/it/14.4 FCC \T1/cmr/m/n/14.4 ä
 r neu-ro-ner-na i ett \T1/cmr/m/it/14.4 CNN \T1/cmr/m/n/14.4 ba-ra kopp-la-de t
 ill när-lig-gan-de
@@ -833,10 +833,10 @@ ill när-lig-gan-de
 File: boatcnn.png Graphic file (type png)
 
 <use boatcnn.png>
-Package pdftex.def Info: boatcnn.png used on input line 358.
+Package pdftex.def Info: boatcnn.png used on input line 360.
 (pdftex.def)             Requested size: 469.15637pt x 127.67796pt.
 
-Overfull \hbox (16.18848pt too wide) in paragraph at lines 358--359
+Overfull \hbox (16.18848pt too wide) in paragraph at lines 360--361
  [][] 
  []
 
@@ -844,16 +844,16 @@ Overfull \hbox (16.18848pt too wide) in paragraph at lines 358--359
 File: convolution.png Graphic file (type png)
 
 <use convolution.png>
-Package pdftex.def Info: convolution.png used on input line 373.
+Package pdftex.def Info: convolution.png used on input line 375.
 (pdftex.def)             Requested size: 344.92513pt x 162.34473pt.
  <zeropadding.png, id=74, 171.64125pt x 175.65625pt>
 File: zeropadding.png Graphic file (type png)
 
 <use zeropadding.png>
-Package pdftex.def Info: zeropadding.png used on input line 383.
+Package pdftex.def Info: zeropadding.png used on input line 385.
 (pdftex.def)             Requested size: 120.14804pt x 122.95853pt.
 
-Overfull \hbox (25.50627pt too wide) in paragraph at lines 387--388
+Overfull \hbox (25.50627pt too wide) in paragraph at lines 389--390
 []\T1/cmr/m/n/14.4 Låt $\OML/cmm/m/it/14.4 W[] \OMS/cmsy/m/n/14.4 2 \U/msb/m/n/
 14.4 R[]$\T1/cmr/m/n/14.4 , $\OML/cmm/m/it/14.4 X[] \OMS/cmsy/m/n/14.4 2 \U/msb
 /m/n/14.4 R[]$ \T1/cmr/m/n/14.4 och $\OML/cmm/m/it/14.4 X[] \OMS/cmsy/m/n/14.4 
@@ -866,19 +866,19 @@ Underfull \vbox (badness 4752) has occurred while \output is active []
  [15 <./convolution.png> <./zeropadding.png>] [16]
 
 Package amsmath Warning: Cannot use `split' here;
-(amsmath)                trying to recover with `aligned' on input line 435.
+(amsmath)                trying to recover with `aligned' on input line 437.
 
 
 Package amsmath Warning: Cannot use `split' here;
-(amsmath)                trying to recover with `aligned' on input line 435.
+(amsmath)                trying to recover with `aligned' on input line 437.
 
 
-Overfull \hbox (38.92767pt too wide) in paragraph at lines 451--451
+Overfull \hbox (38.92767pt too wide) in paragraph at lines 453--453
 [] 
  []
 
 [17]
-Overfull \hbox (11.78842pt too wide) in paragraph at lines 455--456
+Overfull \hbox (11.78842pt too wide) in paragraph at lines 457--458
 \T1/cmr/m/n/14.4 Följakt-li-gen har $\OML/cmm/m/it/14.4 X[]$ \T1/cmr/m/n/14.4 o
 ch $\OML/cmm/m/it/14.4 X[]$ \T1/cmr/m/n/14.4 sam-ma di-men-sio-ner. Låt ak-ti-v
 e-rings-funk-tio-nen
@@ -888,7 +888,7 @@ e-rings-funk-tio-nen
 Underfull \vbox (badness 4366) has occurred while \output is active []
 
  [18]
-Overfull \hbox (0.28252pt too wide) in paragraph at lines 474--475
+Overfull \hbox (0.28252pt too wide) in paragraph at lines 476--477
 \T1/cmr/m/n/14.4 Här är igen in-put-neu-ro-ner-na re-pre-sen-te-ra-de av $\OML/
 cmm/m/it/14.4 X[] \OMS/cmsy/m/n/14.4 2 \U/msb/m/n/14.4 R[]$ \T1/cmr/m/n/14.4 oc
 h ska-par
@@ -897,16 +897,16 @@ h ska-par
 <maxpool.png, id=88, 164.25pt x 68.547pt>
 File: maxpool.png Graphic file (type png)
  <use maxpool.png>
-Package pdftex.def Info: maxpool.png used on input line 478.
+Package pdftex.def Info: maxpool.png used on input line 480.
 (pdftex.def)             Requested size: 262.80034pt x 109.67531pt.
 
-Overfull \hbox (12.2833pt too wide) in paragraph at lines 482--483
+Overfull \hbox (12.2833pt too wide) in paragraph at lines 484--485
 []\T1/cmr/m/n/14.4 Liknande kon-vo-lu-tions-lag-ret ut-an zero-padding blir näs
 tin-till-kom-man-de lag-rets
  []
 
 
-Overfull \hbox (13.2809pt too wide) in paragraph at lines 499--500
+Overfull \hbox (13.2809pt too wide) in paragraph at lines 501--502
 \T1/cmr/m/n/14.4 delta-delet. $\OML/cmm/m/it/14.4 X[]$ \T1/cmr/m/n/14.4 byts se
 -dan ut mot dess de-fi-ni-tion en-ligt ek-va-tion []: 
  []
@@ -914,81 +914,156 @@ Overfull \hbox (13.2809pt too wide) in paragraph at lines 499--500
 [19 <./maxpool.png>]
 
 Package amsmath Warning: Cannot use `split' here;
-(amsmath)                trying to recover with `aligned' on input line 512.
+(amsmath)                trying to recover with `aligned' on input line 514.
 
 
-Overfull \hbox (23.29956pt too wide) in paragraph at lines 517--518
+Overfull \hbox (23.29956pt too wide) in paragraph at lines 519--520
 \T1/cmr/m/n/14.4 neu-ron som är an-sva-rig för fram-åt-pro-pa-ge-ring-en så kom
 -mer delta-felen sum-me-ras
  []
 
 
-Overfull \hbox (8.87329pt too wide) in paragraph at lines 520--521
+Overfull \hbox (8.87329pt too wide) in paragraph at lines 522--523
 \T1/cmr/m/n/14.4 Utan Batch Nor-ma-li-za-tion (BN) är det svårt att få dju-pa n
 ät-verk att di-ver-ge-ra.
  []
 
 [20]
-Overfull \hbox (54.64651pt too wide) in paragraph at lines 522--523
+Overfull \hbox (54.64651pt too wide) in paragraph at lines 524--525
 \OML/cmm/m/it/14.4 X[] \OMS/cmsy/m/n/14.4 2 \U/msb/m/n/14.4 R[]$\T1/cmr/m/n/14.
 4 . BN har ing-en på-ver-kan på di-men-sio-ner-na av ak-ti-ve-ring-en. 
  []
 
 
-Overfull \hbox (21.09338pt too wide) in paragraph at lines 530--532
+Overfull \hbox (21.09338pt too wide) in paragraph at lines 532--534
 \T1/cmr/m/n/14.4 Sedan be-räk-nas den nor-ma-li-se-ra-de ak-ti-ve-ring-en $[]$.
  Ep-si-lon an-vänds för nu-me-risk
  []
 
 
-Overfull \hbox (10.6098pt too wide) in paragraph at lines 552--553
+Overfull \hbox (10.6098pt too wide) in paragraph at lines 554--555
 \T1/cmr/m/n/14.4 För BN be-hö-ver det re-kur-si-va delta-felet $\OML/cmm/m/it/1
 4.4 []$\T1/cmr/m/n/14.4 , kostands-funk-tio-nen med av-se-en-de
  []
 
 [21]
-Overfull \hbox (74.64227pt too wide) in paragraph at lines 575--575
+Overfull \hbox (74.64227pt too wide) in paragraph at lines 592--592
 [] 
  []
 
-
-Overfull \hbox (56.59877pt too wide) in paragraph at lines 593--593
+[22]
+Overfull \hbox (56.59877pt too wide) in paragraph at lines 612--612
 [] 
  []
 
-[22] [23]
-Underfull \hbox (badness 1383) in paragraph at lines 647--651
+[23]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [24]
+Overfull \hbox (1.17703pt too wide) in paragraph at lines 654--655
+\T1/cmr/m/n/14.4 grän-sa out-put till in-ter-val-let $\OT1/cmr/m/n/14.4 [0\OML/
+cmm/m/it/14.4 ; \OT1/cmr/m/n/14.4 1]$ \T1/cmr/m/n/14.4 och har egen-ska-pen att
+ al-la pro-gno-sti-se-ra-de
+ []
+
+<mnist.png, id=109, 375.65344pt x 143.03438pt>
+File: mnist.png Graphic file (type png)
+ <use mnist.png>
+Package pdftex.def Info: mnist.png used on input line 658.
+(pdftex.def)             Requested size: 375.65251pt x 143.03401pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+Overfull \hbox (5.34612pt too wide) in paragraph at lines 662--664
+[]\T1/cmr/m/n/14.4 Input för mo-del-len är en raw (rå??) $\OT1/cmr/m/n/14.4 28 
+\OMS/cmsy/m/n/14.4  \OT1/cmr/m/n/14.4 28$ \T1/cmr/m/n/14.4 pix-e-lar-ray. Mo-d
+el-len pro-gno-sti-se-rar
+ []
+
+[25]
+Overfull \hbox (15.92621pt too wide) in paragraph at lines 681--682
+[]\T1/cmr/m/n/14.4 Tillsammans med soft-max an-vänds kost-nads-funk-tio-nen cro
+ss-entropy be-täck-nat
+ []
+
+[26 <./mnist.png>]
+Overfull \hbox (1.52531pt too wide) in paragraph at lines 753--754
+\T1/cmr/m/n/14.4 Nä-stin-kom-man-de siff-ra ef-ter la-ger-nam-net är kärn-stor-
+le-ken. $\OML/cmm/m/it/14.4 C$ \T1/cmr/m/n/14.4 be-näm-ner an-tal
+ []
+
+
+Overfull \hbox (4.77579pt too wide) in paragraph at lines 753--754
+\T1/cmr/m/n/14.4 kär-ner vid det lag-ret och där-med an-tal ka-na-ler vid näs-t
+a la-ger. Kli-vet be-nämns
+ []
+
+
+Overfull \hbox (14.72754pt too wide) in paragraph at lines 755--756
+\T1/cmr/m/n/14.4 tes-ta-des var-je 60 000 ex-e-me-pel el-ler ef-ter var-je 600 
+ite-ra-tio-ner med en hopstor-lek
+ []
+
+
+Overfull \hbox (22.31425pt too wide) in paragraph at lines 755--756
+\T1/cmr/m/n/14.4 av 100. Ef-ter var-je 60 000 bil-der blan-da-des dem för att f
+ör-bätt-ra in-lär-ning-en. 
+ []
+
+<kostandsplot.png, id=117, 474.27188pt x 347.79938pt>
+File: kostandsplot.png Graphic file (type png)
+ <use kostandsplot.png>
+Package pdftex.def Info: kostandsplot.png used on input line 759.
+(pdftex.def)             Requested size: 284.56532pt x 208.68123pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<epokplot.png, id=118, 479.54156pt x 356.0803pt>
+File: epokplot.png Graphic file (type png)
+ <use epokplot.png>
+Package pdftex.def Info: epokplot.png used on input line 764.
+(pdftex.def)             Requested size: 287.72716pt x 213.64983pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+Overfull \hbox (0.11966pt too wide) in paragraph at lines 768--769
+[]\T1/cmr/m/n/14.4 Den slut-gil-ti-ga pre-ci-sio-nen blev $\OT1/cmr/m/n/14.4 99
+\OML/cmm/m/it/14.4 :\OT1/cmr/m/n/14.4 2%$\T1/cmr/m/n/14.4 . Av 10 000 hand-skri
+v-na siff-ror lyc-ka-des
+ []
+
+[27]
+Underfull \hbox (badness 1383) in paragraph at lines 793--797
 []\T1/cmr/m/it/14.4 Safe as Milk\T1/cmr/m/n/14.4 . Cap-tain Be-e-f-he-art, Zoot
  Horn Rol-lo, Wing-ed Eel
  []
 
-[24]
-Overfull \hbox (1011.31497pt too wide) in paragraph at lines 660--661
+[28 <./kostandsplot.png>]
+Overfull \hbox (1011.31497pt too wide) in paragraph at lines 806--807
 []\T1/cmr/m/n/14.4 gradient descent bild https://camo.githubusercontent.com/2cf
 88d8a0cc996908dd1540e15f27d9a3ca206a3/68747470733a2f2f7261772e6769746875622e636
 f6d2f6a6f7368646b2f7079677261646573632f6d61737465722f696d672f6772617068312e706e
 67 
  []
 
-
-Overfull \hbox (21.3594pt too wide) in paragraph at lines 663--665
-\T1/cmr/m/n/14.4 prak-ti-ken har det dock vi-sat sig att al-la mi-ni-ma för ett
- nät-verks kost-nads-funk-tion
- []
-
-[25] (test.aux)
+[29 <./epokplot.png>] (test.aux)
 
 LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 4869 strings out of 493323
- 63122 string characters out of 3146846
- 159453 words of memory out of 3000000
- 8284 multiletter control sequences out of 15000+200000
+ 4892 strings out of 493323
+ 63498 string characters out of 3146846
+ 159558 words of memory out of 3000000
+ 8304 multiletter control sequences out of 15000+200000
  18835 words of font info for 58 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 39i,21n,43p,973b,255s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 39i,21n,43p,973b,257s stack positions out of 5000i,500n,10000p,200000b,50000s
  <C:\Users\Nikita\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600
 \ectt1440.pk> <C:\Users\Nikita\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappe
 n\ec\dpi600\ecbx1095.pk> <C:\Users\Nikita\AppData\Local\MiKTeX\2.9\fonts\pk\ljf
@@ -1006,9 +1081,9 @@ MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><E:/MiKTeX/fonts/type1/public/a
 msfonts/cm/cmr12.pfb><E:/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><E:/MiK
 TeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><E:/MiKTeX/fonts/type1/public/ams
 fonts/cm/cmsy7.pfb><E:/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on test.pdf (25 pages, 2073848 bytes).
+Output written on test.pdf (29 pages, 2164569 bytes).
 PDF statistics:
- 510 PDF objects out of 1000 (max. 8388607)
+ 540 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 41 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 56 words of extra memory for PDF output out of 10000 (max. 10000000)
 

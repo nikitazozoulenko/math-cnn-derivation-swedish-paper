@@ -29,6 +29,8 @@
 
 
 \title{Matematik och Konvolutionella Neurala Nätverk för dataseende}
+\title{eller}
+\title{Ansiktsigenkänning och Objektdetektering med Konvolutionella Neurala Nätverk}
 \author{Nikita Zozoulenko}
 \date{\today}
 
@@ -214,7 +216,7 @@ Trots att derivatan av ReLU inte är definierad i punkten $x = 0$ sätts $\inpd{
 Given en input $X$, vill du prognostisera ett värde $\hat{y}$ Detta värde ska vara så likt THE GROUND TRUTH $y$ som möjligt. När man först initialiserar modellen kommer vikterna $W^{(l)}$ vara slumpade och nätverkets prognos kommer inte efterlikna det eftersökta värdet. Med hjälp av \textit{gradient descent} kan man iterativt träna modellen så det slutgiltiga värdet kommer så nära y som möjligt. Detta görs genom att definiera en multivariat kostnadsfunktion $L(W, b; X,y)$ av variablerna $W^{(0)}$, $W^{(1)}$, ..., $W^{(l)}$, $b^{(0)}$, $b^{(1)}$, ..., $b^{(l)}$ med avseende på ett träningsexempel $(X, y)$. Funktionen är ett mått på prognosen $\hat{y}$ kvalitet. Man definierar $L$ på ett sådant sätt att ju liten värdemängd av $L$, desto högre kvalitet består $\hat{y}$ av. Ett sätt att definiera $L$ är exempelvis med en så kallad \textit{L2 kostnadsfunktion}:
 \begin{equation}
 \begin{split}
-L(W,b) 	& = {||\hat{y}-y||}^2 \\
+L(W,b) 	& = {||\hat{y}-y_r||}^2 \\
 		& = {||f(f(f(XW^{(0)} +b^{(0)})W^{(1)} +b^{(1)})W^{(2)} +b^{(2)}) - y||}^2
 \end{split}
 \end{equation}
@@ -417,7 +419,7 @@ I praktiken brukar konvolutioner implementeras med hjälp av funktionerna $row2i
 Bakåtpropegeringen förstås bäst genom att algebraiskt härleda den. 
 
 Först har vi bakåtpropageringen av delta-felet. Med hjälp av kedjeregeln kan man dela upp derivatan i två bråk, $\inpd{L(W)}{X^{(l+1)}_{r,c',h',w'}}$ och $\inpd{X^{(l+1)}_{r,c',h',w'}}{X^{(l)}_{r,c,h,w}}$. $\inpd{L(W)}{X^{(l+1)}_{r,c',h',w'}}$ är den rekursiva delta-felet. En summan uppstår på grund av att derivatan av en summa är lika med summan av derivatan. $X^{(l+1)}_{r,c',h',w'}$ byts sedan ut mot dess definition enligt ekvation \eqref{konvolution}.
-\begin{equation}
+\begin{equation}\label{konvolutionbackprop}
 \begin{split}
 	\delta^{(l)}_{r,c,h,w}
 		& = \pd{L(W)}{X^{(l)}_{r,c,h,w}} \\
@@ -433,7 +435,7 @@ Varje produkt i den innersta summan kommer att vara like med noll förutom om $X
 	 = \sum^{C'-1}_{c'} \sum^{H'-1}_{h'} \sum^{W'-1}_{w'} W^{(l+1)}_{c', c, (h-h'), (w-w')}  \delta^{(l+1)}_{r,c',h',w'}   \\
 	 \end{split}
 \end{multline}
-Vilket man kan se är en summa av konvolutioner där en viss feature map av delta-felet sammanrullar över alla kärnor på en viss feature map med vikter som är roterade $180^\circ$. För att en konvolution ska kunna ske måste den roterade vikten zero-paddas på grund av att det glidande fönstret måste vara som mest lika stort som tensorn den sammanrullar över. Låt rotationen betäcknas med funktionen $rot()$.
+Vilket man kan se är en summa av konvolutioner där en viss feature map av delta-felet sammanrullar över alla kärnor på en viss feature map med vikter som är roterade $180^\circ$. För att en konvolution ska kunna ske måste den roterade vikten zero-paddas på grund av att det glidande fönstret måste vara som mest lika stor som tensorn den sammanrullar över. Låt rotationen betäcknas med funktionen $rot()$.
 \begin{equation}
 \delta^{(l)}_{r,c,h,w} = \sum^{C'-1}_{c'} rot(W^{(l+1)}_{c',c,h,w}) * \delta^{(l+1)}_{r,c'}
 \end{equation}
@@ -534,30 +536,33 @@ Sedan beräknas den normaliserade aktiveringen $\hat{X}$. Epsilon används för 
 \end{equation}
 Sist introduceras 2 vikter, $\gamma_{c'}^{(l)}$ och $\beta_{c'}^{(l)}$, vilka tillåter nätverket att upphäva normaliseringen om nätverket dömmer det att vara användbart.
 \begin{equation}
-X^{(l+1)}_{r,c',h',w'} = \gamma_{c'}^{(l)} \hat{X}_{r,c',h',w'} + \beta_{c'}^{(l)}
+X^{(l+1)}_{r,c,h,w} = \gamma_{c}^{(l)} \hat{X}_{r,c,h,w} + \beta_{c}^{(l)}
 \end{equation}
 
 Vid RUNTIME är det dock inte alltid möjligt att beräkna medelvärdet och variansen av mini-hopen på grund av att man oftast enbart vill testa ett exempel i taget. Medelvärdet och variansen för hela populationen måste då räknas ut och användas i stället för de beräknade värdena. Detta kan göras för små DATASETS, men om man arbetar med data som innehåller miljontals exempel är det enklare att uppskatta populationens statistik med hjälp av att updatera ett exponensiellt glidande medelvärde (EWMA) vid varje framåtpropagering:
 \begin{equation}
-\mu_{EWMA_c} \to \alpha \mu_c + (1-\alpha)\mu_{EWMA_c}
+\mu_{EWMA_c} \to \lambda \mu_c + (1-\lambda)\mu_{EWMA_c}
 \end{equation}
 \begin{equation}
-\sigma^2_{EWMA_c} \to \alpha \sigma^2_c + (1-\alpha)\sigma^2_{EWMA_c}
+\sigma^2_{EWMA_c} \to \lambda \sigma^2_c + (1-\lambda)\sigma^2_{EWMA_c}
 \end{equation}
 
-Där $\mu_{EWMA_c}$ och $\sigma^2_{EWMA_c}$ betäcknar de exponensiella glidande medelvärdena och $\alpha$ betäcknar dämpfaktorn.
+Där $\mu_{EWMA_c}$ och $\sigma^2_{EWMA_c}$ betäcknar de exponensiella glidande medelvärdena och $\lambda$ betäcknar dämpfaktorn.
 
 
 \subsubsection{Batch Normalization bakåtpropagering}
-För BN behöver det rekursiva delta-felet $\delta^{(l)}$, kostandsfunktionen med avseende på $\gamma_{c'}^{(l)}$ och kostandsfunktionen med avseende på $\beta{c'}^{(l)}$ beräknas. För att beräkna detta krävs något som heter hadamard-deltat, oftast betäcknat med $\delta_{i,j}$ men kommer nu vara betäcknat med $I_{i,j}$ på grund av att $\delta$ används för annat. Kronecker-deltat har följande egenskaper:
-\begin{equation}
+För BN behöver det rekursiva delta-felet $\delta^{(l)}$, kostandsfunktionen med avseende på $\gamma_{c'}^{(l)}$ och kostandsfunktionen med avseende på $\beta{c'}^{(l)}$ beräknas. För att beräkna detta krävs något som heter kronecker-deltat, oftast betäcknat med $\delta_{i,j}$ men kommer nu vara betäcknat med $I_{i,j}$ på grund av att $\delta$ används för em annan term. Kronecker-deltat har följande egenskaper:
+\begin{equation}\label{kroneckerdelta}
 I_{i,j} = \begin{cases} 1 & \mbox{om } i = j \\ 0 & \mbox{om } i \neq j  \end{cases}
 \end{equation}
-\begin{equation}
-\sum_j  x_i  I_{i,j} = x_j
+\begin{equation}\label{kroneckerdeltaDERIVATIVE}
+\pd{a_{j}}{a_i} = I_{i,j}
+\end{equation}
+\begin{equation}\label{kroneckerdeltaSUM}
+\sum_j  a_i  I_{i,j} = a_j
 \end{equation}
 
-Först har vi
+Först bryts $\inpd{L(W)}{X^{(l)}}$ upp i tre bråk och sedan summeras alla partiella derivator likt ekvation \eqref{konvolutionbackprop}:
 
 \begin{align}\label{BN_delta_error}
 \begin{split}
@@ -567,13 +572,26 @@ Först har vi
 \end{split}
 \end{align}
 
-h
-\begin{align}\label{BN_kedjeregeln}
+$\inpd{L(W)}{X^{(l+1)}_{r,c,h,w}}$ är det föregående rekursiva delta-felet. $\inpd{X^{(l+1)}_{r',c',h',w'}}{\hat{X}_{r',c',h',w'}}$ hittas enkelt på grund av att den är en linjär funktion.
+
+\begin{equation}\label{BN_dxdxhat}
+\begin{split}
+	\pd{X^{(l+1)}_{r',c',h',w'}}{\hat{X}_{r',c',h',w'}}
+		& = \pd{(\gamma_{c'}^{(l)} \hat{X}_{r',c',h',w'} + \beta_{c'}^{(l)})}{\hat{X}_{r',c',h',w'}} \\
+		& =\gamma_{c'}^{(l)}
+\end{split}
+\end{equation}
+
+För derivatan av den centrerade aktiveringen med avseende på den originella aktiveringen tillämpas produktregeln:
+\begin{equation}\label{BN_kedjeregeln}
+\begin{split}
 \pd{\hat{X}_{r',c',h',w'}}{{X}^{(l)}_{r,c,h,w}} 
 	& = \pd{(X^{(l)}_{r',c',h',w'} - \mu_{c'}){(\sigma^2_{c'} + \epsilon)}^{-\frac{1}{2}}}{{X}^{(l)}_{r,c,h,w}} \\
 	& = {(\sigma^2_{c'} + \epsilon)}^{-\frac{1}{2}} \pd{(X^{(l)}_{r',c',h',w'} - \mu_{c'})}{{X}^{(l)}_{r,c,h,w}} - \frac{1}{2}(X^{(l)}_{r',c',h',w'} - \mu_c){(\sigma^2_{c'} + \epsilon)}^{-\frac{3}{2}} \pd{\sigma^2_{c'}}{{X}^{(l)}_{r,c,h,w}}
-\end{align}
-j
+\end{split}
+\end{equation}
+
+Derivatan av den första faktorn med avseende på aktiveringen beräknas med hjälp av ekvationer \eqref{kroneckerdelta}, \eqref{kroneckerdeltaDERIVATIVE} och \eqref{kroneckerdeltaSUM}.
 \begin{equation}\label{mu'}
 \begin{split}
 \pd{(X^{(l)}_{r',c',h',w'} - \mu_{c'})}{{X}^{(l)}_{r,c,h,w}}
@@ -581,7 +599,8 @@ j
 	& = I_{r',r} I_{c',c} I_{h',h} I_{w',w} - \frac{1}{RHW} I_{c',c}
 \end{split}
 \end{equation}
-n
+
+Derivatan av den andra faktorn med avseende på aktiveringen beräknas på ett liknande sätt med hjälp av kedjeregeln och ekvationer \eqref{kroneckerdelta}, \eqref{kroneckerdeltaDERIVATIVE} och \eqref{kroneckerdeltaSUM}.
 \begin{equation}\label{sigma'}
 \begin{split}
 \pd{\sigma^2_{c'}}{{X}^{(l)}_{r,c,h,w}}
@@ -605,6 +624,7 @@ När alla komponenter till bakåtpropageringen av delta-felet är beräknade är
 	-  ({X^{(l)}_{r,c,h,w} - \mu_{c}}) {(\sigma^2_{c} + \epsilon)}^{-\frac{3}{2}} \sum\limits_{r',h',w'} \delta^{(l+1)}_{r',c,h',w'} ({X^{(l)}_{r',c,h',w'} - \mu_{c'}}) \biggl) \\
 \end{multline}
 
+Derivatan av vikterna hittas på ett liknande sätt med en faktor $\frac{1}{R}$ för att det är medelvärdet för alla exemepl i hopen som är eftersökt.
 \begin{align}
 \begin{split}
 	\pd{L(W)}{\gamma^{(l)}_{c}}
@@ -627,9 +647,135 @@ När alla komponenter till bakåtpropageringen av delta-felet är beräknade är
 \end{align}
 
 \subsection{Praktiska Tillämpningar}
-s
-\section{Diskussion}
+All kod till de exempel på praktiska tillämpningar kan hittas på github: \url{https://github.com/nikitazozoulenko}
+\subsubsection{Klassificering av handskrivna siffror}
+En enkel CNN-modell kan användas för att klassificera handskriva siffror. För att uppnå detta har MNIST DATASET för handskriva siffror används. Den består av 60 000 unika exempel för träning och ytterligare 10 000 exempel för validering av modellen. Valideringsdatan måste vara separerad från datan man tränar med för annars finns det risk att modellen OVERFITTAS och inte kan generalisera för andra exempel än träningsdatan. 
 
+Låt modellens prognos betäcknas med Softmaxfunktionen används för att gränsa output till intervallet $[0,1]$ och har egenskapen att alla prognostiserade värdena i ett exempel summeras till 1. Följaktligen kan varje värde i $y$ tolkas som sannolikheten att bilden är av varje klass.
+
+\begin{figure}[h]\label{figMNIST}
+	\centering
+  		\includegraphics[scale=1]{mnist.png}
+  	\caption{Tio bilder av handskrivna siffror från MNIST DATASETET}
+\end{figure}
+
+Input för modellen är en raw (rå??) $28 \times 28$ pixelarray. Modellen prognostiserar tio värden per bild i form av en tensor $\hat{y} \in \mathbb{R}^{R \times C}$, ett värde för varje klass $C=10$ av siffra. Om det näst sista lagret är $x$ med samma dimensioner som $\hat{y
+}$ definieras softmaxfunktionen $P$ genom:
+\begin{equation}
+\begin{split}
+P(x_{r,c}) 
+	& = \hat{y}_{r,c} \\
+	& = \dfrac{e^{x_{r,c}}}{\sum^{C-1}_{c'=0}e^{x_{r,c'}}}\\
+\end{split}
+\end{equation}
+
+\begin{equation}
+\begin{split}
+\pd{P(x_{r,c})}{x_{r,c}}
+	& = \dfrac{(\sum^{C-1}_{c'=0}e^{x_{r,c'}}) (e^{x_{r,c}}) - (e^{x_{r,c}})(\sum^{C-1}_{c'=0}e^{x_{r,c'}} I_{c,c'})}{(\sum^{C-1}_{c'=0}e^{x_{r,c'}})^2} \\
+	& = \dfrac{(e^{x_{r,c}})}{\sum^{C-1}_{c'=0}e^{x_{r,c'}}} - \dfrac{(e^{x_{r,c}})^2}{(\sum^{C-1}_{c'=0}e^{x_{r,c'}})^2} \\
+	& = \hat{y}_{r,c}(1-\hat{y}_{r,c})
+\end{split}
+\end{equation}
+
+Tillsammans med softmax används kostnadsfunktionen cross-entropy betäcknat med $L$ där $y$ är THE GROUND TRUTH:
+
+\begin{equation}
+L(W) = - \frac{1}{R}\sum^{R-1}_{r=0} \sum^{C-1}_{c=0}y_{r,c} \ \log{\hat{y}_{r,c}}
+\end{equation}
+\begin{equation}
+\begin{split}
+\pd{L(W)}{\hat{y}_{r',c'}} 
+	& = \pd{\left(-\frac{1}{R}\sum^{R-1}_{r=0} \sum^{C-1}_{c=0}y_{r,c} \ \log{\hat{y}_{r,c}}\right)}{\hat{y}_{r',c'}} \\
+	& = -\frac{1}{R}\sum^{R-1}_{r=0} \sum^{C-1}_{c=0}y_{r,c} \pd{\left(\log{\hat{y}_{r,c}}\right)}{\hat{y}_{r',c'}} \\
+	& = - \frac{1}{R}\sum^{R-1}_{r=0} \sum^{C-1}_{c=0} y_{r,c} \frac{1}{\hat{y}_{r,c}} I_{r, r'} I_{c, c'}\\
+	& = - \frac{1}{R} \frac{y_{r',c'}}{\hat{y}_{r',c'}} \\
+\end{split}
+\end{equation}
+
+Där $I$ är kronecker-deltat.
+
+Endast två olika modeller med olika lagerstrukturer prövades på grund av begränsad datakraft. En hopstorlek av 50 användes och 1200 iterationer av framåt- och bakåtpropagering kördes på den egenimplementerade modellen skriven i python. Totalt tog det 50 minuter för varje modell.
+
+\begin{center}
+    \begin{tabular}{ | c |}
+    \hline
+    		\textbf{Modell 1} \\ \hline \hline
+    		Input \\ \hline
+    		BN \\ \hline
+            conv3 c16 s1\\ \hline
+            maxpool2 s2\\ \hline
+            ReLU\\ \hline
+            BN\\ \hline
+            conv3 c16 s1\\ \hline
+            ReLU\\ \hline
+            BN\\ \hline
+            conv4 c16 s1\\ \hline
+            maxpool2 s2\\ \hline
+            ReLU\\ \hline
+            BN\\ \hline
+            conv4 c10 s1\\ \hline
+            softmax \\ \hline
+            Output \\
+    \hline
+    \end{tabular}
+	\qquad   
+    \begin{tabular}{ | c |}
+    \hline
+    		\textbf{Modell 2} \\ \hline \hline
+ 			BN \\ \hline
+            conv3 c16 s1 \\ \hline
+            ReLU \\ \hline
+            BN \\ \hline
+            conv3 c16 s1\\ \hline
+            ReLU\\ \hline
+            BN\\ \hline
+            conv3 c16 s1\\ \hline
+            maxpool2 s2\\ \hline
+            ReLU\\ \hline
+            BN\\ \hline
+            conv4 c16 s1\\ \hline
+            ReLU\\ \hline
+            BN\\ \hline
+            conv4 c24 s1\\ \hline
+            ReLU\\ \hline
+            BN\\ \hline
+            conv3 c24 s1\\ \hline
+            ReLU\\ \hline
+            BN\\ \hline
+            conv3 c10 s1\\ \hline
+            softmax \\ \hline
+            Output \\
+    \hline
+    \end{tabular}
+\end{center}
+
+Ett lager är antingen BN, conv (konvolution), maxpool, softmax eller ReLU. Nästinkommande siffra efter lagernamnet är kärnstorleken. $C$ benämner antal kärner vid det lagret och därmed antal kanaler vid nästa lager. Klivet benämns med $s$.
+
+Modell 1 uppnådde $95.57\%$ precision medan modell 2 uppnådde $98.07\%$ precision. Efter testerna kördes tränades det bättre presternade nätverket, modell 2, på fler iterationer tills validationsprecisionen började avta. Den testades varje 60 000 exemepel eller efter varje 600 iterationer med en hopstorlek av 100. Efter varje 60 000 bilder blandades dem för att förbättra inlärningen.
+
+\begin{figure}[h]\label{figkosnadmnist}
+	\centering
+  		\includegraphics[scale=0.6]{kostandsplot.png}
+  	\caption{En graf av kostnadsfunktionen efter varje iteration av mini-hopen av 100 bilder.}
+\end{figure}
+\begin{figure}[h]\label{figepokmnist}
+	\centering
+  		\includegraphics[scale=0.6]{epokplot.png}
+  	\caption{En graf av validationsprecisionen efter varje epok av 60 000 bilder.}
+\end{figure}
+
+Den slutgiltiga precisionen blev $99.2\%$. Av 10 000 handskrivna siffror lyckades modellen klassifisera 9 919 siffror rätt.
+
+\subsubsection{Objektdetektering i bilder}
+Om modellen YOLO:
+
+\subsubsection{Ansiktsigenkänning}
+
+\section{Diskussion}
+Vet inte vad jag ska diskutera?????
+
+Matten går inte att argumentera med. Det som skulle kunna pratas om är hur jag skulle kunna förbättra modellerna, med det är ju ganska jävla svårt för det här är state of the art. Jag förstår inte det som folk gör för att förbättra det jag har gjort.
 
 
 
@@ -659,8 +805,5 @@ s
     
 gradient descent bild https://camo.githubusercontent.com/2cf88d8a0cc996908dd1540e15f27d9a3ca206a3/68747470733a2f2f7261772e6769746875622e636f6d2f6a6f7368646b2f7079677261646573632f6d61737465722f696d672f6772617068312e706e67
 \end{thebibliography}
-
-OPTIONAL:
-\textit{Gradient descent} kan såväl leda till både lokala minima eller globala minima. Risken med att fastna i ett loktalt minumum är att modellen tror att den är maximalt optimerad medan den inte är det i själva verket. I praktiken har det dock visat sig att alla minima för ett nätverks kostnadsfunktion brukar vara av samma kvalite. Det som brukar skapa problem är sadelpunkter som illustreras i FIGUR ?????
 
 \end{document}

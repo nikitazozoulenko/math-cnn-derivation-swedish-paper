@@ -6,7 +6,7 @@
 \@writefile{lot}{\select@language{swedish}}
 \@writefile{toc}{\contentsline {section}{\numberline {1}Introduktion}{3}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {1.1}Bakgrund}{3}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.2}Syfte}{3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.2}Syfte}{4}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {1.3}Fr\IeC {\r a}gest\IeC {\"a}llning}{4}}
 \@writefile{toc}{\contentsline {section}{\numberline {2}Metod}{5}}
 \@writefile{toc}{\contentsline {section}{\numberline {3}Notation}{6}}
@@ -35,6 +35,7 @@
 \@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Ett omr\IeC {\r a}de med dimensioner $5 \times 5$ zero-paddas med $p=1$ och resulterande omr\IeC {\r a}de f\IeC {\r a}r dimensioner $7 \times 7$.}}{15}}
 \newlabel{konvolution}{{39}{16}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.2}Konvolutionslagret bak\IeC {\r a}tpropagering}{16}}
+\newlabel{konvolutionbackprop}{{40}{17}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.3}Aktiveringsfunktionslager fram\IeC {\r a}tpropagering}{18}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.4}Aktiveringsfunktionslager bak\IeC {\r a}tpropagering}{18}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.5}Maxpoollagret fram\IeC {\r a}tpropagation}{19}}
@@ -44,13 +45,26 @@
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.6}Maxpoollagret bak\IeC {\r a}tpropagering}{20}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.7}Batch Normalization fram\IeC {\r a}tpropagering}{20}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.8}Batch Normalization bak\IeC {\r a}tpropagering}{22}}
-\newlabel{BN_delta_error}{{60}{22}}
-\newlabel{BN_kedjeregeln}{{61}{22}}
-\newlabel{mu'}{{63}{22}}
-\newlabel{sigma'}{{64}{23}}
+\newlabel{kroneckerdelta}{{58}{22}}
+\newlabel{kroneckerdeltaDERIVATIVE}{{59}{22}}
+\newlabel{kroneckerdeltaSUM}{{60}{22}}
+\newlabel{BN_delta_error}{{61}{22}}
+\newlabel{BN_dxdxhat}{{62}{22}}
+\newlabel{BN_kedjeregeln}{{63}{23}}
+\newlabel{mu'}{{64}{23}}
+\newlabel{sigma'}{{65}{23}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Praktiska Till\IeC {\"a}mpningar}{25}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.1}Klassificering av handskrivna siffror}{25}}
+\newlabel{figMNIST}{{4.3.1}{26}}
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Tio bilder av handskrivna siffror fr\IeC {\r a}n MNIST DATASETET}}{26}}
 \bibcite{gof-patterns}{1}
 \bibcite{captain69}{2}
 \bibcite{template}{3}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Praktiska Till\IeC {\"a}mpningar}{24}}
-\@writefile{toc}{\contentsline {section}{\numberline {5}Diskussion}{24}}
-\@writefile{toc}{\contentsline {section}{Referenser}{24}}
+\newlabel{figkosnadmnist}{{4.3.1}{28}}
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces En graf av kostnadsfunktionen efter varje iteration av mini-hopen av 100 bilder.}}{28}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.2}Objektdetektering i bilder}{28}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.3}Ansiktsigenk\IeC {\"a}nning}{28}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Diskussion}{28}}
+\@writefile{toc}{\contentsline {section}{Referenser}{28}}
+\newlabel{figepokmnist}{{4.3.1}{29}}
+\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces En graf av validationsprecisionen efter varje epok av 60 000 bilder.}}{29}}
