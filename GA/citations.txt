@@ -1,0 +1,98 @@
+\bibitem{yolo} 
+	\textit{You only look once: Unified, real-time object detection.}
+    J. Redmon, S. Divvala, R. Girshick, och A. Farhadi. 
+    arXiv preprint arXiv:1506.02640, 2015.
+
+\bibitem{resnet} 
+	\textit{Deep residual learning for image recognition.}
+    K. He, X. Zhang, S. Ren, och J. Sun. 
+    arXiv preprint arXiv:1512.03385, 2015.
+    
+\bibitem{batchnorm} 
+	\textit{Batch normalization: Accelerating deep network training by reducing internal covariate shift.}
+    S. Ioffe och C. Szegedy. 
+	arXiv preprint arXiv:1502.03167, 2015.
+	
+	
+\bibitem{cs231n} 
+	\textit{CS231n: Convolutional Neural Networks for Visual Recognition.}
+    F. Li, A. Karpathy och J. Johnson.
+	Stanford University, föreläsning, vinter 2016.
+	
+\bibitem{notesonbackprop} 
+	\textit{Notes on Backpropagation.}
+    P. Sadowski.
+    University of California Irvine	Department of Computer Science.
+    
+\bibitem{convmath} 
+	\textit{Introduction to Convolutional Neural Networks.}
+    J. Wu. 
+    National Key Lab for Novel Software Technology, Nanjing University, Kina.
+    1 maj, 2017.
+
+\bibitem{convarithmetic} 
+	\textit{A guide to convolution arithmetic for deep learning.}
+    V. Dumoulin  och F. Visin.
+    FMILA, Université de Montréal. AIRLab, Politecnico di Milano.
+	24 mars, 2016.
+
+\bibitem{highperformanceconv} 
+	\textit{High Performance Convolutional Neural Networks for Document Processing.}
+    K. Chellapilla, S. Puri, P. Simard.
+    Tenth International Workshop on Frontiers in Handwriting Recognition. 
+    La Baule, Frankrike, Suvisoft.
+	Oktober 2006.
+
+\bibitem{wikiStanford} 
+	\textit{Unsupervised Feature Learning and Deep Learning.}
+    Standford University, Department of Computer Science.
+    URL http://ufldl.stanford.edu/wiki/.
+	Uppdaterad 31 mars 2013.
+    
+\bibitem{webconv1} 
+	\textit{Backpropagation In Convolutional Neural Networks.}
+	J. Kafunah.
+    DeepGrid, Organic Deep Learning. 
+    URL http://www.jefkine.com/.
+	5 september 2016.
+
+\bibitem{webBN1} 
+	\textit{What does the gradient flowing through batch normalization looks like?}
+	C. Thorey.
+    Machine Learning Blog. 
+    URL http://cthorey.github.io/.
+	28 januari 2016.
+	
+\bibitem{webconv2} 
+	\textit{Note on the implementation of a convolutional neural networks.}
+	C. Thorey.
+    Machine Learning Blog. 
+    URL http://cthorey.github.io/.
+	2 februari 2016.
+	
+\bibitem{webBN2} 
+	\textit{Understanding the backward pass through Batch Normalization Layer.}
+	Flaire of Machine Learning
+    URL https://kratzert.github.io.
+	5 september 2016.
+	
+\bibitem{webconv3} 
+	\textit{Convolutional Neural Networks.}
+	A. Gibiansky.
+    URL http://andrew.gibiansky.com.
+	24 februari 2014.
+	
+\bibitem{websoftmax} 
+	\textit{Classification and Loss Evaluation - Softmax and Cross Entropy Loss.}
+	P. Dahal. 
+	DeepNotes.
+    URL https://deepnotes.io/softmax-crossentropy.
+	24 februari 2014.
+
+
+\cite{MNIST}\cite{MNIST}\cite{MNIST}\cite{MNIST}
+\cite{figSGD}
+\cite{figboatcnn}
+figkonv
+figzeropad
+figmaxpool
