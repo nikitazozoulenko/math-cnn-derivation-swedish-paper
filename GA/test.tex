@@ -30,7 +30,7 @@
 
 \title{Matematik och Konvolutionella Neurala Nätverk för dataseende}
 \title{eller}
-\title{Ansiktsigenkänning och Objektdetektering med Konvolutionella Neurala Nätverk}
+\title{Objektdetektering och Ansiktsigenkänning med Konvolutionella Neurala Nätverk}
 \author{Nikita Zozoulenko}
 \date{\today}
 
@@ -54,14 +54,16 @@ Convolutional Neural Networks have ...
 \section{Introduktion}
 
 \subsection{Bakgrund}
-15 sidor av min rapport är bakgrund
+25 sidor av min rapport är bakgrund ?????
+
+nej men seriöst vet inte  vad jag ska skriva här, råd och förslag välkomnas starkt
 \subsection{Syfte}
 Syftet med arbetet är att redogöra för den underliggande matematiken bakom den matematiska modellen av klassiska neurala nätverk och konvolutionella neurala nätverk, samt visa exempel på praktiska tillämpningar.
 \subsection{Frågeställning}
-Vad är ett artificiellt neuralt nätverk?\\\\
-Vad är ett Konvolutionellt Neuralt Nätverk?\\\\
-Hur härleds framåt- och bakåtpropageringen i dessa nätverk \\\\
-Hur kan man tillämpa modellen för att implementera sifferavläsning,ansiktsigenkänning och objektdetektion i bilder?\\\\
+Vad är ett artificiellt neuralt nätverk?
+Vad är ett Konvolutionellt Neuralt Nätverk?
+Hur härleds framåt- och bakåtpropageringen i feed-forward neurala nätverk och konvolutionella neurala nätverk?
+Hur kan modellen tillämpas för att implementera sifferavläsning,ansiktsigenkänning och objektdetektion i bilder?
 
 
 \newpage
@@ -354,13 +356,13 @@ När människor vill identifiera någonting i en bild så letar vi efter vissa k
 
 Till skillnad från \textit{FCC} är neuronerna i ett \textit{CNN} bara kopplade till närliggande neuroner i det föregående lagret. På detta sätt kan nätverket lära sig fler hög-nivåspecialartiklar ju djupare i nätverket signalen går. Exempelvis kan det hända att det första lagret identifiera kanter och linjer medan de senare lagren lagren känner igen olika former och till sist känna igen ansikten eller object i sista lagert. \cite{cs231n}
 
+Modellen, precis som ett \textit{feed-forward nätverket}, består av ett flertal lager neuroner sådant att resultatet av ett lager matas in till nästkommande lager. För ett \textit{FCC} användes en matris för att representera neuronerna. I ett \textit{CNN} är en tensor $X^{(l)} \in \mathbb{R}^{R \times C  \times H \times W}$ av grad 4 aktiveringen vid lager $l$. Aktiveringen brukar illustreras som en tredimensionell volym där $W$, $H$ och $C$ är bredden, höjden respektive djupet. En $H \times W$ skiva av volymen kallas för en \textit{feature map} eller en \textit{kanal}. Antalet kanaler benämns med $C$. $R$ står för hopstorlek då man bearbetar R exempel i taget i en så kallad mini-hop. Vid varje lager finns dessutom vikter $W^{(l)}$  som beror på vad för slags lager det är. $W^{(l)}$ kan vara tom med inga vikter när lager inte bidrar till någon inlärning. \cite{cs231n} \cite{convmath}
+
 \begin{figure}[h]\label{figboatcnn}
 	\centering
   		\includegraphics[scale=0.6]{boatcnn.png}
-  	\caption{En illustration av ett konvolutionellt neuralt nätverk.}
+  	\caption{En illustration av ett konvolutionellt neuralt nätverk. \cite{figboatcnn}}
 \end{figure}
-
-Modellen, precis som ett \textit{feed-forward nätverket}, består av ett flertal lager neuroner sådant att resultatet av ett lager matas in till nästkommande lager. För ett \textit{FCC} användes en matris för att representera neuronerna. I ett \textit{CNN} är en tensor $X^{(l)} \in \mathbb{R}^{R \times C  \times H \times W}$ av grad 4 aktiveringen vid lager $l$. Aktiveringen brukar illustreras som en tredimensionell volym där $W$, $H$ och $C$ är bredden, höjden respektive djupet. En $H \times W$ skiva av volymen kallas för en \textit{feature map} eller en \textit{kanal}. Antalet kanaler benämns med $C$. $R$ står för hopstorlek då man bearbetar R exempel i taget i en så kallad mini-hop. Vid varje lager finns dessutom vikter $W^{(l)}$  som beror på vad för slags lager det är. $W^{(l)}$ kan vara tom med inga vikter när lager inte bidrar till någon inlärning. \cite{cs231n} \cite{convmath}
 
 För att en konvolution är en lokal operator används CNNs för data som innehåller lokalt sammanhängande samband, exempelvis bilder eller ljud. Om det är en bild som bearbetas har det första lagrets aktivering $C = 3$ kanaler, en för varje RGB-kanal, och en bredd och höjd lika med bildens bredd och höjd i pixlar. \cite{cs231n} \cite{convmath}
 
@@ -372,18 +374,12 @@ När masken är över en godtycklig del av volymen multipliceras varje värde i 
 \begin{figure}[h]\label{figkonv}
 	\centering
   		\includegraphics[scale=2.1]{convolution.png}
-  	\caption{En kärna med storlek $3 \times 3$ sammanrullar över ett område med dimensioner $6 \times 6$ och bildar en aktivering med dimensionerna $4 \times 4$.}
+  	\caption{En kärna med storlek $3 \times 3$ sammanrullar över ett område med dimensioner $6 \times 6$ och bildar en aktivering med dimensionerna $4 \times 4$. \cite{figkonv}}
 \end{figure}
 
 En feature map i lager $l+1$ är resultatet av att en kärna med dimensioner $1 \times \times C  \times k_h \times k_W$ har sammanrullat över aktiveringen av det föregående lagret. $C'$ är antalet kärnor och blir dessutom antalet feature maps nästa lager har. \cite{cs231n} \cite{convmath}
 
 Kärnorna har två ytterligare egenskaper: ett kliv $s$ och så kallad \textit{zero-padding} $p$. $s$ är hur stort kliv man tar efter varje gång filtret blir applicerat på tensorn. Man ökar tensorns höjd och bredd med $2p$ genom att fylla på med nollor vid tensors ändor (se figur 7). På grund av att aktiveringens höjd och bredd avtar ju djupare i nätverket de befinner sig på används zero-padding för att kontrollera storleken av tensorn. \cite{cs231n} \cite{convmath} \cite{convarithmetic}
-
-\begin{figure}[h]\label{figzeropad}
-	\centering
-  		\includegraphics[scale=0.7]{zeropadding.png}
-  	\caption{Ett område med dimensioner $5 \times 5$ zero-paddas med $p=1$ och resulterande område får dimensioner $7 \times 7$.}
-\end{figure}
 
 Låt $W^{(l)} \in \mathbb{R}^{C' \times C  \times k_h \times k_W}$, $X^{(l)} \in \mathbb{R}^{R \times C  \times (H+2p) \times (W+2p)}$ och $X^{(l+1)} \in \mathbb{R}^{R \times C'  \times H' \times W'}$. Dimensionerna vid lager $l+1$ beskrivs av: \cite{cs231n} \cite{convmath} \cite{convarithmetic}
 \begin{equation}
@@ -392,9 +388,13 @@ W' = \frac{W-k_W+2p}{s} +1
 \begin{equation}
 H' = \frac{H-k_H+2p}{s} +1
 \end{equation}
-\begin{equation}
-C' = C'
-\end{equation}
+
+\begin{figure}[h]\label{figzeropad}
+	\centering
+  		\includegraphics[scale=0.7]{zeropadding.png}
+  	\caption{Ett område med dimensioner $3 \times 3$ zero-paddas med $p=1$ och resulterande område får dimensioner $5 \times 5$.}
+\end{figure}
+
 Då beskrivs en konvolution algebraiskt genom: \cite{cs231n} \cite{convmath}
 \begin{equation}
 w = sw'
@@ -476,8 +476,8 @@ Här är igen inputneuronerna representerade av $X^{(l)} \in \mathbb{R}^{R \time
 
 \begin{figure}[h]\label{figmaxpool}
 	\centering
-  		\includegraphics[scale=1.6]{maxpool.png}
-  	\caption{Maxpooling med $k=2$ och $s=2$ av ett område med dimensioner $4 \times 4$ där resultatet bildar en aktivering med dimensionerna $2 \times 2$.}
+  		\includegraphics[scale=0.7]{maxpool.png}
+  	\caption{Maxpooling med $k=2$ och $s=2$ av ett område med dimensioner $4 \times 4$ där resultatet bildar ett område med dimensionerna $2 \times 2$.}
 \end{figure}
 
 Liknande konvolutionslagret utan zero-padding blir det nästintillkommande lagrets dimensioner: \cite{cs231n} \cite{convmath} \cite{convarithmetic}
@@ -783,26 +783,7 @@ Matten går inte att argumentera med. Det som skulle kunna pratas om är hur jag
 %%  \bibitem instead of \item. 
 %%    
     
-\bibitem{gradient} 
-	\textit{Scientific Computing 2013, Worksheet 6: Optimization: Gradient and steepest descent.}
-    University of Tartu, Estland.
-    2013.
-    
-\bibitem{yolo} 
-	\textit{You only look once: Unified, real-time object detection.}
-    J. Redmon, S. Divvala, R. Girshick, och A. Farhadi. 
-    arXiv preprint arXiv:1506.02640, 2015.
 
-\bibitem{resnet} 
-	\textit{Deep residual learning for image recognition.}
-    K. He, X. Zhang, S. Ren, och J. Sun. 
-    arXiv preprint arXiv:1512.03385, 2015.
-    
-\bibitem{batchnorm} 
-	\textit{Batch normalization: Accelerating deep network training by reducing internal covariate shift.}
-    S. Ioffe och C. Szegedy. 
-	arXiv preprint arXiv:1502.03167, 2015.
-	
 	
 \bibitem{cs231n} 
 	\textit{CS231n: Convolutional Neural Networks for Visual Recognition.}
@@ -837,7 +818,27 @@ Matten går inte att argumentera med. Det som skulle kunna pratas om är hur jag
 	\textit{Unsupervised Feature Learning and Deep Learning.}
     Standford University, Department of Computer Science.
     URL http://ufldl.stanford.edu/wiki/.
-	Uppdaterad 31 mars 2013.
+	Senast uppdaterad 31 mars 2013.
+	
+\bibitem{gradient} 
+	\textit{Scientific Computing 2013, Worksheet 6: Optimization: Gradient and steepest descent.}
+    University of Tartu, Estland.
+    2013.
+    
+\bibitem{yolo} 
+	\textit{You only look once: Unified, real-time object detection.}
+    J. Redmon, S. Divvala, R. Girshick, och A. Farhadi. 
+    arXiv preprint arXiv:1506.02640, 2015.
+
+\bibitem{resnet} 
+	\textit{Deep residual learning for image recognition.}
+    K. He, X. Zhang, S. Ren, och J. Sun. 
+    arXiv preprint arXiv:1512.03385, 2015.
+    
+\bibitem{batchnorm} 
+	\textit{Batch normalization: Accelerating deep network training by reducing internal covariate shift.}
+    S. Ioffe och C. Szegedy. 
+	arXiv preprint arXiv:1502.03167, 2015.
     
 \bibitem{webconv1} 
 	\textit{Backpropagation In Convolutional Neural Networks.}
@@ -885,7 +886,31 @@ Matten går inte att argumentera med. Det som skulle kunna pratas om är hur jag
 	URL http://yann.lecun.com/exdb/mnist/.
 	Hämtad 3 november 2017.
 	
-gradient descent bild https://camo.githubusercontent.com/2cf88d8a0cc996908dd1540e15f27d9a3ca206a3/68747470733a2f2f7261772e6769746875622e636f6d2f6a6f7368646b2f7079677261646573632f6d61737465722f696d672f6772617068312e706e67
+\bibitem{figSGD}
+	\textit{Pygradsc.}
+	J. Komoroske.
+	URL https://github.com/joshdk/pygradesc.
+	12 oktober 2012.
+	
+\bibitem{figboatcnn}
+	\textit{Understanding Convolutional Neural Networks for NLP.}
+	D. Britz.
+	WildML, Artificial Intelligence, Deep Learning, and NLP.
+	7 november 2015.
+	
+\bibitem{figkonv}
+	\textit{Understanding Convolutional Neural Networks for NLP.}
+	D. Britz.
+	WildML, Artificial Intelligence, Deep Learning, and NLP.
+	7 november 2015.
+	
+\bibitem{figconv}
+	\textit{Deep learning for complete beginners: convolutional neural networks with keras.}
+	P. Veličković.
+	Camebridge Spark. 
+	URL https://cambridgespark.com/content.
+	Senast uppdaterad 20 mars 2017.
 \end{thebibliography}
+
 
 \end{document}
