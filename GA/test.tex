@@ -72,8 +72,10 @@ Hur kan modellen tillämpas för att implementera sifferavläsning,ansiktsigenk�
 Majoriteten av tiden gick åt till att... standford, vetenskapliga artiklar batch normalization någonting et al. 2015.... implementera skiten och dubbelkolla med derivatans definition
 
 \newpage
-\section{Notation}
-I denna rapport används notation för bland annat vektorer, matriser och tensorer av högre grad. En tensor av grad 1 är en vektor $x \in \mathbb{R}^H$ och är en radvektor med $H$ element. Matriser $M$ är tensorer av grad 2 sådana att $M \in \mathbb{R}^{H \times W}$. En tensor $X \in \mathbb{R}^{R \times C \times H \times W}$ av grad 4 indexeras med en fyr-tupel $(r,c,h,w)$ där $0 \leq r < R$, $0 \leq c < C$, $0 \leq h < H$ och $0 \leq w < W$. Om $R \times C \times H \times W$ och $(r,c,h,w)$ representerar dimensionerna respektive index för lager $l$ represneterar $R \times C' \times H' \times W'$ och $(r,c',h',w')$ dimensionerna respektive index för nästinkommande lager.
+\section{Notation och Tensorer}
+I denna rapport används notation för bland annat vektorer, matriser och tensorer av högre grad. En tensor av grad 1 är en vektor $x \in \mathbb{R}^H$ och är en radvektor med $H$ element. Det kan dessutom ses som en endimensionell array. Matriser $M$ är tensorer av grad 2 sådana att $M \in \mathbb{R}^{H \times W}$ och kan ses som en vektor av vektorer eller en tvådimensionell array. Tensorer kan alltså ses som en generalisering av vektor- och matrisbegräppen. En tensor $X \in \mathbb{R}^{R \times C \times H \times W}$ av grad 4 indexeras med en fyr-tupel $(r,c,h,w)$ där $0 \leq r < R$, $0 \leq c < C$, $0 \leq h < H$ och $0 \leq w < W$. 
+
+%Om $R \times C \times H \times W$ och $(r,c,h,w)$ representerar dimensionerna respektive index för lager $l$ represneterar $R \times C' \times H' \times W'$ och $(r,c',h',w')$ dimensionerna respektive index för nästinkommande lager.
 
 Om $X$ är en matris definieras funktionen $f(X)$ genom att elementvis applicera $f$ på alla matrisens element:
 \begin{align}
@@ -111,42 +113,47 @@ Hadamardprodukten betäcknas med $\odot$ och verkar på två tensorer $A$ och $B
 	C_{i_0, i_1, \cdots, i_{n-1}} = A_{i_0, i_1, \cdots, i_{n-1}} \odot B_{i_0, i_1, \cdots, i_{n-1}}
 \end{equation}
 
-En tensor av grad n kan ses som en tensor av grad 1 vars element är tensorer av grad n-1. Exempelvis är en vektor en vektor av skalärer och en matris en vektor av vektorer. Funktionen $vec()$ gör om en tensor av grad n till en vektor genom att rekursivt använda den sistnämnda egenskaper av tensorer. \cite{convmath}
+En tensor av grad n kan ses som en tensor av grad 1 vars element är tensorer av grad n-1. Exempelvis är en vektor en vektor av skalärer och en matris en vektor av vektorer. Funktionen $vec()$ gör om en tensor av grad n till en vektor genom att rekursivt använda den sistnämnda egenskapen av tensorer. \cite{convmath}
 
 \section{Resultat}
 \subsection{Feed-forward Neurala Nätverk}
 Ett artificellt neuralt nätverk består av ett antal lager neuroner. De är uppbyggda rekursivt så att resultatet av ett lager är inmatningen till nästintilliggande lager. Nervsignalen propageras framåt tills den når det sista lagret. Hur nervceller från ett lager är kopplade till det föregående lagret varierar med vilken typ av neuralt nätverk man väljer. \cite{cs231n}
 
-Den mest grundläggande modellen är så kallade \textit{Multilayer Perceptrons} och har flera namn, bland annat \textit{Fully Connected Cascade (FCC)}, \textit{Feed-forward Neural Network} och \textit{Densly Connected (Dense)}. Modellen består av ett flertal lager av neuroner sådana att resultatet av ett lager matas in som input till nästa lager. Varje neuron i ett lager är kopplade till alla neuroner i nästintillföljande lager. Styrkan av en nervsignals fortplantning till nästa neuron beror på hur stark kopplingen mellan de två neuronerna är. Deras värden vid ett visst lager kallas för aktiveringen vid det lagret. Utöver den vanliga nervsignalsöverföringen appliceras dessutom en aktiveringsfunktion $f(x)$ på samtliga lager elementvis på varje neuron enligt ekvation \eqref{f(x)}. \cite{cs231n}
+Den mest grundläggande modellen har flera namn, bland annat:  \textit{Multilayer Perceptrons} \textit{Fully Connected Cascade (FCC)}, \textit{Feed-forward Neural Network} och \textit{Densly Connected (Dense)}. Den består av ett flertal lager av neuroner. Varje neuron i ett lager är kopplade till alla neuroner i nästintillföljande lager. Nervsignalen framåtpropageras beroende på hur stark kopplingen mellan två neuroner är. Ett neurons värde kallas för dess aktivering. \eqref{f(x)}. \cite{cs231n}
+
+% Utöver den vanliga nervsignalsöverföringen appliceras dessutom en aktiveringsfunktion $f(x)$ på samtliga lager elementvis på varje neuron enligt ekvation 
 
 \begin{figure}[h]\label{figFCC}
 	\centering
   		\includegraphics[scale=0.4]{FCC.png}
-  	\caption{Ett exempel på ett enkelt feed-forward neuralt nätverk. Inputneuronerna är blåmarkerade medan resterande neuroner är orangea. Röda neuroner är så kallade ”bias-neuroner” som är konstanta oberoende på indatan. Svarta linjer symboliserar vikterna och deras styrka mellan två neuroner.}
+  	\caption{Ett exempel på ett enkelt feed-forward neuralt nätverk. Inputneuronerna är blåmarkerade medan resterande neuroner är orangea. Röda neuroner är så kallade ”bias-neuroner” som är konstanta oberoende på inputdatan. Svarta linjer symboliserar vikterna och deras styrka mellan två neuroner.}
 \end{figure}
 
-
-
 \subsubsection{Framåtprogagering}
-\textit{Forward propagation} eller framåtpropagering är processen av att från sina inputneuroner propagera framåt nervsignalen i nätverket tills man når det sista lagret av neuroner. \cite{cs231n}
+\textit{Forward propagation} eller framåtpropagation är processen av att från sina inputneuroner propagera framåt nervsignalen i nätverket tills man når outputlagret. \cite{cs231n} \cite{wikiStanford}
 
-Nätverket kan framställas genom att representera neuronerna och deras kopplingar m.h.a matriser. Låt $X_{ri}^{(l)}$ benämna neuron nummer $i$ i lager $l$ i hop $r$, $W_{ba}^{(l)}$ styrkan på kopplingen mellan neuron $X_{ra}^{(l)}$ och $X_{rb}^{(l+1)}$ och låt $b^{(l)}$ (efter engelskans \textit{bias}) vara en konstant neuron som är kopplad till alla neuron i lager $l+1$. Output av nätverket kallas för $\hat{y}$ och är värdet av det sista lagret neuroner. Signalöverföringen mellan lager 2 och 3 i figur 1 kan beskrivas matematiskt genom: \cite{cs231n} \cite{wikiStanford}
+Nätverket kan framställas genom att representera neuronerna och deras kopplingar m.h.a matriser. Låt $X_{ri}^{(l)}$ benämna neuron nummer $i$ i lager $l$ i träningsexempel $r$. $W_{ba}^{(l)}$ blir vikten eller styrkan på kopplingen mellan neuron $X_{ra}^{(l)}$ och $X_{rb}^{(l+1)}$. Låt $b^{(l)}$ vara ett konstant neuron som är kopplad till alla neuron i lager $l+1$.  \cite{cs231n} \cite{wikiStanford}
+
+För att beräkna aktiveringen av ett neuron i lager $l+1$ multipliceras varje neurons värde i lager $l$ med deras korresponderande vikt i viktmatrisen $W^{(l)}$. Resultaten och lagrets konstanta neuron $b^{(l)}$ summeras och summan matas in i en aktiveringsfunktion $f(x)$. Funktionsvärdet blir aktiveringen i det nya neuronet. Exempelvis kan signalöverföringen mellan lager 2 och 3 i figur 1 beskrivas matematiskt genom: \cite{cs231n} \cite{wikiStanford}
+
+%Output av nätverket kallas för $\hat{y}$ och är värdet av det sista lagret neuroner. 
 
 \begin{equation}
 \begin{split}
 X_{00}^{(3)} & = f(X_{00}^{(2)}W_{00}^{(2)} + X_{01}^{(2)}W_{10}^{(2)} + X_{02}^{(2)}W_{20}^{(2)} + b^{(2)}) \\
-			 & = f(X^{(2)}W^{(2)} +b^{(2)})
 \end{split}
 \end{equation}
+%& = f(X^{(2)}W^{(2)} +b^{(2)})
 
 Där $X^{(3)} \in \mathbb{R}^{1 \times 1}$, $X^{(2)} \in \mathbb{R}^{1 \times 3}$, $W^{(2)} \in \mathbb{R}^{3 \times 1}$ och $b^{(2)} \in \mathbb{R}^{1}$.
 
-Mer generellt kan ett helt neuralt nätverk beskrivas med följande rekursiva formel: \cite{cs231n} \cite{wikiStanford}
+Neuronmatriserna och viktmatriserna är definierade på ett sådant sätt att framåtpropegationen mellan lager $l$ och $l+1$ kan beräknas med en matrismultiplikation och kan därför beräknas rekursivt från inputneuronerna: \cite{cs231n} \cite{wikiStanford}
 
 \begin{equation}\label{feed-forward}
 X^{(l+1)} = f(X^{(l)}W^{(l)} +b^{(l)})
 \end{equation}
-Vanliga aktiveringsfunktioner för neurala nätverk är \textit{Rectified Linear Units ($ReLU$)}, \textit{sigmoid ($\sigma$)} och \textit{tangens hyperbolicus ($tanh$)}. Funktionerna måste vara deriverbara för att nätverket ska kunna tränas genom processen som kallas för bakåtpropagering. Utan aktiveringsfunktioner skulle hela modellen vara en linjär transformation. Genom att använda olinjära funktioner kan nätverket lära sig olinjära samband. Definitionerna av funktionerna ges av: \cite{cs231n} 
+
+Vanliga aktiveringsfunktioner för neurala nätverk är \textit{Rectified Linear Units ($ReLU$)}, \textit{sigmoid ($\sigma$)} och \textit{tangens hyperbolicus ($tanh$)}. Funktionerna måste vara deriverbara för att nätverket ska kunna tränas genom processen som kallas för bakåtpropagering. Genom att använda olinjära funktioner kan nätverket lära sig olinjära samband. Definitionerna av funktionerna ges av: \cite{cs231n} 
 
 \begin{figure}[h]\label{aktiveringsfunktion}
 	\centering
@@ -212,7 +219,7 @@ Kvotregeln tillämpas för att härleda derivatan av $\sigma$ och $tanh$:
 
 
 \subsubsection{Bakåtpropagation}
-Given en input $X$, vill du prognostisera ett värde $\hat{y}$ Detta värde ska vara så likt THE GROUND TRUTH $y$ som möjligt. När man först initialiserar modellen kommer vikterna $W^{(l)}$ vara slumpade och nätverkets prognos kommer inte efterlikna det eftersökta värdet. Med hjälp av \textit{gradient descent} kan man iterativt träna modellen så det slutgiltiga värdet kommer så nära y som möjligt. Detta görs genom att definiera en multivariat kostnadsfunktion $L(W, b; X,y)$ av variablerna $W^{(0)}$, $W^{(1)}$, ..., $W^{(l)}$, $b^{(0)}$, $b^{(1)}$, ..., $b^{(l)}$ med avseende på ett träningsexempel $(X, y)$. Funktionen är ett mått på prognosen $\hat{y}$ kvalitet. Man definierar $L$ på ett sådant sätt att ju liten värdemängd av $L$, desto högre kvalitet består $\hat{y}$ av. Ett sätt att definiera $L$ är exempelvis med en så kallad \textit{L2 kostnadsfunktion}: \cite{cs231n} \cite{wikiStanford}
+Givet ett inputvärde för X skapas ett närmevärde $\hat{y}$ som ska vara så nära det sanna värdet för y som möjligt. När man först initialiserar modellen kommer vikterna $W^{(l)}$ vara slumpade och nätverkets prognos kommer inte efterlikna det sökta värdet. Med hjälp av \textit{gradient descent} kan man iterativt träna modellen så det slutgiltiga värdet kommer så nära y som möjligt. Detta görs genom att definiera en multivariat kostnadsfunktion $L(W, b; X,y)$ av variablerna $W^{(0)}$, $W^{(1)}$, ..., $W^{(l)}$, $b^{(0)}$, $b^{(1)}$, ..., $b^{(l)}$ med avseende på ett träningsexempel $(X, y)$. Funktionen är ett mått på prognosen $\hat{y}$ kvalitet. Man definierar $L$ på ett sådant sätt att ju liten värdemängd av $L$, desto högre kvalitet består $\hat{y}$ av. Ett sätt att definiera $L$ är exempelvis med en så kallad \textit{L2 kostnadsfunktion}: \cite{cs231n} \cite{wikiStanford}
 \begin{equation}
 \begin{split}
 L(W,b) 	& = {||\hat{y}-y_r||}^2 \\
