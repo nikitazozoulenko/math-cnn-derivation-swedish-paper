@@ -72,54 +72,55 @@ Hur kan modellen tillämpas för att implementera sifferavläsning,ansiktsigenk�
 Majoriteten av tiden gick åt till att... standford, vetenskapliga artiklar batch normalization någonting et al. 2015.... implementera skiten och dubbelkolla med derivatans definition
 
 \newpage
-\section{Notation och Tensorer}
-I denna rapport används notation för bland annat vektorer, matriser och tensorer av högre grad. En tensor av grad 1 är en vektor $x \in \mathbb{R}^H$ och är en radvektor med $H$ element. Det kan dessutom ses som en endimensionell array. Matriser $M$ är tensorer av grad 2 sådana att $M \in \mathbb{R}^{H \times W}$ och kan ses som en vektor av vektorer eller en tvådimensionell array. Tensorer kan alltså ses som en generalisering av vektor- och matrisbegräppen. En tensor $X \in \mathbb{R}^{R \times C \times H \times W}$ av grad 4 indexeras med en fyr-tupel $(r,c,h,w)$ där $0 \leq r < R$, $0 \leq c < C$, $0 \leq h < H$ och $0 \leq w < W$. 
+\section{Tensorer, indexering och notation}
+I denna rapport används notation för bland annat vektorer, matriser och tensorer av högre grad. En tensor av grad 1 är en vektor $x \in \mathbb{R}^N$ och är en radvektor med $N$ element. Det kan dessutom ses som en endimensionell array. Matriser $M$ är tensorer av grad 2 sådana att $M \in \mathbb{R}^{R \times N}$ och kan ses som en vektor av vektorer eller en tvådimensionell array. Tensorer kan alltså ses som en generalisering av vektor- och matrisbegräppen. En tensor $X \in \mathbb{R}^{R \times C \times H \times W}$ av grad 4 indexeras med en fyr-tupel $(r,c,h,w)$ där $0 \leq r < R$, $0 \leq c < C$, $0 \leq h < H$ och $0 \leq w < W$. 
 
 %Om $R \times C \times H \times W$ och $(r,c,h,w)$ representerar dimensionerna respektive index för lager $l$ represneterar $R \times C' \times H' \times W'$ och $(r,c',h',w')$ dimensionerna respektive index för nästinkommande lager.
 
-Om $X$ är en matris definieras funktionen $f(X)$ genom att elementvis applicera $f$ på alla matrisens element:
-\begin{align}
-	f(X) = 
-	& \begin{bmatrix}
-	f(X_{0,0}) & f(X_{0,1}) & \cdots & f(X_{0,i}) \\
-	f(X_{1,0}) & f(X_{1,1}) & \cdots & f(X_{1,i}) \\
-	\vdots     & \vdots     & \ddots & \vdots     \\
-	f(X_{j,0}) & f(X_{j,1}) & \cdots & f(X_{j,i}) \\
-	\end{bmatrix} \\
-\pd{f(X)}{X} = 
-	& \begin{bmatrix}
-	\pd{f(X_{0,0})}{X_{0,0}} & \pd{f(X_{0,1})}{X_{0,1}} & \cdots & \pd{f(X_{0,i})}{X_{0,i}} \\
-	\pd{f(X_{1,0})}{X_{1,0}} & \pd{f(X_{1,1})}{X_{1,1}} & \cdots & \pd{f(X_{1,i})}{X_{1,i}} \\
-	\vdots                   & \vdots                   & \ddots & \vdots     \\
-	\pd{f(X_{j,0})}{X_{j,0}} & \pd{f(X_{j,1})}{X_{j,1}} & \cdots & \pd{f(X_{j,i})}{X_{j,i}} \\
-	\end{bmatrix}
-\end{align}
+%Om $X$ är en matris definieras funktionen $f(X)$ genom att elementvis applicera $f$ på alla matrisens element:
+%\begin{align}
+%	f(X) = 
+%	& \begin{bmatrix}
+%	f(X_{0,0}) & f(X_{0,1}) & \cdots & f(X_{0,i}) \\
+%	f(X_{1,0}) & f(X_{1,1}) & \cdots & f(X_{1,i}) \\
+%	\vdots     & \vdots     & \ddots & \vdots     \\
+%	f(X_{j,0}) & f(X_{j,1}) & \cdots & f(X_{j,i}) \\
+%	\end{bmatrix} \\
+%\pd{f(X)}{X} = 
+%	& \begin{bmatrix}
+%	\pd{f(X_{0,0})}{X_{0,0}} & \pd{f(X_{0,1})}{X_{0,1}} & \cdots & \pd{f(X_{0,i})}{X_{0,i}} \\
+%	\pd{f(X_{1,0})}{X_{1,0}} & \pd{f(X_{1,1})}{X_{1,1}} & \cdots & \pd{f(X_{1,i})}{X_{1,i}} \\
+%	\vdots                   & \vdots                   & \ddots & \vdots     \\
+%	\pd{f(X_{j,0})}{X_{j,0}} & \pd{f(X_{j,1})}{X_{j,1}} & \cdots & \pd{f(X_{j,i})}{X_{j,i}} \\
+%	\end{bmatrix}
+%\end{align}
+%
+%Detta kan generaliseras för en tensor av grad n:
+%\begin{equation}\label{f(x)}
+%	\begin{bmatrix} f(X) \end{bmatrix}_{i_0, i_1, \cdots, i_{n-1}}
+%	= f(X_{i_0, i_1, \cdots, i_{n-1}})
+%\end{equation}
+%\begin{equation}\label{f'(x)}
+%	\begin{bmatrix}
+%	\pd{f(X)}{X}
+%	\end{bmatrix}_{i_0, i_1, \cdots, i_{n-1}}
+%	=
+%	\pd{f(X_{i_0, i_1, \cdots, i_{n-1}})}{X_{i_0, i_1, \cdots, i_{n-1}}}
+%\end{equation}
 
-Detta kan generaliseras för en tensor av grad n:
-\begin{equation}\label{f(x)}
-	\begin{bmatrix} f(X) \end{bmatrix}_{i_0, i_1, \cdots, i_{n-1}}
-	= f(X_{i_0, i_1, \cdots, i_{n-1}})
-\end{equation}
-\begin{equation}\label{f'(x)}
-	\begin{bmatrix}
-	\pd{f(X)}{X}
-	\end{bmatrix}_{i_0, i_1, \cdots, i_{n-1}}
-	=
-	\pd{f(X_{i_0, i_1, \cdots, i_{n-1}})}{X_{i_0, i_1, \cdots, i_{n-1}}}
-\end{equation}
+En tensor av grad n kan ses som en tensor av grad 1 vars element är tensorer av grad n-1. Exempelvis är en vektor en vektor av skalärer och en matris en vektor av vektorer. Funktionen $vec()$ gör om en tensor av grad n till en vektor genom att rekursivt använda den sistnämnda egenskapen av tensorer. \cite{convmath}
 
-Hadamardprodukten betäcknas med $\odot$ och verkar på två tensorer $A$ och $B$ av samma storlek och producerar en tensor $C$ med samma storlek.\cite{cs231n} Elementen i tensorerna multipliceras elementvist : 
+Hadamardprodukten betäcknas med $\odot$ och verkar på två tensorer $A$ och $B$ av samma storlek och producerar en tensor $C$ med samma storlek. Elementen i tensorerna multipliceras elementvist: \cite{cs231n} 
 \begin{equation}
 	C_{i_0, i_1, \cdots, i_{n-1}} = A_{i_0, i_1, \cdots, i_{n-1}} \odot B_{i_0, i_1, \cdots, i_{n-1}}
 \end{equation}
 
-En tensor av grad n kan ses som en tensor av grad 1 vars element är tensorer av grad n-1. Exempelvis är en vektor en vektor av skalärer och en matris en vektor av vektorer. Funktionen $vec()$ gör om en tensor av grad n till en vektor genom att rekursivt använda den sistnämnda egenskapen av tensorer. \cite{convmath}
-
+\newpage
 \section{Resultat}
 \subsection{Feed-forward Neurala Nätverk}
 Ett artificellt neuralt nätverk består av ett antal lager neuroner. De är uppbyggda rekursivt så att resultatet av ett lager är inmatningen till nästintilliggande lager. Nervsignalen propageras framåt tills den når det sista lagret. Hur nervceller från ett lager är kopplade till det föregående lagret varierar med vilken typ av neuralt nätverk man väljer. \cite{cs231n}
 
-Den mest grundläggande modellen har flera namn, bland annat:  \textit{Multilayer Perceptrons} \textit{Fully Connected Cascade (FCC)}, \textit{Feed-forward Neural Network} och \textit{Densly Connected (Dense)}. Den består av ett flertal lager av neuroner. Varje neuron i ett lager är kopplade till alla neuroner i nästintillföljande lager. Nervsignalen framåtpropageras beroende på hur stark kopplingen mellan två neuroner är. Ett neurons värde kallas för dess aktivering. \eqref{f(x)}. \cite{cs231n}
+Den mest grundläggande modellen har flera namn, bland annat:  \textit{Multilayer Perceptrons} \textit{Fully Connected Cascade (FCC)}, \textit{Feed-forward Neural Network} och \textit{Densly Connected (Dense)}. Den består av ett flertal lager av neuroner. Varje neuron i ett lager är kopplade till alla neuroner i nästintillföljande lager. Nervsignalen framåtpropageras beroende på hur stark kopplingen mellan två neuroner är. Ett neurons värde kallas för dess aktivering. \cite{cs231n}
 
 % Utöver den vanliga nervsignalsöverföringen appliceras dessutom en aktiveringsfunktion $f(x)$ på samtliga lager elementvis på varje neuron enligt ekvation 
 
@@ -134,30 +135,26 @@ Den mest grundläggande modellen har flera namn, bland annat:  \textit{Multilaye
 
 Nätverket kan framställas genom att representera neuronerna och deras kopplingar m.h.a matriser. Låt $X_{ri}^{(l)}$ benämna neuron nummer $i$ i lager $l$ i träningsexempel $r$. $W_{ba}^{(l)}$ blir vikten eller styrkan på kopplingen mellan neuron $X_{ra}^{(l)}$ och $X_{rb}^{(l+1)}$. Låt $b^{(l)}$ vara ett konstant neuron som är kopplad till alla neuron i lager $l+1$.  \cite{cs231n} \cite{wikiStanford}
 
-För att beräkna aktiveringen av ett neuron i lager $l+1$ multipliceras varje neurons värde i lager $l$ med deras korresponderande vikt i viktmatrisen $W^{(l)}$. Resultaten och lagrets konstanta neuron $b^{(l)}$ summeras och summan matas in i en aktiveringsfunktion $f(x)$. Funktionsvärdet blir aktiveringen i det nya neuronet. Exempelvis kan signalöverföringen mellan lager 2 och 3 i figur 1 beskrivas matematiskt genom: \cite{cs231n} \cite{wikiStanford}
-
+För att beräkna aktiveringen av ett neuron i lager $l+1$ multipliceras varje neurons värde i lager $l$ med deras korresponderande vikt i viktmatrisen $W^{(l)}$. Resultaten och lagrets konstanta neuron $b^{(l)}$ summeras och summan matas in i en aktiveringsfunktion $f(x)$. Funktionsvärdet blir aktiveringen för det nya neuronet i lager $l+1$. Exempelvis kan signalöverföringen mellan lager 2 och 3 för ett specifikt exempel $r$ i mini-hopen i figur 1 beskrivas matematiskt genom: \cite{cs231n} \cite{wikiStanford}
 %Output av nätverket kallas för $\hat{y}$ och är värdet av det sista lagret neuroner. 
-
-\begin{equation}
-\begin{split}
-X_{00}^{(3)} & = f(X_{00}^{(2)}W_{00}^{(2)} + X_{01}^{(2)}W_{10}^{(2)} + X_{02}^{(2)}W_{20}^{(2)} + b^{(2)}) \\
-\end{split}
-\end{equation}
+\begin{align}
+Z_{r0}^{(3)} & = X_{r0}^{(2)}W_{r0}^{(2)} + X_{r1}^{(2)}W_{10}^{(2)} + X_{r2}^{(2)}W_{20}^{(2)} + b^{(2)} \\
+X_{r0}^{(3)} & = f(Z_{r0}^{(3)})
+\end{align}
 %& = f(X^{(2)}W^{(2)} +b^{(2)})
 
 Där $X^{(3)} \in \mathbb{R}^{1 \times 1}$, $X^{(2)} \in \mathbb{R}^{1 \times 3}$, $W^{(2)} \in \mathbb{R}^{3 \times 1}$ och $b^{(2)} \in \mathbb{R}^{1}$.
 
 Neuronmatriserna och viktmatriserna är definierade på ett sådant sätt att framåtpropegationen mellan lager $l$ och $l+1$ kan beräknas med en matrismultiplikation och kan därför beräknas rekursivt från inputneuronerna: \cite{cs231n} \cite{wikiStanford}
-
-\begin{equation}\label{feed-forward}
-X^{(l+1)} = f(X^{(l)}W^{(l)} +b^{(l)})
-\end{equation}
-
+\begin{align}\label{feed-forward}
+Z_{r,i}^{(l+1)} & = [X^{(l)}W^{(l)}]_{r,i}+b^{l}\\
+X_{r,i}^{(l+1)} & = f(Z_{ri}^{(l+1)})
+\end{align}
 Vanliga aktiveringsfunktioner för neurala nätverk är \textit{Rectified Linear Units ($ReLU$)}, \textit{sigmoid ($\sigma$)} och \textit{tangens hyperbolicus ($tanh$)}. Funktionerna måste vara deriverbara för att nätverket ska kunna tränas genom processen som kallas för bakåtpropagering. Genom att använda olinjära funktioner kan nätverket lära sig olinjära samband. Definitionerna av funktionerna ges av: \cite{cs231n} 
 
 \begin{figure}[h]\label{aktiveringsfunktion}
 	\centering
-  		\includegraphics[scale=0.8]{activationfunction.png}
+  		\includegraphics[scale=0.83]{activationfunction.png}
   	\caption{Grafen av aktiveringsfunktionerna $ReLU$, $\sigma$ och $tanh$.}
 \end{figure}
 
@@ -218,8 +215,8 @@ Kvotregeln tillämpas för att härleda derivatan av $\sigma$ och $tanh$:
 
 
 
-\subsubsection{Bakåtpropagation}
-Givet ett inputvärde för X skapas ett närmevärde $\hat{y}$ som ska vara så nära det sanna värdet för y som möjligt. När man först initialiserar modellen kommer vikterna $W^{(l)}$ vara slumpade och nätverkets prognos kommer inte efterlikna det sökta värdet. Med hjälp av \textit{gradient descent} kan man iterativt träna modellen så det slutgiltiga värdet kommer så nära y som möjligt. Detta görs genom att definiera en multivariat kostnadsfunktion $L(W, b; X,y)$ av variablerna $W^{(0)}$, $W^{(1)}$, ..., $W^{(l)}$, $b^{(0)}$, $b^{(1)}$, ..., $b^{(l)}$ med avseende på ett träningsexempel $(X, y)$. Funktionen är ett mått på prognosen $\hat{y}$ kvalitet. Man definierar $L$ på ett sådant sätt att ju liten värdemängd av $L$, desto högre kvalitet består $\hat{y}$ av. Ett sätt att definiera $L$ är exempelvis med en så kallad \textit{L2 kostnadsfunktion}: \cite{cs231n} \cite{wikiStanford}
+\subsubsection{Kostnadsfunktionen och gradient descent}
+Givet ett värde $X$ skapas ett närmevärde $\hat{y}$ som ska vara så nära det sanna värdet för y som möjligt. Initialt kommer $W^{(l)}$ vara slumpade för varje lager $l$ och nätverkets prognos kommer inte efterlikna det sökta värdet. Med hjälp av \textit{gradient descent} kan man iterativt träna modellen så det slutgiltiga värdet kommer så nära $y$ som möjligt. Detta görs genom att definiera en multivariat kostnadsfunktion $L(W, b; X,y)$ av alla nätverkets parametrar med avseende på ett träningsexempel $(X, y)$. Funktionen är ett mått på prognosen $\hat{y}$ kvalitet. Man definierar $L$ på ett sådant sätt att ju liten värdemängd av $L$, desto högre kvalitet består $\hat{y}$ av. Ett sätt att definiera $L$ är exempelvis med en så kallad \textit{L2 kostnadsfunktion}: \cite{cs231n} \cite{wikiStanford}
 \begin{equation}
 \begin{split}
 L(W,b) 	& = {||\hat{y}-y_r||}^2 \\
@@ -246,7 +243,7 @@ Gradienten $\nabla L(\theta)$ visar riktningen vari värdemängdsökningen är s
 \begin{equation}
 \pd{L(\theta)}{\theta^{(l)}} = \nabla_{\theta^{(l)}} L(\theta)
 \end{equation}
-\begin{equation}
+\begin{equation}\label{SGD}
 \theta^{(l)} \to \theta^{(l)} - \alpha \pd{L(\theta)}{\theta^{(l)}}
 \end{equation}
 \begin{figure}[h]\label{figSGD}
@@ -254,6 +251,9 @@ Gradienten $\nabla L(\theta)$ visar riktningen vari värdemängdsökningen är s
   		\includegraphics[scale=0.5]{SGD.png}
   	\caption{En illustration av gradient descent på en funktion med två variabler \cite{figSGD}}
 \end{figure}
+Nätverket tränas genom att varje träningsexempel $(X,y)$ framåtpropageras och insätts i kostnadsfunktionen $L$. Genom processen som kallas bakåtpropagering beräknas alla partiella derivator med avseende på en viss vikt. \cite{gradient} \cite{convmath} \cite{wikiStanford}
+
+\subsubsection{Bakåtpropagering}
 
 De partiella derivatorna kan approximeras med hjälp av framåt, bakåt eller central differenskvot för partiella derivator: \cite{wikiStanford} \cite{gradient}
 
@@ -261,7 +261,34 @@ De partiella derivatorna kan approximeras med hjälp av framåt, bakåt eller ce
 \pd{L(\theta)}{\theta^{(i)}} = \frac{L(\theta^{(0)},...,\theta^{(i)} + h, ..., \theta^{(n-1)})-L(\theta)}{h}
 \end{equation}
 
-Detta skulle inte skapa några problem för det lilla neurala nätverket i figur 1 med 24 parametrar, men i själva verket har djupa neurala nätverk miljontals av parametrar som skulle behöva en enorm datorkraft. Istället kan man tillämpa regler för matriskalkyl och kedjeregeln för att effektivt beräkna de partiella derivatorna. Genom att använda ett kedjeliknande argument kan derivatorna uttryckas som: \cite{cs231n} \cite{convmath}
+Detta skulle inte skapa några problem för det lilla neurala nätverket i figur 1 med 24 parametrar, men i själva verket har djupa neurala nätverk miljontals av parametrar som skulle behöva en enorm datorkraft. Istället kan man tillämpa regler för differentialkalkyl för att effektivt beräkna de partiella derivatorna. För ett godtyckligt lager $l$ används kedjeregeln för att bryta upp derivatan av $L$ med avseende på en vikt i två bråk. På grund av att alla träningsexempel i mini-hopen använder vikten i fråga summeras alla exempel och divideras med mini-hopstorleken $R$. För derivatan av de konstanta neuronerna summeras alla partiella derivator för det lagret. För att sambandet mellan två neuroner och en godtycklig vikt är linjär kan det enkelt deriveras. \cite{cs231n} \cite{convmath}
+
+Låt
+\begin{equation}
+\inpd{L(W,b)}{X^{(l)}} = \delta^{(l)}
+\end{equation}
+
+Derivatan av $L$ med avseende på ett lagers parameter beräknas genom:
+
+\begin{equation}
+\begin{split}
+\pd{L(W,b)}{W^{(l)}_{j,i}} 
+	& = \frac{1}{R}\sum^{R-1}_{r=0} \pd{L(W,b)}{X^{(l+1)}_{r,i}} \pd{X^{(l+1)}_{r,i}}{W^{(l)}_{i,j}} \\
+	& = \frac{1}{R}\sum^{R-1}_{r=0} \delta^{(l+1)}_{r,i} X^{(l)}_{r,j} f'(f^{-1}(X^{(l+1)}_{r,i}))\\
+\end{split}
+\end{equation}
+
+\begin{equation}
+\begin{split}
+\pd{L(W,b)}{b^{(l)}} 
+	& = \frac{1}{R}\sum^{R-1}_{r=0} \sum^{N-1}_{i=0} \pd{L(W,b)}{X^{(l+1)}_{r,i}} \pd{X^{(l+1)}_{r,i}}{b^{(l)}} \\
+	& = \frac{1}{R}\sum^{R-1}_{r=0} \sum^{N-1}_{i=0} \delta^{(l+1)}_{r,i} \\
+\end{split}
+\end{equation}
+
+Om $\delta^{(l+1)}$, också kallat \textit{delta-felet}, kan beräknas för varje lager kan följaktligen gradienten beräknas. Med den beräknade gradienten används uppdateras nätverkets parametrar i en iteration med gradient descent.
+
+Genom att använda ett kedjeliknande argument kan derivatorna uttryckas som: \cite{cs231n} \cite{convmath}
 
 \begin{equation}
 \pd{L(\theta)}{(vec(W^{(l)})^T)} = \pd{L(\theta)}{(vec(X^{(l+1)})^T)} \pd{(vec(X^{(l+1)}))}{(vec(W^{(l)})^T)}

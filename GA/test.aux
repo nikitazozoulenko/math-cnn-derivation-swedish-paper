@@ -9,13 +9,13 @@
 \@writefile{toc}{\contentsline {subsection}{\numberline {1.2}Syfte}{4}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {1.3}Fr\IeC {\r a}gest\IeC {\"a}llning}{4}}
 \@writefile{toc}{\contentsline {section}{\numberline {2}Metod}{5}}
-\citation{cs231n}
 \citation{convmath}
-\@writefile{toc}{\contentsline {section}{\numberline {3}Notation och Tensorer}{6}}
-\newlabel{f(x)}{{3}{6}}
-\newlabel{f'(x)}{{4}{6}}
+\citation{cs231n}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Tensorer, indexering och notation}{6}}
 \citation{cs231n}
 \citation{cs231n}
+\citation{cs231n}
+\citation{wikiStanford}
 \citation{cs231n}
 \citation{wikiStanford}
 \citation{cs231n}
@@ -28,28 +28,33 @@
 \citation{cs231n}
 \citation{wikiStanford}
 \citation{cs231n}
+\newlabel{feed-forward}{{4}{8}}
+\citation{cs231n}
+\citation{cs231n}
 \citation{wikiStanford}
-\citation{cs231n}
-\newlabel{feed-forward}{{7}{8}}
-\citation{cs231n}
 \newlabel{aktiveringsfunktion}{{4.1.1}{9}}
 \@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Grafen av aktiveringsfunktionerna $ReLU$, $\sigma $ och $tanh$.}}{9}}
-\citation{cs231n}
-\citation{wikiStanford}
 \citation{gradient}
 \citation{convmath}
 \citation{gradient}
 \citation{convmath}
 \citation{wikiStanford}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.2}Bak\IeC {\r a}tpropagation}{10}}
 \citation{figSGD}
+\citation{gradient}
+\citation{convmath}
+\citation{wikiStanford}
 \citation{wikiStanford}
 \citation{gradient}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.2}Kostnadsfunktionen och gradient descent}{10}}
+\newlabel{SGD}{{18}{10}}
 \citation{cs231n}
-\citation{convmath}
 \citation{convmath}
 \newlabel{figSGD}{{4.1.2}{11}}
 \@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces En illustration av gradient descent p\IeC {\r a} en funktion med tv\IeC {\r a} variabler \cite  {figSGD}}}{11}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.3}Bak\IeC {\r a}tpropagering}{11}}
+\citation{cs231n}
+\citation{convmath}
+\citation{convmath}
 \citation{cs231n}
 \citation{convmath}
 \citation{cs231n}
@@ -62,61 +67,23 @@
 \citation{cs231n}
 \citation{cs231n}
 \citation{convmath}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Konvolutionella Neuala Netv\IeC {\"a}rk}{13}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Konvolutionella Neuala Netv\IeC {\"a}rk}{14}}
 \citation{figboatcnn}
 \citation{cs231n}
 \citation{convmath}
-\newlabel{figkatter}{{4.2}{14}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Resultatet av ett en k\IeC {\"a}rna f\IeC {\"o}r horizontell och vertikal kantdetektering har sammanrullat \IeC {\"o}ver en bild av en katt.}}{14}}
-\newlabel{figboatcnn}{{4.2}{14}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces En illustration av ett konvolutionellt neuralt n\IeC {\"a}tverk. \cite  {figboatcnn}}}{14}}
 \citation{cs231n}
 \citation{convmath}
 \citation{cs231n}
 \citation{convmath}
-\citation{figkonv}
-\citation{figkonv}
-\citation{cs231n}
-\citation{convmath}
-\citation{cs231n}
-\citation{convmath}
-\citation{convarithmetic}
-\citation{cs231n}
-\citation{convmath}
-\citation{convarithmetic}
+\newlabel{figkatter}{{4.2}{15}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Resultatet av ett en k\IeC {\"a}rna f\IeC {\"o}r horizontell och vertikal kantdetektering har sammanrullat \IeC {\"o}ver en bild av en katt.}}{15}}
+\newlabel{figboatcnn}{{4.2}{15}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces En illustration av ett konvolutionellt neuralt n\IeC {\"a}tverk. \cite  {figboatcnn}}}{15}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.1}Konvolutionslagret fram\IeC {\r a}tpropagering}{15}}
-\newlabel{figkonv}{{4.2.1}{15}}
-\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces En k\IeC {\"a}rna med storlek $3 \times 3$ sammanrullar \IeC {\"o}ver ett omr\IeC {\r a}de med dimensioner $6 \times 6$ och bildar en aktivering med dimensionerna $4 \times 4$. \cite  {figkonv}}}{15}}
+\citation{figkonv}
+\citation{figkonv}
 \citation{cs231n}
 \citation{convmath}
-\citation{cs231n}
-\citation{convmath}
-\citation{convarithmetic}
-\citation{convmath}
-\citation{webconv1}
-\citation{webconv2}
-\citation{webconv3}
-\newlabel{figzeropad}{{4.2.1}{16}}
-\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Ett omr\IeC {\r a}de med dimensioner $3 \times 3$ zero-paddas med $p=1$ och resulterande omr\IeC {\r a}de f\IeC {\r a}r dimensioner $5 \times 5$.}}{16}}
-\newlabel{konvolution}{{38}{16}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.2}Konvolutionslagret bak\IeC {\r a}tpropagering}{16}}
-\citation{webconv1}
-\citation{webconv2}
-\citation{webconv3}
-\citation{webconv1}
-\citation{webconv2}
-\citation{webconv3}
-\citation{webconv1}
-\citation{webconv2}
-\citation{webconv3}
-\newlabel{konvolutionbackprop}{{39}{17}}
-\citation{cs231n}
-\citation{convmath}
-\citation{cs231n}
-\citation{cs231n}
-\citation{convmath}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.3}Aktiveringsfunktionslager fram\IeC {\r a}tpropagering}{18}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.4}Aktiveringsfunktionslager bak\IeC {\r a}tpropagering}{18}}
 \citation{cs231n}
 \citation{convmath}
 \citation{convarithmetic}
@@ -125,9 +92,47 @@
 \citation{convarithmetic}
 \citation{cs231n}
 \citation{convmath}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.5}Maxpoollagret fram\IeC {\r a}tpropagation}{19}}
-\newlabel{figmaxpool}{{4.2.5}{19}}
-\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Maxpooling med $k=2$ och $s=2$ av ett omr\IeC {\r a}de med dimensioner $4 \times 4$ d\IeC {\"a}r resultatet bildar ett omr\IeC {\r a}de med dimensionerna $2 \times 2$.}}{19}}
+\newlabel{figkonv}{{4.2.1}{16}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces En k\IeC {\"a}rna med storlek $3 \times 3$ sammanrullar \IeC {\"o}ver ett omr\IeC {\r a}de med dimensioner $6 \times 6$ och bildar en aktivering med dimensionerna $4 \times 4$. \cite  {figkonv}}}{16}}
+\citation{cs231n}
+\citation{convmath}
+\citation{convarithmetic}
+\citation{convmath}
+\citation{webconv1}
+\citation{webconv2}
+\citation{webconv3}
+\newlabel{figzeropad}{{4.2.1}{17}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Ett omr\IeC {\r a}de med dimensioner $3 \times 3$ zero-paddas med $p=1$ och resulterande omr\IeC {\r a}de f\IeC {\r a}r dimensioner $5 \times 5$.}}{17}}
+\newlabel{konvolution}{{39}{17}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.2}Konvolutionslagret bak\IeC {\r a}tpropagering}{17}}
+\citation{webconv1}
+\citation{webconv2}
+\citation{webconv3}
+\citation{webconv1}
+\citation{webconv2}
+\citation{webconv3}
+\citation{webconv1}
+\citation{webconv2}
+\citation{webconv3}
+\newlabel{konvolutionbackprop}{{40}{18}}
+\citation{cs231n}
+\citation{convmath}
+\citation{cs231n}
+\citation{cs231n}
+\citation{convmath}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.3}Aktiveringsfunktionslager fram\IeC {\r a}tpropagering}{19}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.4}Aktiveringsfunktionslager bak\IeC {\r a}tpropagering}{19}}
+\citation{cs231n}
+\citation{convmath}
+\citation{convarithmetic}
+\citation{cs231n}
+\citation{convmath}
+\citation{convarithmetic}
+\citation{cs231n}
+\citation{convmath}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.5}Maxpoollagret fram\IeC {\r a}tpropagation}{20}}
+\newlabel{figmaxpool}{{4.2.5}{20}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Maxpooling med $k=2$ och $s=2$ av ett omr\IeC {\r a}de med dimensioner $4 \times 4$ d\IeC {\"a}r resultatet bildar ett omr\IeC {\r a}de med dimensionerna $2 \times 2$.}}{20}}
 \citation{cs231n}
 \citation{convmath}
 \citation{webconv3}
@@ -139,9 +144,9 @@
 \citation{webconv3}
 \citation{cs231n}
 \citation{batchnorm}
-\newlabel{maxpool}{{48}{20}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.6}Maxpoollagret bak\IeC {\r a}tpropagering}{20}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.7}Batch Normalization fram\IeC {\r a}tpropagering}{20}}
+\newlabel{maxpool}{{49}{21}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.6}Maxpoollagret bak\IeC {\r a}tpropagering}{21}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.7}Batch Normalization fram\IeC {\r a}tpropagering}{21}}
 \citation{cs231n}
 \citation{batchnorm}
 \citation{cs231n}
@@ -160,19 +165,19 @@
 \citation{webBN2}
 \citation{webBN1}
 \citation{webBN2}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.8}Batch Normalization bak\IeC {\r a}tpropagering}{22}}
-\newlabel{kroneckerdelta}{{57}{22}}
-\newlabel{kroneckerdeltaDERIVATIVE}{{58}{22}}
-\newlabel{kroneckerdeltaSUM}{{59}{22}}
-\newlabel{BN_delta_error}{{60}{22}}
-\newlabel{BN_dxdxhat}{{61}{22}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.8}Batch Normalization bak\IeC {\r a}tpropagering}{23}}
+\newlabel{kroneckerdelta}{{58}{23}}
+\newlabel{kroneckerdeltaDERIVATIVE}{{59}{23}}
+\newlabel{kroneckerdeltaSUM}{{60}{23}}
+\newlabel{BN_delta_error}{{61}{23}}
+\newlabel{BN_dxdxhat}{{62}{23}}
 \citation{webBN1}
 \citation{webBN2}
 \citation{webBN1}
 \citation{webBN2}
-\newlabel{BN_kedjeregeln}{{62}{23}}
-\newlabel{mu'}{{63}{23}}
-\newlabel{sigma'}{{64}{23}}
+\newlabel{BN_kedjeregeln}{{63}{24}}
+\newlabel{mu'}{{64}{24}}
+\newlabel{sigma'}{{65}{24}}
 \citation{webBN1}
 \citation{webBN2}
 \citation{MNIST}
@@ -181,20 +186,20 @@
 \citation{cs231n}
 \citation{notesonbackprop}
 \citation{websoftmax}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Praktiska Till\IeC {\"a}mpningar}{25}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.1}Klassificering av handskrivna siffror}{25}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Praktiska Till\IeC {\"a}mpningar}{26}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.1}Klassificering av handskrivna siffror}{26}}
 \citation{cs231n}
 \citation{notesonbackprop}
-\newlabel{figMNIST}{{4.3.1}{26}}
-\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Tio bilder av handskrivna siffror fr\IeC {\r a}n MNIST DATASETET. \cite  {MNIST}}}{26}}
+\newlabel{figMNIST}{{4.3.1}{27}}
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Tio bilder av handskrivna siffror fr\IeC {\r a}n MNIST DATASETET. \cite  {MNIST}}}{27}}
 \bibcite{cs231n}{1}
 \bibcite{notesonbackprop}{2}
-\newlabel{figkosnadmnist}{{4.3.1}{28}}
-\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces En graf av kostnadsfunktionen efter varje iteration av mini-hopen av 100 bilder.}}{28}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.2}Objektdetektering i bilder}{28}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.3}Ansiktsigenk\IeC {\"a}nning}{28}}
-\@writefile{toc}{\contentsline {section}{\numberline {5}Diskussion}{28}}
-\@writefile{toc}{\contentsline {section}{Referenser}{28}}
+\newlabel{figkosnadmnist}{{4.3.1}{29}}
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces En graf av kostnadsfunktionen efter varje iteration av mini-hopen av 100 bilder.}}{29}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.2}Objektdetektering i bilder}{29}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.3}Ansiktsigenk\IeC {\"a}nning}{29}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Diskussion}{29}}
+\@writefile{toc}{\contentsline {section}{Referenser}{29}}
 \bibcite{convmath}{3}
 \bibcite{convarithmetic}{4}
 \bibcite{highperformanceconv}{5}
@@ -203,8 +208,8 @@
 \bibcite{yolo}{8}
 \bibcite{resnet}{9}
 \bibcite{batchnorm}{10}
-\newlabel{figepokmnist}{{4.3.1}{29}}
-\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces En graf av validationsprecisionen efter varje epok av 60 000 bilder med modell 2.}}{29}}
+\newlabel{figepokmnist}{{4.3.1}{30}}
+\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces En graf av validationsprecisionen efter varje epok av 60 000 bilder med modell 2.}}{30}}
 \bibcite{webconv1}{11}
 \bibcite{webBN1}{12}
 \bibcite{webconv2}{13}

@@ -4,23 +4,24 @@
 \contentsline {subsection}{\numberline {1.2}Syfte}{4}
 \contentsline {subsection}{\numberline {1.3}Fr\IeC {\r a}gest\IeC {\"a}llning}{4}
 \contentsline {section}{\numberline {2}Metod}{5}
-\contentsline {section}{\numberline {3}Notation och Tensorer}{6}
+\contentsline {section}{\numberline {3}Tensorer, indexering och notation}{6}
 \contentsline {section}{\numberline {4}Resultat}{7}
 \contentsline {subsection}{\numberline {4.1}Feed-forward Neurala N\IeC {\"a}tverk}{7}
 \contentsline {subsubsection}{\numberline {4.1.1}Fram\IeC {\r a}tprogagering}{7}
-\contentsline {subsubsection}{\numberline {4.1.2}Bak\IeC {\r a}tpropagation}{10}
-\contentsline {subsection}{\numberline {4.2}Konvolutionella Neuala Netv\IeC {\"a}rk}{13}
+\contentsline {subsubsection}{\numberline {4.1.2}Kostnadsfunktionen och gradient descent}{10}
+\contentsline {subsubsection}{\numberline {4.1.3}Bak\IeC {\r a}tpropagering}{11}
+\contentsline {subsection}{\numberline {4.2}Konvolutionella Neuala Netv\IeC {\"a}rk}{14}
 \contentsline {subsubsection}{\numberline {4.2.1}Konvolutionslagret fram\IeC {\r a}tpropagering}{15}
-\contentsline {subsubsection}{\numberline {4.2.2}Konvolutionslagret bak\IeC {\r a}tpropagering}{16}
-\contentsline {subsubsection}{\numberline {4.2.3}Aktiveringsfunktionslager fram\IeC {\r a}tpropagering}{18}
-\contentsline {subsubsection}{\numberline {4.2.4}Aktiveringsfunktionslager bak\IeC {\r a}tpropagering}{18}
-\contentsline {subsubsection}{\numberline {4.2.5}Maxpoollagret fram\IeC {\r a}tpropagation}{19}
-\contentsline {subsubsection}{\numberline {4.2.6}Maxpoollagret bak\IeC {\r a}tpropagering}{20}
-\contentsline {subsubsection}{\numberline {4.2.7}Batch Normalization fram\IeC {\r a}tpropagering}{20}
-\contentsline {subsubsection}{\numberline {4.2.8}Batch Normalization bak\IeC {\r a}tpropagering}{22}
-\contentsline {subsection}{\numberline {4.3}Praktiska Till\IeC {\"a}mpningar}{25}
-\contentsline {subsubsection}{\numberline {4.3.1}Klassificering av handskrivna siffror}{25}
-\contentsline {subsubsection}{\numberline {4.3.2}Objektdetektering i bilder}{28}
-\contentsline {subsubsection}{\numberline {4.3.3}Ansiktsigenk\IeC {\"a}nning}{28}
-\contentsline {section}{\numberline {5}Diskussion}{28}
-\contentsline {section}{Referenser}{28}
+\contentsline {subsubsection}{\numberline {4.2.2}Konvolutionslagret bak\IeC {\r a}tpropagering}{17}
+\contentsline {subsubsection}{\numberline {4.2.3}Aktiveringsfunktionslager fram\IeC {\r a}tpropagering}{19}
+\contentsline {subsubsection}{\numberline {4.2.4}Aktiveringsfunktionslager bak\IeC {\r a}tpropagering}{19}
+\contentsline {subsubsection}{\numberline {4.2.5}Maxpoollagret fram\IeC {\r a}tpropagation}{20}
+\contentsline {subsubsection}{\numberline {4.2.6}Maxpoollagret bak\IeC {\r a}tpropagering}{21}
+\contentsline {subsubsection}{\numberline {4.2.7}Batch Normalization fram\IeC {\r a}tpropagering}{21}
+\contentsline {subsubsection}{\numberline {4.2.8}Batch Normalization bak\IeC {\r a}tpropagering}{23}
+\contentsline {subsection}{\numberline {4.3}Praktiska Till\IeC {\"a}mpningar}{26}
+\contentsline {subsubsection}{\numberline {4.3.1}Klassificering av handskrivna siffror}{26}
+\contentsline {subsubsection}{\numberline {4.3.2}Objektdetektering i bilder}{29}
+\contentsline {subsubsection}{\numberline {4.3.3}Ansiktsigenk\IeC {\"a}nning}{29}
+\contentsline {section}{\numberline {5}Diskussion}{29}
+\contentsline {section}{Referenser}{29}
