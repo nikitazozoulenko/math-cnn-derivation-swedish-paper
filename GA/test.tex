@@ -215,14 +215,16 @@ Kvotregeln tillämpas för att härleda derivatan av $\sigma$ och $tanh$:
 
 
 
-\subsubsection{Kostnadsfunktionen och gradient descent}
+\subsubsection{Kostnadsfunktionen}
 Givet ett värde $X$ skapas ett närmevärde $\hat{y}$ som ska vara så nära det sanna värdet för y som möjligt. Initialt kommer $W^{(l)}$ vara slumpade för varje lager $l$ och nätverkets prognos kommer inte efterlikna det sökta värdet. Med hjälp av \textit{gradient descent} kan man iterativt träna modellen så det slutgiltiga värdet kommer så nära $y$ som möjligt. Detta görs genom att definiera en multivariat kostnadsfunktion $L(W, b; X,y)$ av alla nätverkets parametrar med avseende på ett träningsexempel $(X, y)$. Funktionen är ett mått på prognosen $\hat{y}$ kvalitet. Man definierar $L$ på ett sådant sätt att ju liten värdemängd av $L$, desto högre kvalitet består $\hat{y}$ av. Ett sätt att definiera $L$ är exempelvis med en så kallad \textit{L2 kostnadsfunktion}: \cite{cs231n} \cite{wikiStanford}
 \begin{equation}
 \begin{split}
-L(W,b) 	& = {||\hat{y}-y_r||}^2 \\
+L(\theta) 	& = {||\hat{y}-y_r||}^2 \\
 		& = {||f(f(f(XW^{(0)} +b^{(0)})W^{(1)} +b^{(1)})W^{(2)} +b^{(2)}) - y||}^2
 \end{split}
 \end{equation}
+Träningen av det neurala nätverket är processen där man hittar konstnadsfunktionens minimum med gradient descent.
+\subsubsection{Gradient Descent}
 Gradienten $\nabla L(\theta)$ är en vektor av partiella derivator med avseende på funktionen $L$ variabler $W^{(0)}$, $W^{(1)}$, ..., $W^{(l)}$, $b^{(0)}$, $b^{(1)}$, ..., $b^{(l)}$ som definieras genom: \cite{gradient} \cite{convmath} 
 \begin{equation}
 \nabla L(\theta) : \mathbb{R}^n \to \mathbb{R}^n
@@ -249,7 +251,7 @@ Gradienten $\nabla L(\theta)$ visar riktningen vari värdemängdsökningen är s
 \begin{figure}[h]\label{figSGD}
 	\centering
   		\includegraphics[scale=0.5]{SGD.png}
-  	\caption{En illustration av gradient descent på en funktion med två variabler \cite{figSGD}}
+  	\caption{En illustration av gradient descent på en funktion med två variabler.\cite{figSGD}}
 \end{figure}
 Nätverket tränas genom att varje träningsexempel $(X,y)$ framåtpropageras och insätts i kostnadsfunktionen $L$. Genom processen som kallas bakåtpropagering beräknas alla partiella derivator med avseende på en viss vikt. \cite{gradient} \cite{convmath} \cite{wikiStanford}
 
@@ -261,126 +263,60 @@ De partiella derivatorna kan approximeras med hjälp av framåt, bakåt eller ce
 \pd{L(\theta)}{\theta^{(i)}} = \frac{L(\theta^{(0)},...,\theta^{(i)} + h, ..., \theta^{(n-1)})-L(\theta)}{h}
 \end{equation}
 
-Detta skulle inte skapa några problem för det lilla neurala nätverket i figur 1 med 24 parametrar, men i själva verket har djupa neurala nätverk miljontals av parametrar som skulle behöva en enorm datorkraft. Istället kan man tillämpa regler för differentialkalkyl för att effektivt beräkna de partiella derivatorna. För ett godtyckligt lager $l$ används kedjeregeln för att bryta upp derivatan av $L$ med avseende på en vikt i två bråk. På grund av att alla träningsexempel i mini-hopen använder vikten i fråga summeras alla exempel och divideras med mini-hopstorleken $R$. För derivatan av de konstanta neuronerna summeras alla partiella derivator för det lagret. För att sambandet mellan två neuroner och en godtycklig vikt är linjär kan det enkelt deriveras. \cite{cs231n} \cite{convmath}
+Detta skulle inte skapa några problem för det lilla neurala nätverket i figur 1 med 24 parametrar, men i själva verket har djupa neurala nätverk miljontals av parametrar som skulle behöva en enorm datorkraft. Istället kan man tillämpa regler för differentialkalkyl för att effektivt beräkna de partiella derivatorna. För ett godtyckligt lager $l$ används kedjeregeln för att bryta upp derivatan av $L$ med avseende på en vikt i tre bråk. På grund av att alla träningsexempel i mini-hopen använder vikten i fråga summeras alla exempel och divideras med mini-hopstorleken $R$. För derivatan av de konstanta neuronerna summeras alla partiella derivator för det lagret. För att sambandet mellan två neuroner och en godtycklig vikt är linjär kan det enkelt deriveras. \cite{cs231n} \cite{convmath}
 
 Låt
 \begin{equation}
-\inpd{L(W,b)}{X^{(l)}} = \delta^{(l)}
+\inpd{L(\theta)}{X^{(l)}} = \delta^{(l)}
 \end{equation}
 
 Derivatan av $L$ med avseende på ett lagers parameter beräknas genom:
 
-\begin{equation}
+\begin{equation}\label{dLdW_FCC}
 \begin{split}
-\pd{L(W,b)}{W^{(l)}_{j,i}} 
-	& = \frac{1}{R}\sum^{R-1}_{r=0} \pd{L(W,b)}{X^{(l+1)}_{r,i}} \pd{X^{(l+1)}_{r,i}}{W^{(l)}_{i,j}} \\
-	& = \frac{1}{R}\sum^{R-1}_{r=0} \delta^{(l+1)}_{r,i} X^{(l)}_{r,j} f'(f^{-1}(X^{(l+1)}_{r,i}))\\
+\pd{L(\theta)}{W^{(l)}_{j,i}} 
+	& = \frac{1}{R}\sum^{R-1}_{r=0} \pd{L(\theta)}{X^{(l+1)}_{r,i}} \pd{X^{(l+1)}_{r,i}}{Z^{(l+1)}_{r,i}} \pd{Z^{(l+1)}_{r,i}}{W^{(l)}_{i,j}} \\
+	& = \frac{1}{R}\sum^{R-1}_{r=0} \delta^{(l+1)}_{r,i} f'(Z^{(l+1)}_{r,i}) \ X^{(l)}_{r,j}\\
 \end{split}
 \end{equation}
 
 \begin{equation}
 \begin{split}
-\pd{L(W,b)}{b^{(l)}} 
-	& = \frac{1}{R}\sum^{R-1}_{r=0} \sum^{N-1}_{i=0} \pd{L(W,b)}{X^{(l+1)}_{r,i}} \pd{X^{(l+1)}_{r,i}}{b^{(l)}} \\
-	& = \frac{1}{R}\sum^{R-1}_{r=0} \sum^{N-1}_{i=0} \delta^{(l+1)}_{r,i} \\
+\pd{L(\theta)}{b^{(l)}} 
+	& = \frac{1}{R}\sum^{R-1}_{r=0} \pd{L(\theta)}{X^{(l+1)}_{r,i}} \pd{X^{(l+1)}_{r,i}}{Z^{(l+1)}_{r,i}} \pd{Z^{(l+1)}_{r,i}}{b^{(l)}_{i,j}} \\
+	& = \frac{1}{R}\sum^{R-1}_{r=0} \delta^{(l+1)}_{r,i} f'(Z^{(l+1)}_{r,i}) \\
 \end{split}
 \end{equation}
 
-Om $\delta^{(l+1)}$, också kallat \textit{delta-felet}, kan beräknas för varje lager kan följaktligen gradienten beräknas. Med den beräknade gradienten används uppdateras nätverkets parametrar i en iteration med gradient descent.
+Om $\delta^{(l)}$, också kallat \textit{delta-felet}, är enligt dess definition derivatan av $L$ med avseende på ett visst neuron. Det kan tolkas som hur känslig värdemängdsförändringen för kostnadsfunktionen är för ett visst neuron vid lager $l$. En vikt kopplat till ett neuron med högt delta-fel är mer ansvarig för skiftning i kostnaden än ett neuron med lågt delta-fel. Genom att propagera nervsignalen baklänges i nätverket med kostnadsfunktionens värde som inputvärde kan man beräkna alla neuroner $X^{(l)}$ påverkan på $L$ vid godtyckligt lager $l$. \cite{cs231n}
 
-Genom att använda ett kedjeliknande argument kan derivatorna uttryckas som: \cite{cs231n} \cite{convmath}
-
-\begin{equation}
-\pd{L(\theta)}{(vec(W^{(l)})^T)} = \pd{L(\theta)}{(vec(X^{(l+1)})^T)} \pd{(vec(X^{(l+1)}))}{(vec(W^{(l)})^T)}
-\end{equation}
-
-\begin{equation}
-\pd{L(\theta)}{(vec(b^{(l)})^T)} = \pd{L(\theta)}{(vec(X^{(l+1)})^T)} \pd{(vec(X^{(l+1)}))}{(vec(b^{(l)})^T)}
-\end{equation}
-
-Där
-
-\begin{equation}
-\pd{L(\theta)}{(vec(X^{(l)})^T)} = \pd{L(\theta)}{(vec(X^{(l+1)})^T)} \pd{(vec(X^{(l+1)}))}{(vec(X^{(l)})^T)}
-\end{equation}
-
-För att $\inpd{X^{(l+1)}}{X^{(l)}}$, $\inpd{X^{(l+1)}}{W^{(l)}}$, $\inpd{X^{(l+1)}}{b^{(l)}}$ och derivatan av $L$ med avseende på det sista lagret är möjliga att beräknas algebraiskt är det därför möjligt att rekursivt beräkna gradienten genom att bakåtpropagera i nätverket från outputlagret. Värdena från det nästkommande lagret används för att beräkna värdena för det föregående lagret. \cite{convmath}
-
-Betrakta ekvation (\ref{feed-forward}). Om $L$ är en L2 kostandsfunktion beräknas de partiella derivatorna enligt:  \cite{cs231n} \cite{convmath} 
+Bakåtpropageringen av delta-felen uttrycks rekursivt från det sista lagret $\hat{y}$. Delta-felet vid det sista lagret $l_{sista}$ beror på kostnadsfunktionen. För en L2 kostnadsfunktion definieras delta-felet som: \cite{cs231n}
 
 \begin{equation}
 \begin{split}
-\pd{L(\theta)}{\hat{y}} 
-				& = 2 ||\hat{y}-y|| \\
+\delta^{(l_{sista})}
+	& = \pd{L(\theta)}{\hat{y}}  \\
+	& = 2 ||\hat{y}-y||
 \end{split}
 \end{equation}
 
-I följande ekvationer utnyttjas $\inpd{AB}{B} = A^T$ och $\inpd{AB}{A} = B^T$ tillsammans med kedjeregeln.
-\begin{equation}
-\begin{split}
-\pd{X^{(l+1)}}{X^{(l)}} 
-				& = \pd{f(X^{(l)}W^{(l)} +b^{(l)})}{X^{(l)}}  \\
-				& = f'(X^{(l)}W^{(l)}+b^{(l)})W^{(l)^T}
-\end{split}
-\end{equation}
+Likt ekvation \eqref{dLdW_FCC} summeras alla  partiella derivator av neuronerna vid användingen av kedjeregeln:
 
 \begin{equation}
 \begin{split}
-\pd{X^{(l+1)}}{W^{(l)}} 
-				& = \pd{f(X^{(l)}W^{(l)} +b^{(l)})}{X^{(l)}}  \\
-				& = X^{(l)^T}f'(X^{(l)}W^{(l)}+b^{(l)})
+\delta^{(l)}_{r,i}
+	& = \pd{L(\theta)}{X^{(l)}_{r,i}}  \\
+	& = \sum^{N'}_{j=0} \pd{L(\theta)}{X^{(l+1)}_{r,j}} \pd{X^{(l+1)}_{r,j}}{Z^{(l+1)}_{r,j}} \pd{Z^{(l+1)}_{r,j}}{X^{(l)}_{r,i}} \\
+	& = \sum^{N'}_{j=0} \delta^{(l+1)}_{r,j} f'(Z^{(l+1)}_{r,i}) \ W^{(l)}_{j,i} 
 \end{split}
 \end{equation}
 
-\begin{equation}
-\begin{split}
-\pd{X^{(l+1)}}{b^{(l)}} 
-				& = \pd{f(X^{(l)}W^{(l)} +b^{(l)})}{X^{(l)}}  \\
-				& = f'(X^{(l)}W^{(l)}+b^{(l)})
-\end{split}
-\end{equation}
-
-Här kan man se varför aktiveringsfunktionerna behöver vara deriverbara.
-
-I praktiken beräknas de partiella derivatorna med hjälp av en rekursiv formel. Låt: \cite{cs231n} \cite{wikiStanford} \cite{convmath}
-\begin{equation}
-\delta^{(l)} = \pd{L(\theta)}{X^{(l)}}
-\end{equation}
-Det (också kallat delta-felet) är den bakåtpropagerade nervsignalen upp till lager $l$. Om $l_{sista}$ är det sista lagret definieras delta-felen och gradienten enligt följande formler för en L2 kostandsfunktion: \cite{cs231n} \cite{wikiStanford} \cite{convmath}
-
-\begin{equation}
-\delta^{(l_{sista})} = 2 ||\hat{y}-y||
-\end{equation}
-
-\begin{equation}
-\begin{split}
-\delta^{(l)} 
-	& = \pd{L(\theta)}{X^{(l)}} \\
-	& = \pd{L(\theta)}{X^{(l+1)}} \pd{X^{(l+1)}}{X^{(l)}}\\
-	& = \left( \delta^{(l+1)} \odot f'(X^{(l)}W^{(l)}+b^{(l)}) \right) W^{(l+1)^T}\\
-\end{split}
-\end{equation}
-
-\begin{equation}
-\begin{split}
-\pd{L(\theta)}{W^{(l)}}
-	& = \pd{L(\theta)}{X^{(l+1)}} \pd{X^{(l+1)}}{W^{(l)}}\\
-	& = X^{(l)^T} \left( \delta^{(l+1)} \odot f'(X^{(l)} W^{(l)}+b^{(l)}) \right) \\
-\end{split}
-\end{equation}
-
-\begin{equation}
-\begin{split}
-\pd{L(\theta)}{b^{(l)}}
-	& = \pd{L(\theta)}{X^{(l+1)}} \pd{X^{(l+1)}}{b^{(l)}}\\
-	& =  \delta^{(l+1)} \odot f'(X^{(l)} W^{(l)}+b^{(l)})  \\
-\end{split}
-\end{equation}
+Bakåtpropageringen sker lager till lager med start i outputlagret. Vid varje lager måste delta-felet $\delta^{(l)}$ bakåtpropageras och derivatan av det lagrets parametrar $W^{(l)}$ och $b^{(l)}$ beräknas.
 
 Två implementationer av ett feedforward neuralt nätverk kan hittas på github i python och C++: \url{https://github.com/nikitazozoulenko}
 
 \subsection{Konvolutionella Neuala Netvärk}
-När människor vill identifiera någonting i en bild så letar vi efter vissa karakteristiska drag objektet har. En hund består exempelvis av en kropp, ett huvud och fyra ben. Kroppsdelarna består sedan själva av grundläggande geometriska former som i sig självt är kombinationer av kanter och linjer. Dessutom har hundar en viss textur, det som vi kännetecknar som något pälsliknande. Dessa karakteristiska drag är lokala inom bilden och kan extraheras av att endast se på en liten del av bilden i taget.Det är just detta som är principen bakom \textit{Konvolutionella Neurala Nätverk (CNN)}: Genom så kallade \textit{konvolutioner} kunna extrahera dessa karakteristiska drag. Nätverket lär sig ett antal filter väldigt små filter som den applicerar på en delmängd av bilden genom att filtret sammanrullar över hela bilden. Värdet av filtret över en delmängd av bilden blir aktiveringen av ett neuron i nästa lager.  \cite{cs231n}
+När människor vill identifiera någonting i en bild så letar vi efter vissa karakteristiska drag objektet har. En hund består exempelvis av en kropp, ett huvud och fyra ben. Kroppsdelarna består sedan själva av grundläggande geometriska former som i sig självt är kombinationer av kanter och linjer. Dessutom har hundar en viss textur, det som vi kännetecknar som något pälsliknande. Dessa karakteristiska drag är lokala inom bilden och kan extraheras av att endast se på en liten del av bilden i taget. Det är just detta som är principen bakom \textit{Konvolutionella Neurala Nätverk (CNN)}: Genom så kallade \textit{konvolutioner} kunna extrahera dessa karakteristiska drag. Nätverket lär sig ett antal små filter som den applicerar på en delmängd av bilden genom att filtret sammanrullar över hela bilden. Värdet av filtret över en delmängd av bilden blir aktiveringen av ett neuron i nästa lager.  \cite{cs231n}
 
 \begin{figure}[h]\label{figkatter}
 	\centering
@@ -645,7 +581,7 @@ Den sista summan blir lika med noll på grund av att termerna summeras ihop till
 
 När alla komponenter till bakåtpropageringen av delta-felet är beräknade är insättning av ekvation \eqref{BN_kedjeregeln}, \eqref{mu'} och \eqref{sigma'} i ekvation \eqref{BN_delta_error} det enda som kvarstår:
 
-\begin{multline}
+\begin{multline}\label{finalBNeq}
 	\delta^{(l)}_{r,c,h,w} = \sum^{R'-1}_{r'=0} \sum^{C'-1}_{c'=0} \sum^{H'-1}_{h'=0} \sum^{W'-1}_{w'=0} \pd{L(W)}{X^{(l+1)}_{r',c',h',w'}} \pd{X^{(l+1)}_{r',c',h',w'}}{\hat{X}_{r',c',h',w'}} \pd{\hat{X}_{r',c',h',w'}}{{X}^{(l)}_{r,c,h,w}}\\
 		\qquad = \sum\limits_{r',c',h',w'}\delta^{(l+1)}_{r',c',h',w'} \gamma^{(l)}_{c'} {(\sigma^2_{c'} + \epsilon)}^{-\frac{1}{2}} (I_{r',r} I_{c',c} I_{h',h} I_{w',w} - \frac{1}{RHW} I_{c',c}) \\
 	-\sum\limits_{r',c',h',w'}\delta^{(l+1)}_{r',c',h',w'} \gamma^{(l)}_{c'} \frac{1}{RHW} ({X^{(l)}_{r',c',h',w'} - \mu_{c'}})({X^{(l)}_{r,c',h,w} - \mu_{c'}}) {(\sigma^2_{c'} + \epsilon)}^{-\frac{3}{2}} I_{c',c} \\
@@ -655,7 +591,7 @@ När alla komponenter till bakåtpropageringen av delta-felet är beräknade är
 	-  ({X^{(l)}_{r,c,h,w} - \mu_{c}}) {(\sigma^2_{c} + \epsilon)}^{-\frac{3}{2}} \sum\limits_{r',h',w'} \delta^{(l+1)}_{r',c,h',w'} ({X^{(l)}_{r',c,h',w'} - \mu_{c'}}) \biggl) \\
 \end{multline}
 
-Derivatan av vikterna hittas på ett liknande sätt med en faktor $\frac{1}{R}$ på grund av att det är medelvärdet för alla exemepl i mini-hopen som är eftersökt. \cite{webBN1} \cite{webBN2}
+Derivatan av vikterna hittas på ett liknande sätt som ekvation \eqref{BN_delta_error} till \eqref{finalBNeq} med en faktor $\frac{1}{R}$ på grund av att det är medelvärdet för alla exemepl i mini-hopen som är eftersökt. \cite{webBN1} \cite{webBN2}
 \begin{align}
 \begin{split}
 	\pd{L(W)}{\gamma^{(l)}_{c}}
