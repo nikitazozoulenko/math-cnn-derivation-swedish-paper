@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6350 64-bit) (preloaded format=pdflatex 2017.10.25)  27 NOV 2017 17:40
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6350 64-bit) (preloaded format=pdflatex 2017.10.25)  7 JAN 2018 17:15
 entering extended mode
 **./test.tex
 (test.tex
@@ -687,9 +687,15 @@ un-der-lig-gan-de ma-te-ma-ti-ken
  []
 
 
-Overfull \hbox (70.5681pt too wide) in paragraph at lines 63--66
+Overfull \hbox (56.86108pt too wide) in paragraph at lines 63--66
 \T1/cmr/m/n/14.4 Vad är ett Kon-vo-lu-tio-nellt Neu-ralt Nät-verk? Hur här-leds
- framåt- och bak-åt-pro-pa-ge-ring-en
+ framåt- och bak-åt-pro-pa-ge-ring
+ []
+
+
+Overfull \hbox (35.16112pt too wide) in paragraph at lines 63--66
+\T1/cmr/m/n/14.4 i kon-vo-lu-tio-nel-la neu-ra-la nät-verk? Hur kan mo-del-len 
+tilläm-pas för att im-ple-men-te-ra
  []
 
 [4] [5] <FCC.png, id=23, 793.46437pt x 352.31625pt>
@@ -703,35 +709,36 @@ Underfull \hbox (badness 1546) in paragraph at lines 92--92
  nät-verk. In-put-neu-ro-ner-na är
  []
 
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
+[6 <./FCC.png>]
 Overfull \hbox (30.82253pt too wide) in paragraph at lines 98--99
 []\T1/cmr/m/n/14.4 Nätverket kan fram-stäl-las ge-nom att re-pre-sen-te-ra neu-
 ro-ner-na och de-ras kopp-ling-ar
  []
 
-[6]
+
 Overfull \hbox (53.53682pt too wide) in paragraph at lines 110--111
 \T1/cmr/m/n/14.4 fram-åt-pro-pe-ga-tio-nen mel-lan la-ger $\OML/cmm/m/it/14.4 l
 $ \T1/cmr/m/n/14.4 och $\OML/cmm/m/it/14.4 l \OT1/cmr/m/n/14.4 + 1$ \T1/cmr/m/n
 /14.4 kan be-räk-nas med en ma-tris-mul-ti-pli-ka-tion
  []
 
-<activationfunction.png, id=35, 402.00188pt x 273.27094pt>
+<activationfunction.png, id=34, 402.00188pt x 273.27094pt>
 File: activationfunction.png Graphic file (type png)
 
 <use activationfunction.png>
 Package pdftex.def Info: activationfunction.png used on input line 118.
 (pdftex.def)             Requested size: 333.66147pt x 226.8148pt.
- [7 <./FCC.png>] [8 <./activationfunction.png>]
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[7]
 Overfull \hbox (49.17532pt too wide) in paragraph at lines 144--146
 \T1/cmr/m/n/14.4 Träningen av det neu-ra-la nät-ver-ket är pro-ces-sen där man 
 hit-tar konst-nads-funk-tio-nens
  []
 
-
+[8 <./activationfunction.png>]
 Overfull \hbox (13.8354pt too wide) in paragraph at lines 162--163
 \T1/cmr/m/n/14.4 funk-tio-nens mi-ni-mum. Den mest grund-läg-gan-de al-go-rit-m
 en för \T1/cmr/m/it/14.4 gra-di-ent descent
@@ -748,25 +755,19 @@ Overfull \hbox (47.67375pt too wide) in paragraph at lines 169--176
 1/cmr/m/n/14.4 . Ge-nom pro-ces-sen som kal-las för bak-åt-pro-pa-ge-ring
  []
 
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[9]
+[9 <./SGD.png>]
 Overfull \hbox (28.09102pt too wide) in paragraph at lines 183--184
 \T1/cmr/m/n/14.4 och di-vi-de-ras med mini-hopstorleken $\OML/cmm/m/it/14.4 R$\
 T1/cmr/m/n/14.4 . För de-ri-va-tan av de kon-stan-ta neu-ro-ner-na
  []
 
 
-Underfull \vbox (badness 1681) has occurred while \output is active []
-
- [10 <./SGD.png>]
 Overfull \hbox (52.56818pt too wide) in paragraph at lines 203--205
 \T1/cmr/m/n/14.4 av-se-en-de på ett visst neu-ron. Det kan tol-kas som hur käns
 -lig vär-de-mängds-för-änd-ring-en
  []
 
-
+[10]
 Overfull \hbox (35.0406pt too wide) in paragraph at lines 213--215
 \T1/cmr/m/n/14.4 Likt ek-va-tion [] sum-me-ras al-la par-ti-el-la de-ri-va-tor 
 av neu-ro-ner-na vid an-vän-ding-en
@@ -784,10 +785,9 @@ Overfull \hbox (4.61009pt too wide) in paragraph at lines 228--229
 er-kets pro-gnos ef-ter-lik-nar
  []
 
-[11]
 LaTeX Font Info:    Try loading font information for T1+cmtt on input line 230.
 
- (E:\MiKTeX\tex\latex\base\t1cmtt.fd
+(E:\MiKTeX\tex\latex\base\t1cmtt.fd
 File: t1cmtt.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 Overfull \hbox (0.5146pt too wide) in paragraph at lines 230--231
@@ -795,7 +795,7 @@ Overfull \hbox (0.5146pt too wide) in paragraph at lines 230--231
 verk kan hit-tas på git-hub
  []
 
-[12]
+[11]
 Overfull \hbox (19.73502pt too wide) in paragraph at lines 235--236
 \T1/cmr/m/n/14.4 päls-lik-nan-de. Des-sa ka-rak-te-ris-tis-ka drag är lo-ka-la 
 in-om bil-den och kan ex-tra-he-ras
@@ -807,7 +807,7 @@ Overfull \hbox (24.56778pt too wide) in paragraph at lines 235--236
 m att filt-ret sam-man-rul-lar
  []
 
-<katter.png, id=64, 1181.16281pt x 475.02469pt>
+<katter.png, id=61, 1181.16281pt x 475.02469pt>
 File: katter.png Graphic file (type png)
  <use katter.png>
 Package pdftex.def Info: katter.png used on input line 239.
@@ -819,7 +819,7 @@ r neu-ro-ner-na i ett \T1/cmr/m/it/14.4 CNN \T1/cmr/m/n/14.4 ba-ra kopp-la-de t
 ill när-lig-gan-de
  []
 
-[13 <./katter.png>] <boatcnn.png, id=69, 781.92125pt x 212.795pt>
+[12 <./katter.png>] <boatcnn.png, id=65, 781.92125pt x 212.795pt>
 File: boatcnn.png Graphic file (type png)
 
 <use boatcnn.png>
@@ -836,13 +836,13 @@ Overfull \hbox (15.12189pt too wide) in paragraph at lines 268--269
 s-te det re-kur-si-va delta-felet
  []
 
-[14 <./boatcnn.png>] <convolution.png, id=74, 164.25pt x 77.307pt>
+[13 <./boatcnn.png>] <convolution.png, id=71, 164.25pt x 77.307pt>
 File: convolution.png Graphic file (type png)
 
 <use convolution.png>
 Package pdftex.def Info: convolution.png used on input line 277.
 (pdftex.def)             Requested size: 344.92513pt x 162.34473pt.
- <zeropadding.png, id=75, 188.95593pt x 188.95593pt>
+ <zeropadding.png, id=72, 188.95593pt x 188.95593pt>
 File: zeropadding.png Graphic file (type png)
 
 <use zeropadding.png>
@@ -860,13 +860,13 @@ Overfull \hbox (32.0803pt too wide) in paragraph at lines 291--292
 2 \U/msb/m/n/14.4 R[]$\T1/cmr/m/n/14.4 .
  []
 
-[15 <./convolution.png>]
+[14 <./convolution.png>]
 Overfull \hbox (23.66351pt too wide) in paragraph at lines 319--320
 \T1/cmr/m/n/14.4 de-ri-va-tan av la-gerts vik-ter med av-se-en-de på kost-nads-
 funk-tio-nen $\OML/cmm/m/it/14.4 L$ \T1/cmr/m/n/14.4 be-räk-nas. 
  []
 
-[16 <./zeropadding.png>] [17]
+[15 <./zeropadding.png>] [16]
 Overfull \hbox (31.59749pt too wide) in paragraph at lines 352--352
 [] 
  []
@@ -878,7 +878,7 @@ ap-pli-ce-ras ele-ment-vis på al-la neu-ro-ner i $\OML/cmm/m/it/14.4 X[]$\T1/cm
 r/m/n/14.4 . Följakt-li-gen
  []
 
-[18]
+[17]
 Overfull \hbox (0.28252pt too wide) in paragraph at lines 374--375
 \T1/cmr/m/n/14.4 Här är igen in-put-neu-ro-ner-na re-pre-sen-te-ra-de av $\OML/
 cmm/m/it/14.4 X[] \OMS/cmsy/m/n/14.4 2 \U/msb/m/n/14.4 R[]$ \T1/cmr/m/n/14.4 oc
@@ -892,12 +892,12 @@ n/14.4 R[]$\T1/cmr/m/n/14.4 . Lag-ret sak-nar vik-ter men har där-e-mot hy-per-
 pa-ra-met-rar-na
  []
 
-<maxpool.png, id=90, 548.0475pt x 194.97844pt>
+<maxpool.png, id=87, 548.0475pt x 194.97844pt>
 File: maxpool.png Graphic file (type png)
  <use maxpool.png>
 Package pdftex.def Info: maxpool.png used on input line 378.
 (pdftex.def)             Requested size: 383.63063pt x 136.48396pt.
- [19 <./maxpool.png>]
+ [18 <./maxpool.png>]
 
 Package amsmath Warning: Cannot use `split' here;
 (amsmath)                trying to recover with `aligned' on input line 412.
@@ -914,7 +914,7 @@ Overfull \hbox (8.87329pt too wide) in paragraph at lines 420--421
 ät-verk att di-ver-ge-ra.
  []
 
-[20]
+[19]
 Overfull \hbox (24.64651pt too wide) in paragraph at lines 422--423
 \OML/cmm/m/it/14.4 X[] \OMS/cmsy/m/n/14.4 2 \U/msb/m/n/14.4 R[]$\T1/cmr/m/n/14.
 4 . BN har ing-en på-ver-kan på di-men-sio-ner-na av ak-ti-ve-ring-en.
@@ -938,7 +938,7 @@ Overfull \hbox (1.84276pt too wide) in paragraph at lines 452--453
  krävs nå-got som he-ter kronecker-deltat,
  []
 
-[21] [22]
+[20] [21]
 Overfull \hbox (56.59877pt too wide) in paragraph at lines 508--508
 [] 
  []
@@ -948,18 +948,22 @@ Overfull \hbox (63.37273pt too wide) in paragraph at lines 524--524
 [] 
  []
 
-[23]
+[22]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [24]
+ [23]
 Underfull \vbox (badness 2980) has occurred while \output is active []
 
- [25]
-[26] <mnist.png, id=117, 375.65344pt x 143.03438pt>
+ [24]
+<mnist.png, id=110, 375.65344pt x 143.03438pt>
 File: mnist.png Graphic file (type png)
  <use mnist.png>
 Package pdftex.def Info: mnist.png used on input line 583.
 (pdftex.def)             Requested size: 375.65251pt x 143.03401pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
 
 Overfull \hbox (28.68332pt too wide) in paragraph at lines 587--588
 []\T1/cmr/m/n/14.4 Input för mo-del-len är en $\OML/cmm/m/it/14.4 R \OMS/cmsy/m
@@ -968,7 +972,10 @@ sy/m/n/14.4  \OT1/cmr/m/n/14.4 28$ \T1/cmr/m/n/14.4 pix-e-lar-ray där R står f
 ör mini-hopstorleken.
  []
 
-[27 <./mnist.png>]
+[25]
+Underfull \vbox (badness 1337) has occurred while \output is active []
+
+ [26 <./mnist.png>]
 Overfull \hbox (1.52531pt too wide) in paragraph at lines 660--661
 \T1/cmr/m/n/14.4 Nä-stin-kom-man-de siff-ra ef-ter la-ger-nam-net är kärn-stor-
 le-ken. $\OML/cmm/m/it/14.4 C$ \T1/cmr/m/n/14.4 be-näm-ner an-tal
@@ -999,7 +1006,7 @@ Overfull \hbox (0.11966pt too wide) in paragraph at lines 664--665
 v-na siff-ror lyc-ka-des
  []
 
-<kostandsplot.png, id=121, 474.27188pt x 347.79938pt>
+<kostandsplot.png, id=118, 474.27188pt x 347.79938pt>
 File: kostandsplot.png Graphic file (type png)
  <use kostandsplot.png>
 Package pdftex.def Info: kostandsplot.png used on input line 668.
@@ -1008,107 +1015,111 @@ Package pdftex.def Info: kostandsplot.png used on input line 668.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<epokplot.png, id=122, 479.54156pt x 356.0803pt>
+<epokplot.png, id=119, 479.54156pt x 356.0803pt>
 File: epokplot.png Graphic file (type png)
  <use epokplot.png>
 Package pdftex.def Info: epokplot.png used on input line 676.
 (pdftex.def)             Requested size: 287.72716pt x 213.64983pt.
- [28]
-[29 <./kostandsplot.png> <./epokplot.png>]
-Underfull \hbox (badness 2435) in paragraph at lines 722--727
+ [27]
+[28 <./kostandsplot.png> <./epokplot.png>]
+Underfull \hbox (badness 2435) in paragraph at lines 721--726
 []\T1/cmr/m/it/14.4 High Per-for-man-ce Con-vo-lu-tio-nal Neu-ral Networks for 
 Docu-ment
  []
 
 
-Underfull \hbox (badness 3449) in paragraph at lines 722--727
+Underfull \hbox (badness 3449) in paragraph at lines 721--726
 \T1/cmr/m/n/14.4 Works-hop on Fron-ti-ers in Hand-wri-ting Re-cog-ni-tion. La B
 au-le,
  []
 
 
-Underfull \hbox (badness 7869) in paragraph at lines 729--733
+Underfull \hbox (badness 7869) in paragraph at lines 728--732
 []\T1/cmr/m/it/14.4 Unsupervised Fe-a-tu-re Le-ar-ning and Deep Le-ar-ning. \T1
 /cmr/m/n/14.4 Stand-ford
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 729--733
+Underfull \hbox (badness 10000) in paragraph at lines 728--732
 \T1/cmr/m/n/14.4 Uni-ver-si-ty, De-part-ment of Com-pu-ter Sci-ence. URL
  []
 
 
-Underfull \hbox (badness 1478) in paragraph at lines 750--753
+Underfull \hbox (badness 1478) in paragraph at lines 749--752
 \T1/cmr/m/it/14.4 in-ter-nal co-va-ri-a-te shift. \T1/cmr/m/n/14.4 S. Iof-fe oc
 h C. Sze-ge-dy. arX-iv pre-print
  []
 
-[30]
-Underfull \hbox (badness 2318) in paragraph at lines 755--760
+[29]
+Underfull \hbox (badness 2318) in paragraph at lines 754--759
 []\T1/cmr/m/it/14.4 Backpropagation In Con-vo-lu-tio-nal Neu-ral Networks. \T1/
 cmr/m/n/14.4 J. Ka-fu-nah.
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 782--786
+Underfull \hbox (badness 10000) in paragraph at lines 781--785
 []\T1/cmr/m/it/14.4 Convolutional Neu-ral Networks. \T1/cmr/m/n/14.4 A. Gi-bi-a
 n-sky. URL
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 795--799
+Underfull \hbox (badness 10000) in paragraph at lines 794--798
 \T1/cmr/m/n/14.4 Re-se-arch, Red-mond. URL http://yann.lecun.com/exdb/mnist/.
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 819--824
+Underfull \hbox (badness 10000) in paragraph at lines 818--823
 []\T1/cmr/m/it/14.4 Deep le-ar-ning for com-ple-te be-gin-ners: con-vo-lu-tio-n
 al neu-ral
  []
 
 
-Underfull \hbox (badness 7944) in paragraph at lines 819--824
+Underfull \hbox (badness 7944) in paragraph at lines 818--823
 \T1/cmr/m/it/14.4 networks with ke-ras. \T1/cmr/m/n/14.4 P. Ve-li£ko-vi¢. Ca-me
 bridge Spark. URL
  []
 
 
-Underfull \hbox (badness 4353) in paragraph at lines 819--824
+Underfull \hbox (badness 4353) in paragraph at lines 818--823
 \T1/cmr/m/n/14.4 https://cambridgespark.com/content. Se-nast upp-da-te-rad 20 m
 ars
  []
 
-[31] [32] (test.aux) ) 
+[30] [31] (test.aux)
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+ ) 
 Here is how much of TeX's memory you used:
  4915 strings out of 493323
  63749 string characters out of 3146846
- 160663 words of memory out of 3000000
+ 159663 words of memory out of 3000000
  8326 multiletter control sequences out of 15000+200000
  19524 words of font info for 59 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  39i,21n,43p,968b,255s stack positions out of 5000i,500n,10000p,200000b,50000s
- <C:\Users\Nikita\AppData\Local\MiKTeX\2.9\fonts\pk\ljfou
-r\jknappen\ec\dpi600\ectt1440.pk> <C:\Users\Nikita\AppData\Local\MiKTeX\2.9\fon
-ts\pk\ljfour\jknappen\ec\dpi600\ecti1095.pk> <C:\Users\Nikita\AppData\Local\MiK
-TeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx1095.pk> <C:\Users\Nikita\AppDat
-a\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecti1440.pk> <C:\Users\Ni
-kita\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx1200.pk> <
-C:\Users\Nikita\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecr
-m1440.pk> <C:\Users\Nikita\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec
-\dpi600\ecbx1440.pk> <C:\Users\Nikita\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\
-jknappen\ec\dpi600\ecrm1095.pk> <C:\Users\Nikita\AppData\Local\MiKTeX\2.9\fonts
-\pk\ljfour\jknappen\ec\dpi600\ecrm1200.pk> <C:\Users\Nikita\AppData\Local\MiKTe
-X\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm1728.pk><E:/MiKTeX/fonts/type1/pub
-lic/amsfonts/cm/cmex10.pfb><E:/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb
-><E:/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><E:/MiKTeX/fonts/type1/pu
-blic/amsfonts/cm/cmmi7.pfb><E:/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb>
-<E:/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><E:/MiKTeX/fonts/type1/publ
-ic/amsfonts/cm/cmr7.pfb><E:/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><E
-:/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><E:/MiKTeX/fonts/type1/public
-/amsfonts/symbols/msbm10.pfb>
-Output written on test.pdf (32 pages, 2226450 bytes).
+ <C:\Users\Nikita\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600
+\ectt1440.pk> <C:\Users\Nikita\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappe
+n\ec\dpi600\ecbx1095.pk> <C:\Users\Nikita\AppData\Local\MiKTeX\2.9\fonts\pk\ljf
+our\jknappen\ec\dpi600\ecti1095.pk> <C:\Users\Nikita\AppData\Local\MiKTeX\2.9\f
+onts\pk\ljfour\jknappen\ec\dpi600\ecti1440.pk> <C:\Users\Nikita\AppData\Local\M
+iKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx1200.pk> <C:\Users\Nikita\AppD
+ata\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm1440.pk> <C:\Users\
+Nikita\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx1440.pk>
+ <C:\Users\Nikita\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\e
+crm1095.pk> <C:\Users\Nikita\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\
+ec\dpi600\ecrm1200.pk> <C:\Users\Nikita\AppData\Local\MiKTeX\2.9\fonts\pk\ljfou
+r\jknappen\ec\dpi600\ecrm1728.pk><E:/MiKTeX/fonts/type1/public/amsfonts/cm/cmex
+10.pfb><E:/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><E:/MiKTeX/fonts/ty
+pe1/public/amsfonts/cm/cmmi12.pfb><E:/MiKTeX/fonts/type1/public/amsfonts/cm/cmm
+i7.pfb><E:/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><E:/MiKTeX/fonts/typ
+e1/public/amsfonts/cm/cmr12.pfb><E:/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.
+pfb><E:/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><E:/MiKTeX/fonts/type1
+/public/amsfonts/cm/cmsy7.pfb><E:/MiKTeX/fonts/type1/public/amsfonts/symbols/ms
+bm10.pfb>
+Output written on test.pdf (31 pages, 2225323 bytes).
 PDF statistics:
- 587 PDF objects out of 1000 (max. 8388607)
+ 583 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  56 words of extra memory for PDF output out of 10000 (max. 10000000)
 

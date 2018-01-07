@@ -56,23 +56,23 @@ Convolutional Neural Networks have ...
 
 \section{Introduktion}
 
-nej men seriöst vet inte  vad jag ska skriva här, råd och förslag välkomnas starkt
+???
 \subsection{Syfte}
-Syftet med arbetet är att härleda och redogöra för den underliggande matematiken bakom den matematiska modellen av konvolutionella neurala nätverk, att samt visa exempel på praktiska tillämpningar av modellen.
+Syftet med arbetet är att härleda och redogöra för den underliggande matematiken bakom den matematiska modellen av konvolutionella neurala nätverk, samt att visa exempel på praktiska tillämpningar av modellen.
 \subsection{Frågeställning}
 Vad är ett Konvolutionellt Neuralt Nätverk?
-Hur härleds framåt- och bakåtpropageringen i feed-forward neurala nätverk och konvolutionella neurala nätverk?
-Hur kan modellen tillämpas för att implementera sifferavläsning,ansiktsigenkänning och objektdetektion i bilder?
+Hur härleds framåt- och bakåtpropagering i konvolutionella neurala nätverk?
+Hur kan modellen tillämpas för att implementera sifferavläsning,ansiktsigenkänning och objektdetektering i bilder?
 
 
 \newpage
 \section{Metod}
+Metod ej klar
 
 Majoriteten av tiden gick åt till att... standford, vetenskapliga artiklar batch normalization någonting et al. 2015.... implementera skiten och dubbelkolla med derivatans definition
 
 \newpage
 \section{Bakgrund}
-25 sidor av min rapport är bakgrund ?????
 
 \subsection{Tensorer, indexering och notation}
 Tensorer är generaliseringen av vektor- och matrisbegräppen. En tensor med ordning 1 är en vektor $x \in \mathbb{R}^N$ och är en radvektor med $N$ element. Det kan dessutom tolkas som en endimensionell array. Matriser $M$ är tensorer med ordning 2 sådana att $M \in \mathbb{R}^{R \times N}$ och kan ses som en vektor av $R$ vektorer med $N$ element eller en tvådimensionell array med $R \times N$ element. En tensor med ordning $n$ indexeras med en $n$-tupel. Exempelvis indexeras en tensor $X \in \mathbb{R}^{R \times C \times H \times W}$ med fyr-tupeln $(r,c,h,w)$ där $0 \leq r < R$, $0 \leq c < C$, $0 \leq h < H$ och $0 \leq w < W$. \cite{cs231n}
@@ -574,7 +574,7 @@ Softmaxlagret saknar vikter och endast det rekursiva delta-felet beräknas vid b
 \subsection{Praktiska Tillämpningar}
 All kod till de exempel på praktiska tillämpningar kan hittas på github: \url{https://github.com/nikitazozoulenko}
 \subsubsection{Klassificering av handskrivna siffror}
-En enkel CNN-modell kan användas för att klassificera handskriva siffror. För att uppnå detta har MNIST DATASET för handskriva siffror används. Den består av 60 000 unika exempel för träning och ytterligare 10 000 exempel för validering av modellen. Valideringsdatan måste vara separerad från datan man tränar med för annars finns det risk att modellen OVERFITTAS och inte kan generalisera för andra exempel än träningsdatan. \cite{MNIST}
+En enkel CNN-modell kan användas för att klassificera handskriva siffror. För att uppnå detta har MNIST DATASET för handskriva siffror används. Den består av 60 000 unika exempel för träning och ytterligare 10 000 exempel för validering av modellen. \cite{MNIST}
 
 Låt modellens prognos betäcknas med $\hat{y}$. Aktiveringsfunktionen softmax används i det sista lagret för att gränsa värdena till intervallet $[0,1]$ och har egenskapen att alla prognostiserade värdena i ett exempel summeras till 1. Följaktligen kan varje värde i $\hat{y}$ tolkas som sannolikheten att bilden är av varje klass. \cite{cs231n}
 
@@ -666,7 +666,7 @@ Den slutgiltiga precisionen blev $99.2\%$. Av 10 000 handskrivna siffror lyckade
 \begin{figure}[h]\label{figkosnadmnist}
 	\centering
   		\includegraphics[scale=0.6]{kostandsplot.png}
-  	\caption{En graf av kostnadsfunktionen efter varje iteration av mini-hopen av 100 bilder.}
+  	\caption{En graf av kostnaden som funktion av antalet iterationer med mini-hopstorleken 100 bilder med modell 2.}
 \end{figure}
 \quad
 
@@ -674,18 +674,17 @@ Den slutgiltiga precisionen blev $99.2\%$. Av 10 000 handskrivna siffror lyckade
 \begin{figure}[h]\label{figepokmnist}
 	\centering
   		\includegraphics[scale=0.6]{epokplot.png}
-  	\caption{En graf av validationsprecisionen efter varje epok av 60 000 bilder med modell 2.}
+  	\caption{En graf av validationsprecisionen som funktion av antalet epoker av 60 000 bilder med modell 2.}
 \end{figure}
 \subsubsection{Objektdetektering i bilder}
-Om modellen YOLO:
 
 \subsubsection{Ansiktsigenkänning}
-anpassar yolo till en ansiktsdatabas
+Modellen tränas just nu. Jag får resultaten cirka slutet av januari
 
 \section{Diskussion}
 Vet inte vad jag ska diskutera?????
 
-Matten går inte att argumentera med. Det som skulle kunna pratas om är hur jag skulle kunna förbättra modellerna, med det är ju ganska jävla svårt för det här är state of the art. Jag förstår inte det som folk gör för att förbättra det jag har gjort.
+Matten går inte att argumentera med. Det som skulle kunna pratas om är hur jag skulle kunna förbättra modellerna, med det är ju ganska jävla svårt för det här är state of the art (nästan). Jag förstår inte det som folk gör för att förbättra det jag har gjort.
 
 
 
