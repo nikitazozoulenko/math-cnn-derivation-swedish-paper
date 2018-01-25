@@ -6,8 +6,6 @@
 \usepackage[margin=1in]{geometry}
 \usepackage{amsfonts, amsmath, amssymb}
 \usepackage[none]{hyphenat}
-\usepackage{fancyhdr}
-\usepackage[nottoc, notlot, notlof]{tocbibind}
 \usepackage{mathtools}
 
 \usepackage{graphicx}
@@ -32,7 +30,7 @@
 \title{eller}
 \title{Objektdetektering och Ansiktsigenkänning med Konvolutionella Neurala Nätverk}
 \title{eller}
-\title{Konvolutionella Neurala Nätverk och Ansiktsigenkänning}
+\title{Härledning av konvolutionella neurala nätverk för ansiktsigenkänning och sifferavläsning}
 \author{Nikita Zozoulenko}
 \date{\today}
 
@@ -48,43 +46,41 @@
 
 %start abstract
 \Large{\textbf{Abstract}}\\\\
-Convolutional Neural Networks have ...
+Convolutional Neural Networks are a biologically inspired machine learning model that was popularized 2012 when it won the annual ImageNet Large-Scale Visual Recognition Challenge, beating all current machine learning models. Today they have achieved state of the art results in areas such as self-driving cars, image classification, object localization, automatic image annotation, semantic segmentation and natural language processing. In this paper the mathematical model behind the standard Artificial Neural Network and the Convolutional Neural Network is derived. A Convolutional Neural Network is then adapted to read handwritten digits and to make a state of the art face detector, successfully detecting over 200 faces in a crowded scene.
 \newpage
 %end abstract
 
 \tableofcontents
 
-\section{Introduktion}
+\section{Inledning}
 
-???
+\subsection{Bakgrund}
+Artificiella neurala nätverk var först introducerade på 1940-talet och simulerades med hjälp av strömkretsar. Modellen är inspirerad från hur människors och djurs hjärna är uppbyggda av ett flertal neuroner som är kopplade till varandra och överför en nervsignal. Yann LeCunn uppfanna det Konvolutionella Neurala Nätverket 1998 och den var designad till att efterlikna hur ett djurs prefrontalkortex fungerar. Trots att modellen hade funnits i flera år hade den inte sett stor använding innan år 2012 när ett konvolutionellt neuralt nätverk användes för att vinna den årliga ImageNet objektklassifikationstävlingen. Under de senaste 5 åren har modellen använts för att uppnå de bästa möjliga resultaten inom bland annat självkörande bilar, objektdetektering i bilder, meningsöversättning mellan språk och automatiskt skapande av undertexter från ljud. 
 \subsection{Syfte}
 Syftet med arbetet är att härleda och redogöra för den underliggande matematiken bakom den matematiska modellen av konvolutionella neurala nätverk, samt att visa exempel på praktiska tillämpningar av modellen.
 \subsection{Frågeställning}
-Vad är ett Konvolutionellt Neuralt Nätverk?
+Vad är ett konvolutionellt neuralt nätverk?
 Hur härleds framåt- och bakåtpropagering i konvolutionella neurala nätverk?
-Hur kan modellen tillämpas för att implementera sifferavläsning,ansiktsigenkänning och objektdetektering i bilder?
+Hur kan modellen tillämpas för att implementera sifferavläsning, ansiktsigenkänning och objektdetektering i bilder?
 
 
 \newpage
 \section{Metod}
-Metod ej klar
-
-Majoriteten av tiden gick åt till att... standford, vetenskapliga artiklar batch normalization någonting et al. 2015.... implementera skiten och dubbelkolla med derivatans definition
+Majoriteten av tiden gick åt till se på videoföreläsningar av kursen "CS231n: Convolutional Neural Networks for Visual Recognition" från Stanford University för att få en grundläggande bakgrund och intuition om artificiella neurala nätverk. Jag implementerade sedan ett klassiskt artificiellt neuralt nätverk i C++ och python, och ett konvolutionellt neuralt nätverk i python. De partiella derivatorna som beräknas i modellen jämfördes med en analytitisk approximation med hjälp av derivatans definition. Flera forskares bloggar användes för att i mer detalj förstå matematiken bakom nätverksoperationerna. För att fördjupa mig i konvolutionella neurala nätverk läste jag de riktiga vetenskapliga artiklarna såsom Batch Normalization (Ioffe & Szegedy, 2015) och Focal Loss (Lin et al. 2017) för att sedan implementera dem i python. När min egen implementation blev för beräkningsineffektiv använde jag mig av två GPU-accelererande maskininlärningsbibliotek: PyTorch och Tensorflow. 
 
 \newpage
 \section{Bakgrund}
 
+
 \subsection{Tensorer, indexering och notation}
-Tensorer är generaliseringen av vektor- och matrisbegräppen. En tensor med ordning 1 är en vektor $x \in \mathbb{R}^N$ och är en radvektor med $N$ element. Det kan dessutom tolkas som en endimensionell array. Matriser $M$ är tensorer med ordning 2 sådana att $M \in \mathbb{R}^{R \times N}$ och kan ses som en vektor av $R$ vektorer med $N$ element eller en tvådimensionell array med $R \times N$ element. En tensor med ordning $n$ indexeras med en $n$-tupel. Exempelvis indexeras en tensor $X \in \mathbb{R}^{R \times C \times H \times W}$ med fyr-tupeln $(r,c,h,w)$ där $0 \leq r < R$, $0 \leq c < C$, $0 \leq h < H$ och $0 \leq w < W$. \cite{cs231n}
+Tensorer är generaliseringen av vektor- och matrisbegreppen. En tensor med ordning 1 är en vektor $x \in \mathbb{R}^N$ och är en radvektor med $N$ element. Det kan dessutom tolkas som en endimensionell array. Matriser $M$ är tensorer med ordning 2 sådana att $M \in \mathbb{R}^{R \times N}$ och kan ses som en vektor av $R$ vektorer med $N$ element eller en tvådimensionell array med $R \times N$ element. En tensor med ordning $n$ indexeras med en $n$-tupel. Exempelvis indexeras en tensor $X \in \mathbb{R}^{R \times C \times H \times W}$ med fyr-tupeln $(r,c,h,w)$ där $0 \leq r < R$, $0 \leq c < C$, $0 \leq h < H$ och $0 \leq w < W$. \cite{cs231n}
 
 % En tensor med ordningn kan ses som en tensor med ordning1 vars element är tensorer med ordningn-1. Exempelvis är en vektor en vektor av skalärer och en matris en vektor av vektorer. Funktionen $vec()$ gör om en tensor med ordningn till en vektor genom att rekursivt använda den sistnämnda egenskapen av tensorer. \cite{convmath}
 
-\subsection{Feed-forward Neurala Nätverk}
-Ett artificellt neuralt nätverk består av ett antal lager neuroner. De är uppbyggda rekursivt så att resultatet av ett lager är inmatningsdatan till nästintilliggande lager. Nervsignalen propageras framåt tills den når det sista lagret. Hur nervceller från ett lager är kopplade till det föregående lagret varierar med vilket typ av neuralt nätverk man använder sig av. \cite{cs231n}
+\subsection{Feed-forward neurala nätverk}
+Ett artificellt neuralt nätverk består av ett antal lager neuroner. De är uppbyggda rekursivt så att resultatet av ett lager är inmatningsdatan till nästintilliggande lager. Inmatningsdatan för modellen matas in i det första lagret sådant att ett neuron är ett värde. Nervsignalen propageras framåt tills den når det sista lagret. Hur nervceller från ett lager är kopplade till det föregående lagret varierar med vilket typ av neuralt nätverk man använder sig av. \cite{cs231n}
 
 Den mest grundläggande modellen har flera namn, bland annat:  \textit{Multilayer Perceptrons} \textit{Fully Connected Cascade (FCC)}, \textit{Feed-forward Neural Network} och \textit{Densly Connected (Dense)}. Den består av ett flertal lager av neuroner. Varje neuron i ett lager är kopplade till alla neuroner i nästintillföljande lager. Nervsignalen framåtpropageras beroende på hur stark kopplingen mellan två neuroner är. Ett neurons värde kallas för dess aktivering. \cite{cs231n}
-
-% Utöver den vanliga nervsignalsöverföringen appliceras dessutom en aktiveringsfunktion $f(x)$ på samtliga lager elementvis på varje neuron enligt ekvation 
 
 \begin{figure}[h]\label{figFCC}
 	\centering
@@ -93,12 +89,12 @@ Den mest grundläggande modellen har flera namn, bland annat:  \textit{Multilaye
 \end{figure}
 
 \subsubsection{Framåtprogagering}
-\textit{Forward propagation} eller framåtpropagation är processen av att från sina inputneuroner propagera framåt nervsignalen i nätverket tills man når det sista lagret. \cite{cs231n} \cite{wikiStanford}
+\textit{Forward propagation} eller framåtpropagation är processen att från sina inputneuroner propagera nervsignalen framåt i nätverket tills man når det sista lagret. \cite{cs231n} \cite{wikiStanford}
 
 Nätverket kan framställas genom att representera neuronerna och deras kopplingar med hjälp av matriser. Flera träningsexempel bearbetas samtidigt i en så kallad mini-hop med storlek R. Låt $X_{ri}^{(l)}$ benämna neuron nummer $i$ i lager $l$ i träningsexempel $r$. $W_{ba}^{(l)}$ blir vikten eller styrkan på kopplingen mellan neuron $X_{ra}^{(l)}$ och $X_{rb}^{(l+1)}$. Låt $b^{(l)}$ vara ett konstant neuron kallat \textit{bias} som är kopplad till alla neuron i lager $l+1$.  \cite{cs231n} \cite{wikiStanford}
 
-Värdet för ett godtyckligt neuron kallas för den neuronens aktivering. För att beräkna aktiveringen av ett neuron i lager $l+1$ multipliceras varje neurons värde i lager $l$ med deras korresponderande vikt i viktmatrisen $W^{(l)}$. Resultaten och lagrets konstanta neuron $b^{(l)}$ summeras och summan matas in i en aktiveringsfunktion $f(x)$. Funktionsvärdet blir aktiveringen för det nya neuronet i lager $l+1$. Exempelvis kan signalöverföringen mellan lager 2 och 3 för ett specifikt exempel $r$ i mini-hopen i figur 1 beskrivas matematiskt genom: \cite{cs231n} \cite{wikiStanford}
-%Output av nätverket kallas för $\hat{y}$ och är värdet av det sista lagret neuroner. 
+Värdet för ett godtyckligt neuron kallas för den neuronens aktivering. För att beräkna aktiveringen av ett neuron i lager $l+1$ multipliceras varje neurons värde i lager $l$ med deras korresponderande vikt i viktmatrisen $W^{(l)}$. Resultaten och lagrets konstanta neuron $b^{(l)}$ summeras och summan matas in i en aktiveringsfunktion $f(x)$. Funktionsvärdet blir aktiveringen för det nya neuronet i lager $l+1$. Exempelvis kan signalöverföringen mellan lager 2 och 3 för ett godtyckligt exempel $r$ i mini-hopen i figur 1 beskrivas matematiskt genom: \cite{cs231n} \cite{wikiStanford}
+
 \begin{align}
 Z_{r0}^{(3)} & = X_{r0}^{(2)}W_{r0}^{(2)} + X_{r1}^{(2)}W_{10}^{(2)} + X_{r2}^{(2)}W_{20}^{(2)} + b^{(2)} \\
 X_{r0}^{(3)} & = f(Z_{r0}^{(3)})
@@ -135,14 +131,15 @@ tanh(x) = \frac{e^x-e^{-x}}{e^x+e^{-x}}
 \end{equation}
 
 \subsubsection{Kostnadsfunktionen}
-Givet ett inmatningsvärde $X$ skapas ett närmevärde $\hat{y}$ som ska vara så nära det sanna värdet för y som möjligt. Initialt kommer $W^{(l)}$ vara slumpade för varje lager $l$ och nätverkets prognos kommer inte efterlikna det sökta värdet. Med hjälp av \textit{gradient descent} kan man iterativt träna modellen så det slutgiltiga värdet kommer så nära $y$ som möjligt. Detta görs genom att definiera en multivariat kostnadsfunktion $L(W, b; X,y)$ av alla nätverkets parametrar med avseende på ett träningsexempel $(X, y)$. Funktionen är ett mått på prognosen $\hat{y}$ kvalitet. Man definierar $L$ på ett sådant sätt att ju liten värdemängd av $L$, desto högre kvalitet består $\hat{y}$ av. Ett sätt att definiera $L$ är exempelvis med en så kallad \textit{L2 kostnadsfunktion}: \cite{cs231n} \cite{wikiStanford}
+Givet ett inmatningsvärde $X$ skapas ett närmevärde $\hat{y}$ som ska vara så nära det sanna värdet för y som möjligt. Initialt kommer $W^{(l)}$ vara slumpade för varje lager $l$ och nätverkets prognos kommer inte efterlikna det sökta värdet. Med hjälp av \textit{gradient descent} kan man iterativt träna modellen så det slutgiltiga värdet kommer så nära $y$ som möjligt. Detta görs genom att definiera en multivariat kostnadsfunktion $L(W, b; X,y)$ av alla nätverkets parametrar med avseende på ett träningsexempel $(X, y)$. Funktionen är ett mått på prognosen $\hat{y}$ kvalitet. Man definierar $L$ på ett sådant sätt att ju mindre värdemängd av $L$, desto högre kvalitet består $\hat{y}$ av. Ett sätt att definiera $L$ är exempelvis med en så kallad \textit{L2 kostnadsfunktion}: \cite{cs231n} \cite{wikiStanford}
 \begin{equation}
 \begin{split}
-L(\theta) 	& = {||\hat{y}-y_r||}^2 \\
+L(\theta) 	& = {||\hat{y}-y||}^2 \\
 		& = {||f(f(f(XW^{(0)} +b^{(0)})W^{(1)} +b^{(1)})W^{(2)} +b^{(2)}) - y||}^2
 \end{split}
 \end{equation}
-Träningen av det neurala nätverket är processen där man hittar konstnadsfunktionens minimum med hjälp av gradient descent.
+Träningen av det neurala nätverket är processen där man hittar konstnadsfunktionens minimum med hjälp av \textit{gradient descent}.
+
 \subsubsection{Gradient Descent}
 Gradienten $\nabla L(\theta)$ är en vektor av partiella derivator med avseende på funktionen $L$ variabler $W^{(0)}$, $W^{(1)}$, ..., $W^{(l)}$, $b^{(0)}$, $b^{(1)}$, ..., $b^{(l)}$ som definieras genom: \cite{gradient} \cite{convmath} 
 \begin{equation}
@@ -180,7 +177,7 @@ De partiella derivatorna kan approximeras med hjälp av framåt, bakåt eller ce
 \pd{L(\theta)}{\theta^{(i)}} = \frac{L(\theta^{(0)},...,\theta^{(i)} + h, ..., \theta^{(n-1)})-L(\theta)}{h}
 \end{equation}
 
-Detta skulle inte skapa några problem för det lilla neurala nätverket i figur 1 med 24 parametrar, men i själva verket har djupa neurala nätverk miljontals av parametrar som skulle behöva en enorm datorkraft. Istället kan man tillämpa regler för differentialkalkyl för att effektivt beräkna de partiella derivatorna. För ett godtyckligt lager $l$ används kedjeregeln för att bryta upp derivatan av $L$ med avseende på en vikt i tre bråk. På grund av att alla träningsexempel i mini-hopen använder vikten i fråga summeras alla exempel och divideras med mini-hopstorleken $R$. För derivatan av de konstanta neuronerna summeras alla partiella derivator för det lagret. För att sambandet mellan två neuroner och en godtycklig vikt är linjär kan det enkelt deriveras. \cite{cs231n}
+Detta skulle inte skapa några problem för det lilla neurala nätverket i figur 1 med 24 parametrar, men i själva verket har djupa neurala nätverk miljontals av parametrar som behöver en enorm datorkraft. Istället tillämpas regler för differentialkalkyl för att effektivt beräkna de partiella derivatorna. För ett godtyckligt lager $l$ används kedjeregeln för att bryta upp derivatan av $L$ med avseende på en vikt i tre bråk. På grund av att alla träningsexempel i mini-hopen använder vikten i fråga summeras alla exempel i mini-hopen $R$. För derivatan av de konstanta neuronerna summeras alla partiella derivator för det lagret. För att sambandet mellan två neuroner och en godtycklig vikt är linjär kan det enkelt deriveras. \cite{cs231n}
 
 Låt
 \begin{equation}
@@ -190,18 +187,18 @@ Derivatan av $L$ med avseende på ett lagers parameter beräknas genom: \cite{cs
 \begin{equation}\label{dLdW_FCC}
 \begin{split}
 \pd{L(\theta)}{W^{(l)}_{j,i}} 
-	& = \frac{1}{R}\sum^{R-1}_{r=0} \pd{L(\theta)}{X^{(l+1)}_{r,i}} \pd{X^{(l+1)}_{r,i}}{Z^{(l+1)}_{r,i}} \pd{Z^{(l+1)}_{r,i}}{W^{(l)}_{i,j}} \\
-	& = \frac{1}{R}\sum^{R-1}_{r=0} \delta^{(l+1)}_{r,i} f'(Z^{(l+1)}_{r,i}) \ X^{(l)}_{r,j}\\
+	& = \sum^{R-1}_{r=0} \pd{L(\theta)}{X^{(l+1)}_{r,i}} \pd{X^{(l+1)}_{r,i}}{Z^{(l+1)}_{r,i}} \pd{Z^{(l+1)}_{r,i}}{W^{(l)}_{i,j}} \\
+	& = \sum^{R-1}_{r=0} \delta^{(l+1)}_{r,i} f'(Z^{(l+1)}_{r,i}) \ X^{(l)}_{r,j}\\
 \end{split}
 \end{equation}
 \begin{equation}\label{dLdb_FCC}
 \begin{split}
 \pd{L(\theta)}{b^{(l)}} 
-	& = \frac{1}{R}\sum^{R-1}_{r=0} \pd{L(\theta)}{X^{(l+1)}_{r,i}} \pd{X^{(l+1)}_{r,i}}{Z^{(l+1)}_{r,i}} \pd{Z^{(l+1)}_{r,i}}{b^{(l)}_{i,j}} \\
-	& = \frac{1}{R}\sum^{R-1}_{r=0} \delta^{(l+1)}_{r,i} f'(Z^{(l+1)}_{r,i}) \\
+	& = \sum^{R-1}_{r=0} \pd{L(\theta)}{X^{(l+1)}_{r,i}} \pd{X^{(l+1)}_{r,i}}{Z^{(l+1)}_{r,i}} \pd{Z^{(l+1)}_{r,i}}{b^{(l)}_{i,j}} \\
+	& = \sum^{R-1}_{r=0} \delta^{(l+1)}_{r,i} f'(Z^{(l+1)}_{r,i}) \\
 \end{split}
 \end{equation}
-Om $\delta^{(l)}$, också kallat \textit{delta-felet}, är enligt dess definition derivatan av $L$ med avseende på ett visst neuron. Det kan tolkas som hur känslig värdemängdsförändringen för kostnadsfunktionen är för ett visst neuron vid lager $l$. En vikt kopplat till ett neuron med högt delta-fel är mer ansvarig för skiftning i kostnaden än ett neuron med lågt delta-fel. Genom att propagera nervsignalen baklänges i nätverket med kostnadsfunktionens värde som inputvärde kan man beräkna alla neuroner $X^{(l)}$ påverkan på $L$ vid ett godtyckligt lager $l$. \cite{cs231n}
+$\delta^{(l)}$, också kallat \textit{delta-felet}, är enligt dess definition derivatan av $L$ med avseende på ett visst neuron. Det kan tolkas som hur känslig värdemängdsförändringen för kostnadsfunktionen är för ett visst neuron vid lager $l$. En vikt kopplat till ett neuron med högt delta-fel är mer ansvarig för skiftning i kostnaden än ett neuron med lågt delta-fel. Genom att propagera nervsignalen baklänges i nätverket med kostnadsfunktionens värde som inputvärde kan man beräkna alla neuroner $X^{(l)}$ påverkan på $L$ vid ett godtyckligt lager $l$. \cite{cs231n}
 
 Bakåtpropageringen av delta-felen uttrycks rekursivt från det sista lagret $\hat{y}$. Delta-felet vid det sista lagret $l_{sista}$ beror på kostnadsfunktionen. För en L2 kostnadsfunktion definieras delta-felet som: \cite{cs231n}
 \begin{equation}
@@ -227,11 +224,11 @@ Bakåtpropageringen sker lager till lager med start i outputlagret. Vid varje la
 \subsection{Träning av neurala nätverk}
 Neurala nätverk tränas genom att iterativt uppdatera nätverkets vikter med hjälp av \textit{gradient descent}. Den hela träningsdatabasen delas in i mini-hopar och väljs slumpvist ut. En iteration av SGD appliceras genom att framåtpropagera och sedan bakåtpropageras träningsexemplet för att beräkna gradienten av kostnadsfunktionen med avseende på alla vikter i närverket. Denna process upprepas tills nätverkets vikter konvergerar och nätverkets prognos efterliknar verkligheten. \cite{cs231n}
 
-Två implementationer av ett feedforward neuralt nätverk kan hittas på github i python och C++: \url{https://github.com/nikitazozoulenko}
+Två implementationer av ett feed-forward neuralt nätverk kan hittas på github i python och C++: \url{https://github.com/nikitazozoulenko}
 \newpage
 \section{Resultat}
 
-\subsection{Konvolutionella Neuala Netvärk}
+\subsection{Konvolutionella neuala nätverk}
 När människor vill identifiera någonting i en bild så letar vi efter vissa karakteristiska drag objektet har. En hund består exempelvis av en kropp, ett huvud och fyra ben. Kroppsdelarna består sedan själva av grundläggande geometriska former som i sig självt är kombinationer av kanter och linjer. Dessutom har hundar en viss textur, det som vi kännetecknar som något pälsliknande. Dessa karakteristiska drag är lokala inom bilden och kan extraheras av att endast se på en liten del av bilden i taget. Detta är principen bakom \textit{Konvolutionella Neurala Nätverk (CNN)}: Genom så kallade \textit{konvolutioner} kunna extrahera dessa karakteristiska drag. Nätverket lär sig ett antal små filter som den applicerar på en delmängd av bilden genom att filtret sammanrullar över hela bilden (se figur 4). Värdet av filtret över en delmängd av bilden blir aktiveringen av ett neuron i nästa lager. \cite{cs231n}
 
 \begin{figure}[h]\label{figkatter}
@@ -240,13 +237,16 @@ När människor vill identifiera någonting i en bild så letar vi efter vissa k
   	\caption{Resultatet av att ett filter för vertikal respektive horizontell kantdetektering har sammanrullat över en bild av en katt.}
 \end{figure}
 
-Till skillnad från \textit{FCC} är neuronerna i ett \textit{CNN} bara kopplade till närliggande neuroner i det föregående lagret. På detta sätt kan nätverket lära sig fler hög-nivåspecialartiklar ju djupare i nätverket signalen går. Exempelvis kan det hända att det första lagret lär sig att identifiera kanter och linjer medan de senare lagren lagren lär sig att känner igen olika geometriska former och till sist känna igen ansikten eller object i sista lagert. \cite{cs231n}
+Till skillnad från \textit{FCC} är neuronerna i ett \textit{CNN} bara kopplade till närliggande neuroner i det föregående lagret. På detta sätt kan nätverket lära sig fler hög-nivåspecialartiklar ju djupare i nätverket signalen går. Exempelvis kan det hända att det första lagret lär sig att identifiera kanter och linjer medan de senare lagren lagren lär sig att känna igen olika geometriska former och till sist känna igen ansikten eller object i det sista lagret. \cite{cs231n}
 \newpage
-Modellen, precis som ett \textit{feed-forward nätverket}, består av ett flertal lager neuroner sådant att resultatet av ett lager matas in till nästkommande lager. Det sista lagret benämns med $X^{(l_{sista})}$ eller $\hat{y}$. Vid varje lager finns dessutom vikter $W^{(l)}$  som beror på vad för slags lager det är. $W^{(l)}$ kan vara tom med inga vikter när lager inte bidrar till någon inlärning. Ekvation \eqref{CNNeq} illustrerar \cite{cs231n} \cite{convmath}
+Modellen, precis som ett \textit{feed-forward nätverket}, består av ett flertal lager neuroner sådant att resultatet av ett lager matas in till nästkommande lager. Det sista lagret benämns med $X^{(l_{sista})}$ eller $\hat{y}$. Vid varje lager finns dessutom vikter $W^{(l)}$  som beror på vad för slags lager det är. $W^{(l)}$ kan vara tom med inga vikter när lager inte bidrar till någon inlärning. Ekvation \eqref{CNNeq} illustrerar strukturen av modellen.\cite{cs231n} \cite{convmath}
 \begin{equation}\label{CNNeq}
 X^{(0)} \xrightarrow{W^{(l)}} X^{(1)}  \xrightarrow{W^{(l)}} \cdots  \xrightarrow{W^{(l_{sista}-2)}} X^{(l_{sista}-1)}  \xrightarrow{W^{(l_{sista}-1)}} X^{(l_{sista})} = \hat{y}
 \end{equation}
-För ett feed-forward neuralt nätverk används matriser för att representera neuronerna. I ett \textit{CNN} är en tensor $X^{(l)} \in \mathbb{R}^{R \times C  \times H \times W}$ med ordning 4 aktiveringen vid lager $l$ och indexeras med fyr-tupeln $(r,c,h,w)$ där $0 \leq r < R$, $0 \leq c < C$, $0 \leq h < H$ och $0 \leq w < W$. Aktiveringarna vid nästintilliggande lager $l+1$ betäcknas med $X^{(l+1)} \in \mathbb{R}^{R \times C' \times H' \times W'}$ och indexeras med fyr-tupeln $(r,c',h',w')$ där $0 \leq r < R$, $0 \leq c' < C'$, $0 \leq h' < H'$ och $0 \leq w' < W'$. \cite{cs231n} \cite{convmath}
+
+Samtliga olika typer av lager i en konvolutionellt neuralt nätverk har två olika faser: framåtpropagering och bakåtpropagering. Vid framåtpropagering används aktiveringen av det föregående lagret för att beräkna aktiveringen vid nästintilliggande lager. Vid bakåtpropagering måste det rekursiva delta-felet propageras baklänges i nätverket med hjälp av kedjeregeln för att sedan beräkna den paritella derivatan av lagrets vikter med avseende på kostnadsfunktionen. \cite{cs231n}
+
+För ett feed-forward neuralt nätverk används matriser för att representera neuronerna. I ett \textit{CNN} är en tensor $X^{(l)} \in \mathbb{R}^{R \times C  \times H \times W}$ med ordning 4 aktiveringen vid lager $l$ och indexeras med fyr-tupeln $(r,c,h,w)$ där $0 \leq r < R$, $0 \leq c < C$, $0 \leq h < H$ och $0 \leq w < W$. Aktiveringarna vid nästintilliggande lager $l+1$ betecknas med $X^{(l+1)} \in \mathbb{R}^{R \times C' \times H' \times W'}$ och indexeras med fyr-tupeln $(r,c',h',w')$ där $0 \leq r < R$, $0 \leq c' < C'$, $0 \leq h' < H'$ och $0 \leq w' < W'$. \cite{cs231n} \cite{convmath}
 
 
 
@@ -255,17 +255,15 @@ För ett feed-forward neuralt nätverk används matriser för att representera n
 
 
 
-Aktiveringen brukar illustreras som en tredimensionell volym där $W$, $H$ och $C$ är bredden, höjden respektive djupet. En $H \times W$ skiva av volymen kallas för en \textit{feature map} eller en \textit{kanal}. Antalet kanaler betäcknas med $C$. $R$ står för hopstorlek då man bearbetar R exempel i taget i en så kallad mini-hop. \cite{cs231n} \cite{convmath}
+Aktiveringen brukar illustreras som en tredimensionell volym där $W$, $H$ och $C$ är bredden, höjden respektive djupet. En $H \times W$ skiva av volymen kallas för en \textit{feature map} eller en \textit{kanal}. Antalet kanaler betecknas med $C$. $R$ står för hopstorlek då man bearbetar R exempel i taget i en så kallad mini-hop. \cite{cs231n} \cite{convmath}
 
 \begin{figure}[h]\label{figboatcnn}
 	\centering
   		\includegraphics[scale=0.6]{boatcnn.png}
-  	\caption{En illustration av ett konvolutionellt neuralt nätverk. Varje skiva är en egen feature map. \cite{figboatcnn}}
+  	\caption{En illustration av ett konvolutionellt neuralt nätverk. Varje skiva är en egen \textit{feature map}. \cite{figboatcnn}}
 \end{figure}
 
-För att en konvolution är en lokal operator används CNNs för data som innehåller lokalt sammanhängande samband, exempelvis bilder eller ljud. Om det är en bild som bearbetas har det första lagrets aktivering $C = 3$ kanaler, en för varje RGB-kanal, och en bredd och höjd lika med bildens bredd och höjd i pixlar. \cite{cs231n} \cite{convmath}
-
-Samtliga olika typer av lager i en konvolutionellt neuralt nätverk har två olika faser: framåtpropagering och bakåtpropagering. Vid framåtpropagering används aktiveringen av det föregående lagret för att beräkna aktiveringen vid nästintilliggande lager. Vid bakåtpropagering måste det rekursiva delta-felet propageras baklänges i nätverket för att få reda på varje neurons påverkan på kostnadsfunktionen. Ytterliga beräknas de partiella derivatorna av lagrets vikter med avseende på kostnadsfunktionen. \cite{cs231n}
+På grund av att en konvolution är en lokal operator används CNN:s för data som innehåller lokalt sammanhängande samband, exempelvis bilder eller ljud. Om det är en bild som bearbetas har det första lagrets aktivering $C = 3$ kanaler, en för varje RGB-kanal, och en bredd och höjd lika med bildens bredd och höjd i pixlar. \cite{cs231n} \cite{convmath}
 
 \subsubsection{Konvolutionslagret framåtpropagering}
 Ett konvolutionslager består av ett antal vikter kallade \textit{kärnor (kernels)} eller \textit{masker (masks)}, representerade av en tensor med ordning fyra, $W^{(l)} \in \mathbb{R}^{C' \times C  \times K_h \times K_W}$ för lager $l$. \cite{cs231n} \cite{convmath}
@@ -328,17 +326,17 @@ Bakåtpropageringen av det rekursiva delta-felet $\inpd{L(W)}{X^{(l+1)}_{r,c',h'
 \end{split}
 \end{equation}
 
-Varje produkt i den innersta summan kommer att vara like med noll förutom om $X^{(l)}_{r, c, h'+j, w'+i} = X^{(l)}_{r,c,h,w}$. Förljaktligen insätter man $h'+j = h$ och $h'+j = h$. Summorna och derivatan förkortas: \cite{webconv1} \cite{webconv2} \cite{webconv3}
+Varje produkt i den innersta summan kommer att vara lika med noll förutom om $X^{(l)}_{r, c, h'+j, w'+i} = X^{(l)}_{r,c,h,w}$. Förljaktligen insätter man $h'+j = h$ och $h'+j = h$. Summorna och derivatan förkortas: \cite{webconv1} \cite{webconv2} \cite{webconv3}
 \begin{multline}
 \sum^{C'-1}_{c'} \sum^{H'-1}_{h'=0} \sum^{W'-1}_{w'=0} \delta^{(l+1)}_{r,c',h',w'} \pd{\sum^{C-1}_{c=0} \sum^{K_H-1}_{j=0} \sum^{K_W-1}_{i=0} X^{(l)}_{r, c, h'+j, w'+i}W^{(l+1)}_{c', c, j, i}}{X^{(l)}_{r,c,h,w}} \\
 	 = \sum^{C'-1}_{c'=0} \sum^{H'-1}_{h'=0} \sum^{W'-1}_{w'=0} \delta^{(l+1)}_{r,c',h',w'} W^{(l+1)}_{c', c, j, i} \\
 	 = \sum^{C'-1}_{c'=0} \sum^{H'-1}_{h'=0} \sum^{W'-1}_{w'=0} W^{(l+1)}_{c', c, (h-h'), (w-w')}  \delta^{(l+1)}_{r,c',h',w'}   \\
 \end{multline}
-Vilket man kan se är en summa av konvolutioner där en viss feature map av delta-felet sammanrullar över alla kärnor på en viss feature map med vikter som är roterade $180^\circ$. För att en konvolution ska kunna ske måste den roterade vikten zero-paddas på grund av att det glidande fönstret måste vara som mest lika stor som tensorn den sammanrullar över. Låt rotationen betäcknas med funktionen $rot()$. \cite{webconv1} \cite{webconv2} \cite{webconv3}
+Vilket man kan se är en summa av konvolutioner där en viss \textit{feature map} av delta-felet sammanrullar över alla kärnor på en viss \textit{feature map} med vikter som är roterade $180^\circ$. För att en konvolution ska kunna ske måste den roterade vikten zero-paddas på grund av att det glidande fönstret måste vara som mest lika stor som tensorn den sammanrullar över. Låt rotationen betecknas med funktionen $rot()$. \cite{webconv1} \cite{webconv2} \cite{webconv3}
 \begin{equation}
 \delta^{(l)}_{r,c,h,w} = \sum^{C'-1}_{c'=0} rot(W^{(l+1)}_{c',c,h,w}) * \delta^{(l+1)}_{r,c'}
 \end{equation}
-En sundshetskontroll visar att detta är intuitivt då alla feature maps i $X^{(l)}$ används för att skapa en enstaka feature map i $X^{(l+1)}$. Det är därför man summerar över alla kärnor och endast konvolverar i en feature map i taget och summerar alltihop. \cite{cs231n}
+En sundshetskontroll visar att detta är intuitivt då alla \textit{feature maps} i $X^{(l)}$ används för att skapa en enstaka \textit{feature map} i $X^{(l+1)}$. Det är därför man summerar över alla kärnor och endast konvolverar i en \textit{feature map} i taget och summerar alltihop. \cite{cs231n}
 
 Den partiella derivatan av kostandsfunktionen med avseende på vikterna hittas på ett liknande sätt. Här summeras dessutom $R$-dimensionen på grund av att alla exempel i mini-hopen har en påverkan på gradienten. Ytterligare divideras gradienten med $R$ för att hitta medelvärdet av alla gradienter av alla exempel i mini-hopen: \cite{cs231n} \cite{webconv1} \cite{webconv2} \cite{webconv3} 
 \begin{align}
@@ -352,11 +350,11 @@ Den partiella derivatan av kostandsfunktionen med avseende på vikterna hittas p
 \end{align}
 
 \subsubsection{Aktiveringsfunktionslager framåtpropagering}
-Aktiveringsfunktionen $f$ appliceras elementvis på alla neuroner i $X^{(l)}$. Följaktligen har $X^{(l)}$ och $X^{(l+1)}$ samma dimensioner. Låt aktiveringsfunktionen betäcknas med $f$. Nervsignalen framåtpropageras genom: \cite{convmath}
+Aktiveringsfunktionen $f$ appliceras elementvis på alla neuroner i $X^{(l)}$. Följaktligen har $X^{(l)}$ och $X^{(l+1)}$ samma dimensioner. Låt aktiveringsfunktionen betecknas med $f$. Nervsignalen framåtpropageras genom: \cite{convmath}
 \begin{equation}
 X^{(l+1)}_{r,c,h,w} = f(X^{(l)}_{r,c,h,w})
 \end{equation}
-Aktiveringsfunktioner ökar nätverks precision och får dem att divergera snabbare, vilket leder till att mindre datakraft krävs för att träna nätverket. \cite{cs231n}
+Aktiveringsfunktioner ökar nätverks precision och får dem att konvergera snabbare, vilket leder till att mindre datakraft krävs för att träna nätverket. \cite{cs231n}
 
 \subsubsection{Aktiveringsfunktionslager bakåtpropagering}
 Aktiveringsfunktioner har inga parametrar som ska optimeras och sålades är $W^{(l)}$ och $\inpd{L(W)}{W^{(l)}}$ tomma. Bakåtpropageringen av det rekursiva delta-felet härleds med hjälp av kedjeregeln: \cite{cs231n} \cite{convmath}
@@ -371,7 +369,7 @@ Aktiveringsfunktioner har inga parametrar som ska optimeras och sålades är $W^
 \end{equation}
 
 \subsubsection{Maxpoollagret framåtpropagation}
-Här är igen inputneuronerna representerade av $X^{(l)} \in \mathbb{R}^{R \times C \times H \times W}$ och skapar output $X^{(l+1)} \in \mathbb{R}^{R \times C' \times H' \times W'}$. Lagret saknar vikter men har däremot hyperparametrarna $k$ (kärnstorlek) och $s$ (stride eller kliv). \textit{Maxpooling} delar in varje feature map i $X^{(l)}$ i ett antal sektioner med dimensioner $k \times k$ genom att ett glidande fönster med samma dimensioner samanrullar över alla lagrets feature maps (se figur 8). Aktiveringen vid ett neuron i lager $l+1$ blir lika med det största värdet i korresponderande $k \times k$ sektion. \cite{cs231n} \cite{convmath} \cite{convarithmetic}
+Här är igen inputneuronerna representerade av $X^{(l)} \in \mathbb{R}^{R \times C \times H \times W}$ och skapar output $X^{(l+1)} \in \mathbb{R}^{R \times C' \times H' \times W'}$. Lagret saknar vikter men har däremot hyperparametrarna $k$ (kärnstorlek) och $s$ (stride eller kliv). \textit{Maxpooling} delar in varje \textit{feature map} i $X^{(l)}$ i ett antal sektioner med dimensioner $k \times k$ genom att ett glidande fönster med samma dimensioner samanrullar över alla lagrets \textit{feature maps} (se figur 8). Aktiveringen vid ett neuron i lager $l+1$ blir lika med det största värdet i korresponderande $k \times k$ sektion. \cite{cs231n} \cite{convmath} \cite{convarithmetic}
 
 \begin{figure}[h]\label{figmaxpool}
 	\centering
@@ -417,11 +415,11 @@ Den partiella derivatan i den sista ekvationen kommer vara lika med 1 om $X^{(l)
 Alltså omdiregeras delta-felet till det ansvariga neuronet vars index kommer att behöva hållas i minnet. Om det finns två eller fler sektioner med samma neuron som är ansvarig för framåtpropageringen så kommer delta-felen summeras från samtliga korresponderande sektioners delta-fel. \cite{cs231n} \cite{convmath} \cite{webconv3}
 
 \subsubsection{Batch Normalization framåtpropagering}
-Utan Batch Normalization (BN) är det svårt att få djupa nätverk att divergera. Detta är till följd av att en liten ändring till det första lagret kan leda till en kaskad av förändringar i de senare lagren. I litteraturen kallas detta för \textit{internal covariate shift}. BN försöker att minimera denna \textit{internal covariate shift} genom att med avseende på alla exempel i mini-hopen normalisera varje feature map till varje lager. Resultatet är snabbare divergens och att det tillåter större träningshastigheter. Alltså har att man bearbetar flera exemepl i taget i en mini-hop en annan praktiska tillämpning än att försnabba uträkningar. \cite{cs231n} \cite{batchnorm}
+Utan Batch Normalization (BN) är det svårt att få djupa nätverk att konvergera. Detta är till följd av att en liten ändring till det första lagret kan leda till en kaskad av förändringar i de senare lagren. I litteraturen kallas detta för \textit{internal covariate shift}. BN försöker att minimera denna \textit{internal covariate shift} genom att med avseende på alla exempel i mini-hopen normalisera varje \textit{feature map} till varje lager. Resultatet är snabbare konvergens och att det tillåter större träningshastigheter. Följaktligenhar bearbetningen av flera exemepl i taget i en mini-hop en annan praktiska tillämpning än att enbart försnabba uträkningar. \cite{cs231n} \cite{batchnorm}
 
 Igen är aktiveringen vid lager $l$ och $l+1$ $X^{(l)} \in \mathbb{R}^{R \times C \times H \times W}$ respektive $X^{(l+1)} \in \mathbb{R}^{R \times C' \times H' \times W'}$. BN har ingen påverkan på dimensionerna av aktiveringen. \cite{cs231n} \cite{batchnorm}
 
-Först beräknas medelvärdena $\mu_c$ och varianserna $\sigma^2_c$ till varje feature map $c$: \cite{cs231n} \cite{batchnorm}
+Först beräknas medelvärdena $\mu_c$ och varianserna $\sigma^2_c$ till varje \textit{feature map} $c$: \cite{cs231n} \cite{batchnorm}
 \begin{equation}
 \mu_c = \frac{1}{RHW} \sum^{R-1}_{r=0} \sum^{H-1}_{h=0} \sum^{W-1}_{w=0} X^{(l)}_{r,c,h,w}
 \end{equation}
@@ -445,11 +443,11 @@ Vid RUNTIME är det dock inte alltid möjligt att beräkna medelvärdet och vari
 \sigma^2_{EWMA_c} \to \lambda \sigma^2_c + (1-\lambda)\sigma^2_{EWMA_c}
 \end{equation}
 
-Där $\mu_{EWMA_c}$ och $\sigma^2_{EWMA_c}$ betäcknar de exponensiella glidande medelvärdena och $\lambda$ betäcknar dämpfaktorn.
+Där $\mu_{EWMA_c}$ och $\sigma^2_{EWMA_c}$ betecknar de exponensiella glidande medelvärdena och $\lambda$ betecknar dämpfaktorn.
 
 
 \subsubsection{Batch Normalization bakåtpropagering}
-För BN behöver det rekursiva delta-felet $\delta^{(l)}$, derivatan av kostandsfunktionen med avseende på $\gamma_{c'}^{(l)}$ och derivatan av kostandsfunktionen med avseende på $\beta{c'}^{(l)}$ beräknas. För att beräkna detta krävs något som heter kronecker-deltat, oftast betäcknat med $\delta_{i,j}$ men kommer vara betäcknat med $I_{i,j}$ i denna rapport på grund av $\delta$ används för en annan term. Kronecker-deltat har följande egenskaper: \cite{webBN1} \cite{webBN2}
+För BN behöver det rekursiva delta-felet $\delta^{(l)}$, derivatan av kostandsfunktionen med avseende på $\gamma_{c'}^{(l)}$ och derivatan av kostandsfunktionen med avseende på $\beta{c'}^{(l)}$ beräknas. För att beräkna detta krävs något som heter kronecker-deltat, oftast betecknat med $\delta_{i,j}$ men kommer vara betecknat med $I_{i,j}$ i denna rapport på grund av $\delta$ används för en annan term. Kronecker-deltat har följande egenskaper: \cite{webBN1} \cite{webBN2}
 \begin{equation}\label{kroneckerdelta}
 I_{i,j} = \begin{cases} 1 & \mbox{om } i = j \\ 0 & \mbox{om } i \neq j  \end{cases}
 \end{equation}
@@ -513,7 +511,7 @@ När alla komponenter till bakåtpropageringen av delta-felet är beräknade är
 \begin{equation}\label{finalBNeq}
 \begin{split}
 	\delta^{(l)}_{r,c,h,w} 
-	& = \sum^{R'-1}_{r'=0} \sum^{C'-1}_{c'=0} \sum^{H'-1}_{h'=0} \sum^{W'-1}_{w'=0} \pd{L(W)}{X^{(l+1)}_{r',c',h',w'}} \pd{X^{(l+1)}_{r',c',h',w'}}{\hat{X}_{r',c',h',w'}} \pd{\hat{X}_{r',c',h',w'}}{{X}^{(l)}_{r,c,h,w}}\\
+	& = \sum^{R-1}_{r'=0} \sum^{C'-1}_{c'=0} \sum^{H'-1}_{h'=0} \sum^{W'-1}_{w'=0} \pd{L(W)}{X^{(l+1)}_{r',c',h',w'}} \pd{X^{(l+1)}_{r',c',h',w'}}{\hat{X}_{r',c',h',w'}} \pd{\hat{X}_{r',c',h',w'}}{{X}^{(l)}_{r,c,h,w}}\\
 	& = \sum\limits_{r',c',h',w'}\delta^{(l+1)}_{r',c',h',w'} \gamma^{(l)}_{c'} {(\sigma^2_{c'})}^{-\frac{1}{2}} (I_{r',r} I_{c',c} I_{h',h} I_{w',w} - \frac{1}{RHW} I_{c',c}) \\
 	& \qquad -\sum\limits_{r',c',h',w'}\delta^{(l+1)}_{r',c',h',w'} \gamma^{(l)}_{c'} \frac{1}{RHW} ({X^{(l)}_{r',c',h',w'} - \mu_{c'}})({X^{(l)}_{r,c',h,w} - \mu_{c'}}) {(\sigma^2_{c'})}^{-\frac{3}{2}} I_{c',c} \\
 	& = \delta^{(l+1)}_{r,c,h,w} \gamma^{(l)}_{c} {(\sigma^2_{c})}^{-\frac{1}{2}} - \frac{1}{RHW} \sum\limits_{r',h',w'} \delta^{(l+1)}_{r',c,h',w'} \gamma^{(l)}_{c} {(\sigma^2_{c})}^{-\frac{1}{2}}\\
@@ -522,14 +520,14 @@ När alla komponenter till bakåtpropageringen av delta-felet är beräknade är
 	& \qquad -  ({X^{(l)}_{r,c,h,w} - \mu_{c}}) {(\sigma^2_{c})}^{-\frac{3}{2}} \sum\limits_{r',h',w'} \delta^{(l+1)}_{r',c,h',w'} ({X^{(l)}_{r',c,h',w'} - \mu_{c'}}) \biggl) \\
 \end{split}
 \end{equation}
-Derivatan av vikterna hittas på ett liknande sätt som ekvation \eqref{BN_delta_error} till \eqref{finalBNeq} med en faktor $\frac{1}{R}$ på grund av att det är medelvärdet för alla exemepl i mini-hopen som är eftersökt. \cite{webBN1} \cite{webBN2}
+Derivatan av vikterna hittas på ett liknande sätt som ekvation \eqref{BN_delta_error} till \eqref{finalBNeq}. \cite{webBN1} \cite{webBN2}
 \begin{align}
 \begin{split}
 	\pd{L(W)}{\gamma^{(l)}_{c}}
-		& = \frac{1}{R}\sum^{R-1}_{r} \sum^{C'-1}_{c'} \sum^{H'-1}_{h'} \sum^{W'-1}_{w'} \pd{L(W)}{X^{(l+1)}_{r,c',h',w'}} \pd{X^{(l+1)}_{r,c',h',w'}}{\gamma^{(l)}_{c}} \\
-		& = \frac{1}{R}\sum^{R-1}_{r} \sum^{C'-1}_{c'} \sum^{H'-1}_{h'} \sum^{W'-1}_{w'} \delta^{(l+1)}_{r,c',h',w'}  \pd{({\gamma_{c'}^{(l)} \hat{X}_{r,c',h',w'} + \beta_{c'}^{(l)}})}{\gamma^{(l)}_{c}} \\
-		& = \frac{1}{R}\sum^{R-1}_{r} \sum^{C'-1}_{c'} \sum^{H'-1}_{h'} \sum^{W'-1}_{w'} \delta^{(l+1)}_{r,c',h',w'} \hat{X}_{r,c,h',w'} I_{c',c}\\
-		& = \frac{1}{R}\sum^{R-1}_{r} \sum^{H'-1}_{h'} \sum^{W'-1}_{w'} \delta^{(l+1)}_{r,c,h',w'} \hat{X}_{r,c,h',w'} \\
+		& = \sum^{R-1}_{r} \sum^{C'-1}_{c'} \sum^{H'-1}_{h'} \sum^{W'-1}_{w'} \pd{L(W)}{X^{(l+1)}_{r,c',h',w'}} \pd{X^{(l+1)}_{r,c',h',w'}}{\gamma^{(l)}_{c}} \\
+		& = \sum^{R-1}_{r} \sum^{C'-1}_{c'} \sum^{H'-1}_{h'} \sum^{W'-1}_{w'} \delta^{(l+1)}_{r,c',h',w'}  \pd{({\gamma_{c'}^{(l)} \hat{X}_{r,c',h',w'} + \beta_{c'}^{(l)}})}{\gamma^{(l)}_{c}} \\
+		& = \sum^{R-1}_{r} \sum^{C'-1}_{c'} \sum^{H'-1}_{h'} \sum^{W'-1}_{w'} \delta^{(l+1)}_{r,c',h',w'} \hat{X}_{r,c,h',w'} I_{c',c}\\
+		& = \sum^{R-1}_{r} \sum^{H'-1}_{h'} \sum^{W'-1}_{w'} \delta^{(l+1)}_{r,c,h',w'} \hat{X}_{r,c,h',w'} \\
 \end{split}
 \end{align}
 
@@ -537,10 +535,10 @@ Derivatan av vikterna hittas på ett liknande sätt som ekvation \eqref{BN_delta
 \begin{align}
 \begin{split}
 	\pd{L(W)}{\beta^{(l)}_{c}}
-		& = \frac{1}{R}\sum^{R-1}_{r} \sum^{C'-1}_{c'} \sum^{H'-1}_{h'} \sum^{W'-1}_{w'} \pd{L(W)}{X^{(l+1)}_{r,c',h',w'}} \pd{X^{(l+1)}_{r,c',h',w'}}{\beta^{(l)}_{c}} \\
-		& = \frac{1}{R}\sum^{R-1}_{r} \sum^{C'-1}_{c'} \sum^{H'-1}_{h'} \sum^{W'-1}_{w'} \delta^{(l+1)}_{r,c',h',w'}  \pd{({\gamma_{c'}^{(l)} \hat{X}_{r,c',h',w'} + \beta_{c'}^{(l)}})}{\beta^{(l)}_{c}} \\
-		& = \frac{1}{R}\sum^{R-1}_{r} \sum^{C'-1}_{c'} \sum^{H'-1}_{h'} \sum^{W'-1}_{w'} \delta^{(l+1)}_{r,c,h',w'} I_{c',c}\\
-		& = \frac{1}{R}\sum^{R-1}_{r} \sum^{H'-1}_{h'} \sum^{W'-1}_{w'} \delta^{(l+1)}_{r,c,h',w'} \\
+		& = \sum^{R-1}_{r} \sum^{C'-1}_{c'} \sum^{H'-1}_{h'} \sum^{W'-1}_{w'} \pd{L(W)}{X^{(l+1)}_{r,c',h',w'}} \pd{X^{(l+1)}_{r,c',h',w'}}{\beta^{(l)}_{c}} \\
+		& = \sum^{R-1}_{r} \sum^{C'-1}_{c'} \sum^{H'-1}_{h'} \sum^{W'-1}_{w'} \delta^{(l+1)}_{r,c',h',w'}  \pd{({\gamma_{c'}^{(l)} \hat{X}_{r,c',h',w'} + \beta_{c'}^{(l)}})}{\beta^{(l)}_{c}} \\
+		& = \sum^{R-1}_{r} \sum^{C'-1}_{c'} \sum^{H'-1}_{h'} \sum^{W'-1}_{w'} \delta^{(l+1)}_{r,c,h',w'} I_{c',c}\\
+		& = \sum^{R-1}_{r} \sum^{H'-1}_{h'} \sum^{W'-1}_{w'} \delta^{(l+1)}_{r,c,h',w'} \\
 \end{split}
 \end{align}
 
@@ -576,7 +574,7 @@ All kod till de exempel på praktiska tillämpningar kan hittas på github: \url
 \subsubsection{Klassificering av handskrivna siffror}
 En enkel CNN-modell kan användas för att klassificera handskriva siffror. För att uppnå detta har MNIST DATASET för handskriva siffror används. Den består av 60 000 unika exempel för träning och ytterligare 10 000 exempel för validering av modellen. \cite{MNIST}
 
-Låt modellens prognos betäcknas med $\hat{y}$. Aktiveringsfunktionen softmax används i det sista lagret för att gränsa värdena till intervallet $[0,1]$ och har egenskapen att alla prognostiserade värdena i ett exempel summeras till 1. Följaktligen kan varje värde i $\hat{y}$ tolkas som sannolikheten att bilden är av varje klass. \cite{cs231n}
+Låt modellens prognos betecknas med $\hat{y}$. Aktiveringsfunktionen softmax används i det sista lagret för att gränsa värdena till intervallet $[0,1]$ och har egenskapen att alla prognostiserade värdena i ett exempel summeras till 1. Följaktligen kan varje värde i $\hat{y}$ tolkas som sannolikheten att bilden är av varje klass. \cite{cs231n}
 
 \begin{figure}[h]\label{figMNIST}
 	\centering
@@ -584,7 +582,7 @@ Låt modellens prognos betäcknas med $\hat{y}$. Aktiveringsfunktionen softmax a
   	\caption{Tio bilder av handskrivna siffror från MNIST DATASETET. \cite{MNIST}}
 \end{figure}
 
-Input för modellen är en $R \times 1 \times 28 \times 28$ pixelarray där R står för mini-hopstorleken. Modellen prognostiserar tio värden per bild i form av en tensor $\hat{y} \in \mathbb{R}^{R \times C}$, ett värde för varje klass $C=10$ av siffra. Konstandsfunktionen som har minimerats under träningstiden är funktionen \textit{cross-entropy} betäcknat med L. Den verkar på två sannolikhetsfördelningar: De verkliga sannolikheterna $y$ och de prognostiserade sannolikheterna $\hat{y}$: \cite{cs231n} \cite{notesonbackprop}
+Input för modellen är en $R \times 1 \times 28 \times 28$ pixelarray där R står för mini-hopstorleken. Modellen prognostiserar tio värden per bild i form av en tensor $\hat{y} \in \mathbb{R}^{R \times C}$, ett värde för varje klass $C=10$ av siffra. Konstandsfunktionen som har minimerats under träningstiden är funktionen \textit{cross-entropy} betecknat med L. Den verkar på två sannolikhetsfördelningar: De verkliga sannolikheterna $y$ och de prognostiserade sannolikheterna $\hat{y}$: \cite{cs231n} \cite{notesonbackprop}
 
 \begin{equation}
 L(W) = - \frac{1}{R}\sum^{R-1}_{r=0} \sum^{C-1}_{c=0}y_{r,c} \ \log{\hat{y}_{r,c}}

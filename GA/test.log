@@ -1,12 +1,14 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6350 64-bit) (preloaded format=pdflatex 2017.10.25)  7 JAN 2018 17:15
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Arch Linux) (preloaded format=pdflatex 2018.1.15)  25 JAN 2018 21:04
 entering extended mode
-**./test.tex
-(test.tex
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**test.tex
+(./test.tex
 LaTeX2e <2017-04-15>
-Babel <3.10> and hyphenation patterns for 75 language(s) loaded.
-(E:\MiKTeX\tex\latex\base\article.cls
+Babel <3.15> and hyphenation patterns for 84 language(s) loaded.
+(/usr/share/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2014/09/29 v1.4h Standard LaTeX document class
-(E:\MiKTeX\tex\latex\base\size11.clo
+(/usr/share/texmf-dist/tex/latex/base/size11.clo
 File: size11.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
 )
 \c@part=\count79
@@ -20,24 +22,27 @@ File: size11.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
 \abovecaptionskip=\skip41
 \belowcaptionskip=\skip42
 \bibindent=\dimen102
-) (E:\MiKTeX\tex\latex\base\fontenc.sty
+)
+(/usr/share/texmf-dist/tex/latex/base/fontenc.sty
 Package: fontenc 2017/04/05 v2.0i Standard LaTeX package
 
-(E:\MiKTeX\tex\latex\base\t1enc.def
+(/usr/share/texmf-dist/tex/latex/base/t1enc.def
 File: t1enc.def 2017/04/05 v2.0i Standard LaTeX file
 LaTeX Font Info:    Redeclaring font encoding T1 on input line 48.
-)) (E:\MiKTeX\tex\latex\base\inputenc.sty
+))
+(/usr/share/texmf-dist/tex/latex/base/inputenc.sty
 Package: inputenc 2015/03/17 v1.2c Input encoding file
 \inpenc@prehook=\toks14
 \inpenc@posthook=\toks15
 
-(E:\MiKTeX\tex\latex\base\utf8.def
+(/usr/share/texmf-dist/tex/latex/base/utf8.def
 File: utf8.def 2017/01/28 v1.1t UTF-8 support for inputenc
 Now handling font encoding OML ...
 ... no UTF-8 mapping file for font encoding OML
 Now handling font encoding T1 ...
 ... processing UTF-8 mapping file for font encoding T1
- (E:\MiKTeX\tex\latex\base\t1enc.dfu
+
+(/usr/share/texmf-dist/tex/latex/base/t1enc.dfu
 File: t1enc.dfu 2017/01/28 v1.1t UTF-8 support for inputenc
    defining Unicode char U+00A0 (decimal 160)
    defining Unicode char U+00A1 (decimal 161)
@@ -278,7 +283,7 @@ File: t1enc.dfu 2017/01/28 v1.1t UTF-8 support for inputenc
 Now handling font encoding OT1 ...
 ... processing UTF-8 mapping file for font encoding OT1
 
-(E:\MiKTeX\tex\latex\base\ot1enc.dfu
+(/usr/share/texmf-dist/tex/latex/base/ot1enc.dfu
 File: ot1enc.dfu 2017/01/28 v1.1t UTF-8 support for inputenc
    defining Unicode char U+00A0 (decimal 160)
    defining Unicode char U+00A1 (decimal 161)
@@ -318,7 +323,8 @@ File: ot1enc.dfu 2017/01/28 v1.1t UTF-8 support for inputenc
 )
 Now handling font encoding OMS ...
 ... processing UTF-8 mapping file for font encoding OMS
- (E:\MiKTeX\tex\latex\base\omsenc.dfu
+
+(/usr/share/texmf-dist/tex/latex/base/omsenc.dfu
 File: omsenc.dfu 2017/01/28 v1.1t UTF-8 support for inputenc
    defining Unicode char U+00A7 (decimal 167)
    defining Unicode char U+00B6 (decimal 182)
@@ -342,40 +348,41 @@ Now handling font encoding U ...
    defining Unicode char U+2122 (decimal 8482)
    defining Unicode char U+2423 (decimal 9251)
 ))
-(E:\MiKTeX\tex\generic\babel\babel.sty
-Package: babel 2017/05/19 3.10 The Babel package
+(/usr/share/texmf-dist/tex/generic/babel/babel.sty
+Package: babel 2017/11/03 3.15 The Babel package
 
-*************************************
-* Local config file bblopts.cfg used
-*
-(C:\Users\Nikita\AppData\Roaming\MiKTeX\2.9\tex\latex\arabi\bblopts.cfg
-File: bblopts.cfg 2005/09/08 v0.1 add Arabic and Farsi to "declared" options of
- babel
+(/usr/share/texmf-dist/tex/generic/babel/switch.def
+File: switch.def 2017/11/03 3.15 Babel switching mechanism
 )
-(C:\Users\Nikita\AppData\Roaming\MiKTeX\2.9\tex\latex\babel-swedish\swedish.ldf
+(/usr/share/texmf-dist/tex/generic/babel-swedish/swedish.ldf
 Language: swedish 2005/03/31 v2.3d Swedish support from the babel system
-(E:\MiKTeX\tex\generic\babel\babel.def
-File: babel.def 2017/05/19 3.10 Babel common definitions
+
+(/usr/share/texmf-dist/tex/generic/babel/babel.def
+File: babel.def 2017/11/03 3.15 Babel common definitions
+
+(/usr/share/texmf-dist/tex/generic/babel/switch.def
+File: switch.def 2017/11/03 3.15 Babel switching mechanism
+)
 \babel@savecnt=\count87
 \U@D=\dimen103
 )
 Package babel Info: Making " an active character on input line 90.
 ))
-(E:\MiKTeX\tex\latex\geometry\geometry.sty
+(/usr/share/texmf-dist/tex/latex/geometry/geometry.sty
 Package: geometry 2010/09/12 v5.6 Page Geometry
 
-(E:\MiKTeX\tex\latex\graphics\keyval.sty
+(/usr/share/texmf-dist/tex/latex/graphics/keyval.sty
 Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
 \KV@toks@=\toks16
 )
-(E:\MiKTeX\tex\generic\oberdiek\ifpdf.sty
+(/usr/share/texmf-dist/tex/generic/oberdiek/ifpdf.sty
 Package: ifpdf 2017/03/15 v3.2 Provides the ifpdf switch
 )
-(E:\MiKTeX\tex\generic\oberdiek\ifvtex.sty
+(/usr/share/texmf-dist/tex/generic/oberdiek/ifvtex.sty
 Package: ifvtex 2016/05/16 v1.6 Detect VTeX and its facilities (HO)
 Package ifvtex Info: VTeX not detected.
 )
-(E:\MiKTeX\tex\generic\ifxetex\ifxetex.sty
+(/usr/share/texmf-dist/tex/generic/ifxetex/ifxetex.sty
 Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
 )
 \Gm@cnth=\count88
@@ -390,9 +397,8 @@ Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
 \Gm@layouthoffset=\dimen110
 \Gm@layoutvoffset=\dimen111
 \Gm@dimlist=\toks17
-
-(E:\MiKTeX\tex\latex\geometry\geometry.cfg))
-(E:\MiKTeX\tex\latex\amsfonts\amsfonts.sty
+)
+(/usr/share/texmf-dist/tex/latex/amsfonts/amsfonts.sty
 Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
 \@emptytoks=\toks18
 \symAMSa=\mathgroup4
@@ -400,24 +406,24 @@ Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
 )
-(E:\MiKTeX\tex\latex\amsmath\amsmath.sty
-Package: amsmath 2016/11/05 v2.16a AMS math features
+(/usr/share/texmf-dist/tex/latex/amsmath/amsmath.sty
+Package: amsmath 2017/09/02 v2.17a AMS math features
 \@mathmargin=\skip43
 
 For additional information on amsmath, use the `?' option.
-(E:\MiKTeX\tex\latex\amsmath\amstext.sty
+(/usr/share/texmf-dist/tex/latex/amsmath/amstext.sty
 Package: amstext 2000/06/29 v2.01 AMS text
 
-(E:\MiKTeX\tex\latex\amsmath\amsgen.sty
+(/usr/share/texmf-dist/tex/latex/amsmath/amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0 generic functions
 \@emptytoks=\toks19
 \ex@=\dimen112
 ))
-(E:\MiKTeX\tex\latex\amsmath\amsbsy.sty
+(/usr/share/texmf-dist/tex/latex/amsmath/amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d Bold Symbols
 \pmbraise@=\dimen113
 )
-(E:\MiKTeX\tex\latex\amsmath\amsopn.sty
+(/usr/share/texmf-dist/tex/latex/amsmath/amsopn.sty
 Package: amsopn 2016/03/08 v2.02 operator names
 )
 \inf@bad=\count91
@@ -458,50 +464,31 @@ LaTeX Font Info:    Redeclaring font encoding OMS on input line 713.
 LaTeX Info: Redefining \[ on input line 2817.
 LaTeX Info: Redefining \] on input line 2818.
 )
-(E:\MiKTeX\tex\latex\amsfonts\amssymb.sty
+(/usr/share/texmf-dist/tex/latex/amsfonts/amssymb.sty
 Package: amssymb 2013/01/14 v3.01 AMS font symbols
 )
-(C:\Users\Nikita\AppData\Roaming\MiKTeX\2.9\tex\latex\hyphenat\hyphenat.sty
+(/usr/share/texmf-dist/tex/latex/hyphenat/hyphenat.sty
 Package: hyphenat 2009/09/02 v2.3c hyphenation utilities
-\langwohyphens=\language76
+\langwohyphens=\language84
 LaTeX Info: Redefining \_ on input line 43.
 )
-(C:\Users\Nikita\AppData\Roaming\MiKTeX\2.9\tex\latex\fancyhdr\fancyhdr.sty
-Package: fancyhdr 2017/06/30 v3.9a Extensive control of page headers and footer
-s
-\f@nch@headwidth=\skip46
-\f@nch@O@elh=\skip47
-\f@nch@O@erh=\skip48
-\f@nch@O@olh=\skip49
-\f@nch@O@orh=\skip50
-\f@nch@O@elf=\skip51
-\f@nch@O@erf=\skip52
-\f@nch@O@olf=\skip53
-\f@nch@O@orf=\skip54
-)
-(C:\Users\Nikita\AppData\Roaming\MiKTeX\2.9\tex\latex\tocbibind\tocbibind.sty
-Package: tocbibind 2010/10/13 v1.5k extra ToC listings
-Package tocbibind Info: The document has section divisions on input line 50.
+(/usr/share/texmf-dist/tex/latex/mathtools/mathtools.sty
+Package: mathtools 2017/10/30 v1.20 mathematical typesetting tools
 
-
-Package tocbibind Note: Using section or other style headings.
-
-) (C:\Users\Nikita\AppData\Roaming\MiKTeX\2.9\tex\latex\mathtools\mathtools.sty
-Package: mathtools 2017/05/24 v1.19 mathematical typesetting tools
-(E:\MiKTeX\tex\latex\tools\calc.sty
+(/usr/share/texmf-dist/tex/latex/tools/calc.sty
 Package: calc 2014/10/28 v4.3 Infix arithmetic (KKT,FJ)
 \calc@Acount=\count103
 \calc@Bcount=\count104
 \calc@Adimen=\dimen121
 \calc@Bdimen=\dimen122
-\calc@Askip=\skip55
-\calc@Bskip=\skip56
+\calc@Askip=\skip46
+\calc@Bskip=\skip47
 LaTeX Info: Redefining \setlength on input line 80.
 LaTeX Info: Redefining \addtolength on input line 81.
 \calc@Ccount=\count105
-\calc@Cskip=\skip57
+\calc@Cskip=\skip48
 )
-(C:\Users\Nikita\AppData\Roaming\MiKTeX\2.9\tex\latex\mathtools\mhsetup.sty
+(/usr/share/texmf-dist/tex/latex/mathtools/mhsetup.sty
 Package: mhsetup 2017/03/31 v1.3 programming setup (MH)
 )
 LaTeX Info: Thecontrolsequence`\('isalreadyrobust on input line 129.
@@ -510,7 +497,7 @@ LaTeX Info: Thecontrolsequence`\['isalreadyrobust on input line 129.
 LaTeX Info: Thecontrolsequence`\]'isalreadyrobust on input line 129.
 \g_MT_multlinerow_int=\count106
 \l_MT_multwidth_dim=\dimen123
-\origjot=\skip58
+\origjot=\skip49
 \l_MT_shortvdotswithinadjustabove_dim=\dimen124
 \l_MT_shortvdotswithinadjustbelow_dim=\dimen125
 \l_MT_above_intertext_sep=\dimen126
@@ -518,55 +505,47 @@ LaTeX Info: Thecontrolsequence`\]'isalreadyrobust on input line 129.
 \l_MT_above_shortintertext_sep=\dimen128
 \l_MT_below_shortintertext_sep=\dimen129
 )
-(E:\MiKTeX\tex\latex\graphics\graphicx.sty
-Package: graphicx 2014/10/28 v1.0g Enhanced LaTeX Graphics (DPC,SPQR)
+(/usr/share/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 2017/06/01 v1.1a Enhanced LaTeX Graphics (DPC,SPQR)
 
-(E:\MiKTeX\tex\latex\graphics\graphics.sty
-Package: graphics 2017/04/14 v1.1b Standard LaTeX Graphics (DPC,SPQR)
+(/usr/share/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2017/06/25 v1.2c Standard LaTeX Graphics (DPC,SPQR)
 
-(E:\MiKTeX\tex\latex\graphics\trig.sty
+(/usr/share/texmf-dist/tex/latex/graphics/trig.sty
 Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
 )
-(E:\MiKTeX\tex\latex\graphics-cfg\graphics.cfg
+(/usr/share/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
 File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 )
 Package graphics Info: Driver file: pdftex.def on input line 99.
 
-(E:\MiKTeX\tex\latex\graphics-def\pdftex.def
-File: pdftex.def 2017/01/12 v0.06k Graphics/color for pdfTeX
-
-(E:\MiKTeX\tex\generic\oberdiek\infwarerr.sty
-Package: infwarerr 2016/05/16 v1.4 Providing info/warning/error messages (HO)
-)
-(E:\MiKTeX\tex\generic\oberdiek\ltxcmds.sty
-Package: ltxcmds 2016/05/16 v1.23 LaTeX kernel commands for general use (HO)
-)
-\Gread@gobject=\count107
+(/usr/share/texmf-dist/tex/latex/graphics-def/pdftex.def
+File: pdftex.def 2017/06/24 v1.0g Graphics/color driver for pdftex
 ))
 \Gin@req@height=\dimen130
 \Gin@req@width=\dimen131
 )
-(C:\Users\Nikita\AppData\Roaming\MiKTeX\2.9\tex\latex\url\url.sty
+(/usr/share/texmf-dist/tex/latex/url/url.sty
 \Urlmuskip=\muskip11
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
-(E:\MiKTeX\tex\latex\ltxmisc\parskip.sty
+(/usr/share/texmf-dist/tex/latex/parskip/parskip.sty
 Package: parskip 2001/04/09 non-zero parskip adjustments
-) (test.aux)
+) (./test.aux)
 \openout1 = `test.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 40.
-LaTeX Font Info:    ... okay on input line 40.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 40.
-LaTeX Font Info:    ... okay on input line 40.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 40.
-LaTeX Font Info:    ... okay on input line 40.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 40.
-LaTeX Font Info:    ... okay on input line 40.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 40.
-LaTeX Font Info:    ... okay on input line 40.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 40.
-LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -602,252 +581,308 @@ LaTeX Font Info:    ... okay on input line 40.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-(C:\Users\Nikita\AppData\Roaming\MiKTeX\2.9\tex\context\base\supp-pdf.mkii
+(/usr/share/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count108
+\scratchcounter=\count107
 \scratchdimen=\dimen132
 \scratchbox=\box28
-\nofMPsegments=\count109
-\nofMParguments=\count110
+\nofMPsegments=\count108
+\nofMParguments=\count109
 \everyMPshowfont=\toks24
-\MPscratchCnt=\count111
+\MPscratchCnt=\count110
 \MPscratchDim=\dimen133
-\MPnumerator=\count112
-\makeMPintoPDFobject=\count113
+\MPnumerator=\count111
+\makeMPintoPDFobject=\count112
 \everyMPtoPDFconversion=\toks25
-) (E:\MiKTeX\tex\generic\oberdiek\pdftexcmds.sty
-Package: pdftexcmds 2017/03/19 v0.25 Utility functions of pdfTeX for LuaTeX (HO
-)
+) (/usr/share/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
+Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
 
-(E:\MiKTeX\tex\generic\oberdiek\ifluatex.sty
+(/usr/share/texmf-dist/tex/generic/oberdiek/infwarerr.sty
+Package: infwarerr 2016/05/16 v1.4 Providing info/warning/error messages (HO)
+)
+(/usr/share/texmf-dist/tex/latex/oberdiek/grfext.sty
+Package: grfext 2016/05/16 v1.2 Manage graphics extensions (HO)
+
+(/usr/share/texmf-dist/tex/generic/oberdiek/kvdefinekeys.sty
+Package: kvdefinekeys 2016/05/16 v1.4 Define keys (HO)
+
+(/usr/share/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
+Package: ltxcmds 2016/05/16 v1.23 LaTeX kernel commands for general use (HO)
+)))
+(/usr/share/texmf-dist/tex/latex/oberdiek/kvoptions.sty
+Package: kvoptions 2016/05/16 v3.12 Key value format for package options (HO)
+
+(/usr/share/texmf-dist/tex/generic/oberdiek/kvsetkeys.sty
+Package: kvsetkeys 2016/05/16 v1.17 Key value parser (HO)
+
+(/usr/share/texmf-dist/tex/generic/oberdiek/etexcmds.sty
+Package: etexcmds 2016/05/16 v1.6 Avoid name clashes with e-TeX commands (HO)
+
+(/usr/share/texmf-dist/tex/generic/oberdiek/ifluatex.sty
 Package: ifluatex 2016/05/16 v1.4 Provides the ifluatex switch (HO)
 Package ifluatex Info: LuaTeX not detected.
+)
+Package etexcmds Info: Could not find \expanded.
+(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
+(etexcmds)             that some package has redefined \expanded.
+(etexcmds)             In the latter case, load this package earlier.
+)))
+(/usr/share/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
+Package: pdftexcmds 2017/03/19 v0.25 Utility functions of pdfTeX for LuaTeX (HO
 )
 Package pdftexcmds Info: LuaTeX not detected.
 Package pdftexcmds Info: \pdf@primitive is available.
 Package pdftexcmds Info: \pdf@ifprimitive is available.
 Package pdftexcmds Info: \pdfdraftmode found.
 )
-(E:\MiKTeX\tex\latex\oberdiek\epstopdf-base.sty
-Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
-
-(E:\MiKTeX\tex\latex\oberdiek\grfext.sty
-Package: grfext 2016/05/16 v1.2 Manage graphics extensions (HO)
-
-(E:\MiKTeX\tex\generic\oberdiek\kvdefinekeys.sty
-Package: kvdefinekeys 2016/05/16 v1.4 Define keys (HO)
-))
-(E:\MiKTeX\tex\latex\oberdiek\kvoptions.sty
-Package: kvoptions 2016/05/16 v3.12 Key value format for package options (HO)
-
-(E:\MiKTeX\tex\generic\oberdiek\kvsetkeys.sty
-Package: kvsetkeys 2016/05/16 v1.17 Key value parser (HO)
-
-(E:\MiKTeX\tex\generic\oberdiek\etexcmds.sty
-Package: etexcmds 2016/05/16 v1.6 Avoid name clashes with e-TeX commands (HO)
-Package etexcmds Info: Could not find \expanded.
-(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
-(etexcmds)             that some package has redefined \expanded.
-(etexcmds)             In the latter case, load this package earlier.
-)))
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 38.
 Package grfext Info: Graphics extension search list:
-(grfext)             [.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPE
+(grfext)             [.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PDF,.PNG,.JPG,.JPE
 G,.JBIG2,.JB2,.eps]
 (grfext)             \AppendGraphicsExtensions on input line 456.
-)
-LaTeX Font Info:    Try loading font information for U+msa on input line 45.
 
-(E:\MiKTeX\tex\latex\amsfonts\umsa.fd
+(/usr/share/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
+e
+))
+LaTeX Font Info:    Try loading font information for U+msa on input line 43.
+
+(/usr/share/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 45.
- (E:\MiKTeX\tex\latex\amsfonts\umsb.fd
-File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-)
-[1
+LaTeX Font Info:    Try loading font information for U+msb on input line 43.
 
-{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}]
-Underfull \hbox (badness 10000) in paragraph at lines 50--52
+(/usr/share/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+) [1
+
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
+Underfull \hbox (badness 10000) in paragraph at lines 48--50
 
  []
 
-[2] (test.toc)
+
+Overfull \hbox (10.6147pt too wide) in paragraph at lines 48--50
+\T1/cmr/m/n/14.4 mo-del that was po-pu-la-ri-zed 2012 when it won the an-nu-al 
+Ima-ge-Net Large-Scale
+ []
+
+[2] (./test.toc)
 \tf@toc=\write3
 \openout3 = `test.toc'.
+
+
+Overfull \hbox (18.155pt too wide) in paragraph at lines 58--59
+\T1/cmr/m/n/14.4 Artificiella neu-ra-la nät-verk var först in-tro-du-ce-ra-de p
+å 1940-talet och si-mu-le-ra-des
+ []
+
+
+Overfull \hbox (14.4282pt too wide) in paragraph at lines 58--59
+\T1/cmr/m/n/14.4 varand-ra och över-för en nerv-sig-nal. Yann LeCunn upp-fan-na
+ det Kon-vo-lu-tio-nel-la
+ []
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [3]
-Overfull \hbox (29.75812pt too wide) in paragraph at lines 61--62
+Overfull \hbox (29.75812pt too wide) in paragraph at lines 60--61
 \T1/cmr/m/n/14.4 Syftet med ar-be-tet är att här-le-da och re-do-gö-ra för den 
 un-der-lig-gan-de ma-te-ma-ti-ken
  []
 
 
-Overfull \hbox (56.86108pt too wide) in paragraph at lines 63--66
-\T1/cmr/m/n/14.4 Vad är ett Kon-vo-lu-tio-nellt Neu-ralt Nät-verk? Hur här-leds
+Overfull \hbox (48.10327pt too wide) in paragraph at lines 62--65
+\T1/cmr/m/n/14.4 Vad är ett kon-vo-lu-tio-nellt neu-ralt nät-verk? Hur här-leds
  framåt- och bak-åt-pro-pa-ge-ring
  []
 
 
-Overfull \hbox (35.16112pt too wide) in paragraph at lines 63--66
+Overfull \hbox (35.16112pt too wide) in paragraph at lines 62--65
 \T1/cmr/m/n/14.4 i kon-vo-lu-tio-nel-la neu-ra-la nät-verk? Hur kan mo-del-len 
 tilläm-pas för att im-ple-men-te-ra
  []
 
-[4] [5] <FCC.png, id=23, 793.46437pt x 352.31625pt>
-File: FCC.png Graphic file (type png)
- <use FCC.png>
-Package pdftex.def Info: FCC.png used on input line 91.
-(pdftex.def)             Requested size: 317.38013pt x 140.924pt.
+[4]
+Overfull \hbox (9.23016pt too wide) in paragraph at lines 71--72
+\T1/cmr/m/n/14.4 Con-vo-lu-tio-nal Neu-ral Networks for Vi-su-al Re-cog-ni-tion
+ff-rån Stan-ford Uni-ver-si-ty
+ []
 
-Underfull \hbox (badness 1546) in paragraph at lines 92--92
+
+Overfull \hbox (33.03001pt too wide) in paragraph at lines 71--72
+\T1/cmr/m/n/14.4 par-ti-el-la de-ri-va-tor-na som mås-te be-räk-nas i mo-del-le
+n jäm-för-des med en ana-ly-ti 
+ []
+
+[5]
+<FCC.png, id=24, 793.46437pt x 352.31625pt>
+File: FCC.png Graphic file (type png)
+<use FCC.png>
+Package pdftex.def Info: FCC.png  used on input line 89. on input line 89.
+Package pdftex.def Info: Requested size: 317.38013pt x 140.924pt on input line 
+89.
+
+Underfull \hbox (badness 1546) in paragraph at lines 90--90
 []\T1/cmr/m/n/10.95 Figur 1: Ett ex-em-pel på ett en-kelt feed-forward neu-ralt
  nät-verk. In-put-neu-ro-ner-na är
  []
 
-[6 <./FCC.png>]
-Overfull \hbox (30.82253pt too wide) in paragraph at lines 98--99
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+Overfull \hbox (50.05655pt too wide) in paragraph at lines 94--95
+\T1/cmr/m/it/14.4 Forward pro-pa-ga-tion \T1/cmr/m/n/14.4 el-ler fram-åt-pro-pa
+-ga-tion är pro-ces-sen att från si-na in-put-neu-ro-ner
+ []
+
+
+Overfull \hbox (30.82253pt too wide) in paragraph at lines 96--97
 []\T1/cmr/m/n/14.4 Nätverket kan fram-stäl-las ge-nom att re-pre-sen-te-ra neu-
 ro-ner-na och de-ras kopp-ling-ar
  []
 
-
-Overfull \hbox (53.53682pt too wide) in paragraph at lines 110--111
+[6]
+Overfull \hbox (53.53682pt too wide) in paragraph at lines 108--109
 \T1/cmr/m/n/14.4 fram-åt-pro-pe-ga-tio-nen mel-lan la-ger $\OML/cmm/m/it/14.4 l
 $ \T1/cmr/m/n/14.4 och $\OML/cmm/m/it/14.4 l \OT1/cmr/m/n/14.4 + 1$ \T1/cmr/m/n
 /14.4 kan be-räk-nas med en ma-tris-mul-ti-pli-ka-tion
  []
 
-<activationfunction.png, id=34, 402.00188pt x 273.27094pt>
+<activationfunction.png, id=36, 402.00188pt x 273.27094pt>
 File: activationfunction.png Graphic file (type png)
-
 <use activationfunction.png>
-Package pdftex.def Info: activationfunction.png used on input line 118.
-(pdftex.def)             Requested size: 333.66147pt x 226.8148pt.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[7]
-Overfull \hbox (49.17532pt too wide) in paragraph at lines 144--146
+Package pdftex.def Info: activationfunction.png  used on input line 116. on inp
+ut line 116.
+Package pdftex.def Info: Requested size: 333.66147pt x 226.8148pt on input line
+ 116.
+[7 <./FCC.png>] [8 <./activationfunction.png>]
+Overfull \hbox (49.17532pt too wide) in paragraph at lines 142--144
 \T1/cmr/m/n/14.4 Träningen av det neu-ra-la nät-ver-ket är pro-ces-sen där man 
 hit-tar konst-nads-funk-tio-nens
  []
 
-[8 <./activationfunction.png>]
-Overfull \hbox (13.8354pt too wide) in paragraph at lines 162--163
+
+Overfull \hbox (13.8354pt too wide) in paragraph at lines 161--162
 \T1/cmr/m/n/14.4 funk-tio-nens mi-ni-mum. Den mest grund-läg-gan-de al-go-rit-m
 en för \T1/cmr/m/it/14.4 gra-di-ent descent
  []
 
-<SGD.png, id=47, 650.43pt x 341.77687pt>
+<SGD.png, id=48, 650.43pt x 341.77687pt>
 File: SGD.png Graphic file (type png)
- <use SGD.png>
-Package pdftex.def Info: SGD.png used on input line 172.
-(pdftex.def)             Requested size: 325.2142pt x 170.88802pt.
+<use SGD.png>
+Package pdftex.def Info: SGD.png  used on input line 171. on input line 171.
+Package pdftex.def Info: Requested size: 325.2142pt x 170.88802pt on input line
+ 171.
 
-Overfull \hbox (47.67375pt too wide) in paragraph at lines 169--176
+Overfull \hbox (47.67375pt too wide) in paragraph at lines 168--175
 \T1/cmr/m/n/14.4 och in-sätts i kost-nads-funk-tio-nen $\OML/cmm/m/it/14.4 L$\T
 1/cmr/m/n/14.4 . Ge-nom pro-ces-sen som kal-las för bak-åt-pro-pa-ge-ring
  []
 
-[9 <./SGD.png>]
-Overfull \hbox (28.09102pt too wide) in paragraph at lines 183--184
-\T1/cmr/m/n/14.4 och di-vi-de-ras med mini-hopstorleken $\OML/cmm/m/it/14.4 R$\
-T1/cmr/m/n/14.4 . För de-ri-va-tan av de kon-stan-ta neu-ro-ner-na
- []
 
+LaTeX Warning: `h' float specifier changed to `ht'.
 
-Overfull \hbox (52.56818pt too wide) in paragraph at lines 203--205
+[9]
+Underfull \vbox (badness 1681) has occurred while \output is active []
+
+ [10 <./SGD.png>]
+Overfull \hbox (52.56818pt too wide) in paragraph at lines 202--204
 \T1/cmr/m/n/14.4 av-se-en-de på ett visst neu-ron. Det kan tol-kas som hur käns
 -lig vär-de-mängds-för-änd-ring-en
  []
 
-[10]
-Overfull \hbox (35.0406pt too wide) in paragraph at lines 213--215
+
+Overfull \hbox (35.0406pt too wide) in paragraph at lines 212--214
 \T1/cmr/m/n/14.4 Likt ek-va-tion [] sum-me-ras al-la par-ti-el-la de-ri-va-tor 
 av neu-ro-ner-na vid an-vän-ding-en
  []
 
 
-Overfull \hbox (27.49454pt too wide) in paragraph at lines 228--229
+Overfull \hbox (27.49454pt too wide) in paragraph at lines 227--228
 \T1/cmr/m/n/14.4 och väljs slump-vist ut. En ite-ra-tion av SGD ap-pli-ce-ras g
 e-nom att fram-åt-pro-pa-ge-ra
  []
 
 
-Overfull \hbox (4.61009pt too wide) in paragraph at lines 228--229
+Overfull \hbox (4.61009pt too wide) in paragraph at lines 227--228
 \T1/cmr/m/n/14.4 upp-re-pas tills nät-ver-kets vik-ter kon-ver-ge-rar och nät-v
 er-kets pro-gnos ef-ter-lik-nar
  []
 
-LaTeX Font Info:    Try loading font information for T1+cmtt on input line 230.
-
-(E:\MiKTeX\tex\latex\base\t1cmtt.fd
-File: t1cmtt.fd 2014/09/29 v2.5h Standard LaTeX font definitions
-)
-Overfull \hbox (0.5146pt too wide) in paragraph at lines 230--231
-[]\T1/cmr/m/n/14.4 Två im-ple-men-ta-tio-ner av ett feed-for-ward neu-ralt nät-
-verk kan hit-tas på git-hub
- []
-
 [11]
-Overfull \hbox (19.73502pt too wide) in paragraph at lines 235--236
+LaTeX Font Info:    Try loading font information for T1+cmtt on input line 229.
+
+ (/usr/share/texmf-dist/tex/latex/base/t1cmtt.fd
+File: t1cmtt.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+) [12]
+Overfull \hbox (19.73502pt too wide) in paragraph at lines 234--235
 \T1/cmr/m/n/14.4 päls-lik-nan-de. Des-sa ka-rak-te-ris-tis-ka drag är lo-ka-la 
 in-om bil-den och kan ex-tra-he-ras
  []
 
 
-Overfull \hbox (24.56778pt too wide) in paragraph at lines 235--236
+Overfull \hbox (24.56778pt too wide) in paragraph at lines 234--235
 \T1/cmr/m/n/14.4 fil-ter som den ap-pli-ce-rar på en del-mängd av bil-den ge-no
 m att filt-ret sam-man-rul-lar
  []
 
-<katter.png, id=61, 1181.16281pt x 475.02469pt>
+<katter.png, id=65, 1181.16281pt x 475.02469pt>
 File: katter.png Graphic file (type png)
- <use katter.png>
-Package pdftex.def Info: katter.png used on input line 239.
-(pdftex.def)             Requested size: 389.78494pt x 156.75862pt.
+<use katter.png>
+Package pdftex.def Info: katter.png  used on input line 238. on input line 238.
 
-Overfull \hbox (3.72403pt too wide) in paragraph at lines 243--244
+Package pdftex.def Info: Requested size: 389.78494pt x 156.75862pt on input lin
+e 238.
+
+Overfull \hbox (3.72403pt too wide) in paragraph at lines 242--243
 []\T1/cmr/m/n/14.4 Till skill-nad från \T1/cmr/m/it/14.4 FCC \T1/cmr/m/n/14.4 ä
 r neu-ro-ner-na i ett \T1/cmr/m/it/14.4 CNN \T1/cmr/m/n/14.4 ba-ra kopp-la-de t
 ill när-lig-gan-de
  []
 
-[12 <./katter.png>] <boatcnn.png, id=65, 781.92125pt x 212.795pt>
-File: boatcnn.png Graphic file (type png)
-
-<use boatcnn.png>
-Package pdftex.def Info: boatcnn.png used on input line 262.
-(pdftex.def)             Requested size: 469.15637pt x 127.67796pt.
-
-Overfull \hbox (16.18848pt too wide) in paragraph at lines 262--263
- [][] 
- []
-
-
-Overfull \hbox (15.12189pt too wide) in paragraph at lines 268--269
+[13 <./katter.png>]
+Overfull \hbox (15.12189pt too wide) in paragraph at lines 249--250
 \T1/cmr/m/n/14.4 vid nästin-til-lig-gan-de la-ger. Vid bak-åt-pro-pa-ge-ring må
 s-te det re-kur-si-va delta-felet
  []
 
-[13 <./boatcnn.png>] <convolution.png, id=71, 164.25pt x 77.307pt>
+
+Overfull \hbox (52.51535pt too wide) in paragraph at lines 249--250
+\T1/cmr/m/n/14.4 be-räk-na den pa-ri-tel-la de-ri-va-tan av lag-rets vik-ter me
+d av-se-en-de på kost-nads-funk-tio-nen.
+ []
+
+<boatcnn.png, id=70, 781.92125pt x 212.795pt>
+File: boatcnn.png Graphic file (type png)
+<use boatcnn.png>
+Package pdftex.def Info: boatcnn.png  used on input line 264. on input line 264
+.
+Package pdftex.def Info: Requested size: 469.15637pt x 127.67796pt on input lin
+e 264.
+
+Overfull \hbox (16.18848pt too wide) in paragraph at lines 264--265
+ [][] 
+ []
+
+[14 <./boatcnn.png>]
+<convolution.png, id=75, 164.25pt x 77.307pt>
 File: convolution.png Graphic file (type png)
-
 <use convolution.png>
-Package pdftex.def Info: convolution.png used on input line 277.
-(pdftex.def)             Requested size: 344.92513pt x 162.34473pt.
- <zeropadding.png, id=72, 188.95593pt x 188.95593pt>
+Package pdftex.def Info: convolution.png  used on input line 277. on input line
+ 277.
+Package pdftex.def Info: Requested size: 344.92513pt x 162.34473pt on input lin
+e 277.
+<zeropadding.png, id=76, 188.95593pt x 188.95593pt>
 File: zeropadding.png Graphic file (type png)
-
 <use zeropadding.png>
-Package pdftex.def Info: zeropadding.png used on input line 287.
-(pdftex.def)             Requested size: 132.26823pt x 132.26823pt.
+Package pdftex.def Info: zeropadding.png  used on input line 287. on input line
+ 287.
+Package pdftex.def Info: Requested size: 132.26823pt x 132.26823pt on input lin
+e 287.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
@@ -860,14 +895,19 @@ Overfull \hbox (32.0803pt too wide) in paragraph at lines 291--292
 2 \U/msb/m/n/14.4 R[]$\T1/cmr/m/n/14.4 .
  []
 
-[14 <./convolution.png>]
+[15 <./convolution.png>]
 Overfull \hbox (23.66351pt too wide) in paragraph at lines 319--320
 \T1/cmr/m/n/14.4 de-ri-va-tan av la-gerts vik-ter med av-se-en-de på kost-nads-
 funk-tio-nen $\OML/cmm/m/it/14.4 L$ \T1/cmr/m/n/14.4 be-räk-nas. 
  []
 
-[15 <./zeropadding.png>] [16]
-Overfull \hbox (31.59749pt too wide) in paragraph at lines 352--352
+[16 <./zeropadding.png>] [17]
+Overfull \hbox (1.59749pt too wide) detected at line 352
+[]
+ []
+
+
+Overfull \hbox (30.0pt too wide) in paragraph at lines 352--352
 [] 
  []
 
@@ -878,7 +918,7 @@ ap-pli-ce-ras ele-ment-vis på al-la neu-ro-ner i $\OML/cmm/m/it/14.4 X[]$\T1/cm
 r/m/n/14.4 . Följakt-li-gen
  []
 
-[17]
+[18]
 Overfull \hbox (0.28252pt too wide) in paragraph at lines 374--375
 \T1/cmr/m/n/14.4 Här är igen in-put-neu-ro-ner-na re-pre-sen-te-ra-de av $\OML/
 cmm/m/it/14.4 X[] \OMS/cmsy/m/n/14.4 2 \U/msb/m/n/14.4 R[]$ \T1/cmr/m/n/14.4 oc
@@ -892,12 +932,14 @@ n/14.4 R[]$\T1/cmr/m/n/14.4 . Lag-ret sak-nar vik-ter men har där-e-mot hy-per-
 pa-ra-met-rar-na
  []
 
-<maxpool.png, id=87, 548.0475pt x 194.97844pt>
+<maxpool.png, id=91, 548.0475pt x 194.97844pt>
 File: maxpool.png Graphic file (type png)
- <use maxpool.png>
-Package pdftex.def Info: maxpool.png used on input line 378.
-(pdftex.def)             Requested size: 383.63063pt x 136.48396pt.
- [18 <./maxpool.png>]
+<use maxpool.png>
+Package pdftex.def Info: maxpool.png  used on input line 378. on input line 378
+.
+Package pdftex.def Info: Requested size: 383.63063pt x 136.48396pt on input lin
+e 378.
+[19 <./maxpool.png>]
 
 Package amsmath Warning: Cannot use `split' here;
 (amsmath)                trying to recover with `aligned' on input line 412.
@@ -909,12 +951,12 @@ Overfull \hbox (23.29956pt too wide) in paragraph at lines 417--418
  []
 
 
-Overfull \hbox (8.87329pt too wide) in paragraph at lines 420--421
+Overfull \hbox (18.39474pt too wide) in paragraph at lines 420--421
 \T1/cmr/m/n/14.4 Utan Batch Nor-ma-li-za-tion (BN) är det svårt att få dju-pa n
-ät-verk att di-ver-ge-ra.
+ät-verk att kon-ver-ge-ra.
  []
 
-[19]
+[20]
 Overfull \hbox (24.64651pt too wide) in paragraph at lines 422--423
 \OML/cmm/m/it/14.4 X[] \OMS/cmsy/m/n/14.4 2 \U/msb/m/n/14.4 R[]$\T1/cmr/m/n/14.
 4 . BN har ing-en på-ver-kan på di-men-sio-ner-na av ak-ti-ve-ring-en.
@@ -929,37 +971,48 @@ Overfull \hbox (21.09338pt too wide) in paragraph at lines 430--432
 
 Overfull \hbox (2.52977pt too wide) in paragraph at lines 452--453
 \T1/cmr/m/n/14.4 För BN be-hö-ver det re-kur-si-va delta-felet $\OML/cmm/m/it/1
-4.4 []$\T1/cmr/m/n/14.4 , de-ri-va-tan av kostands-funk-tio-nen
+4.4 ^^N[]$\T1/cmr/m/n/14.4 , de-ri-va-tan av kostands-funk-tio-nen
  []
 
 
 Overfull \hbox (1.84276pt too wide) in paragraph at lines 452--453
-\OML/cmm/m/it/14.4 [][]$ \T1/cmr/m/n/14.4 be-räk-nas. För att be-räk-na det-ta
- krävs nå-got som he-ter kronecker-deltat,
+\OML/cmm/m/it/14.4 ^^L[][]$ \T1/cmr/m/n/14.4 be-räk-nas. För att be-räk-na det-
+ta krävs nå-got som he-ter kronecker-deltat,
  []
 
-[20] [21]
-Overfull \hbox (56.59877pt too wide) in paragraph at lines 508--508
+[21] [22]
+Overfull \hbox (26.59877pt too wide) detected at line 508
+[]
+ []
+
+
+Overfull \hbox (30.0pt too wide) in paragraph at lines 508--508
 [] 
  []
 
 
-Overfull \hbox (63.37273pt too wide) in paragraph at lines 524--524
+Overfull \hbox (33.37273pt too wide) detected at line 524
+[]
+ []
+
+
+Overfull \hbox (30.0pt too wide) in paragraph at lines 524--524
 [] 
  []
 
-[22]
+[23]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [23]
+ [24]
 Underfull \vbox (badness 2980) has occurred while \output is active []
 
- [24]
-<mnist.png, id=110, 375.65344pt x 143.03438pt>
+ [25]
+<mnist.png, id=115, 375.65344pt x 143.03438pt>
 File: mnist.png Graphic file (type png)
- <use mnist.png>
-Package pdftex.def Info: mnist.png used on input line 583.
-(pdftex.def)             Requested size: 375.65251pt x 143.03401pt.
+<use mnist.png>
+Package pdftex.def Info: mnist.png  used on input line 583. on input line 583.
+Package pdftex.def Info: Requested size: 375.65251pt x 143.03401pt on input lin
+e 583.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
@@ -967,15 +1020,15 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 Overfull \hbox (28.68332pt too wide) in paragraph at lines 587--588
 []\T1/cmr/m/n/14.4 Input för mo-del-len är en $\OML/cmm/m/it/14.4 R \OMS/cmsy/m
-/n/14.4  \OT1/cmr/m/n/14.4 1 \OMS/cmsy/m/n/14.4  \OT1/cmr/m/n/14.4 28 \OMS/cm
-sy/m/n/14.4  \OT1/cmr/m/n/14.4 28$ \T1/cmr/m/n/14.4 pix-e-lar-ray där R står f
-ör mini-hopstorleken.
+/n/14.4 ^^B \OT1/cmr/m/n/14.4 1 \OMS/cmsy/m/n/14.4 ^^B \OT1/cmr/m/n/14.4 28 \OM
+S/cmsy/m/n/14.4 ^^B \OT1/cmr/m/n/14.4 28$ \T1/cmr/m/n/14.4 pix-e-lar-ray där R 
+står för mini-hopstorleken.
  []
 
-[25]
+[26]
 Underfull \vbox (badness 1337) has occurred while \output is active []
 
- [26 <./mnist.png>]
+ [27 <./mnist.png>]
 Overfull \hbox (1.52531pt too wide) in paragraph at lines 660--661
 \T1/cmr/m/n/14.4 Nä-stin-kom-man-de siff-ra ef-ter la-ger-nam-net är kärn-stor-
 le-ken. $\OML/cmm/m/it/14.4 C$ \T1/cmr/m/n/14.4 be-näm-ner an-tal
@@ -1006,22 +1059,24 @@ Overfull \hbox (0.11966pt too wide) in paragraph at lines 664--665
 v-na siff-ror lyc-ka-des
  []
 
-<kostandsplot.png, id=118, 474.27188pt x 347.79938pt>
+<kostandsplot.png, id=122, 474.27188pt x 347.79938pt>
 File: kostandsplot.png Graphic file (type png)
- <use kostandsplot.png>
-Package pdftex.def Info: kostandsplot.png used on input line 668.
-(pdftex.def)             Requested size: 284.56532pt x 208.68123pt.
-
+<use kostandsplot.png>
+Package pdftex.def Info: kostandsplot.png  used on input line 668. on input lin
+e 668.
+Package pdftex.def Info: Requested size: 284.56532pt x 208.68123pt on input lin
+e 668.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<epokplot.png, id=119, 479.54156pt x 356.0803pt>
+<epokplot.png, id=123, 479.54156pt x 356.0803pt>
 File: epokplot.png Graphic file (type png)
- <use epokplot.png>
-Package pdftex.def Info: epokplot.png used on input line 676.
-(pdftex.def)             Requested size: 287.72716pt x 213.64983pt.
- [27]
-[28 <./kostandsplot.png> <./epokplot.png>]
+<use epokplot.png>
+Package pdftex.def Info: epokplot.png  used on input line 676. on input line 67
+6.
+Package pdftex.def Info: Requested size: 287.72716pt x 213.64983pt on input lin
+e 676.
+[28] [29 <./kostandsplot.png> <./epokplot.png>]
 Underfull \hbox (badness 2435) in paragraph at lines 721--726
 []\T1/cmr/m/it/14.4 High Per-for-man-ce Con-vo-lu-tio-nal Neu-ral Networks for 
 Docu-ment
@@ -1050,7 +1105,7 @@ Underfull \hbox (badness 1478) in paragraph at lines 749--752
 h C. Sze-ge-dy. arX-iv pre-print
  []
 
-[29]
+[30]
 Underfull \hbox (badness 2318) in paragraph at lines 754--759
 []\T1/cmr/m/it/14.4 Backpropagation In Con-vo-lu-tio-nal Neu-ral Networks. \T1/
 cmr/m/n/14.4 J. Ka-fu-nah.
@@ -1085,41 +1140,37 @@ Underfull \hbox (badness 4353) in paragraph at lines 818--823
 ars
  []
 
-[30] [31] (test.aux)
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
- ) 
+[31] [32] (./test.aux) ) 
 Here is how much of TeX's memory you used:
- 4915 strings out of 493323
- 63749 string characters out of 3146846
- 159663 words of memory out of 3000000
- 8326 multiletter control sequences out of 15000+200000
- 19524 words of font info for 59 fonts, out of 3000000 for 9000
+ 4689 strings out of 492985
+ 61784 string characters out of 6138638
+ 153731 words of memory out of 5000000
+ 8131 multiletter control sequences out of 15000+600000
+ 19524 words of font info for 59 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 39i,21n,43p,968b,255s stack positions out of 5000i,500n,10000p,200000b,50000s
- <C:\Users\Nikita\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600
-\ectt1440.pk> <C:\Users\Nikita\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappe
-n\ec\dpi600\ecbx1095.pk> <C:\Users\Nikita\AppData\Local\MiKTeX\2.9\fonts\pk\ljf
-our\jknappen\ec\dpi600\ecti1095.pk> <C:\Users\Nikita\AppData\Local\MiKTeX\2.9\f
-onts\pk\ljfour\jknappen\ec\dpi600\ecti1440.pk> <C:\Users\Nikita\AppData\Local\M
-iKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx1200.pk> <C:\Users\Nikita\AppD
-ata\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm1440.pk> <C:\Users\
-Nikita\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx1440.pk>
- <C:\Users\Nikita\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\e
-crm1095.pk> <C:\Users\Nikita\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\
-ec\dpi600\ecrm1200.pk> <C:\Users\Nikita\AppData\Local\MiKTeX\2.9\fonts\pk\ljfou
-r\jknappen\ec\dpi600\ecrm1728.pk><E:/MiKTeX/fonts/type1/public/amsfonts/cm/cmex
-10.pfb><E:/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><E:/MiKTeX/fonts/ty
-pe1/public/amsfonts/cm/cmmi12.pfb><E:/MiKTeX/fonts/type1/public/amsfonts/cm/cmm
-i7.pfb><E:/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><E:/MiKTeX/fonts/typ
-e1/public/amsfonts/cm/cmr12.pfb><E:/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.
-pfb><E:/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><E:/MiKTeX/fonts/type1
-/public/amsfonts/cm/cmsy7.pfb><E:/MiKTeX/fonts/type1/public/amsfonts/symbols/ms
-bm10.pfb>
-Output written on test.pdf (31 pages, 2225323 bytes).
+ 41i,21n,32p,966b,237s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-supe
+r-t1.enc}</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr
+/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texmf-dist/fonts/type
+1/public/amsfonts/cm/cmmi7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfon
+ts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb
+></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/
+type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texmf-dist/fonts/type1/public/am
+sfonts/symbols/msbm10.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sf
+bx1095.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></us
+r/share/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/share/texmf-d
+ist/fonts/type1/public/cm-super/sfrm1095.pfb></usr/share/texmf-dist/fonts/type1
+/public/cm-super/sfrm1200.pfb></usr/share/texmf-dist/fonts/type1/public/cm-supe
+r/sfrm1440.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfrm1728.pfb>
+</usr/share/texmf-dist/fonts/type1/public/cm-super/sfti1095.pfb></usr/share/tex
+mf-dist/fonts/type1/public/cm-super/sfti1440.pfb></usr/share/texmf-dist/fonts/t
+ype1/public/cm-super/sftt1440.pfb>
+Output written on test.pdf (32 pages, 2283642 bytes).
 PDF statistics:
- 583 PDF objects out of 1000 (max. 8388607)
+ 205 PDF objects out of 1000 (max. 8388607)
+ 134 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
  56 words of extra memory for PDF output out of 10000 (max. 10000000)
 
