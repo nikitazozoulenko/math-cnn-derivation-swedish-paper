@@ -15,6 +15,7 @@
 %%  in text
 
 \usepackage[parfill]{parskip}
+\usepackage{ragged2e}
 
 \setcounter{tocdepth}{4}
 \setcounter{secnumdepth}{4}
@@ -31,22 +32,27 @@
 \title{Objektdetektering och Ansiktsigenkänning med Konvolutionella Neurala Nätverk}
 \title{eller}
 \title{Härledning av konvolutionella neurala nätverk för ansiktsigenkänning och sifferavläsning}
-\author{Nikita Zozoulenko}
-\date{\today}
+\date{}
 
 
 \begin{document}
 
-
-
-\begin{titlepage}
 \maketitle
-\end{titlepage}
+\vfill
 
+\begin{flushright}
+\today \\*
+Nikita Zozoulenko Na15b \\*
+nikita.zozoulenko@gmail.com \\*
+Katedralskolan i Linköping\\*
+Handledare: Rickard Pettersson \\*
+VT 2017 - HT 2018 \\*
+\end{flushright}
+\newpage
 
 %start abstract
 \Large{\textbf{Abstract}}\\\\
-Convolutional Neural Networks are a biologically inspired machine learning model that was popularized 2012 when it won the annual ImageNet Large-Scale Visual Recognition Challenge, beating all current machine learning models. Today they have achieved state of the art results in areas such as self-driving cars, image classification, object localization, automatic image annotation, semantic segmentation and natural language processing. In this paper the mathematical model behind the standard Artificial Neural Network and the Convolutional Neural Network is derived. A Convolutional Neural Network is then adapted to read handwritten digits and to make a state of the art face detector, successfully detecting over 200 faces in a crowded scene.
+Convolutional Neural Networks are a biologically inspired machine learning model that was popularized 2012 when it won the annual ImageNet Large-Scale Visual Recognition Challenge, beating all current machine learning models. Today they have achieved state of the art results in areas such as self-driving cars, image classification, object localization, automatic image annotation, semantic segmentation and natural language processing. In this paper the mathematical model behind the standard Artificial Neural Network and the Convolutional Neural Network is derived. A Convolutional Neural Network is then adapted to read handwritten digits and to make a cutting edge face detector, successfully detecting over 50 faces in a crowded scene.
 \newpage
 %end abstract
 
@@ -55,9 +61,11 @@ Convolutional Neural Networks are a biologically inspired machine learning model
 \section{Inledning}
 
 \subsection{Bakgrund}
-Artificiella neurala nätverk var först introducerade på 1940-talet och simulerades med hjälp av strömkretsar. Modellen är inspirerad från hur människors och djurs hjärna är uppbyggda av ett flertal neuroner som är kopplade till varandra och överför en nervsignal. Yann LeCunn uppfanna det Konvolutionella Neurala Nätverket 1998 och den var designad till att efterlikna hur ett djurs prefrontalkortex fungerar. Trots att modellen hade funnits i flera år hade den inte sett stor använding innan år 2012 när ett konvolutionellt neuralt nätverk användes för att vinna den årliga ImageNet objektklassifikationstävlingen. Under de senaste 5 åren har modellen använts för att uppnå de bästa möjliga resultaten inom bland annat självkörande bilar, objektdetektering i bilder, meningsöversättning mellan språk och automatiskt skapande av undertexter från ljud. 
+Artificiella neurala nätverk var först introducerade på 1940-talet och simulerades med hjälp av strömkretsar. Modellen är inspirerad från hur människans hjärna är uppbyggd av ett flertal neuroner som är kopplade till varandra. Yann LeCunn uppfanna det Konvolutionella Neurala Nätverket 1998 och det var designat till att efterlikna hur ett djurs prefrontalkortex fungerar. Trots att neurala nätverk har funnits i mer än ett halvt sekel har dem inte sett stor använding innan år 2012 då ett konvolutionellt neuralt nätverk användes för att vinna den årliga ImageNet objektklassifikationstävlingen. Under de senaste 5 åren har modellen använts för att uppnå de bästa möjliga resultaten inom bland annat självkörande bilar, objektdetektering i bilder, meningsöversättning mellan olika språk och automatiskt skapande av undertexter från ljud. \cite{cs231n}
+
 \subsection{Syfte}
-Syftet med arbetet är att härleda och redogöra för den underliggande matematiken bakom den matematiska modellen av konvolutionella neurala nätverk, samt att visa exempel på praktiska tillämpningar av modellen.
+Syftet med arbetet är att härleda och redogöra för den underliggande matematiken bakom den matematiska modellen av artificiella neurala nätverk och konvolutionella neurala nätverk, samt att visa exempel på praktiska tillämpningar av modellen.
+
 \subsection{Frågeställning}
 Vad är ett konvolutionellt neuralt nätverk?
 Hur härleds framåt- och bakåtpropagering i konvolutionella neurala nätverk?
@@ -66,10 +74,10 @@ Hur kan modellen tillämpas för att implementera sifferavläsning, ansiktsigenk
 
 \newpage
 \section{Metod}
-Majoriteten av tiden gick åt till se på videoföreläsningar av kursen "CS231n: Convolutional Neural Networks for Visual Recognition" från Stanford University för att få en grundläggande bakgrund och intuition om artificiella neurala nätverk. Jag implementerade sedan ett klassiskt artificiellt neuralt nätverk i C++ och python, och ett konvolutionellt neuralt nätverk i python. De partiella derivatorna som beräknas i modellen jämfördes med en analytitisk approximation med hjälp av derivatans definition. Flera forskares bloggar användes för att i mer detalj förstå matematiken bakom nätverksoperationerna. För att fördjupa mig i konvolutionella neurala nätverk läste jag de riktiga vetenskapliga artiklarna såsom Batch Normalization (Ioffe & Szegedy, 2015) och Focal Loss (Lin et al. 2017) för att sedan implementera dem i python. När min egen implementation blev för beräkningsineffektiv använde jag mig av två GPU-accelererande maskininlärningsbibliotek: PyTorch och Tensorflow. 
+Majoriteten av tiden gick åt till se på videoföreläsningar av kursen "CS231n: Convolutional Neural Networks for Visual Recognition" från Stanford University för att få en grundläggande bakgrund och intuition om artificiella neurala nätverk. Jag implementerade sedan ett klassiskt artificiellt neuralt nätverk i C++ och python, och ett konvolutionellt neuralt nätverk i python. De partiella derivatorna som beräknas i modellen jämfördes med en analytitisk approximation med hjälp av derivatans definition. Flera forskares bloggar användes för att i mer detalj förstå matematiken bakom nätverksoperationerna. För att fördjupa mig i konvolutionella neurala nätverk läste jag de riktiga vetenskapliga artiklarna såsom Batch Normalization (Ioffe \& Szegedy, 2015) och Focal Loss (Lin et al. 2017) för att sedan implementera dem i python. När min egen implementation blev för beräkningsineffektiv började jag använda två GPU-accelererande maskininlärningsbibliotek: PyTorch och Tensorflow. 
 
 \newpage
-\section{Bakgrund}
+\section{Resultat}
 
 
 \subsection{Tensorer, indexering och notation}
@@ -222,11 +230,9 @@ Likt ekvation \eqref{dLdW_FCC} summeras alla  partiella derivator av neuronerna 
 Bakåtpropageringen sker lager till lager med start i outputlagret. Vid varje lager måste delta-felet $\delta^{(l)}$ bakåtpropageras och derivatan av det lagrets parametrar $W^{(l)}$ och $b^{(l)}$ beräknas. \cite{cs231n}
 
 \subsection{Träning av neurala nätverk}
-Neurala nätverk tränas genom att iterativt uppdatera nätverkets vikter med hjälp av \textit{gradient descent}. Den hela träningsdatabasen delas in i mini-hopar och väljs slumpvist ut. En iteration av SGD appliceras genom att framåtpropagera och sedan bakåtpropageras träningsexemplet för att beräkna gradienten av kostnadsfunktionen med avseende på alla vikter i närverket. Denna process upprepas tills nätverkets vikter konvergerar och nätverkets prognos efterliknar verkligheten. \cite{cs231n}
+Neurala nätverk tränas genom att iterativt uppdatera nätverkets vikter med hjälp av \textit{gradient descent}. Den hela träningsdatabasen delas in i mini-hopar och väljs ut slumpvist. En iteration av SGD appliceras genom att framåtpropagera ett träningsexempel och sedan bakåtpropagera felet för att beräkna gradienten av kostnadsfunktionen med avseende på alla vikter i närverket. Denna process upprepas tills nätverkets vikter konvergerar och nätverkets prognos efterliknar verkligheten. \cite{cs231n}
 
 Två implementationer av ett feed-forward neuralt nätverk kan hittas på github i python och C++: \url{https://github.com/nikitazozoulenko}
-\newpage
-\section{Resultat}
 
 \subsection{Konvolutionella neuala nätverk}
 När människor vill identifiera någonting i en bild så letar vi efter vissa karakteristiska drag objektet har. En hund består exempelvis av en kropp, ett huvud och fyra ben. Kroppsdelarna består sedan själva av grundläggande geometriska former som i sig självt är kombinationer av kanter och linjer. Dessutom har hundar en viss textur, det som vi kännetecknar som något pälsliknande. Dessa karakteristiska drag är lokala inom bilden och kan extraheras av att endast se på en liten del av bilden i taget. Detta är principen bakom \textit{Konvolutionella Neurala Nätverk (CNN)}: Genom så kallade \textit{konvolutioner} kunna extrahera dessa karakteristiska drag. Nätverket lär sig ett antal små filter som den applicerar på en delmängd av bilden genom att filtret sammanrullar över hela bilden (se figur 4). Värdet av filtret över en delmängd av bilden blir aktiveringen av ett neuron i nästa lager. \cite{cs231n}
@@ -238,7 +244,7 @@ När människor vill identifiera någonting i en bild så letar vi efter vissa k
 \end{figure}
 
 Till skillnad från \textit{FCC} är neuronerna i ett \textit{CNN} bara kopplade till närliggande neuroner i det föregående lagret. På detta sätt kan nätverket lära sig fler hög-nivåspecialartiklar ju djupare i nätverket signalen går. Exempelvis kan det hända att det första lagret lär sig att identifiera kanter och linjer medan de senare lagren lagren lär sig att känna igen olika geometriska former och till sist känna igen ansikten eller object i det sista lagret. \cite{cs231n}
-\newpage
+
 Modellen, precis som ett \textit{feed-forward nätverket}, består av ett flertal lager neuroner sådant att resultatet av ett lager matas in till nästkommande lager. Det sista lagret benämns med $X^{(l_{sista})}$ eller $\hat{y}$. Vid varje lager finns dessutom vikter $W^{(l)}$  som beror på vad för slags lager det är. $W^{(l)}$ kan vara tom med inga vikter när lager inte bidrar till någon inlärning. Ekvation \eqref{CNNeq} illustrerar strukturen av modellen.\cite{cs231n} \cite{convmath}
 \begin{equation}\label{CNNeq}
 X^{(0)} \xrightarrow{W^{(l)}} X^{(1)}  \xrightarrow{W^{(l)}} \cdots  \xrightarrow{W^{(l_{sista}-2)}} X^{(l_{sista}-1)}  \xrightarrow{W^{(l_{sista}-1)}} X^{(l_{sista})} = \hat{y}
@@ -338,14 +344,14 @@ Vilket man kan se är en summa av konvolutioner där en viss \textit{feature map
 \end{equation}
 En sundshetskontroll visar att detta är intuitivt då alla \textit{feature maps} i $X^{(l)}$ används för att skapa en enstaka \textit{feature map} i $X^{(l+1)}$. Det är därför man summerar över alla kärnor och endast konvolverar i en \textit{feature map} i taget och summerar alltihop. \cite{cs231n}
 
-Den partiella derivatan av kostandsfunktionen med avseende på vikterna hittas på ett liknande sätt. Här summeras dessutom $R$-dimensionen på grund av att alla exempel i mini-hopen har en påverkan på gradienten. Ytterligare divideras gradienten med $R$ för att hitta medelvärdet av alla gradienter av alla exempel i mini-hopen: \cite{cs231n} \cite{webconv1} \cite{webconv2} \cite{webconv3} 
+Den partiella derivatan av kostandsfunktionen med avseende på vikterna hittas på ett liknande sätt. Här summeras dessutom $R$-dimensionen på grund av att alla exempel i mini-hopen har en påverkan på gradienten: \cite{cs231n} \cite{webconv1} \cite{webconv2} \cite{webconv3} 
 \begin{align}
 \begin{split}
 	\pd{L(W)}{W^{(l)}_{c',c,h,w}}
-		& = \frac{1}{R}\sum^{R-1}_{r=0} \sum^{C'-1}_{c'=0} \sum^{H'-1}_{h'=0} \sum^{W'-1}_{w'=0} \pd{L(W)}{X^{(l+1)}_{r,c',h',w'}} \pd{X^{(l+1)}_{r,c',h',w'}}{W^{(l)}_{r,c,h,w}} \\
-		& = \frac{1}{R}\sum^{R-1}_{r=0} \sum_{c'=0}^{C'-1} \sum^{H'-1}_{h'=0} \sum^{W'-1}_{w'=0} \delta^{(l+1)}_{r,c',h',w'} \pd{\sum\limits^{C-1}_{c=0} \sum\limits^{K_H-1}_{j=0} \sum\limits^{K_W-1}_{i=0} X^{(l)}_{r, c, h'+j, w'+i}W^{(l)}_{c', c, j, i}}{W^{(l)}_{c',c,h,w}} \\
-		& = \frac{1}{R}\sum^{R-1}_{r=0} \sum^{C'-1}_{c'=0} \sum^{H'-1}_{h'=0} \sum^{W'-1}_{w'=0} X^{(l)}_{r, c, h'+h, w'+w} \delta^{(l+1)}_{r,c',h',w'} \\
-		& = \frac{1}{R}\sum^{R-1}_{r=0} \sum^{C'-1}_{c'=0} X^{(l)}_{r, c, h, w} * \delta^{(l+1)}_{r,c'} \\
+		& = \sum^{R-1}_{r=0} \sum^{C'-1}_{c'=0} \sum^{H'-1}_{h'=0} \sum^{W'-1}_{w'=0} \pd{L(W)}{X^{(l+1)}_{r,c',h',w'}} \pd{X^{(l+1)}_{r,c',h',w'}}{W^{(l)}_{r,c,h,w}} \\
+		& = \sum^{R-1}_{r=0} \sum_{c'=0}^{C'-1} \sum^{H'-1}_{h'=0} \sum^{W'-1}_{w'=0} \delta^{(l+1)}_{r,c',h',w'} \pd{\sum\limits^{C-1}_{c=0} \sum\limits^{K_H-1}_{j=0} \sum\limits^{K_W-1}_{i=0} X^{(l)}_{r, c, h'+j, w'+i}W^{(l)}_{c', c, j, i}}{W^{(l)}_{c',c,h,w}} \\
+		& = \sum^{R-1}_{r=0} \sum^{C'-1}_{c'=0} \sum^{H'-1}_{h'=0} \sum^{W'-1}_{w'=0} X^{(l)}_{r, c, h'+h, w'+w} \delta^{(l+1)}_{r,c',h',w'} \\
+		& = \sum^{R-1}_{r=0} \sum^{C'-1}_{c'=0} X^{(l)}_{r, c, h, w} * \delta^{(l+1)}_{r,c'} \\
 \end{split}
 \end{align}
 
@@ -415,7 +421,7 @@ Den partiella derivatan i den sista ekvationen kommer vara lika med 1 om $X^{(l)
 Alltså omdiregeras delta-felet till det ansvariga neuronet vars index kommer att behöva hållas i minnet. Om det finns två eller fler sektioner med samma neuron som är ansvarig för framåtpropageringen så kommer delta-felen summeras från samtliga korresponderande sektioners delta-fel. \cite{cs231n} \cite{convmath} \cite{webconv3}
 
 \subsubsection{Batch Normalization framåtpropagering}
-Utan Batch Normalization (BN) är det svårt att få djupa nätverk att konvergera. Detta är till följd av att en liten ändring till det första lagret kan leda till en kaskad av förändringar i de senare lagren. I litteraturen kallas detta för \textit{internal covariate shift}. BN försöker att minimera denna \textit{internal covariate shift} genom att med avseende på alla exempel i mini-hopen normalisera varje \textit{feature map} till varje lager. Resultatet är snabbare konvergens och att det tillåter större träningshastigheter. Följaktligenhar bearbetningen av flera exemepl i taget i en mini-hop en annan praktiska tillämpning än att enbart försnabba uträkningar. \cite{cs231n} \cite{batchnorm}
+Utan Batch Normalization (BN) är det svårt att få djupa nätverk att konvergera. Detta är till följd av att en liten ändring till det första lagret kan leda till en kaskad av förändringar i de senare lagren. I litteraturen kallas detta för \textit{internal covariate shift}. BN försöker att minimera denna \textit{internal covariate shift} genom att med avseende på alla exempel i mini-hopen normalisera varje \textit{feature map} till varje lager. Resultatet är snabbare konvergens och att det tillåter större träningshastigheter. Följaktligenhar bearbetningen av flera exemepl i taget i en mini-hop en annan praktiska tillämpning än att enbart beräkna konvolutionerna mer tidseffektivt. \cite{cs231n} \cite{batchnorm}
 
 Igen är aktiveringen vid lager $l$ och $l+1$ $X^{(l)} \in \mathbb{R}^{R \times C \times H \times W}$ respektive $X^{(l+1)} \in \mathbb{R}^{R \times C' \times H' \times W'}$. BN har ingen påverkan på dimensionerna av aktiveringen. \cite{cs231n} \cite{batchnorm}
 
@@ -435,7 +441,7 @@ Sist introduceras 2 vikter, $\gamma_{c'}^{(l)}$ och $\beta_{c'}^{(l)}$, vilka ti
 X^{(l+1)}_{r,c,h,w} = \gamma_{c}^{(l)} \hat{X}_{r,c,h,w} + \beta_{c}^{(l)}
 \end{equation}
 
-Vid RUNTIME är det dock inte alltid möjligt att beräkna medelvärdet och variansen av mini-hopen på grund av att man oftast enbart vill testa ett exempel i taget. Medelvärdet och variansen för hela populationen måste då räknas ut och användas i stället för de beräknade värdena. Detta kan göras för små DATASETS, men om man arbetar med data som innehåller miljontals exempel är det enklare att uppskatta populationens statistik med hjälp av att updatera ett exponensiellt glidande medelvärde (EWMA) vid varje framåtpropagering: \cite{cs231n} \cite{batchnorm}
+När nätverket ska köras utanför träning, också kallat \textit{runtime} är det dock inte alltid möjligt att beräkna medelvärdet och variansen av mini-hopen på grund av att man oftast enbart vill testa ett exempel i taget. Medelvärdet och variansen för hela populationen måste då räknas ut och användas i stället för de beräknade värdena. Detta kan göras för små databaser, men om man arbetar med data som innehåller miljontals exempel är det enklare att uppskatta populationens statistik med hjälp av att updatera ett exponensiellt glidande medelvärde (EWMA) vid varje framåtpropagering: \cite{cs231n} \cite{batchnorm}
 \begin{equation}
 \mu_{EWMA_c} \to \lambda \mu_c + (1-\lambda)\mu_{EWMA_c}
 \end{equation}
@@ -561,10 +567,8 @@ Softmaxlagret saknar vikter och endast det rekursiva delta-felet beräknas vid b
 \delta^{(l)}_{r,c}
 		& = \pd{L(W)}{X^{(l)}_{r,c}} \\
 		& = \sum^{C-1}_{c'=0} \pd{L(W)}{X^{(l+1)}_{r,c'}} \pd{X^{(l+1)}_{r,c'}}{X^{(l)}_{r,c}} \\
-		& = \sum^{C-1}_{c'=0} \delta^{(l+1)}_{r,c} \dfrac{(\sum^{C-1}_{c''=0}e^{X^{(l+1)}_{r,c''}}) (e^{X^{(l+1)}_{r,c'}})I_{c',c} - (e^{X^{(l+1)}_{r,c'}})(\sum^{C-1}_{c''=0}e^{X^{(l+1)}_{r,c''}} I_{c'',c})}{(\sum^{C-1}_{c''=0}e^{X^{(l+1)}_{r,c''}})^2} \\
-		& = \sum^{C-1}_{c'=0} \left( \delta^{(l+1)}_{r,c} \dfrac{(e^{X^{(l+1)}_{r,c'}})I_{c',c}}{\sum^{C-1}_{c''=0}e^{X^{(l+1)}_{r,c''}}} - \dfrac{(e^{X^{(l+1)}_{r,c'}})(e^{X^{(l+1)}_{r,c}})}{(\sum^{C-1}_{c''=0}e^{X^{(l+1)}_{r,c''}})^2} \right) \\
+		& = \sum^{C-1}_{c'=0} \delta^{(l+1)}_{r,c} \left(  \dfrac{(e^{X^{(l+1)}_{r,c'}})I_{c',c}}{\sum^{C-1}_{c''=0}e^{X^{(l+1)}_{r,c''}}} - \dfrac{(e^{X^{(l+1)}_{r,c'}})(e^{X^{(l+1)}_{r,c}})}{(\sum^{C-1}_{c''=0}e^{X^{(l+1)}_{r,c''}})^2} \right) \\
 		& = \sum^{C-1}_{c'=0}  \delta^{(l+1)}_{r,c} X^{(l+1)}_{r,c'}(I_{c',c}-X^{(l+1)}_{r,c}) \\
-		& = \delta^{(l+1)}_{r,c} X^{(l+1)}_{r,c} - \sum^{C-1}_{c'=0}  \delta^{(l+1)}_{r,c} X^{(l+1)}_{r,c'}X^{(l+1)}_{r,c} \\
 		& = \delta^{(l+1)}_{r,c} X^{(l+1)}_{r,c} \left( 1-\sum^{C-1}_{c'=0} X^{(l+1)}_{r,c'} \right)
 \end{split}
 \end{equation}
@@ -572,127 +576,102 @@ Softmaxlagret saknar vikter och endast det rekursiva delta-felet beräknas vid b
 \subsection{Praktiska Tillämpningar}
 All kod till de exempel på praktiska tillämpningar kan hittas på github: \url{https://github.com/nikitazozoulenko}
 \subsubsection{Klassificering av handskrivna siffror}
-En enkel CNN-modell kan användas för att klassificera handskriva siffror. För att uppnå detta har MNIST DATASET för handskriva siffror används. Den består av 60 000 unika exempel för träning och ytterligare 10 000 exempel för validering av modellen. \cite{MNIST}
+En enkel CNN-modell kan användas för att klassificera handskriva siffror. För att uppnå detta har MNISTdatabasen för handskriva siffror används. Den består av 60 000 unika exempel av handskrivna siffror. \cite{MNIST}
 
 Låt modellens prognos betecknas med $\hat{y}$. Aktiveringsfunktionen softmax används i det sista lagret för att gränsa värdena till intervallet $[0,1]$ och har egenskapen att alla prognostiserade värdena i ett exempel summeras till 1. Följaktligen kan varje värde i $\hat{y}$ tolkas som sannolikheten att bilden är av varje klass. \cite{cs231n}
 
 \begin{figure}[h]\label{figMNIST}
 	\centering
   		\includegraphics[scale=1]{mnist.png}
-  	\caption{Tio bilder av handskrivna siffror från MNIST DATASETET. \cite{MNIST}}
+  	\caption{Tio bilder av handskrivna siffror från MNISTdatabasen. \cite{MNIST}}
 \end{figure}
 
-Input för modellen är en $R \times 1 \times 28 \times 28$ pixelarray där R står för mini-hopstorleken. Modellen prognostiserar tio värden per bild i form av en tensor $\hat{y} \in \mathbb{R}^{R \times C}$, ett värde för varje klass $C=10$ av siffra. Konstandsfunktionen som har minimerats under träningstiden är funktionen \textit{cross-entropy} betecknat med L. Den verkar på två sannolikhetsfördelningar: De verkliga sannolikheterna $y$ och de prognostiserade sannolikheterna $\hat{y}$: \cite{cs231n} \cite{notesonbackprop}
-
+Input för modellen är en $R \times 1 \times 28 \times 28$ tensor där R står för mini-hopstorleken. Modellen prognostiserar tio värden per bild i form av en tensor $\hat{y} \in \mathbb{R}^{R \times C}$, ett värde för varje klass $C=10$ av siffra. Konstandsfunktionen som har minimerats under träningstiden är funktionen \textit{cross-entropy} betecknat med L. Den verkar på två sannolikhetsfördelningar: De verkliga sannolikheterna $y$ och de prognostiserade sannolikheterna $\hat{y}$: \cite{cs231n} \cite{notesonbackprop}
 \begin{equation}
-L(W) = - \frac{1}{R}\sum^{R-1}_{r=0} \sum^{C-1}_{c=0}y_{r,c} \ \log{\hat{y}_{r,c}}
+L(W) = - \sum^{R-1}_{r=0} \sum^{C-1}_{c=0}y_{r,c} \ \log{\hat{y}_{r,c}}
 \end{equation}
 \begin{equation}
+\pd{L(W)}{\hat{y}_{r',c'}} = - \frac{y_{r',c'}}{\hat{y}_{r',c'}}
+\end{equation}
+Endast en modell tränades på grund av begränsningar i datakraft. Den bestod av tre stycken konvolutionsblock, följt med ett softmaxlager (se figur 10). En mini-hopstorlek av 50 användes och 5000 iterationer av framåt- och bakåtpropagering kördes på min egenimplementerade modell skriven i python. Totalt tog det 4 timmar att träna nätverket på min CPU. 
+
+Den slutgiltiga precisionen blev $99.2\%$ på 10 000 nya handskrivna siffror modellen aldrig hade sett tidigare. Av 10 000 handskrivna siffror lyckades modellen klassifisera 9 919 siffror rätt.
+
+\begin{figure}[h]\label{MNISTmodel}
+	\centering
+  		\includegraphics[scale=1.2]{MNISTmodel.png}
+  	\caption{Modellen som användes för att läsa av handskrivna siffror. Batch Normalization benämns med BN, konvolution menas en konvolution med kärnstorlek k = 5 och stride s = 2. ReLU är aktiveringsfunktionen Rectified Linear Units och softmax är softmaxlagret.}
+\end{figure}
+
+\subsubsection{Ansiktsigenkänning}
+Ett konvolutionellt neuralt nätverk är anpassat för att detektera upp till flera tusen ansikten åt gången för realtidsvideo. Modellen producerar ett bestämt antal \textit{boudning boxes}: koordinater som ska detektera alla olika objekt i bilden. Jag utgick från architekturen från RetinaNet från \textit{Focal Loss for Dense Object Detection} (Lin et al.) och anpassade den till $K = 1$ klasser. I varje position i outputlagret föreslår modellen en \textit{boudning box} med fyra koordinater: två punkter för det övre vänstra hörnet respektive nedre hörna hörnet av den positionens \textit{bounding box}. Utöver det förutsägs det $K+1$ sannolikheter att \textit{bounding boxen} innehåller ett objekt av alla $K$ förgrundklasser och 1 bakgrundklass (lådan innehåller inga objekt).\cite{cs231n}\cite{retinanet}
+
+Modellen för objektdetektering går ut på att man utgår från ett antal så kallade anchor boxes vid varje rumslig position i det sista konvolutionella lagret. Om lagret har bredden och höjden $W$ respektive $H$ och $A$ olika storlekar på anchor boxes har lagret totalt $WHA$ olika anchor boxes. Vid träning tilldelas en anchor box ett objekt om dens \textit{intersection over union} (IoU) med den verkliga bounding boxen är större än 0.5 (se figur 11 IoU används för att beräkna hur lika två olika mängder är. I detta fall är mängderna areorna av en anchor box och ett objekts verkliga bounding box. IoU definieras som storleken av snittet av två mänger $A$ och $B$ dividerat med storleken av unionen av $A$ och $B$: \cite{cs231n} \cite{iou}
+
+\begin{equation}
+IoU(A, B)=\frac{|A \cap B|}{|A \cup B|}
+\end{equation}
+
+\begin{figure}[h]\label{figiou}
+	\centering
+  		\includegraphics[scale=0.5]{iou.png}
+  	\caption{IoU definieras som storleken av snittet av två mänger A och B dividerat med storleken av unionen av A och B. En större IoU medför att prognosen är närmare sanningen. \cite{iou}}
+\end{figure}
+
+RetinaNet använder sig av en \textit{feature pyramid}-arkitektur beskriven i \textit{"Feature Pyramid Networks for Object Detection"} (Lin et al.) och en ResNet101 (He et al.) som \textit{backbone}. Featurepyramiden används för att få ut \textit{feature maps} från olika delar av det konvolutionella neurala nätverket för att kunna detektera objekt av olika storlekar. Varje pyramidnivå matas in i ett klassifikationshuvud respektive regressionshuvud (se figur 12) för att räkna ut sannolikheterna att varje anchor box innehåller de $K+1$ olika klasserna, samt att förfina varje anchor box koordinater genom att prognostisera 4 olika offsets för varje sida av anchor boxens bounding box. \cite{resnet} \cite{retinanet} \cite{fpn} 
+
+\begin{figure}[h]\label{figiou}
+	\centering
+  		\includegraphics[scale=0.38]{retinanet.png}
+  	\caption{RetinaNets arkitektur från \textit{Focal Loss for Dense Object Detection} (Lin et al.). Varje pyramidnivå matas in i ett klassifikationshuvud och ett regressionshuvud. \cite{retinanet}}
+\end{figure}
+
+Till skillnad från RetinaNet har min modell, FaceNet, ett mindre antal pyramidnivåer för att lätta på beräkningskraften och för att detektera mindre objekt. RetinaNets anchors har areor från $32^2$ till $512^2$ pixlar spridda över pyramidnivåer P3 till P7. FaceNet använder sig av areor $14^2$ till $220^2$ pixlar spridda över pyramidnivåer P3 till P6. Regressionshuvudet och klassifikations- huvudet i RetinaNet består av 5 konvolutionslager med kärnstorlek 3. Facenet använder istället 2 och 3 konvolutionslager för regressionshuvudet respektive klassifikationshuvudet. I det originala Feature Pyramidnätverket användes linjär interpolation för att göra storleken av högre feature maps större. I FaceNet används k-nearest neighbors (k-NN) istället. ResNet50 användes istället för ett ResNet101 som backbone för att lätta på beräkningskostnaderna. \cite{resnet} \cite{retinanet} \cite{fpn} 
+
+Kostnadsfunktionen som användes var en kombination av Focal Loss (Lin et al.) och Smooth L1 Loss. FaceNet använder samma hyperparametrar som uppnådde bästa resultat för RetinaNet: $\alpha = 3$ för förgrundklassen och $\gamma=2$. \cite{retinanet}
+
+\begin{equation}
+L_r(x) = \begin{cases}
+				0.5x^2 & \mbox{om } |x| < 1\\
+				|x| - 0.5 & \mbox{i annat fall}\\
+			\end{cases}
+\end{equation}
+
+\begin{equation}
+L_c(p, \hat{p}) = - \alpha (1-p)^{\gamma}p \log{\hat{p}}
+\end{equation}
+
+\begin{equation}
 \begin{split}
-\pd{L(W)}{\hat{y}_{r',c'}} 
-	& = \pd{\left(-\frac{1}{R}\sum^{R-1}_{r=0} \sum^{C-1}_{c=0}y_{r,c} \ \log{\hat{y}_{r,c}}\right)}{\hat{y}_{r',c'}} \\
-	& = -\frac{1}{R}\sum^{R-1}_{r=0} \sum^{C-1}_{c=0}y_{r,c} \pd{\left(\log{\hat{y}_{r,c}}\right)}{\hat{y}_{r',c'}} \\
-	& = - \frac{1}{R}\sum^{R-1}_{r=0} \sum^{C-1}_{c=0} y_{r,c} \frac{1}{\hat{y}_{r,c}} I_{r, r'} I_{c, c'}\\
-	& = - \frac{1}{R} \frac{y_{r',c'}}{\hat{y}_{r',c'}} \\
+	L(W) = & \sum_{k \in pyramid} \frac{1}{N^k_c} \sum_{a \in anchors} L_r(r_a - \hat{r}_a) \\ 
+	& + \sum_{k \in pyramid} \frac{1}{N^r_c} \sum_{a \in anchors} L_c(p_a, \hat{p}_a)  \\ 
 \end{split}
 \end{equation}
 
-Där $I$ är kronecker-deltat.
+$N^k_c $ och $N^k_r $ betäcknar alla anchors som deltar i klassifikationskonstnaden respektive regressionskonstnaden i pyramidnivå $k$. För klassifikationskonstnaden är $\hat{p}$ 1 för alla anchors som har blivit tillgivna ett objekt och 0 för alla som bara innehåller bakgrundsklassen. Endast anchors som innehåller ett objekt deltar i regressionskostnaden. $r_a$ innehåller de 4 koordinaterna den slutgiltiga boudning boxen har.
 
-Endast två olika modeller med olika lagerstrukturer prövades på grund av begränsad datakraft. En hopstorlek av 50 användes och 1200 iterationer av framåt- och bakåtpropagering kördes på den egenimplementerade modellen skriven i python. Totalt tog det 50 minuter för varje modell.
+Modellen tränades i 350 000 iterationer med en mini-hopsstorlek av 3. Träningshastigheten började på 0.005 och dividerades med 10 vid 200 000 iterationer. Varje träningsexempels storlek gjordes slumpmässigt om till $512^2$, $576^2$ eller $640^2$ pixlar och speglades horizontellt med sannolikhet 0,5 för att artificiellt utöka mängden träningsdata. Den totala träningstiden var 18 timmar på en NVIDIA GTX 1080ti. Figur 13 visar kvantitativa resultat från WIDERFace valideringsdata.
 
-\begin{center}
-    \begin{tabular}{ | c |}
-    \hline
-    		\textbf{Modell 1} \\ \hline \hline
-    		Input \\ \hline
-    		BN \\ \hline
-            conv3 c16 s1\\ \hline
-            maxpool2 s2\\ \hline
-            ReLU\\ \hline
-            BN\\ \hline
-            conv3 c16 s1\\ \hline
-            ReLU\\ \hline
-            BN\\ \hline
-            conv4 c16 s1\\ \hline
-            maxpool2 s2\\ \hline
-            ReLU\\ \hline
-            BN\\ \hline
-            conv4 c10 s1\\ \hline
-            softmax \\ \hline
-            Output \\
-    \hline
-    \end{tabular}
-	\qquad   
-    \begin{tabular}{ | c |}
-    \hline
-    		\textbf{Modell 2} \\ \hline \hline
- 			Input \\ \hline
- 			BN \\ \hline
-            conv3 c16 s1 \\ \hline
-            ReLU \\ \hline
-            BN \\ \hline
-            conv3 c16 s1\\ \hline
-            ReLU\\ \hline
-            BN\\ \hline
-            conv3 c16 s1\\ \hline
-            maxpool2 s2\\ \hline
-            ReLU\\ \hline
-            BN\\ \hline
-            conv4 c16 s1\\ \hline
-            ReLU\\ \hline
-            BN\\ \hline
-            conv4 c24 s1\\ \hline
-            ReLU\\ \hline
-            BN\\ \hline
-            conv3 c24 s1\\ \hline
-            ReLU\\ \hline
-            BN\\ \hline
-            conv3 c10 s1\\ \hline
-            softmax \\ \hline
-            Output \\
-    \hline
-    \end{tabular}
-\end{center}
+En iteration av framåtpropageringen tar 20 ms vilket möjliggör att modellen kan köras i realtid, 50 gånger i sekunden.
 
-Ett lager är antingen BN, conv (konvolution), maxpool, softmax eller ReLU. Nästinkommande siffra efter lagernamnet är kärnstorleken. $C$ benämner antal kärner vid det lagret och därmed antal kanaler vid nästa lager. Klivet benämns med $s$.
-
-Modell 1 uppnådde $95.57\%$ precision medan modell 2 uppnådde $98.07\%$ precision. Efter testerna kördes tränades det bättre presternade nätverket, modell 2, på fler iterationer tills validationsprecisionen började avta. Den testades varje 60 000 exemepel eller efter varje 600 iterationer med en hopstorlek av 100. Efter varje 60 000 bilder blandades dem för att förbättra inlärningen.
-
-Den slutgiltiga precisionen blev $99.2\%$. Av 10 000 handskrivna siffror lyckades modellen klassifisera 9 919 siffror rätt.
-
-\begin{figure}[h]\label{figkosnadmnist}
+\begin{figure}[h]\label{results1}
 	\centering
-  		\includegraphics[scale=0.6]{kostandsplot.png}
-  	\caption{En graf av kostnaden som funktion av antalet iterationer med mini-hopstorleken 100 bilder med modell 2.}
+  		\includegraphics[scale=0.42]{results1.png}
+  	\caption{Kvantitativa resultat från valideringsdatan från WIDERFace: Bilder som modellen aldrig har sett tidigare.}
 \end{figure}
-\quad
-
-\quad
-\begin{figure}[h]\label{figepokmnist}
-	\centering
-  		\includegraphics[scale=0.6]{epokplot.png}
-  	\caption{En graf av validationsprecisionen som funktion av antalet epoker av 60 000 bilder med modell 2.}
-\end{figure}
-\subsubsection{Objektdetektering i bilder}
-
-\subsubsection{Ansiktsigenkänning}
-Modellen tränas just nu. Jag får resultaten cirka slutet av januari
 
 \section{Diskussion}
-Vet inte vad jag ska diskutera?????
+Vad är ett konvolutionellt neuralt nätverk?
+Hur härleds framåt- och bakåtpropagering i konvolutionella neurala nätverk?
+Hur kan modellen tillämpas för att implementera sifferavläsning, ansiktsigenkänning och objektdetektering i bilder?
 
-Matten går inte att argumentera med. Det som skulle kunna pratas om är hur jag skulle kunna förbättra modellerna, med det är ju ganska jävla svårt för det här är state of the art (nästan). Jag förstår inte det som folk gör för att förbättra det jag har gjort.
+Den matematiska modellen av artificiella neurala nätverk och konvolutionella neurala nätverk, samt bakåt- och framåtpropagering förklaras och härleds i sektion 3.2 och 3.3. Ett exempel på hur modellen kan tillämpas är att klassificera handskrivna siffror, som i sektion 3.4.1. 
+En annan möjlighet är att anpassa ett konvolutionellt neuralt nätverk för att detektera alla ansikten i en digital bild. På grund av att en iteration av algoritmen tar 20 ms är det möjligt att köra modellen i realtid. Det kan exempelvis användas i övervakningskameror eller inom robotik för att känna igen människoansikten i realtid. 
+
+Algoritmen är dock inte perfekt och har flera brister. Modellen prognostiserar att det finns ansikten på flera ställen där det inte finns några i verkligheten. För att undankomma detta låter jag endast modellen visa upp bounding boxes med sannolikhet större än 0.5 att det finns ett ansikte där. Resultatet blir att modellen inte hittar 100\% av all ansikten i bilden (se figur 13). Ytterligare har modellen problem med små ansikten. Detta är dels på grund av att modellen inte kan urskilja ett ansikte med så lite information (ca minimum $10^2$ pixlar per ansikte), och dels för att FaceNet prognostiserar ca 30 000 olika anchors för de minsta storlekarna. Detta leder till att klassifikationskostnaden består av till mestadels negativa exempel. Delta-felet av bakgrundsklasserna dominerar och gör att delta-felet av förgrundsklassen (ansikten) inte har en stor påverkan på den slutgiltiga gradienten.
 
 
-
-\begin{thebibliography}{99}
-%%  Start of bibliography. It works almost exactly like a list, but with 
-%%  \bibitem instead of \item. 
-%%    
-    
-
-	
+\begin{thebibliography}{99}	
 \bibitem{cs231n} 
 	\textit{CS231n: Convolutional Neural Networks for Visual Recognition.}
     F. Li, A. Karpathy och J. Johnson.
@@ -737,11 +716,6 @@ Matten går inte att argumentera med. Det som skulle kunna pratas om är hur jag
 	\textit{You only look once: Unified, real-time object detection.}
     J. Redmon, S. Divvala, R. Girshick, och A. Farhadi. 
     arXiv preprint arXiv:1506.02640, 2015.
-
-\bibitem{resnet} 
-	\textit{Deep residual learning for image recognition.}
-    K. He, X. Zhang, S. Ren, och J. Sun. 
-    arXiv preprint arXiv:1512.03385, 2015.
     
 \bibitem{batchnorm} 
 	\textit{Batch normalization: Accelerating deep network training by reducing internal covariate shift.}
@@ -818,6 +792,42 @@ Matten går inte att argumentera med. Det som skulle kunna pratas om är hur jag
 	Camebridge Spark. 
 	URL https://cambridgespark.com/content.
 	Senast uppdaterad 20 mars 2017.
+
+
+\bibitem{resnet} 
+	\textit{Deep residual learning for image recognition.}
+    K. He, X. Zhang, S. Ren, och J. Sun. 
+    arXiv preprint arXiv:1512.03385, 2015.
+
+\bibitem{iou}
+	Jaccard Index. Wikipedia.
+    URL https://en.wikipedia.org/wiki/Jaccard{\_}index. 
+    Hämtad 20 januari 2018
+    
+\bibitem{retinanet}
+	\textit{Focal Loss for Dense Object Detection.}
+	Tsung{-}Yi Lin,
+    Priya Goyal,
+    Ross B. Girshick,
+    Kaiming He and
+    Piotr Doll{\'{a}}r.
+    arXiv preprint arXiv:1708.02002, 2017
+
+\bibitem{fpn}
+	\textit{Feature Pyramid Networks for Object Detection.}
+	Tsung{-}Yi Lin,
+               Piotr Doll{\'{a}}r,
+               Ross B. Girshick,
+               Kaiming He,
+               Bharath Hariharan and
+               Serge J. Belongie.
+    arXiv preprint arXiv:1612.03144, 2016
+    
+\bibitem{WIDERFace}
+	\textit{WIDER FACE: A Face Detection Benchmark.}
+	Yang, Shuo and Luo, Ping and Loy, Chen Change and Tang, Xiaoou
+    IEEE Conference on Computer Vision and Pattern Recognition (CVPR), 2016
+
 \end{thebibliography}
 
 
