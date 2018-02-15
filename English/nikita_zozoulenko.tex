@@ -53,90 +53,117 @@ In this paper the mathematical model behind the standard Artificial Neural Netwo
 
 \tableofcontents
 
-\section{Inledning}
+\section{Introduction}
 
-\subsection{Bakgrund}
+\subsection{Background}
 Artificial Neural Networks, or more specifically Convolutional Neural Networks, were popularized 2012 when the model was used to win the annual ImageNet Large-Scale Visual Recognition Challenge, beating all current machine learning models. Today they have achieved state of the art results in areas such as self-driving cars, image classification, object localization, automatic image annotation, semantic segmentation of objects in images and natural language processing. 
 \cite{cs231n}
 
 An Artificial Neural Network is a biologically inspired machine learning model that tries to replicate the way the brain in mammals functions. There are many different kinds of Artificial Neural Networks which vary in structure and architecture. The basic principle behind Neural Networks is that they are made out of a number of layers of neurons. The layers are built recursively such that the output of one layer is the input of the next layer. They are stacked on top of each other and the number of layers an Artificial Neural Network has is called its depth. How the neurons of the previous layer are connected to the neurons of the next layer depends on what type on Artificial Neural Network it is.
 \cite{cs231n}
 
-\subsection{Syfte}
-When I was starting out in the field of deep learning I found there was a lack of fully derived explanations of the math behind Artificial Neural Networks. Sources had either only  explained one simple forward pass through the network, or had only derived the most simple case, ignoring the more complicated general case. The aim of this paper is to present a clear derivation of the general case for Artificial Neural Networks and Convolutional Neural Networks. Furthermore, the aim is to apply the derived model of the Convolutional Neural Network to two problems: Classifying handwritten digits and to detect and pinpoint a variable number of faces in an image.
+\subsection{Purpose}
+When I was first starting out in the field of deep learning I found there was a lack of fully derived explanations of the underlying mathematics behind Artificial Neural Networks. Sources had either only explained one simple forward pass through the network, or had only derived the most simple case, ignoring the more complicated general case. The aim of this paper is to present a clear derivation of the general case for Artificial Neural Networks and Convolutional Neural Networks. Furthermore, the aim is to apply the derived model of the Convolutional Neural Network to two problems: Classifying handwritten digits and to detect and pinpoint the location of a variable number of human faces in an image.
 
 \subsection{Frågeställning}
-What is a Convolutional Neural Network?
-What is forward- and backpropgation and how is it derived in a Convolutional Neural Network?
-Can a Convolutional Neural Network be trained to classify handwritten digits and detect a variable number of faces in images?
+What is a Feedforward Neural Network and Convolutional Neural Network?
+What is forward- and backpropgation and how is it derived in a Feedforward Neural Network and a Convolutional Neural Network?
+Can an Artificial Neural Network be trained to classify handwritten digits and detect a variable number of faces in images?
 
 \newpage
 \section{Metod}
-Majoriteten av tiden gick åt till se på videoföreläsningar av kursen "CS231n: Convolutional Neural Networks for Visual Recognition" från Stanford University för att få en grundläggande bakgrund och intuition om artificiella neurala nätverk. Jag implementerade sedan ett klassiskt artificiellt neuralt nätverk i C++ och python, och ett konvolutionellt neuralt nätverk i python. De partiella derivatorna som beräknas i modellen jämfördes med en analytitisk approximation med hjälp av derivatans definition. Flera forskares bloggar användes för att i mer detalj förstå matematiken bakom nätverksoperationerna. För att fördjupa mig i konvolutionella neurala nätverk läste jag de riktiga vetenskapliga artiklarna såsom Batch Normalization (Ioffe \& Szegedy, 2015) och Focal Loss (Lin et al. 2017) för att sedan implementera dem i python. När min egen implementation blev för beräkningsineffektiv började jag använda två GPU-accelererande maskininlärningsbibliotek: PyTorch och Tensorflow. 
+The majority of the paper and the derivations of the models are based on the course material from Stanford's "CS231n: Convolutional Neural Networks for Visual Recognition" course. Some advanced concepts were taken from the papers they were introduced in (e.g. Batch Normalization) and expanded to fit the general case of an arbitrary input to the model. The general case for the mathematical model of the Feedforward Neural Network and the Convolutional Neural Network were derived by hand and implemented in C++ with the linear algebra library Eigen and in Python in pure NumPy, a library for scientific computing. The derived partial derivatives required by the models were compared with their numerical approximations using the formal definition of a derivative. 
+
+When my own implementation of the Artificial Neural Networks became too computationally expensive and inefficient for the two problem cases classification of handwritten digits and dense face detection I implemented the models in Google's machine learning library TensorFlow and Facebook's GPU-accelerated tensor and dynamic neural network library PyTorch.
 
 \newpage
 \section{Resultat}
 
 
-\subsection{Tensorer, indexering och notation}
+\subsection{Tensors, indexing and notation}
 Tensorer är generaliseringen av vektor- och matrisbegreppen. En tensor med ordning 1 är en vektor $x \in \mathbb{R}^N$ och är en radvektor med $N$ element. Det kan dessutom tolkas som en endimensionell array. Matriser $M$ är tensorer med ordning 2 sådana att $M \in \mathbb{R}^{R \times N}$ och kan ses som en vektor av $R$ vektorer med $N$ element eller en tvådimensionell array med $R \times N$ element. En tensor med ordning $n$ indexeras med en $n$-tupel. Exempelvis indexeras en tensor $X \in \mathbb{R}^{R \times C \times H \times W}$ med fyr-tupeln $(r,c,h,w)$ där $0 \leq r < R$, $0 \leq c < C$, $0 \leq h < H$ och $0 \leq w < W$. \cite{cs231n}
 
 % En tensor med ordningn kan ses som en tensor med ordning1 vars element är tensorer med ordningn-1. Exempelvis är en vektor en vektor av skalärer och en matris en vektor av vektorer. Funktionen $vec()$ gör om en tensor med ordningn till en vektor genom att rekursivt använda den sistnämnda egenskapen av tensorer. \cite{convmath}
 
 \subsection{Feed-forward neural networks}
-Ett artificellt neuralt nätverk består av ett antal lager neuroner. De är uppbyggda rekursivt så att resultatet av ett lager är inmatningsdatan till nästintilliggande lager. Inmatningsdatan för modellen matas in i det första lagret sådant att ett neuron är ett värde. Nervsignalen propageras framåt tills den når det sista lagret. Hur nervceller från ett lager är kopplade till det föregående lagret varierar med vilket typ av neuralt nätverk man använder sig av. \cite{cs231n}
+A feed-forward neural network is the most elementary version of an artificial neural network. As all varying kinds of neural networks, a feed-forward neural network is made out of a number of layers of neurons. The unique property of a feed-forward neural network is that all the neurons in a layer are connected to every neuron in the next layer (see figure \ref{figfeedforward}). \cite{cs231n}
 
-Den mest grundläggande modellen har flera namn, bland annat:  \textit{Multilayer Perceptrons} \textit{Fully Connected Cascade (FCC)}, \textit{Feed-forward Neural Network} och \textit{Densly Connected (Dense)}. Den består av ett flertal lager av neuroner. Varje neuron i ett lager är kopplade till alla neuroner i nästintillföljande lager. Nervsignalen framåtpropageras beroende på hur stark kopplingen mellan två neuroner är. Ett neurons värde kallas för dess aktivering. \cite{cs231n}
+\begin{figure}[h]
+	\centering
+  		\includegraphics[scale=1]{feedforward.png}
+  	\caption{An illustration of a simple feed-forward neural network. It consists of 4 layers: 1 input layer (red), 2 hidden layers (blue) and 1 output layer (green). A circle represents a neuron. Every neuron in a layer is connected to all the neurons in the following layer, shown by the grey lines between the neurons. GLÖM INTE ATT REFERERA} \label{figfeedforward}
+\end{figure}
 
-\begin{figure}[h]\label{figFCC}
+A neuron is represented as a floating point decimal number. The value of a neuron is called its activation. Given an input of $n$ data points the model wants to predict $m$ different values where $n$ and $m$ are the number neurons in the input and output layers. Every data point or feature in the input are set as neurons in the input layer. For instance, if you want to predict a score given 12 different variables every single variable would correspond to one neuron in the input layer of size 12 and the score would correspond to a single neuron in the output layer of size 1. The value of the input neurons are transferred over to the next layer depending on the strength of the different connections every neuron has to the neurons in the next layer. This is repeated for every layer until the signal has reached the output layer. The process of propagating the value of the neurons from the input layer to the output layer is called forward propagation. \cite{cs231n}
+
+The network is trained to predict correct values by optimizing the fixed connections, also called weights, between all the layers in the neural network. \cite{cs231n}
+
+%values by defining a cost function such that the smaller the loss the higher quality the predicted value has.
+
+\subsection{Tensors, indexing and notation}
+A tensor is the generalization of vectors and matrices. Scalars are tensors of order 0. A tensor of order 1 is a vector $x \in \mathbb{R}^N$ and is a row vector with $N$ elements. It can also be seen as a one-dimensional array. Matrices $M$ are tensors of order 2 such that $M \in \mathbb{R}^{R \times N}$ and can be viewed as a vector of $R$ elements where every element is another vector with $N$ scalar elements. Matrices can also be seen as a two-dimensional array with $RN$ elements. A tensor of order $n$ is an $n$-dimensional array and is indexed by an $n$-tuple. For instance, a tensor $X \in \mathbb{R}^{R \times C \times H \times W}$ is indexed by the four-tuple $(r,c,h,w)$ where $0 \leq r < R$, $0 \leq c < C$, $0 \leq h < H$ och $0 \leq w < W$. \cite{cs231n}
+
+\subsubsection{Forward propagation}
+In figure \ref{figfeedforward} only a single training example was worked on at a time. In practice a mini-batch of $R$ training examples are propagated forward in a neural network at the same time. \cite{cs231n} \cite{wikiStanford}
+
+Let $M$ denote the number of layers in the neural network and $l$; $0 \leq l < M$, one specific layer in the neural network. Let $N^{(l)}$ denote the number of neurons in layer $l$. The activation of layer $l$ can be expressed as a tensor of order 2: $X^{(l)} \in \mathbb{R}^{R \times N^{(l)}}$ indexed by the two-tuple $(r,i)$ where $0 \leq r < R$ and $0 \leq i < N$. In addition to the normal neurons a layer has, let $b^{(l)}$ be a bias neuron for the layer $l$ (see figure \ref{figFCCmath}). It is called a bias neuron because its value is independent to what input the neural network is given. \cite{cs231n} \cite{wikiStanford}
+
+The weights expressing how strong the connection between the neurons of layer $l$ and $l+1$ are can also be expressed as a tensor of order 2. Let $W^{(l)} \in \mathbb{R}^{N^{(l+1)}  \times N^{(l)}}$ such that the element $W_{j, i}^{(l)}$ is the strength of the connection between neuron $X_{ri}^{(l)}$ and $X_{rj}^{(l+1)}$ for arbitrary example $r$ in the mini-batch. \cite{cs231n} \cite{wikiStanford}
+
+\begin{figure}[h]
 	\centering
   		\includegraphics[scale=0.4]{FCC.png}
-  	\caption{Ett exempel på ett enkelt feed-forward neuralt nätverk. Inputneuronerna är blåmarkerade medan resterande neuroner är orangea. Röda neuroner är så kallade \textit{bias-neuroner} som är konstanta oberoende på inmatningsdatan. Svarta linjer symboliserar vikterna och styrkan mellan två neuroner.}
+  	\caption{An example of a 4 layer feed-forward neural network. The input neurons are marked with blue. The bias neurons are marked with red. Black lines between neurons symbolyze the weights between every pair of neurons between two layers.} \label{figFCCmath}
 \end{figure}
 
-\subsubsection{Framåtprogagering}
-\textit{Forward propagation} eller framåtpropagation är processen att från sina inputneuroner propagera nervsignalen framåt i nätverket tills man når det sista lagret. \cite{cs231n} \cite{wikiStanford}
+To calculate the value of a neuron in layer $l+1$ every neuron in layer $l$ is multiplied by its corresponding weight in $W^{(l)}$ and summed together with the layers bias neuron. The sum is then put in a so called activation function $f$. The value of the activation function is the neurons activation in layer $l+1$. \cite{cs231n} \cite{wikiStanford}
 
-Nätverket kan framställas genom att representera neuronerna och deras kopplingar med hjälp av matriser. Flera träningsexempel bearbetas samtidigt i en så kallad mini-hop med storlek R. Låt $X_{ri}^{(l)}$ benämna neuron nummer $i$ i lager $l$ i träningsexempel $r$. $W_{ba}^{(l)}$ blir vikten eller styrkan på kopplingen mellan neuron $X_{ra}^{(l)}$ och $X_{rb}^{(l+1)}$. Låt $b^{(l)}$ vara ett konstant neuron kallat \textit{bias} som är kopplad till alla neuron i lager $l+1$.  \cite{cs231n} \cite{wikiStanford}
-
-Värdet för ett godtyckligt neuron kallas för den neuronens aktivering. För att beräkna aktiveringen av ett neuron i lager $l+1$ multipliceras varje neurons värde i lager $l$ med deras korresponderande vikt i viktmatrisen $W^{(l)}$. Resultaten och lagrets konstanta neuron $b^{(l)}$ summeras och summan matas in i en aktiveringsfunktion $f(x)$. Funktionsvärdet blir aktiveringen för det nya neuronet i lager $l+1$. Exempelvis kan signalöverföringen mellan lager 2 och 3 för ett godtyckligt exempel $r$ i mini-hopen i figur 1 beskrivas matematiskt genom: \cite{cs231n} \cite{wikiStanford}
+Let $Z^{(l)} \in \mathbb{R}^{R \times N^{(l)}}$ be the value of each neuron in layer $l$ before being put into the activation function. Given an input $X^{(0)}$ the forward propagation can be expressed recursively as: \cite{cs231n} \cite{wikiStanford}
 
 \begin{align}
-Z_{r0}^{(3)} & = X_{r0}^{(2)}W_{r0}^{(2)} + X_{r1}^{(2)}W_{10}^{(2)} + X_{r2}^{(2)}W_{20}^{(2)} + b^{(2)} \\
-X_{r0}^{(3)} & = f(Z_{r0}^{(3)})
+Z_{rj}^{(l+1)} & = b^{(l)} + \sum^{N^{(l)}-1}_{i = 0} X^{(l)}_{r,i} W^{(l)}_{i,j}\\
+X_{rj}^{(l+1)} & = f(Z_{rj}^{(l+1)})
 \end{align}
-%& = f(X^{(2)}W^{(2)} +b^{(2)})
 
-Där $X^{(3)} \in \mathbb{R}^{1 \times 1}$, $X^{(2)} \in \mathbb{R}^{1 \times 3}$, $W^{(2)} \in \mathbb{R}^{3 \times 1}$ och $b^{(2)} \in \mathbb{R}^{1}$.
+The tensor of activations and weights are constructed in such as way that one forward pass through a single layer can be computed with a single dot product and having the bias term added to every element in the computed dot product. The activation function $f$ is then applied element-wise on each neuron: \cite{cs231n} \cite{wikiStanford}
 
-Neuronmatriserna och viktmatriserna är definierade på ett sådant sätt att framåtpropegationen mellan lager $l$ och $l+1$ kan beräknas med en matrismultiplikation och kan därför beräknas rekursivt från inputneuronerna: \cite{cs231n} \cite{wikiStanford}
 \begin{align}\label{feed-forward}
-Z_{r,i}^{(l+1)} & = [X^{(l)}W^{(l)}]_{r,i}+b^{l}\\
-X_{r,i}^{(l+1)} & = f(Z_{ri}^{(l+1)})
+Z^{(l+1)} & = X^{(l)}W^{(l)}+b^{l}\\
+X^{(l+1)} & = f(Z^{(l+1)})
 \end{align}
-Vanliga aktiveringsfunktioner för neurala nätverk är \textit{Rectified Linear Units ($ReLU$)}, \textit{sigmoid ($\sigma$)} och \textit{tangens hyperbolicus ($tanh$)}. Funktionerna måste vara deriverbara för att nätverket ska kunna tränas genom processen som kallas för bakåtpropagering. Genom att använda olinjära funktioner kan nätverket lära sig olinjära samband. Definitionerna av funktionerna ges av: \cite{cs231n} 
-\begin{figure}[h]\label{aktiveringsfunktion}
-	\centering
-  		\includegraphics[scale=0.83]{activationfunction.png}
-  	\caption{Grafen av aktiveringsfunktionerna $ReLU$, $\sigma$ och $tanh$.}
-\end{figure}
 
-\begin{equation}
-ReLU(x) = \begin{cases} 
-			0 & \mbox{om } x < 0 \\ 
-			x & \mbox{om } x \geq 0 
+Common activation functions are Rectified Linear Units (ReLU), sigmoid ($\sigma$) and hyperbolic tangent ($\tanh$) and are defined by equation \eqref{relu} - \eqref{tanh} (see figure \ref{activation_function}). A non-linear activation function is chosen to enable the network to make use of non-linearities when learning to predict values. Without non-linear activation functions the whole model is equivalent to one large linear transformation of the input data. \cite{cs231n}
+
+\begin{equation}\label{relu}
+\mbox{ReLU}{(x)} = \begin{cases} 
+			0 & \mbox{if } x < 0 \\ 
+			x & \mbox{if } x \geq 0 
 		\end{cases}
 \end{equation}
 
-\begin{equation}
+\begin{equation}\label{sigmoid}
 \sigma(x) = \frac{1}{1+e^{-x}}
 \end{equation}
 
-\begin{equation}
-tanh(x) = \frac{e^x-e^{-x}}{e^x+e^{-x}}
+\begin{equation}\label{tanh}
+\tanh{(x)} = \frac{e^x-e^{-x}}{e^x+e^{-x}}
 \end{equation}
 
-\subsubsection{Kostnadsfunktionen}
+\begin{figure}[h]
+	\centering
+  		\includegraphics[scale=0.83]{activationfunction.png}
+  	\caption{A graph of ReLU, $\sigma$ och $\tanh$.} \label{activation_function}
+\end{figure}
+
+\textit{Rectified Linear Units ($ReLU$)}, \textit{sigmoid ($\sigma$)} och \textit{tangens hyperbolicus ($tanh$)}.
+
+\subsubsection{Cost function}
+Given an input $X$ and a ground truth $y$ the model wants to predict values $\hat{y}$ that resembles the ground truth as closely as possible. That is achieved by constructing a cost function that describes the quality of the prediction $\hat{y}$
+
+
+
+the cost function is a multivariate function of the given input X and all the weights and biases of every layer. Because we cant change the input data of the model we have to only optimize the weights and biases of the network.
+
 Givet ett inmatningsvärde $X$ skapas ett närmevärde $\hat{y}$ som ska vara så nära det sanna värdet för y som möjligt. Initialt kommer $W^{(l)}$ vara slumpade för varje lager $l$ och nätverkets prognos kommer inte efterlikna det sökta värdet. Med hjälp av \textit{gradient descent} kan man iterativt träna modellen så det slutgiltiga värdet kommer så nära $y$ som möjligt. Detta görs genom att definiera en multivariat kostnadsfunktion $L(W, b; X,y)$ av alla nätverkets parametrar med avseende på ett träningsexempel $(X, y)$. Funktionen är ett mått på prognosen $\hat{y}$ kvalitet. Man definierar $L$ på ett sådant sätt att ju mindre värdemängd av $L$, desto högre kvalitet består $\hat{y}$ av. Ett sätt att definiera $L$ är exempelvis med en så kallad \textit{L2 kostnadsfunktion}: \cite{cs231n} \cite{wikiStanford}
 \begin{equation}
 \begin{split}
@@ -571,9 +598,10 @@ Softmaxlagret saknar vikter och endast det rekursiva delta-felet beräknas vid b
 \end{split}
 \end{equation}
 
-\subsection{Praktiska Tillämpningar}
+\subsection{Problem Cases}
+The code for 
 All kod till de exempel på praktiska tillämpningar kan hittas på github: \url{https://github.com/nikitazozoulenko}
-\subsubsection{Klassificering av handskrivna siffror}
+\subsubsection{Classification of handwritten digits}
 En enkel CNN-modell kan användas för att klassificera handskriva siffror. För att uppnå detta har MNISTdatabasen för handskriva siffror används. Den består av 60 000 unika exempel av handskrivna siffror. \cite{MNIST}
 
 Låt modellens prognos betecknas med $\hat{y}$. Aktiveringsfunktionen softmax används i det sista lagret för att gränsa värdena till intervallet $[0,1]$ och har egenskapen att alla prognostiserade värdena i ett exempel summeras till 1. Följaktligen kan varje värde i $\hat{y}$ tolkas som sannolikheten att bilden är av varje klass. \cite{cs231n}
@@ -601,7 +629,7 @@ Den slutgiltiga precisionen blev $99.2\%$ på 10 000 nya handskrivna siffror mod
   	\caption{Modellen som användes för att läsa av handskrivna siffror. Batch Normalization benämns med BN, konvolution menas en konvolution med kärnstorlek k = 5 och stride s = 2. ReLU är aktiveringsfunktionen Rectified Linear Units och softmax är softmaxlagret.}
 \end{figure}
 
-\subsubsection{Ansiktsigenkänning}
+\subsubsection{Dense Face Detection and Localization}
 Ett konvolutionellt neuralt nätverk är anpassat för att detektera upp till flera tusen ansikten åt gången för realtidsvideo. Modellen producerar ett bestämt antal \textit{boudning boxes}: koordinater som ska detektera alla olika objekt i bilden. Jag utgick från architekturen från RetinaNet från \textit{Focal Loss for Dense Object Detection} (Lin et al.) och anpassade den till $K = 1$ klasser. I varje position i outputlagret föreslår modellen en \textit{boudning box} med fyra koordinater: två punkter för det övre vänstra hörnet respektive nedre hörna hörnet av den positionens \textit{bounding box}. Utöver det förutsägs det $K+1$ sannolikheter att \textit{bounding boxen} innehåller ett objekt av alla $K$ förgrundklasser och 1 bakgrundklass (lådan innehåller inga objekt).\cite{cs231n}\cite{retinanet}
 
 Modellen för objektdetektering går ut på att man utgår från ett antal så kallade anchor boxes vid varje rumslig position i det sista konvolutionella lagret. Om lagret har bredden och höjden $W$ respektive $H$ och $A$ olika storlekar på anchor boxes har lagret totalt $WHA$ olika anchor boxes. Vid träning tilldelas en anchor box ett objekt om dens \textit{intersection over union} (IoU) med den verkliga bounding boxen är större än 0.5 (se figur 11 IoU används för att beräkna hur lika två olika mängder är. I detta fall är mängderna areorna av en anchor box och ett objekts verkliga bounding box. IoU definieras som storleken av snittet av två mänger $A$ och $B$ dividerat med storleken av unionen av $A$ och $B$: \cite{cs231n} \cite{iou}
@@ -675,6 +703,12 @@ Algoritmen är dock inte perfekt och har flera brister. Modellen prognostiserar 
     F. Li, A. Karpathy och J. Johnson.
 	Stanford University, föreläsning, vinter 2016.
 	
+\bibitem{wikiStanford} 
+	\textit{Unsupervised Feature Learning and Deep Learning.}
+    Standford University, Department of Computer Science.
+    URL http://ufldl.stanford.edu/wiki/.
+	Senast uppdaterad 31 mars 2013.	
+	
 \bibitem{notesonbackprop} 
 	\textit{Notes on Backpropagation.}
     P. Sadowski.
@@ -699,11 +733,7 @@ Algoritmen är dock inte perfekt och har flera brister. Modellen prognostiserar 
     La Baule, Frankrike, Suvisoft.
 	Oktober 2006.
 
-\bibitem{wikiStanford} 
-	\textit{Unsupervised Feature Learning and Deep Learning.}
-    Standford University, Department of Computer Science.
-    URL http://ufldl.stanford.edu/wiki/.
-	Senast uppdaterad 31 mars 2013.
+
 	
 \bibitem{gradient} 
 	\textit{Scientific Computing 2013, Worksheet 6: Optimization: Gradient and steepest descent.}
