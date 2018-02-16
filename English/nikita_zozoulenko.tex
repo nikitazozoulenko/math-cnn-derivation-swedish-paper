@@ -56,34 +56,28 @@ In this paper the mathematical model behind the standard Artificial Neural Netwo
 \section{Introduction}
 
 \subsection{Background}
-Artificial Neural Networks, or more specifically Convolutional Neural Networks, were popularized 2012 when the model was used to win the annual ImageNet Large-Scale Visual Recognition Challenge, beating all current machine learning models. Today they have achieved state of the art results in areas such as self-driving cars, image classification, object localization, automatic image annotation, semantic segmentation of objects in images and natural language processing. 
+Artificial neural networks, or more specifically convolutional neural networks, were popularized 2012 when the model was used to win the annual ImageNet Large-Scale Visual Recognition Challenge, beating all current machine learning models. Today they have achieved state of the art results in areas such as self-driving cars, image classification, object localization, automatic image annotation, semantic segmentation of objects in images and natural language processing. 
 \cite{cs231n}
 
-An Artificial Neural Network is a biologically inspired machine learning model that tries to replicate the way the brain in mammals functions. There are many different kinds of Artificial Neural Networks which vary in structure and architecture. The basic principle behind Neural Networks is that they are made out of a number of layers of neurons. The layers are built recursively such that the output of one layer is the input of the next layer. They are stacked on top of each other and the number of layers an Artificial Neural Network has is called its depth. How the neurons of the previous layer are connected to the neurons of the next layer depends on what type on Artificial Neural Network it is.
+An Artificial neural network is a biologically inspired machine learning model that tries to replicate the way the brain in mammals functions. There are many different kinds of Artificial neural networks which vary in structure and architecture. The basic principle behind neural networks is that they are made out of a number of layers of neurons. The layers are built recursively such that the output of one layer is the input of the next layer. They are stacked on top of each other and the number of layers an Artificial neural network has is called its depth. How the neurons of the previous layer are connected to the neurons of the next layer depends on what type on Artificial neural network it is.
 \cite{cs231n}
 
 \subsection{Purpose}
-When I was first starting out in the field of deep learning I found there was a lack of fully derived explanations of the underlying mathematics behind Artificial Neural Networks. Sources had either only explained one simple forward pass through the network, or had only derived the most simple case, ignoring the more complicated general case. The aim of this paper is to present a clear derivation of the general case for Artificial Neural Networks and Convolutional Neural Networks. Furthermore, the aim is to apply the derived model of the Convolutional Neural Network to two problems: Classifying handwritten digits and to detect and pinpoint the location of a variable number of human faces in an image.
+When I was first starting out in the field of deep learning I found there was a lack of fully derived explanations of the underlying mathematics behind artificial neural networks. Sources had either only explained one simple forward pass through the network, or had only derived the most simple case, ignoring the more complicated general case. The aim of this paper is to present a clear derivation of the general case for Feed-forward neural networks and Convolutional neural networks. Furthermore, the aim is to apply the derived model of the Convolutional neural network to two problems: Classifying handwritten digits and to detect and pinpoint the location of a variable number of human faces in an image.
 
-\subsection{Frågeställning}
-What is a Feedforward Neural Network and Convolutional Neural Network?
-What is forward- and backpropgation and how is it derived in a Feedforward Neural Network and a Convolutional Neural Network?
-Can an Artificial Neural Network be trained to classify handwritten digits and detect a variable number of faces in images?
+\subsection{Problem statement}
+What is a Feedforward neural network and Convolutional neural network?
+What is forward- and backpropgation and how is it derived in a Feedforward neural network and a Convolutional neural network?
+Can an Artificial neural network be trained to classify handwritten digits and detect a variable number of faces in images?
 
 \newpage
 \section{Metod}
-The majority of the paper and the derivations of the models are based on the course material from Stanford's "CS231n: Convolutional Neural Networks for Visual Recognition" course. Some advanced concepts were taken from the papers they were introduced in (e.g. Batch Normalization) and expanded to fit the general case of an arbitrary input to the model. The general case for the mathematical model of the Feedforward Neural Network and the Convolutional Neural Network were derived by hand and implemented in C++ with the linear algebra library Eigen and in Python in pure NumPy, a library for scientific computing. The derived partial derivatives required by the models were compared with their numerical approximations using the formal definition of a derivative. 
+The majority of the paper and the derivations of the models are based on the course material from Stanford's "CS231n: Convolutional neural networks for Visual Recognition" course. Some advanced concepts were taken from the papers they were introduced in (e.g. Batch Normalization) and expanded to fit the general case of an arbitrary input to the model. The general case for the mathematical model of the Feedforward neural network and the Convolutional neural network were derived by hand and implemented in C++ with the linear algebra library Eigen and in Python in pure NumPy, a library for scientific computing. The derived partial derivatives required by the models were compared with their numerical approximations using the formal definition of a derivative. 
 
-When my own implementation of the Artificial Neural Networks became too computationally expensive and inefficient for the two problem cases classification of handwritten digits and dense face detection I implemented the models in Google's machine learning library TensorFlow and Facebook's GPU-accelerated tensor and dynamic neural network library PyTorch.
+When my own implementation of the Artificial neural networks became too computationally expensive and inefficient for the two problem cases classification of handwritten digits and dense face detection I implemented the models in Google's machine learning library TensorFlow and Facebook's GPU-accelerated tensor and dynamic neural network library PyTorch.
 
 \newpage
 \section{Resultat}
-
-
-\subsection{Tensors, indexing and notation}
-Tensorer är generaliseringen av vektor- och matrisbegreppen. En tensor med ordning 1 är en vektor $x \in \mathbb{R}^N$ och är en radvektor med $N$ element. Det kan dessutom tolkas som en endimensionell array. Matriser $M$ är tensorer med ordning 2 sådana att $M \in \mathbb{R}^{R \times N}$ och kan ses som en vektor av $R$ vektorer med $N$ element eller en tvådimensionell array med $R \times N$ element. En tensor med ordning $n$ indexeras med en $n$-tupel. Exempelvis indexeras en tensor $X \in \mathbb{R}^{R \times C \times H \times W}$ med fyr-tupeln $(r,c,h,w)$ där $0 \leq r < R$, $0 \leq c < C$, $0 \leq h < H$ och $0 \leq w < W$. \cite{cs231n}
-
-% En tensor med ordningn kan ses som en tensor med ordning1 vars element är tensorer med ordningn-1. Exempelvis är en vektor en vektor av skalärer och en matris en vektor av vektorer. Funktionen $vec()$ gör om en tensor med ordningn till en vektor genom att rekursivt använda den sistnämnda egenskapen av tensorer. \cite{convmath}
 
 \subsection{Feed-forward neural networks}
 A feed-forward neural network is the most elementary version of an artificial neural network. As all varying kinds of neural networks, a feed-forward neural network is made out of a number of layers of neurons. The unique property of a feed-forward neural network is that all the neurons in a layer are connected to every neuron in the next layer (see figure \ref{figfeedforward}). \cite{cs231n}
@@ -100,7 +94,7 @@ The network is trained to predict correct values by optimizing the fixed connect
 
 %values by defining a cost function such that the smaller the loss the higher quality the predicted value has.
 
-\subsection{Tensors, indexing and notation}
+\subsubsection{Tensors, indexing and notation}
 A tensor is the generalization of vectors and matrices. Scalars are tensors of order 0. A tensor of order 1 is a vector $x \in \mathbb{R}^N$ and is a row vector with $N$ elements. It can also be seen as a one-dimensional array. Matrices $M$ are tensors of order 2 such that $M \in \mathbb{R}^{R \times N}$ and can be viewed as a vector of $R$ elements where every element is another vector with $N$ scalar elements. Matrices can also be seen as a two-dimensional array with $RN$ elements. A tensor of order $n$ is an $n$-dimensional array and is indexed by an $n$-tuple. For instance, a tensor $X \in \mathbb{R}^{R \times C \times H \times W}$ is indexed by the four-tuple $(r,c,h,w)$ where $0 \leq r < R$, $0 \leq c < C$, $0 \leq h < H$ och $0 \leq w < W$. \cite{cs231n}
 
 \subsubsection{Forward propagation}
@@ -127,7 +121,7 @@ X_{rj}^{(l+1)} & = f(Z_{rj}^{(l+1)})
 
 The tensor of activations and weights are constructed in such as way that one forward pass through a single layer can be computed with a single dot product and having the bias term added to every element in the computed dot product. The activation function $f$ is then applied element-wise on each neuron: \cite{cs231n} \cite{wikiStanford}
 
-\begin{align}\label{feed-forward}
+\begin{align}
 Z^{(l+1)} & = X^{(l)}W^{(l)}+b^{l}\\
 X^{(l+1)} & = f(Z^{(l+1)})
 \end{align}
@@ -155,68 +149,90 @@ Common activation functions are Rectified Linear Units (ReLU), sigmoid ($\sigma$
   	\caption{A graph of ReLU, $\sigma$ och $\tanh$.} \label{activation_function}
 \end{figure}
 
-\textit{Rectified Linear Units ($ReLU$)}, \textit{sigmoid ($\sigma$)} och \textit{tangens hyperbolicus ($tanh$)}.
-
 \subsubsection{Cost function}
-Given an input $X$ and a ground truth $y$ the model wants to predict values $\hat{y}$ that resembles the ground truth as closely as possible. That is achieved by constructing a cost function that describes the quality of the prediction $\hat{y}$
+Given an input $X$ and a ground truth $y$ the model wants to predict values $\hat{y}$ which resembles the ground truth as closely as possible. It is achieved by defining a multivariate cost function $L(\theta; X, y)$  with the network's parameters $\theta$ (all the weights and biases) with respect to a single training example $(X, y)$. The cost function describes the quality of the prediction $\hat{y}$ such that a lower cost represents a more accurate prediction. One way of defining the cost function is to use the mean squared error as in equation \eqref{MSE}:
 
-
-
-the cost function is a multivariate function of the given input X and all the weights and biases of every layer. Because we cant change the input data of the model we have to only optimize the weights and biases of the network.
-
-Givet ett inmatningsvärde $X$ skapas ett närmevärde $\hat{y}$ som ska vara så nära det sanna värdet för y som möjligt. Initialt kommer $W^{(l)}$ vara slumpade för varje lager $l$ och nätverkets prognos kommer inte efterlikna det sökta värdet. Med hjälp av \textit{gradient descent} kan man iterativt träna modellen så det slutgiltiga värdet kommer så nära $y$ som möjligt. Detta görs genom att definiera en multivariat kostnadsfunktion $L(W, b; X,y)$ av alla nätverkets parametrar med avseende på ett träningsexempel $(X, y)$. Funktionen är ett mått på prognosen $\hat{y}$ kvalitet. Man definierar $L$ på ett sådant sätt att ju mindre värdemängd av $L$, desto högre kvalitet består $\hat{y}$ av. Ett sätt att definiera $L$ är exempelvis med en så kallad \textit{L2 kostnadsfunktion}: \cite{cs231n} \cite{wikiStanford}
-\begin{equation}
-\begin{split}
-L(\theta) 	& = {||\hat{y}-y||}^2 \\
-		& = {||f(f(f(XW^{(0)} +b^{(0)})W^{(1)} +b^{(1)})W^{(2)} +b^{(2)}) - y||}^2
-\end{split}
+\begin{equation}\label{MSE}
+L(\theta) = \frac{1}{RN} \sum^{R-1}_{r=0} \sum^{N-1}_{i=0} (\hat{y}_{r,i}-y_{r,i})^2
 \end{equation}
-Träningen av det neurala nätverket är processen där man hittar konstnadsfunktionens minimum med hjälp av \textit{gradient descent}.
+%& = {||f(f(f(XW^{(0)} +b^{(0)})W^{(1)} +b^{(1)})W^{(2)} +b^{(2)}) - y||}^2
+Where $R$ is the batch size and $N$ is the number of features in the last layer.
+
+The neural network is trained to predict accurate results by iterating through the training data and minimizing the cost function. Since the given input $X$ stays fixed, the network learns to optimize its weights $W^{(l)}$ and biases $b^{(l)}$ for every layer $l$.
 
 \subsubsection{Gradient Descent}
-Gradienten $\nabla L(\theta)$ är en vektor av partiella derivator med avseende på funktionen $L$ variabler $W^{(0)}$, $W^{(1)}$, ..., $W^{(l)}$, $b^{(0)}$, $b^{(1)}$, ..., $b^{(l)}$ som definieras genom: \cite{gradient} \cite{convmath} 
-\begin{equation}
+The gradient $\nabla L(\theta)$ is a vector of partial derivatives with respect to the parameters $\theta$ of the function $L$ defined by equation \eqref{EQgradient} and \eqref{EQgradientvector}: \cite{gradient} \cite{convmath} 
+\begin{equation}\label{EQgradient}
 \nabla L(\theta) : \mathbb{R}^n \to \mathbb{R}^n
 \end{equation}
-\begin{equation}
+\begin{equation}\label{EQgradientvector}
 \nabla L(\theta) = 
 	\begin{pmatrix} 
-		\pd{L(\theta)}{\theta^{(0)}} & 
-		\pd{L(\theta)}{\theta^{(1)}} &
-		\cdots &
-		\pd{L(\theta)}{\theta^{(n-1)}}
+		\pd{L(\theta)}{\theta_{0}}, & 
+		\pd{L(\theta)}{\theta_{1}}, &
+		\cdots, &
+		\pd{L(\theta)}{\theta_{n-1}}
 		
 		\end{pmatrix}
 \end{equation}
 
-Gradienten $\nabla L(\theta)$ visar riktningen vari värdemängdsökningen är som störst. Genom att ändra vikterna $\theta$ värde proportionellt med avseende på den negativa gradienten $-\nabla L(\theta)$ kan man iterativt modifiera $\theta$ tills man når funktionens minimum. Den mest grundläggande algoritmen för \textit{gradient descent} kallas för \textit{Stochastic Gradiant Descent (SGD)} och använder hyperparametern $\alpha$ för att beteckna träningshastigheten: \cite{gradient} \cite{convmath} \cite{wikiStanford}
+The gradient $\nabla L(\theta)$ shows the direction of steepest ascent in the point ($\theta_{0}$, $\theta_{0}$, ..., $\theta_{0}$) in the $n$-dimensional vector space $\mathbb{R}^{n}$. For a function $f(x)$ of a single variable $x$, the gradient is simply the derivative of the function with respect to $x$ and is the slope of the tangent line to $f$ at $x$. For a multivariate function $f(x,y)$ of two variables $x$ and $y$ the gradient would be the a two-dimensional vector of the slope in the x dimension and y dimension respectively. 
 
-\begin{equation}
+Gradient descent is the method of iteratively changing the values of $\theta$ proportionally to the negative gradient $-\nabla L(\theta)$ to minimize the function $L(\theta)$ (see figure \ref{figSGD}). The most basic version of gradient descent is called Stochastic Gradient Descent (SGD) and uses the hyperparameter $\alpha$, called learning rate, to control the magnitude of the gradient. Stochastic Gradient Descent is defined by equations (\ref{EQgradient}) and (\ref{SGD}).
+
+\begin{equation}\label{EQgradient}
 \pd{L(\theta)}{\theta^{(l)}} = \nabla_{\theta^{(l)}} L(\theta)
 \end{equation}
 \begin{equation}\label{SGD}
 \theta^{(l)} \to \theta^{(l)} - \alpha \pd{L(\theta)}{\theta^{(l)}}
 \end{equation}
-\begin{figure}[h]\label{figSGD}
+\begin{figure}[h]
 	\centering
   		\includegraphics[scale=0.5]{SGD.png}
-  	\caption{En illustration av gradient descent på en funktion med två variabler.\cite{figSGD}}
+  	\caption{An illustration of Stochastic Gradient Descent on a function of two variables. Red symbolizes a high value of the function while blue symbolizes a low value. The parameters are initialized at the global maximum and their values are altered iteratively to move in the direction of the negative gradient: the direction of steepest descent. \cite{figSGD}} \label{figSGD}
 \end{figure}
-Nätverket tränas genom att varje träningsexempel $(X,y)$ framåtpropageras och insätts i kostnadsfunktionen $L$. Genom processen som kallas för bakåtpropagering beräknas alla partiella derivator med avseende på en viss vikt och används för att uppdatera vikterna tills nätverkets prognos liknar de sanna värdena. \cite{gradient} \cite{convmath} \cite{wikiStanford}
-\subsubsection{Bakåtpropagering}
-De partiella derivatorna kan approximeras med hjälp av framåt, bakåt eller central differenskvot för partiella derivator: \cite{wikiStanford} \cite{gradient}
 
-\begin{equation}
-\pd{L(\theta)}{\theta^{(i)}} = \frac{L(\theta^{(0)},...,\theta^{(i)} + h, ..., \theta^{(n-1)})-L(\theta)}{h}
+\subsubsection{Backpropagation}
+Nätverket tränas genom att varje träningsexempel $(X,y)$ framåtpropageras och insätts i kostnadsfunktionen $L$. Genom processen som kallas för bakåtpropagering beräknas alla partiella derivator med avseende på en viss vikt och används för att uppdatera vikterna tills nätverkets prognos liknar de sanna värdena. \cite{gradient} \cite{convmath} \cite{wikiStanford}
+
+Backpropagation stands for "backwards propagation of errors" and is the process of calculating the partial derivatives of the loss function with respect to the model's parameters, or in other terms calculating the gradient. \cite{wikiStanford} \cite{gradient}
+
+The partial derivatives can be approximated numerically with the formal definition of a derivative defined by equation (\ref{EQderivativeDefinition}): \cite{wikiStanford} \cite{gradient}
+
+\begin{equation}\label{EQderivativeDefinition}
+\pd{L(\theta)}{\theta_{i}} = \frac{L(\theta_{0},...,\theta_{i} + h, ..., \theta_{n-1})-L(\theta)}{h}
 \end{equation}
 
-Detta skulle inte skapa några problem för det lilla neurala nätverket i figur 1 med 24 parametrar, men i själva verket har djupa neurala nätverk miljontals av parametrar som behöver en enorm datorkraft. Istället tillämpas regler för differentialkalkyl för att effektivt beräkna de partiella derivatorna. För ett godtyckligt lager $l$ används kedjeregeln för att bryta upp derivatan av $L$ med avseende på en vikt i tre bråk. På grund av att alla träningsexempel i mini-hopen använder vikten i fråga summeras alla exempel i mini-hopen $R$. För derivatan av de konstanta neuronerna summeras alla partiella derivator för det lagret. För att sambandet mellan två neuroner och en godtycklig vikt är linjär kan det enkelt deriveras. \cite{cs231n}
+This would not be a problem for the small neural network in figure \ref{figFCCmath} with a total of 24 parameters, but would be extremely inefficient for deep neural networks with millions of parameters. Instead, the chain rule is applied to calculate the precise value of the partial derivatives.
 
-Låt
-\begin{equation}
+Let $\delta^{(l)}$ denote the so called delta error at layer $l$, defined by equation (\ref{deltaerrordefinition}):
+
+\begin{equation}\label{deltaerrordefinition}
 \inpd{L(\theta)}{X^{(l)}} = \delta^{(l)}
 \end{equation}
-Derivatan av $L$ med avseende på ett lagers parameter beräknas genom: \cite{cs231n}
+
+The delta error is the partial derivative of the loss with respect to a specific neuron in model and is needed to efficiently calculate the gradient. The delta error can be interpreted as how much a specific neuron affects the total loss of the cost function. A deviation in value of a neuron with a big delta error results in a greater change of the total loss compared to a neuron with a small delta error. Because the activation of layer $l+1$ is a function of the previous layer $l$, the delta error can be computed recursively from the output layer and propagated backwards to the first layer in the network. By applying the chain rule the delta error $\inpd{L(\theta)}{X^{(l)}}$  at layer $l$ can be broken up into three partial derivatives $\inpd{L(\theta)}{X^{(l+1)}_{r,j}}$, $\inpd{X^{(l+1)}_{r,j}}{Z^{(l+1)}_{r,j}}$ and $\inpd{Z^{(l+1)}_{r,j}}{X^{(l)}_{r,i}}$. Since a single neuron in layer $l$ is connected to every neuron in layer $l+1$ you have to sum over every neuron in layer $l+1$. The first partial derivative is the delta error of the next layer and the other two partial derivatives can be derived from equations (1) and (2) and are easily differentiable since they are linear equations:
+\begin{equation}\label{dLdX_FCC}
+\begin{split}
+\delta^{(l)}_{r,i}
+	& = \pd{L(\theta)}{X^{(l)}_{r,i}}  \\
+	& = \sum^{N^{(l+1)}}_{j=0} \pd{L(\theta)}{X^{(l+1)}_{r,j}} \pd{X^{(l+1)}_{r,j}}{Z^{(l+1)}_{r,j}} \pd{Z^{(l+1)}_{r,j}}{X^{(l)}_{r,i}} \\
+	& = \sum^{N^{(l+1)}}_{j=0} \delta^{(l+1)}_{r,j} f'(Z^{(l+1)}_{r,i}) \ W^{(l)}_{j,i} 
+\end{split}
+\end{equation}
+
+The delta error of the last layer $L-1$ depends on what loss function is used. For the mean squared error the delta error of the output layer is defined by equation (\ref{MSEdelta}): 
+
+\begin{equation}\label{MSEdelta}
+\begin{split}
+\delta^{(l_{sista})}
+	& = \pd{L(\theta)}{\hat{y}}  \\
+	& = \frac{2}{RN} (\hat{y}-y)
+\end{split}
+\end{equation}
+
+With the delta error defined at every layer in the network the partial derivative of the loss function with respect to the networks parameters can be calculated. Just like equation (\ref{dLdX_FCC}) $\inpd{L(\theta)}{X^{(l)}}$ is broken up into three partial derivatives $\inpd{L(\theta)}{X^{(l+1)}_{r,i}}$, $\inpd{X^{(l+1)}_{r,i}}{Z^{(l+1)}_{r,i}}$ and $\inpd{Z^{(l+1)}_{r,i}}{W^{(l)}_{i,j}}$. All the examples in the mini-batch are summed over since the weights affect every single example. $\inpd{L(\theta)}{X^{(l+1)}_{r,i}}$ is the delta error and the other two partial derivatives are derived from equations (1) and (2):
+
 \begin{equation}\label{dLdW_FCC}
 \begin{split}
 \pd{L(\theta)}{W^{(l)}_{j,i}} 
@@ -224,6 +240,8 @@ Derivatan av $L$ med avseende på ett lagers parameter beräknas genom: \cite{cs
 	& = \sum^{R-1}_{r=0} \delta^{(l+1)}_{r,i} f'(Z^{(l+1)}_{r,i}) \ X^{(l)}_{r,j}\\
 \end{split}
 \end{equation}
+
+The partial derivative of the loss function with respect to the biases are found in a similar way to equation (\ref{dLdX_FCC}) and (\ref{dLdW_FCC}):
 \begin{equation}\label{dLdb_FCC}
 \begin{split}
 \pd{L(\theta)}{b^{(l)}} 
@@ -231,30 +249,12 @@ Derivatan av $L$ med avseende på ett lagers parameter beräknas genom: \cite{cs
 	& = \sum^{R-1}_{r=0} \delta^{(l+1)}_{r,i} f'(Z^{(l+1)}_{r,i}) \\
 \end{split}
 \end{equation}
-$\delta^{(l)}$, också kallat \textit{delta-felet}, är enligt dess definition derivatan av $L$ med avseende på ett visst neuron. Det kan tolkas som hur känslig värdemängdsförändringen för kostnadsfunktionen är för ett visst neuron vid lager $l$. En vikt kopplat till ett neuron med högt delta-fel är mer ansvarig för skiftning i kostnaden än ett neuron med lågt delta-fel. Genom att propagera nervsignalen baklänges i nätverket med kostnadsfunktionens värde som inputvärde kan man beräkna alla neuroner $X^{(l)}$ påverkan på $L$ vid ett godtyckligt lager $l$. \cite{cs231n}
 
-Bakåtpropageringen av delta-felen uttrycks rekursivt från det sista lagret $\hat{y}$. Delta-felet vid det sista lagret $l_{sista}$ beror på kostnadsfunktionen. För en L2 kostnadsfunktion definieras delta-felet som: \cite{cs231n}
-\begin{equation}
-\begin{split}
-\delta^{(l_{sista})}
-	& = \pd{L(\theta)}{\hat{y}}  \\
-	& = 2 ||\hat{y}-y||
-\end{split}
-\end{equation}
-Likt ekvation \eqref{dLdW_FCC} summeras alla  partiella derivator av neuronerna vid användingen av kedjeregeln: \cite{cs231n}
 
-\begin{equation}\label{dLdX_FCC}
-\begin{split}
-\delta^{(l)}_{r,i}
-	& = \pd{L(\theta)}{X^{(l)}_{r,i}}  \\
-	& = \sum^{N'}_{j=0} \pd{L(\theta)}{X^{(l+1)}_{r,j}} \pd{X^{(l+1)}_{r,j}}{Z^{(l+1)}_{r,j}} \pd{Z^{(l+1)}_{r,j}}{X^{(l)}_{r,i}} \\
-	& = \sum^{N'}_{j=0} \delta^{(l+1)}_{r,j} f'(Z^{(l+1)}_{r,i}) \ W^{(l)}_{j,i} 
-\end{split}
-\end{equation}
-
+\subsubsection{Training neural networks}
+The model is tra
 Bakåtpropageringen sker lager till lager med start i outputlagret. Vid varje lager måste delta-felet $\delta^{(l)}$ bakåtpropageras och derivatan av det lagrets parametrar $W^{(l)}$ och $b^{(l)}$ beräknas. \cite{cs231n}
 
-\subsection{Träning av neurala nätverk}
 Neurala nätverk tränas genom att iterativt uppdatera nätverkets vikter med hjälp av \textit{gradient descent}. Den hela träningsdatabasen delas in i mini-hopar och väljs ut slumpvist. En iteration av SGD appliceras genom att framåtpropagera ett träningsexempel och sedan bakåtpropagera felet för att beräkna gradienten av kostnadsfunktionen med avseende på alla vikter i närverket. Denna process upprepas tills nätverkets vikter konvergerar och nätverkets prognos efterliknar verkligheten. \cite{cs231n}
 
 Två implementationer av ett feed-forward neuralt nätverk kan hittas på github i python och C++: \url{https://github.com/nikitazozoulenko}
