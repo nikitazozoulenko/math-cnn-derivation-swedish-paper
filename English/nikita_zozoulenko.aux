@@ -5,11 +5,11 @@
 \@writefile{toc}{\contentsline {subsection}{\numberline {1.1}Background}{4}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {1.2}Purpose}{4}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {1.3}Problem statement}{5}}
-\@writefile{toc}{\contentsline {section}{\numberline {2}Metod}{6}}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Method}{6}}
 \citation{cs231n}
 \citation{cs231n}
 \citation{cs231n}
-\@writefile{toc}{\contentsline {section}{\numberline {3}Resultat}{7}}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Results and discussion}{7}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Feed-forward neural networks}{7}}
 \@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces An illustration of a simple feed-forward neural network. It consists of 4 layers: 1 input layer (red), 2 hidden layers (blue) and 1 output layer (green). A circle represents a neuron. Every neuron in a layer is connected to all the neurons in the following layer, shown by the grey lines between the neurons. GL\IeC {\"O}M INTE ATT REFERERA}}{7}}
 \newlabel{figfeedforward}{{1}{7}}
@@ -42,57 +42,40 @@
 \citation{convmath}
 \citation{figSGD}
 \citation{figSGD}
-\citation{gradient}
-\citation{convmath}
 \citation{wikiStanford}
+\citation{gradient}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.4}Gradient Descent}{11}}
-\newlabel{EQgradient}{{9}{11}}
+\newlabel{EQgradientspace}{{9}{11}}
 \newlabel{EQgradientvector}{{10}{11}}
 \newlabel{EQgradient}{{11}{11}}
 \newlabel{SGD}{{12}{11}}
-\citation{wikiStanford}
-\citation{gradient}
 \citation{wikiStanford}
 \citation{gradient}
 \@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces An illustration of Stochastic Gradient Descent on a function of two variables. Red symbolizes a high value of the function while blue symbolizes a low value. The parameters are initialized at the global maximum and their values are altered iteratively to move in the direction of the negative gradient: the direction of steepest descent. \cite  {figSGD}}}{12}}
 \newlabel{figSGD}{{4}{12}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.5}Backpropagation}{12}}
 \newlabel{EQderivativeDefinition}{{13}{12}}
-\newlabel{deltaerrordefinition}{{14}{13}}
+\newlabel{deltaerrordefinition}{{14}{12}}
 \newlabel{dLdX_FCC}{{15}{13}}
 \newlabel{MSEdelta}{{16}{13}}
-\citation{cs231n}
-\citation{cs231n}
 \citation{cs231n}
 \newlabel{dLdW_FCC}{{17}{14}}
 \newlabel{dLdb_FCC}{{18}{14}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.6}Training neural networks}{14}}
-\citation{cs231n}
-\citation{cs231n}
-\citation{convmath}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Konvolutionella neuala n\IeC {\"a}tverk}{15}}
-\newlabel{figkatter}{{3.2}{15}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Resultatet av att ett filter f\IeC {\"o}r vertikal respektive horizontell kantdetektering har sammanrullat \IeC {\"o}ver en bild av en katt.}}{15}}
-\citation{cs231n}
-\citation{cs231n}
-\citation{convmath}
-\citation{cs231n}
-\citation{convmath}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Convolutional neural networks}{14}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces The result of a filter for vertical and horizontal edge detection applied on a picture of a cat.}}{15}}
+\newlabel{figkatter}{{5}{15}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.1}Model structure, parameters and notation}{15}}
 \citation{figboatcnn}
 \citation{figboatcnn}
-\citation{cs231n}
-\citation{convmath}
-\citation{cs231n}
-\citation{convmath}
 \newlabel{CNNeq}{{19}{16}}
-\newlabel{figboatcnn}{{3.2}{16}}
-\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces En illustration av ett konvolutionellt neuralt n\IeC {\"a}tverk. Varje skiva \IeC {\"a}r en egen \textit  {feature map}. \cite  {figboatcnn}}}{16}}
-\citation{cs231n}
-\citation{convmath}
 \citation{figkonv}
 \citation{figkonv}
 \citation{cs231n}
 \citation{convmath}
+\newlabel{figboatcnn}{{3.2.1}{17}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces En illustration av ett konvolutionellt neuralt n\IeC {\"a}tverk. Varje skiva \IeC {\"a}r en egen \textit  {feature map}. \cite  {figboatcnn}}}{17}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.2}Convolution forward propagation}{17}}
 \citation{cs231n}
 \citation{convmath}
 \citation{convarithmetic}
@@ -101,9 +84,12 @@
 \citation{convarithmetic}
 \citation{cs231n}
 \citation{convmath}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.1}Konvolutionslagret fram\IeC {\r a}tpropagering}{17}}
-\newlabel{figkonv}{{3.2.1}{17}}
-\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces En k\IeC {\"a}rna med storlek $3 \times 3$ sammanrullar \IeC {\"o}ver ett omr\IeC {\r a}de med dimensioner $6 \times 6$ och bildar en aktivering med dimensionerna $4 \times 4$. \cite  {figkonv}}}{17}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces A kernel of size $1 \times 3 \times 3$ convolving over activations of size $1 \times 7 \times 7$, producing activations of size $1 \times 4 \times 4$ in the next layer. \cite  {figkonv}}}{18}}
+\newlabel{figkonv}{{7}{18}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces An activation with size $1 \times 3 \times 3$ is zero-padded with $p=1$ and the resulting tensor is of size $1 \times 5 \times 5$.}}{18}}
+\newlabel{figzeropad}{{8}{18}}
+\newlabel{eqkonvW}{{20}{18}}
+\newlabel{eqkonvH}{{21}{18}}
 \citation{cs231n}
 \citation{convmath}
 \citation{convarithmetic}
@@ -111,10 +97,8 @@
 \citation{webconv1}
 \citation{webconv2}
 \citation{webconv3}
-\newlabel{figzeropad}{{3.2.1}{18}}
-\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Ett omr\IeC {\r a}de med dimensioner $3 \times 3$ zero-paddas med $p=1$ och resulterande omr\IeC {\r a}de f\IeC {\r a}r dimensioner $5 \times 5$.}}{18}}
-\newlabel{konvolution}{{24}{18}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.2}Konvolutionslagret bak\IeC {\r a}tpropagering}{18}}
+\newlabel{konvolution}{{24}{19}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.3}Convolution backpropagation}{19}}
 \citation{webconv1}
 \citation{webconv2}
 \citation{webconv3}
@@ -122,17 +106,18 @@
 \citation{webconv2}
 \citation{webconv3}
 \citation{cs231n}
-\citation{cs231n}
 \citation{webconv1}
 \citation{webconv2}
 \citation{webconv3}
-\newlabel{konvolutionbackprop}{{25}{19}}
+\newlabel{konvolutionbackprop}{{25}{20}}
+\newlabel{eqconvfinal}{{27}{20}}
 \citation{convmath}
 \citation{cs231n}
 \citation{cs231n}
 \citation{convmath}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.3}Aktiveringsfunktionslager fram\IeC {\r a}tpropagering}{20}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.4}Aktiveringsfunktionslager bak\IeC {\r a}tpropagering}{20}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.4}Activation function forward propagation}{21}}
+\newlabel{eqactivation}{{29}{21}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.5}Activation function backpropagation}{21}}
 \citation{cs231n}
 \citation{convmath}
 \citation{convarithmetic}
@@ -141,14 +126,9 @@
 \citation{convarithmetic}
 \citation{cs231n}
 \citation{convmath}
-\citation{cs231n}
-\citation{convmath}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.5}Maxpoollagret fram\IeC {\r a}tpropagation}{21}}
-\newlabel{figmaxpool}{{3.2.5}{21}}
-\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Maxpooling med $k=2$ och $s=2$ av ett omr\IeC {\r a}de med dimensioner $4 \times 4$ d\IeC {\"a}r resultatet bildar ett omr\IeC {\r a}de med dimensionerna $2 \times 2$.}}{21}}
-\citation{cs231n}
-\citation{convmath}
-\citation{webconv3}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.6}Maxpooling forward propagation}{22}}
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Maxpooling with kernel size $k=2$ and stride $s=2$ on an area of size $4 \times 4$. The resulting area has size $2 \times 2$}}{22}}
+\newlabel{figmaxpool}{{9}{22}}
 \citation{cs231n}
 \citation{convmath}
 \citation{webconv3}
@@ -156,9 +136,12 @@
 \citation{convmath}
 \citation{webconv3}
 \citation{cs231n}
+\citation{convmath}
+\citation{webconv3}
+\citation{cs231n}
 \citation{batchnorm}
-\newlabel{maxpool}{{34}{22}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.6}Maxpoollagret bak\IeC {\r a}tpropagering}{22}}
+\newlabel{maxpool}{{34}{23}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.7}Maxpooling backpropagation}{23}}
 \citation{cs231n}
 \citation{batchnorm}
 \citation{cs231n}
@@ -169,50 +152,57 @@
 \citation{batchnorm}
 \citation{cs231n}
 \citation{batchnorm}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.7}Batch Normalization fram\IeC {\r a}tpropagering}{23}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.8}Batch Normalization forwardpropagation}{24}}
+\newlabel{eqmuc}{{37}{24}}
+\newlabel{eqsigmac}{{38}{24}}
+\newlabel{xhat}{{39}{24}}
+\newlabel{eqbn}{{40}{24}}
+\citation{webBN1}
+\citation{webBN2}
+\citation{webBN1}
+\citation{webBN2}
+\newlabel{eqewmamu}{{41}{25}}
+\newlabel{eqewmasigma}{{42}{25}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.9}Batch Normalization backpropagation}{25}}
+\newlabel{kroneckerdelta}{{43}{25}}
+\newlabel{kroneckerdeltaDERIVATIVE}{{44}{25}}
+\newlabel{kroneckerdeltaSUM}{{45}{25}}
 \citation{webBN1}
 \citation{webBN2}
 \citation{webBN1}
 \citation{webBN2}
 \citation{webBN1}
 \citation{webBN2}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.8}Batch Normalization bak\IeC {\r a}tpropagering}{24}}
-\newlabel{kroneckerdelta}{{43}{24}}
-\newlabel{kroneckerdeltaDERIVATIVE}{{44}{24}}
-\newlabel{kroneckerdeltaSUM}{{45}{24}}
-\newlabel{BN_delta_error}{{46}{24}}
 \citation{webBN1}
 \citation{webBN2}
+\newlabel{BN_delta_error}{{46}{26}}
+\newlabel{BN_dxdxhat}{{47}{26}}
+\newlabel{BN_kedjeregeln}{{48}{26}}
+\newlabel{mu'}{{49}{26}}
+\newlabel{sigma'}{{50}{27}}
 \citation{webBN1}
 \citation{webBN2}
-\citation{webBN1}
-\citation{webBN2}
-\newlabel{BN_dxdxhat}{{47}{25}}
-\newlabel{BN_kedjeregeln}{{48}{25}}
-\newlabel{mu'}{{49}{25}}
-\newlabel{sigma'}{{50}{25}}
-\citation{webBN1}
-\citation{webBN2}
-\newlabel{finalBNeq}{{51}{26}}
+\newlabel{finalBNeq}{{51}{28}}
 \citation{cs231n}
 \citation{cs231n}
 \citation{notesonbackprop}
 \citation{websoftmax}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.9}Softmax fram\IeC {\r a}tpropagering}{27}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.10}Softmax bak\IeC {\r a}tpropagering}{27}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.10}Softmax forward propagation}{29}}
+\newlabel{softmax}{{54}{29}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.11}Softmax backpropagation}{29}}
 \citation{MNIST}
 \citation{cs231n}
 \citation{MNIST}
 \citation{cs231n}
 \citation{notesonbackprop}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Problem Cases}{28}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.1}Classification of handwritten digits}{28}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Problem Cases}{30}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.1}Classification of handwritten digits}{30}}
 \citation{cs231n}
 \citation{retinanet}
-\newlabel{figMNIST}{{3.3.1}{29}}
-\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces Tio bilder av handskrivna siffror fr\IeC {\r a}n MNISTdatabasen. \cite  {MNIST}}}{29}}
-\newlabel{MNISTmodel}{{3.3.1}{29}}
-\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces Modellen som anv\IeC {\"a}ndes f\IeC {\"o}r att l\IeC {\"a}sa av handskrivna siffror. Batch Normalization ben\IeC {\"a}mns med BN, konvolution menas en konvolution med k\IeC {\"a}rnstorlek k = 5 och stride s = 2. ReLU \IeC {\"a}r aktiveringsfunktionen Rectified Linear Units och softmax \IeC {\"a}r softmaxlagret.}}{29}}
+\newlabel{figMNIST}{{3.3.1}{31}}
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces Tio bilder av handskrivna siffror fr\IeC {\r a}n MNISTdatabasen. \cite  {MNIST}}}{31}}
+\newlabel{MNISTmodel}{{3.3.1}{31}}
+\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces Modellen som anv\IeC {\"a}ndes f\IeC {\"o}r att l\IeC {\"a}sa av handskrivna siffror. Batch Normalization ben\IeC {\"a}mns med BN, konvolution menas en konvolution med k\IeC {\"a}rnstorlek k = 5 och stride s = 2. ReLU \IeC {\"a}r aktiveringsfunktionen Rectified Linear Units och softmax \IeC {\"a}r softmaxlagret.}}{31}}
 \citation{cs231n}
 \citation{iou}
 \citation{iou}
@@ -220,21 +210,21 @@
 \citation{resnet}
 \citation{retinanet}
 \citation{fpn}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.2}Dense Face Detection and Localization}{30}}
-\newlabel{figiou}{{3.3.2}{30}}
-\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces IoU definieras som storleken av snittet av tv\IeC {\r a} m\IeC {\"a}nger A och B dividerat med storleken av unionen av A och B. En st\IeC {\"o}rre IoU medf\IeC {\"o}r att prognosen \IeC {\"a}r n\IeC {\"a}rmare sanningen. \cite  {iou}}}{30}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.2}Dense Face Detection and Localization}{32}}
+\newlabel{figiou}{{3.3.2}{32}}
+\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces IoU definieras som storleken av snittet av tv\IeC {\r a} m\IeC {\"a}nger A och B dividerat med storleken av unionen av A och B. En st\IeC {\"o}rre IoU medf\IeC {\"o}r att prognosen \IeC {\"a}r n\IeC {\"a}rmare sanningen. \cite  {iou}}}{32}}
 \citation{retinanet}
 \citation{retinanet}
 \citation{resnet}
 \citation{retinanet}
 \citation{fpn}
 \citation{retinanet}
-\newlabel{figiou}{{3.3.2}{31}}
-\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces RetinaNets arkitektur fr\IeC {\r a}n \textit  {Focal Loss for Dense Object Detection} (Lin et al.). Varje pyramidniv\IeC {\r a} matas in i ett klassifikationshuvud och ett regressionshuvud. \cite  {retinanet}}}{31}}
-\@writefile{toc}{\contentsline {section}{\numberline {4}Diskussion}{32}}
+\newlabel{figiou}{{3.3.2}{33}}
+\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces RetinaNets arkitektur fr\IeC {\r a}n \textit  {Focal Loss for Dense Object Detection} (Lin et al.). Varje pyramidniv\IeC {\r a} matas in i ett klassifikationshuvud och ett regressionshuvud. \cite  {retinanet}}}{33}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Conclusion}{34}}
 \bibcite{cs231n}{1}
-\newlabel{results1}{{3.3.2}{33}}
-\@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces Kvantitativa resultat fr\IeC {\r a}n valideringsdatan fr\IeC {\r a}n WIDERFace: Bilder som modellen aldrig har sett tidigare.}}{33}}
+\newlabel{results1}{{3.3.2}{35}}
+\@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces Kvantitativa resultat fr\IeC {\r a}n valideringsdatan fr\IeC {\r a}n WIDERFace: Bilder som modellen aldrig har sett tidigare.}}{35}}
 \bibcite{wikiStanford}{2}
 \bibcite{notesonbackprop}{3}
 \bibcite{convmath}{4}
