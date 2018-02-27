@@ -45,7 +45,7 @@
 Nikita Zozoulenko Na15b \\*
 nikita.zozoulenko@gmail.com \\*
 Katedralskolan i Linköping\\*
-Handledare: Rickard Pettersson \\*
+Handledare: Rickard Engström \\*
 VT 2017 - HT 2018 \\*
 \end{flushright}
 \newpage
@@ -661,15 +661,27 @@ En iteration av framåtpropageringen tar 20 ms vilket möjliggör att modellen k
 \end{figure}
 
 \section{Diskussion}
-Vad är ett konvolutionellt neuralt nätverk?
-Hur härleds framåt- och bakåtpropagering i konvolutionella neurala nätverk?
-Hur kan modellen tillämpas för att implementera sifferavläsning, ansiktsigenkänning och objektdetektering i bilder?
-
 Den matematiska modellen av artificiella neurala nätverk och konvolutionella neurala nätverk, samt bakåt- och framåtpropagering förklaras och härleds i sektion 3.2 och 3.3. Ett exempel på hur modellen kan tillämpas är att klassificera handskrivna siffror, som i sektion 3.4.1. 
 En annan möjlighet är att anpassa ett konvolutionellt neuralt nätverk för att detektera alla ansikten i en digital bild. På grund av att en iteration av algoritmen tar 20 ms är det möjligt att köra modellen i realtid. Det kan exempelvis användas i övervakningskameror eller inom robotik för att känna igen människoansikten i realtid. 
 
 Algoritmen är dock inte perfekt och har flera brister. Modellen prognostiserar att det finns ansikten på flera ställen där det inte finns några i verkligheten. För att undankomma detta låter jag endast modellen visa upp bounding boxes med sannolikhet större än 0.5 att det finns ett ansikte där. Resultatet blir att modellen inte hittar 100\% av all ansikten i bilden (se figur 13). Ytterligare har modellen problem med små ansikten. Detta är dels på grund av att modellen inte kan urskilja ett ansikte med så lite information (ca minimum $10^2$ pixlar per ansikte), och dels för att FaceNet prognostiserar ca 30 000 olika anchors för de minsta storlekarna. Detta leder till att klassifikationskostnaden består av till mestadels negativa exempel. Delta-felet av bakgrundsklasserna dominerar och gör att delta-felet av förgrundsklassen (ansikten) inte har en stor påverkan på den slutgiltiga gradienten.
 
+\section{Källkritik}
+\subsection{CS231n: Convolutional Neural Networks for Visual Recognition}
+Angående äkthetskriteriet är källan en kurs utgiven av Stanford, ett av världens mest prestigefulla universitet. Kursen är gjord av Fei-Fei Li och Andrej Karpathy vilka är experter inom området Deep learning. Fei-Fei Li har varit författare för över 100 olika publicerade vetenskapliga artiklar inom maskininlärning och är professor på Stanford. Andrej Karpathy är en doktorand från Stanford och har arbetet för bland annat Google, DeepMind och OpenAI. Just nu arbetar han som "Director of AI" hos Tesla. Informationen i kursen kommer från experter inom området.
+
+Enligt tendenskriteriet är källan opartisk. Stanford är en av de mest prestigefulla universiteten i världen och skulle inte riskera att ge ut felaktig eller vinklad information. Det skulle dessutom försämra föreläsarnas rykten inom forskarvärlden.
+
+Angående beroendekriteriet är källan en kombination av att vara en förstahandskälla och andrahandskälla. Å ena sidan kan Li och Karpathy bidra med deras egen forskning som en förstahandskälla, men å andra sidan är majoriteten av undervisningsmaterialet inte något som förelasarna själv har kommit på.
+
+Enligt tidskriteriet ligger källan bra till. Kursen är endast två år gammal och innehåller den nyaste tekniken inom deep learning. Trots att maskininlärning är ett snabbt växande område spelar det inte en stor roll att kursen är två år gammal för att kursen lär ut grunderna inom konvolutionella neurala nätverk för dataseende: De nya upptäckterna som sker efter kursen gavs ut är inte relevanta för målgruppen.
+
+\subsection{Batch normalization: Accelerating deep network training by reducing internal covariate shift.}
+Källan är en vetenskaplig artikel av Sergey Ioffe och Christian Szegedy. De är båda doktorander och forskare på Google. Deras forsking och denna källa har varit kritisk för den fortsatta utvecklingen för neurala nätverk och deep learning. Enligt äkthetskriteriet är källan trovärdig. Pappret har genomgått peer review och har implementerats hundratals gånger av olika företag och privatpersoner i flera olika modeller. Detsamma gäller tendenskriteriet.
+
+Enligt beroendekriteriet är källan en förstahandskälla. Källan beskriver forskningen som Ioffe och Szegedy har genomfört. 
+
+Angående tidskriteriet är källan av hög kvalité. Den vetenskapliga artikeln var publicerad år 2015 och innehåller moderna tekniska framsteg inom deep learning. Källan är digitaliserad och har ingen risk att bli utsatt för narrativ smitta på grund av att originalpappret är spriden och arkiverad över nätet. 
 
 \begin{thebibliography}{99}	
 \bibitem{cs231n} 

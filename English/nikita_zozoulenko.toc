@@ -25,5 +25,5 @@
 \contentsline {subsubsection}{\numberline {3.2.11}Softmax backpropagation}{29}
 \contentsline {subsection}{\numberline {3.3}Problem Cases}{30}
 \contentsline {subsubsection}{\numberline {3.3.1}Classification of handwritten digits}{30}
-\contentsline {subsubsection}{\numberline {3.3.2}Dense Face Detection and Localization}{32}
-\contentsline {section}{\numberline {4}Conclusion}{34}
+\contentsline {subsubsection}{\numberline {3.3.2}Dense Face Detection and Localization}{33}
+\contentsline {section}{\numberline {4}Conclusion}{37}

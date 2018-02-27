@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Arch Linux) (preloaded format=pdflatex 2018.1.15)  7 FEB 2018 18:19
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Arch Linux) (preloaded format=pdflatex 2018.1.15)  21 FEB 2018 21:55
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -716,7 +716,7 @@ kt ska-pan-de av un-der-tex-ter
  []
 
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Underfull \vbox (badness 7685) has occurred while \output is active []
 
  [3]
 Overfull \hbox (29.75812pt too wide) in paragraph at lines 67--68
@@ -1180,115 +1180,139 @@ e 659.
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 
-Overfull \hbox (48.10327pt too wide) in paragraph at lines 664--667
-\T1/cmr/m/n/14.4 Vad är ett kon-vo-lu-tio-nellt neu-ralt nät-verk? Hur här-leds
- framåt- och bak-åt-pro-pa-ge-ring
- []
-
-
-Overfull \hbox (35.16112pt too wide) in paragraph at lines 664--667
-\T1/cmr/m/n/14.4 i kon-vo-lu-tio-nel-la neu-ra-la nät-verk? Hur kan mo-del-len 
-tilläm-pas för att im-ple-men-te-ra
- []
-
-
-Overfull \hbox (71.18164pt too wide) in paragraph at lines 671--672
+Overfull \hbox (71.18164pt too wide) in paragraph at lines 667--668
 \T1/cmr/m/n/14.4 30 000 oli-ka an-chors för de mins-ta stor-le-kar-na. Det-ta l
 e-der till att klas-si-fi-ka-tions-kost-na-den
  []
 
 [29]
+Overfull \hbox (3.7919pt too wide) in paragraph at lines 671--672
+\T1/cmr/m/n/14.4 och Ope-nAI. Just nu ar-be-tar han som DD-irector of AI"hos Te
+s-la. In-for-ma-tio-nen
+ []
+
+
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [30 <./results1.png (PNG copy)>]
-Underfull \hbox (badness 2435) in paragraph at lines 698--703
+Overfull \hbox (16.90091pt too wide) in paragraph at lines 673--674
+[]\T1/cmr/m/n/14.4 Enligt ten-den-skri-te-ri-et är käl-lan opar-tisk. Stan-ford
+ är en av de mest pre-stige-ful-la
+ []
+
+
+Overfull \hbox (65.81203pt too wide) in paragraph at lines 673--674
+\T1/cmr/m/n/14.4 in-for-ma-tion. Det skul-le dess-utom för-säm-ra fö-re-lä-sar-
+nas ryk-ten in-om for-skar-värl-den. 
+ []
+
+
+Overfull \hbox (41.70218pt too wide) in paragraph at lines 675--676
+[]\T1/cmr/m/n/14.4 Angående be-ro-en-de-kri-te-ri-et är käl-lan en kom-bi-na-ti
+on av att va-ra en första-handskäl-la
+ []
+
+
+Overfull \hbox (34.8044pt too wide) in paragraph at lines 682--683
+[]\T1/cmr/m/n/14.4 Enligt be-ro-en-de-kri-te-ri-et är käl-lan en första-handskä
+l-la. Käl-lan be-skri-ver forsk-ning-en
+ []
+
+
+Overfull \hbox (12.68451pt too wide) in paragraph at lines 684--685
+\T1/cmr/m/n/14.4 smit-ta på grund av att ori-gi-nal-papp-ret är spri-den och ar
+-ki-ve-rad över nä-tet. 
+ []
+
+[31]
+Underfull \hbox (badness 2435) in paragraph at lines 710--715
 []\T1/cmr/m/it/14.4 High Per-for-man-ce Con-vo-lu-tio-nal Neu-ral Networks for 
 Docu-ment
  []
 
 
-Underfull \hbox (badness 3449) in paragraph at lines 698--703
+Underfull \hbox (badness 3449) in paragraph at lines 710--715
 \T1/cmr/m/n/14.4 Works-hop on Fron-ti-ers in Hand-wri-ting Re-cog-ni-tion. La B
 au-le,
  []
 
 
-Underfull \hbox (badness 7869) in paragraph at lines 705--709
+Underfull \hbox (badness 7869) in paragraph at lines 717--721
 []\T1/cmr/m/it/14.4 Unsupervised Fe-a-tu-re Le-ar-ning and Deep Le-ar-ning. \T1
 /cmr/m/n/14.4 Stand-ford
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 705--709
+Underfull \hbox (badness 10000) in paragraph at lines 717--721
 \T1/cmr/m/n/14.4 Uni-ver-si-ty, De-part-ment of Com-pu-ter Sci-ence. URL
  []
 
 
-Underfull \hbox (badness 1478) in paragraph at lines 721--724
+Underfull \hbox (badness 1478) in paragraph at lines 733--736
 \T1/cmr/m/it/14.4 in-ter-nal co-va-ri-a-te shift. \T1/cmr/m/n/14.4 S. Iof-fe oc
 h C. Sze-ge-dy. arX-iv pre-print
  []
 
 
-Underfull \hbox (badness 2318) in paragraph at lines 726--731
+Underfull \hbox (badness 2318) in paragraph at lines 738--743
 []\T1/cmr/m/it/14.4 Backpropagation In Con-vo-lu-tio-nal Neu-ral Networks. \T1/
 cmr/m/n/14.4 J. Ka-fu-nah.
  []
 
-[31]
-Underfull \hbox (badness 10000) in paragraph at lines 753--757
+[32]
+Underfull \hbox (badness 10000) in paragraph at lines 765--769
 []\T1/cmr/m/it/14.4 Convolutional Neu-ral Networks. \T1/cmr/m/n/14.4 A. Gi-bi-a
 n-sky. URL
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 766--770
+Underfull \hbox (badness 10000) in paragraph at lines 778--782
 \T1/cmr/m/n/14.4 Re-se-arch, Red-mond. URL http://yann.lecun.com/exdb/mnist/.
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 790--795
+Underfull \hbox (badness 10000) in paragraph at lines 802--807
 []\T1/cmr/m/it/14.4 Deep le-ar-ning for com-ple-te be-gin-ners: con-vo-lu-tio-n
 al neu-ral
  []
 
 
-Underfull \hbox (badness 7944) in paragraph at lines 790--795
+Underfull \hbox (badness 7944) in paragraph at lines 802--807
 \T1/cmr/m/it/14.4 networks with ke-ras. \T1/cmr/m/n/14.4 P. Ve-li£ko-vi¢. Ca-me
 bridge Spark. URL
  []
 
 
-Underfull \hbox (badness 4353) in paragraph at lines 790--795
+Underfull \hbox (badness 4353) in paragraph at lines 802--807
 \T1/cmr/m/n/14.4 https://cambridgespark.com/content. Se-nast upp-da-te-rad 20 m
 ars
  []
 
 
-Overfull \hbox (40.2623pt too wide) in paragraph at lines 803--806
+Overfull \hbox (40.2623pt too wide) in paragraph at lines 815--818
 []\T1/cmr/m/n/14.4 Jaccard In-dex. Wi-ki-pe-dia. URL https://en.wikipedia.org/w
 iki/Jaccard_-in-dex.
  []
 
-
-Underfull \hbox (badness 1221) in paragraph at lines 808--815
+[33]
+Underfull \hbox (badness 1221) in paragraph at lines 820--827
 \T1/cmr/m/n/14.4 Ross B. Girs-hick, Ka-i-ming He and Pi-otr Dollár. arX-iv pre-
 print
  []
 
-[32] [33] (./test.aux)
+[34] (./test.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 4782 strings out of 492985
- 63528 string characters out of 6138638
+ 4783 strings out of 492985
+ 63543 string characters out of 6138638
  154680 words of memory out of 5000000
- 8215 multiletter control sequences out of 15000+600000
+ 8216 multiletter control sequences out of 15000+600000
  19524 words of font info for 59 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 41i,21n,32p,1048b,233s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 41i,21n,32p,1048b,231s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/share/t
 exmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-dist/font
 s/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-dist/fonts/type1/public
@@ -1306,10 +1330,10 @@ ts/type1/public/cm-super/sfbx1440.pfb></usr/share/texmf-dist/fonts/type1/public
 hare/texmf-dist/fonts/type1/public/cm-super/sfti1095.pfb></usr/share/texmf-dist
 /fonts/type1/public/cm-super/sfti1440.pfb></usr/share/texmf-dist/fonts/type1/pu
 blic/cm-super/sftt1440.pfb>
-Output written on test.pdf (33 pages, 3810828 bytes).
+Output written on test.pdf (34 pages, 3815266 bytes).
 PDF statistics:
- 209 PDF objects out of 1000 (max. 8388607)
- 133 compressed objects within 2 object streams
+ 212 PDF objects out of 1000 (max. 8388607)
+ 135 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
  66 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -82,14 +82,13 @@
 \citation{cs231n}
 \citation{convmath}
 \citation{convarithmetic}
-\citation{cs231n}
-\citation{convmath}
 \@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces A kernel of size $1 \times 3 \times 3$ convolving over activations of size $1 \times 7 \times 7$, producing activations of size $1 \times 4 \times 4$ in the next layer. \cite  {figkonv}}}{18}}
 \newlabel{figkonv}{{7}{18}}
 \@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces An activation with size $1 \times 3 \times 3$ is zero-padded with $p=1$ and the resulting tensor is of size $1 \times 5 \times 5$.}}{18}}
 \newlabel{figzeropad}{{8}{18}}
 \newlabel{eqkonvW}{{20}{18}}
-\newlabel{eqkonvH}{{21}{18}}
+\citation{cs231n}
+\citation{convmath}
 \citation{cs231n}
 \citation{convmath}
 \citation{convarithmetic}
@@ -97,6 +96,7 @@
 \citation{webconv1}
 \citation{webconv2}
 \citation{webconv3}
+\newlabel{eqkonvH}{{21}{19}}
 \newlabel{konvolution}{{24}{19}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.3}Convolution backpropagation}{19}}
 \citation{webconv1}
@@ -191,61 +191,62 @@
 \newlabel{softmax}{{54}{29}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.11}Softmax backpropagation}{29}}
 \citation{MNIST}
-\citation{cs231n}
 \citation{MNIST}
 \citation{cs231n}
-\citation{notesonbackprop}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Problem Cases}{30}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.1}Classification of handwritten digits}{30}}
 \citation{cs231n}
+\citation{notesonbackprop}
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces Ten pictures of handwritten digits from the MNIST dataset. \cite  {MNIST}}}{31}}
+\newlabel{figMNIST}{{10}{31}}
+\newlabel{crossentropy}{{56}{31}}
+\newlabel{dydxcrossentropy}{{57}{31}}
+\citation{WIDERFace}
+\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces The accuracy of the convolutional model (CNN) and the feed-forward model (FCC) as a function of the numbers of iterations trained.}}{32}}
+\newlabel{figloss}{{11}{32}}
+\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces The loss of the convolutional model (CNN) and the feed-forward model (FCC) as a function of the numbers of iterations trained. The training loss is the loss on the training set and the validation loss is the loss on the test of.}}{32}}
+\newlabel{figacc}{{12}{32}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.2}Dense Face Detection and Localization}{33}}
 \citation{retinanet}
-\newlabel{figMNIST}{{3.3.1}{31}}
-\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces Tio bilder av handskrivna siffror fr\IeC {\r a}n MNISTdatabasen. \cite  {MNIST}}}{31}}
-\newlabel{MNISTmodel}{{3.3.1}{31}}
-\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces Modellen som anv\IeC {\"a}ndes f\IeC {\"o}r att l\IeC {\"a}sa av handskrivna siffror. Batch Normalization ben\IeC {\"a}mns med BN, konvolution menas en konvolution med k\IeC {\"a}rnstorlek k = 5 och stride s = 2. ReLU \IeC {\"a}r aktiveringsfunktionen Rectified Linear Units och softmax \IeC {\"a}r softmaxlagret.}}{31}}
-\citation{cs231n}
+\citation{retinanet}
 \citation{iou}
 \citation{iou}
 \citation{iou}
-\citation{resnet}
 \citation{retinanet}
-\citation{fpn}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.2}Dense Face Detection and Localization}{32}}
-\newlabel{figiou}{{3.3.2}{32}}
-\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces IoU definieras som storleken av snittet av tv\IeC {\r a} m\IeC {\"a}nger A och B dividerat med storleken av unionen av A och B. En st\IeC {\"o}rre IoU medf\IeC {\"o}r att prognosen \IeC {\"a}r n\IeC {\"a}rmare sanningen. \cite  {iou}}}{32}}
-\citation{retinanet}
-\citation{retinanet}
-\citation{resnet}
-\citation{retinanet}
-\citation{fpn}
-\citation{retinanet}
-\newlabel{figiou}{{3.3.2}{33}}
-\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces RetinaNets arkitektur fr\IeC {\r a}n \textit  {Focal Loss for Dense Object Detection} (Lin et al.). Varje pyramidniv\IeC {\r a} matas in i ett klassifikationshuvud och ett regressionshuvud. \cite  {retinanet}}}{33}}
-\@writefile{toc}{\contentsline {section}{\numberline {4}Conclusion}{34}}
-\bibcite{cs231n}{1}
-\newlabel{results1}{{3.3.2}{35}}
-\@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces Kvantitativa resultat fr\IeC {\r a}n valideringsdatan fr\IeC {\r a}n WIDERFace: Bilder som modellen aldrig har sett tidigare.}}{35}}
-\bibcite{wikiStanford}{2}
-\bibcite{notesonbackprop}{3}
-\bibcite{convmath}{4}
-\bibcite{convarithmetic}{5}
-\bibcite{highperformanceconv}{6}
-\bibcite{gradient}{7}
-\bibcite{yolo}{8}
-\bibcite{batchnorm}{9}
-\bibcite{webconv1}{10}
-\bibcite{webBN1}{11}
-\bibcite{webconv2}{12}
-\bibcite{webBN2}{13}
-\bibcite{webconv3}{14}
-\bibcite{websoftmax}{15}
-\bibcite{MNIST}{16}
-\bibcite{figSGD}{17}
-\bibcite{figboatcnn}{18}
-\bibcite{figkonv}{19}
-\bibcite{figconv}{20}
-\bibcite{resnet}{21}
-\bibcite{iou}{22}
-\bibcite{retinanet}{23}
-\bibcite{fpn}{24}
-\bibcite{WIDERFace}{25}
+\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces RetinaNets arkitektur fr\IeC {\r a}n \textit  {Focal Loss for Dense Object Detection} (Lin et al.). Varje pyramidniv\IeC {\r a} matas in i ett klassifikationshuvud och ett regressionshuvud. \cite  {retinanet}}}{34}}
+\newlabel{figretinanet}{{13}{34}}
+\newlabel{eqiou}{{58}{34}}
+\@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces IoU is defined as the size of the union divided by the size of the intersection of two sets $A$ and $B$. A bigger IoU implies that the predicted bounding box is closer to the ground truth. \cite  {iou}}}{35}}
+\newlabel{figiou}{{14}{35}}
+\newlabel{eqfocalloss}{{59}{35}}
+\newlabel{eqsmoothl1loss}{{60}{35}}
+\@writefile{lof}{\contentsline {figure}{\numberline {15}{\ignorespaces Qualitative results on the WIDERFace validation set.}}{36}}
+\newlabel{faceresults}{{15}{36}}
+\bibcite{tensorflow}{1}
+\bibcite{pytorch}{2}
+\bibcite{cs231n}{3}
+\bibcite{wikiStanford}{4}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Conclusion}{37}}
+\bibcite{notesonbackprop}{5}
+\bibcite{convmath}{6}
+\bibcite{convarithmetic}{7}
+\bibcite{highperformanceconv}{8}
+\bibcite{gradient}{9}
+\bibcite{yolo}{10}
+\bibcite{batchnorm}{11}
+\bibcite{webconv1}{12}
+\bibcite{webBN1}{13}
+\bibcite{webconv2}{14}
+\bibcite{webBN2}{15}
+\bibcite{webconv3}{16}
+\bibcite{websoftmax}{17}
+\bibcite{MNIST}{18}
+\bibcite{figSGD}{19}
+\bibcite{figboatcnn}{20}
+\bibcite{figkonv}{21}
+\bibcite{figconv}{22}
+\bibcite{resnet}{23}
+\bibcite{iou}{24}
+\bibcite{retinanet}{25}
+\bibcite{fpn}{26}
+\bibcite{WIDERFace}{27}
