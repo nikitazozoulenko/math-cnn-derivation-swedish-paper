@@ -7,23 +7,23 @@
 \contentsline {subsection}{\numberline {3.1}Feed-forward neural networks}{7}
 \contentsline {subsubsection}{\numberline {3.1.1}Tensors, indexing and notation}{8}
 \contentsline {subsubsection}{\numberline {3.1.2}Forward propagation}{8}
-\contentsline {subsubsection}{\numberline {3.1.3}Cost function}{10}
+\contentsline {subsubsection}{\numberline {3.1.3}Loss function}{10}
 \contentsline {subsubsection}{\numberline {3.1.4}Gradient Descent}{11}
 \contentsline {subsubsection}{\numberline {3.1.5}Backpropagation}{12}
 \contentsline {subsubsection}{\numberline {3.1.6}Training neural networks}{14}
 \contentsline {subsection}{\numberline {3.2}Convolutional neural networks}{14}
-\contentsline {subsubsection}{\numberline {3.2.1}Model structure, parameters and notation}{15}
-\contentsline {subsubsection}{\numberline {3.2.2}Convolution forward propagation}{17}
-\contentsline {subsubsection}{\numberline {3.2.3}Convolution backpropagation}{19}
-\contentsline {subsubsection}{\numberline {3.2.4}Activation function forward propagation}{21}
-\contentsline {subsubsection}{\numberline {3.2.5}Activation function backpropagation}{21}
+\contentsline {subsubsection}{\numberline {3.2.1}Model structure, parameters and notation}{16}
+\contentsline {subsubsection}{\numberline {3.2.2}Convolution forward propagation}{18}
+\contentsline {subsubsection}{\numberline {3.2.3}Convolution backpropagation}{20}
+\contentsline {subsubsection}{\numberline {3.2.4}Activation function forward propagation}{22}
+\contentsline {subsubsection}{\numberline {3.2.5}Activation function backpropagation}{22}
 \contentsline {subsubsection}{\numberline {3.2.6}Maxpooling forward propagation}{22}
 \contentsline {subsubsection}{\numberline {3.2.7}Maxpooling backpropagation}{23}
 \contentsline {subsubsection}{\numberline {3.2.8}Batch Normalization forwardpropagation}{24}
-\contentsline {subsubsection}{\numberline {3.2.9}Batch Normalization backpropagation}{25}
+\contentsline {subsubsection}{\numberline {3.2.9}Batch Normalization backpropagation}{26}
 \contentsline {subsubsection}{\numberline {3.2.10}Softmax forward propagation}{29}
-\contentsline {subsubsection}{\numberline {3.2.11}Softmax backpropagation}{29}
+\contentsline {subsubsection}{\numberline {3.2.11}Softmax backpropagation}{30}
 \contentsline {subsection}{\numberline {3.3}Problem Cases}{30}
-\contentsline {subsubsection}{\numberline {3.3.1}Classification of handwritten digits}{30}
+\contentsline {subsubsection}{\numberline {3.3.1}Classification of handwritten digits}{31}
 \contentsline {subsubsection}{\numberline {3.3.2}Dense Face Detection and Localization}{33}
-\contentsline {section}{\numberline {4}Conclusion}{37}
+\contentsline {section}{\numberline {4}Conclusion}{36}
