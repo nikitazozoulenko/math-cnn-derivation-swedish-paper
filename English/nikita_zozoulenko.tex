@@ -1,4 +1,6 @@
-\documentclass[a4paper,11pt,twoside]{article}
+\documentclass[a4paper, twoside]{article}
+\usepackage[fontsize=10pt]{scrextend}
+%\documentclass[10pt]{extarticle}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 
@@ -7,6 +9,7 @@
 \usepackage{mathtools}
 
 \usepackage{graphicx}
+\usepackage{subfig}
 
 \usepackage{url}
 %%  Defines the command \url{} that can be used to typeset url:s
@@ -23,79 +26,59 @@
 \newcommand*{\inpd}[2]{\ensuremath{\frac{\partial #1}{\partial #2}}}
 \DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
 
-\title{Dense Face Detection with Convolutional Neural Networks}
 \title{Derivation of a Convolutional Neural Network Based Dense Face Detector}
-\date{}
-
-\begin{document}
-
-
-\maketitle
-
-\begin{center}
-Nikita Zozoulenko Na15b \\*
+\title{Dense Face Detection with Convolutional Neural Networks}
+\author{Nikita Zozoulenko \\*
 nikita.zozoulenko@gmail.com \\*
 Katedralskolan Linköping\\*
-Supervisor: Rickard Engström \\*
-VT 2017 - HT 2018 \\*
-\end{center}
+Supervisor: Rickard Engström \\*}
 
+\begin{document}
+\maketitle
 
 \vfill
 \begin{figure}[h]
 	\centering
-  		\includegraphics[scale=0.322]{crowd.jpg}
-  	\caption{My proposed convolutional neural network based model FaceResNet is capable of detecting over 100 faces in a crowded scene for various scales, lighting and occlusions.} \label{crowd}
+  		\includegraphics[scale=0.221]{resultscrowd2.png}
+  	\caption{The proposed convolutional neural network based model FaceResNet is capable of dynamically detecting over 200 faces in a crowded scene for various scales, lighting and occlusions. A detection is shown as a red boudning box.} \label{crowd}
 \end{figure}
 \vfill
 
-%\begin{flushright}
-%\today \\*
-%Nikita Zozoulenko Na15b \\*
-%nikita.zozoulenko@gmail.com \\*
-%Katedralskolan Linköping\\*
-%Supervisor: Rickard Engström \\*
-%VT 2017 - HT 2018 \\*
-%\end{flushright}
 \newpage
 
 %start abstract
 \Large{\textbf{Abstract}}\\
 
-Convolutional neural networks are currently the state of the art model for tasks such as image classification, image recognition and object detection for computer vision systems. In this paper the mathematical model behind the standard feed-forward neural network and the convolutional neural network is derived. The performance of two models, a convolutional neural network and a feed-forward neural network, are then compared on the task of classifying handwritten digits. A convolutional neural network based model is then constructed to make a cutting edge face detector for real time video, being able to successfully detect over 100 faces in a crowded scene for various scales, lighting and occlusions.
+Convolutional neural networks are currently the state of the art model for tasks such as image classification, image recognition and object detection for computer vision systems. In this paper the mathematical model behind the standard feed-forward neural network and the convolutional neural network is derived. The performance of two models, a convolutional neural network and a feed-forward neural network, are then compared on the task of classifying handwritten digits. A convolutional neural network based model is then constructed to make a cutting edge face detector for real time video, being able to successfully detect over 200 faces in a crowded scene for various scales, lighting and occlusions.
 \newpage
 %end abstract
 
 \tableofcontents
-
+\newpage
 \section{Introduction}
 
 \subsection{Background}
 
-An Artificial neural network is a biologically inspired machine learning model that tries to replicate the way the brain in mammals functions. There are many different kinds of Artificial neural networks which vary in structure and architecture. The basic principle behind neural networks is that they are made out of a number of layers of neurons. The layers are built recursively such that the output of one layer is the input of the next layer. They are stacked on top of each other and the number of layers an Artificial neural network has is called its depth. How the neurons of the previous layer are connected to the neurons of the next layer depends on what type on Artificial neural network it is.
+An Artificial neural network is a biologically inspired machine learning model that tries to replicate the way the brain in mammals functions. There are many different kinds of Artificial neural networks which vary in structure and architecture. The basic principle behind neural networks is that they are made up of a number of layers of neurons. The layers are built recursively such that the output of one layer is the input to the next layer. An artificial neural network is constructed by stacking layers one after the other. The network's number of layers is called the networks depth. How the neurons of the previous layer are connected to the neurons of the next layer depends on what type on artificial neural network it is.
 \cite{cs231n}
 
 Artificial neural networks, or more specifically convolutional neural networks, were popularized 2012 when the model was used to win the annual ImageNet Large-Scale Visual Recognition Challenge, beating all current machine learning models. Today they have achieved state of the art results in areas such as self-driving cars, image classification, object localization, automatic image annotation, semantic segmentation of objects in images and natural language processing. 
 \cite{cs231n}
 
 \subsection{Purpose}
-When I was first starting out in the field of deep learning I found there was a lack of fully derived explanations of the underlying mathematics behind artificial neural networks. Sources had either only explained one simple forward pass through the network, or had only derived the most simple case, ignoring the more complicated general case. The aim of this paper is to present a clear derivation of the general case for feed-forward neural networks and convolutional neural networks. Furthermore, the aim is to apply the derived model of the convolutional neural network to two problems: Classifying handwritten digits and to detect and pinpoint the location of a variable number of human faces in an image.
+When I first started out in the field of deep learning I found that there was a lack of fully derived explanations of the underlying mathematics behind artificial neural networks. Sources had either only explained one simple forward pass through the network, or had only derived the most simple case, ignoring the more complicated general case. The aim of this paper is to present a clear derivation of the general case for feed-forward neural networks and convolutional neural networks. Furthermore, the aim is to apply the derived model of the convolutional neural network to two problems: Classifying handwritten digits and to detect and pinpoint the location of a variable number of human faces in an image.
 
 \subsection{Problem statement}
-What is a feed-forward neural network and convolutional neural network?
-What is forward- and backpropgation and how is it derived in a feed-forward neural network and in a convolutional neural network?
+What is a feed-forward neural network? What is a convolutional neural network?
+What is forward and backpropgation and how is it derived in a feed-forward neural network and in a convolutional neural network?
 Can an artificial neural network be trained to classify handwritten digits and detect a variable number of faces in images?
 
-\newpage
 \section{Method}
-The majority of the paper and the derivations of the models are based on the course material from Stanford's "CS231n: Convolutional neural networks for Visual Recognition" course. Some advanced concepts were directly based off the papers they were first introduced in (e.g. Batch Normalization) and expanded to fit the general case of an arbitrary input to the model. The general case for the mathematical model of the feed-forward neural network and the convolutional neural network were derived by hand and implemented in C++ with the linear algebra library Eigen and in Python in pure NumPy, a library for scientific computing. The derived partial derivatives required by the models were compared with their numerical approximations using the formal definition of a derivative. \cite{cs231n} \cite{bn} \cite{eigen} \cite{numpy}
+The majority of the paper and the derivations of the models are based on the course material from Stanford's "CS231n: Convolutional neural networks for Visual Recognition" course. Some advanced concepts were directly based off the papers they were first introduced in (e.g. Batch Normalization) and expanded to fit the general case of an arbitrary input to the model. The general case for the mathematical model of the feed-forward neural network and the convolutional neural network were derived by hand and implemented in C++ with the linear algebra library Eigen and in Python in pure NumPy, a library for scientific computing. The derived partial derivatives required by the models were compared to their numerical approximations using the formal definition of a derivative. \cite{cs231n} \cite{batchnorm} \cite{eigen} \cite{numpy}
 
-When my own implementation of the Artificial neural networks became too computationally expensive and inefficient for the two problem cases of classifying handwritten digits and dense face detection I implemented the models in Google's machine learning library TensorFlow and Facebook's GPU-accelerated tensor and dynamic neural network library PyTorch. \cite{tensorflow} \cite{pytorch}
+When my own implementation of the artificial neural networks became too computationally expensive and inefficient for the two problem cases of classifying handwritten digits and dense face detection, the models were re-implemented in Google's machine learning library TensorFlow and Facebook's GPU-accelerated tensor and dynamic neural network library PyTorch. \cite{tensorflow} \cite{pytorch}
 
-\newpage
-\section{Results and discussion}
-
-\subsection{Feed-forward neural networks}
+\section{Feed-forward neural networks}
 A feed-forward neural network is the most elementary version of an artificial neural network. As all varying kinds of artificial neural networks, a feed-forward neural network is made out of a number of layers of neurons. The unique property of a feed-forward neural network is that all the neurons in a layer are connected to every neuron in the next layer (see figure \ref{figfeedforward}). \cite{cs231n}
 
 \begin{figure}[h]
@@ -104,14 +87,14 @@ A feed-forward neural network is the most elementary version of an artificial ne
   	\caption{An illustration of a simple feed-forward neural network. It consists of 4 layers: 1 input layer (red), 2 hidden layers (blue) and 1 output layer (green). A circle represents a neuron. Every neuron in a layer is connected to all the neurons in the following layer, shown by the grey lines between the neurons. \cite{hidden12}} \label{figfeedforward}
 \end{figure}
 
-A neuron is represented as a floating point decimal number. The value of a neuron is called its activation. Given an input of $n$ data points the model wants to predict $m$ different values where $n$ and $m$ are the number neurons in the input and output layers respectively. Every data point or feature in the input are set as neurons in the input layer. For instance, if you want to predict a score given 12 different variables every single variable would correspond to one neuron in the input layer of size 12 and the score would correspond to a single neuron in the output layer of size 1. The value of the input neurons are transferred over to the next layer depending on the strength of the different connections every neuron has to the neurons in the next layer. This is repeated for every layer until the signal has reached the output layer. The process of propagating the value of the neurons from the input layer to the output layer is called forward propagation. \cite{cs231n}
+A neuron is represented as a floating point decimal number. The value of a neuron is called its activation. Given an input of $n$ data points the model wants to predict $m$ different values where $n$ and $m$ are the number of neurons in the input and output layers respectively. Every data point or feature in the input is set as a neuron in the input layer. For instance, if you want to predict a score given 12 different variables every single variable would correspond to a neuron in the input layer of size 12 and the score would correspond to one single neuron in the output layer of size 1. The values of the input neurons are transferred to the next layer depending on the strength of the connection between every pair of neurons in two adjacent layers. This is done for every layer until the signal has reached the output layer. The process of propagating the value of the neurons from the input layer to the output layer is called forward propagation. \cite{cs231n}
 
 The network is trained to predict correct values by optimizing the fixed connections, also called weights, between all the layers in the neural network. \cite{cs231n}
 
-\subsubsection{Tensors, indexing and notation}
-A tensor is the generalization of vectors and matrices. Scalars are tensors of order 0. A tensor of order 1 is a vector $x \in \mathbb{R}^N$ and is a row vector with $N$ elements. It can also be seen as a one-dimensional array. Matrices $M$ are tensors of order 2 such that $M \in \mathbb{R}^{R \times N}$ and can be viewed as a vector of $R$ elements where every element is another vector with $N$ scalar elements. Matrices can also be seen as a two-dimensional array with $RN$ elements. A tensor of order $n$ is an $n$-dimensional array and is indexed by an $n$-tuple. For instance, a tensor $X \in \mathbb{R}^{R \times C \times H \times W}$ is indexed by the four-tuple $(r,c,h,w)$ where $0 \leq r < R$, $0 \leq c < C$, $0 \leq h < H$ och $0 \leq w < W$. \cite{cs231n}
+\subsection{Tensors, indexing and notation}
+A tensor is the generalization of vectors and matrices. Scalars are tensors of order 0. A tensor of order 1 is a row vector $x \in \mathbb{R}^N$ with $N$ elements. It can also be seen as a one-dimensional array. Matrices $M$ are tensors of order 2 such that $M \in \mathbb{R}^{R \times N}$ and can be viewed as vectors with $R$ elements where every element is another vector with $N$ scalar elements. Matrices can also be seen as a two-dimensional array with $RN$ elements. A tensor of order $n$ is an $n$-dimensional array and is indexed by an $n$-tuple. For instance, a tensor $X \in \mathbb{R}^{R \times C \times H \times W}$ is indexed by the four-tuple $(r,c,h,w)$ where $1 \leq r \leq R$, $1 \leq c \leq C$, $1 \leq h \leq H$ och $1 \leq w \leq W$. \cite{cs231n}
 
-\subsubsection{Forward propagation}
+\subsection{Forward propagation}
 In figure \ref{figfeedforward} only a single training example was worked on at a time. In practice a mini-batch of $R$ training examples are propagated forward in a neural network at the same time. \cite{cs231n} \cite{wikiStanford}
 
 Let $M$ denote the number of layers in the neural network and $l$; $0 \leq l < M$, one specific layer in the neural network. Let $N^{(l)}$ denote the number of neurons in layer $l$. The activation of layer $l$ can be expressed as a tensor of order 2: $X^{(l)} \in \mathbb{R}^{R \times N^{(l)}}$ indexed by the two-tuple $(r,i)$ where $0 \leq r < R$ and $0 \leq i < N$. In addition to the normal neurons a layer has, let $b^{(l)}$ be a bias neuron for the layer $l$ (see figure \ref{figFCCmath}). It is called a bias neuron because its value is independent to what input the neural network is given. \cite{cs231n} \cite{wikiStanford}
@@ -124,7 +107,7 @@ The weights expressing how strong the connection between the neurons of layer $l
   	\caption{An example of a 4 layer feed-forward neural network. The input neurons are marked with blue. The bias neurons are marked with red. Black lines between neurons symbolyze the weights between every pair of neurons between two layers.} \label{figFCCmath}
 \end{figure}
 
-To calculate the value of a neuron in layer $l+1$ every neuron in layer $l$ is multiplied by its corresponding weight in $W^{(l)}$ and summed together with the layers bias neuron. The sum is then put in a so called activation function $f$. The value of the activation function is the neurons activation in layer $l+1$. \cite{cs231n} \cite{wikiStanford}
+To calculate the value of a neuron in layer $l+1$ every neuron in layer $l$ is multiplied by its corresponding weight in $W^{(l)}$ and summed together with the layer's bias neuron. The sum is then put in a so called activation function $f$. The value of the activation function is the neuron's activation in layer $l+1$. \cite{cs231n} \cite{wikiStanford}
 
 Let $Z^{(l)} \in \mathbb{R}^{R \times N^{(l)}}$ be the value of each neuron in layer $l$ before being put into the activation function. Given an input $X^{(0)}$ the forward propagation can be expressed recursively as: \cite{cs231n} \cite{wikiStanford}
 
@@ -133,14 +116,20 @@ Z_{rj}^{(l+1)} & = b^{(l)} + \sum^{N^{(l)}-1}_{i = 0} X^{(l)}_{r,i} W^{(l)}_{i,j
 X_{rj}^{(l+1)} & = f(Z_{rj}^{(l+1)})
 \end{align}
 
-The tensor of activations and weights are constructed in such as way that one forward pass through a single layer can be computed with a single dot product and having the bias term added to every element in the computed dot product. The activation function $f$ is then applied element-wise on each neuron: \cite{cs231n} \cite{wikiStanford}
+The tensor of activations and weights are constructed in such a way that one forward pass through a single layer can be computed with a single dot product and an addition of the bias term added to every element. The activation function $f$ is then applied element-wise on each neuron: \cite{cs231n} \cite{wikiStanford}
 
 \begin{align}
-Z^{(l+1)} & = X^{(l)}W^{(l)}+b^{l}\\
+Z^{(l+1)} & = X^{(l)}W^{(l)}+b^{(l)}\\
 X^{(l+1)} & = f(Z^{(l+1)})
 \end{align}
 
 Common activation functions are Rectified Linear Units (ReLU), sigmoid ($\sigma$) and hyperbolic tangent ($\tanh$) and are defined by equation \eqref{relu} - \eqref{tanh} (see figure \ref{activation_function}). A non-linear activation function is chosen to enable the network to make use of non-linearities when learning to predict values. Without non-linear activation functions the whole model is equivalent to one large linear transformation of the input data. \cite{cs231n}
+\\
+\begin{figure}[h]
+	\centering
+  		\includegraphics[scale=0.73]{activationfunction.png}
+  	\caption{A graph of ReLU, $\sigma$ och $\tanh$.} \label{activation_function}
+\end{figure}
 
 \begin{equation}\label{relu}
 \mbox{ReLU}{(x)} = \begin{cases} 
@@ -157,13 +146,9 @@ Common activation functions are Rectified Linear Units (ReLU), sigmoid ($\sigma$
 \tanh{(x)} = \frac{e^x-e^{-x}}{e^x+e^{-x}}
 \end{equation}
 
-\begin{figure}[h]
-	\centering
-  		\includegraphics[scale=0.83]{activationfunction.png}
-  	\caption{A graph of ReLU, $\sigma$ och $\tanh$.} \label{activation_function}
-\end{figure}
 
-\subsubsection{Loss function}
+
+\subsection{Loss function}
 Given an input $X$ and a ground truth $y$ the model wants to predict values $\hat{y}$ which resembles the ground truth as closely as possible. It is achieved by defining a multivariate loss function $L(\theta; X, y)$  with the network's parameters $\theta$ (all the weights and biases) with respect to a single training example $(X, y)$. The loss function describes the quality of the prediction $\hat{y}$ such that a lower loss represents a more accurate prediction. One way of defining the loss function is to use the mean squared error as in equation \eqref{MSE}: \cite{cs231n}
 
 \begin{equation}\label{MSE}
@@ -174,7 +159,7 @@ Where $R$ is the batch size and $N$ is the number of features in the last layer.
 
 The neural network is trained to predict accurate results by iterating through the training data and minimizing the loss function. Since the given input $X$ stays fixed, the network learns to optimize its weights $W^{(l)}$ and biases $b^{(l)}$ for every layer $l$. \cite{cs231n} \cite{wikiStanford}
 
-\subsubsection{Gradient Descent}
+\subsection{Gradient Descent}
 The gradient $\nabla L(\theta)$ is a vector of partial derivatives with respect to the parameters $\theta$ of the function $L$ defined by equation \eqref{EQgradientspace} and \eqref{EQgradientvector}: \cite{gradient} \cite{convmath} 
 \begin{equation}\label{EQgradientspace}
 \nabla L(\theta) : \mathbb{R}^n \to \mathbb{R}^n
@@ -206,7 +191,7 @@ Gradient descent is the method of iteratively changing the values of the paramet
   	\caption{An illustration of Stochastic Gradient Descent on a function of two variables. Red regions symbolizes a high function value while blue regions symbolizes a low function value. The parameters were initialized near the global maximum and their values are altered iteratively to move in the direction of the negative gradient: the direction of steepest descent, to find a local minimum. \cite{figSGD}} \label{figSGD}
 \end{figure}
 
-\subsubsection{Backpropagation}
+\subsection{Backpropagation}
 Backpropagation stands for "backwards propagation of errors" and is the process of calculating the partial derivatives of the loss function with respect to the model's parameters, or in other terms, the process of computing the gradient. \cite{wikiStanford} \cite{gradient}
 
 The partial derivatives can be approximated numerically with the formal definition of a derivative defined by equation (\ref{EQderivativeDefinition}): \cite{wikiStanford} \cite{gradient}
@@ -263,12 +248,12 @@ The partial derivative of the loss function with respect to the biases are found
 \end{equation}
 
 
-\subsubsection{Training neural networks}
-The model is trained by dividing the training data into mini-batches of size $R$. The mini-batch is then forward propagated and the loss is calculated. The loss is then used to backpropagate the models error layer by layer. Backpropagation starts at the output layer propagates through the whole network backwards until it reaches the input layer. For every layer in the network the delta-error from the proceeding layer is used to calculate the new delta-error. It is then used to calculate the layers contribution to the total gradient by computing the partial derivatives. When the gradient has been fully computed one iteration of the gradient descent algorithm is applied to update the weights and biases of the neural network. \cite{cs231n}
+\subsection{Training neural networks}
+The model is trained by dividing the training data into mini-batches of size $R$. The mini-batch is then forward propagated and the loss is calculated. The loss is then used to backpropagate the models error layer by layer. Backpropagation starts at the output layer propagates through the whole network backwards until it reaches the input layer. For every layer in the network the delta-error from the proceeding layer is used to calculate the new delta-error. It is then used to calculate the layers contribution to the total gradient by computing the partial derivatives. When the gradient has been fully computed one iteration of the gradient descent algorithm is applied to update the weights and biases of the neural network. This process is repeated until all the networks parameters have converge.\cite{cs231n}
 
 Two implementations of a feed-forward neural network can be found on github in Python and C++ in the repositories \textit{neural-network-python} and \textit{neural-network-cpp} respectively: \url{https://github.com/nikitazozoulenko}.
 
-\subsection{Convolutional neural networks}
+\section{Convolutional neural networks}
 When humans identify objects by sight we look for specific high level features that object has. A cat for example has one head, four legs and a body. These high level features are in turn made up of a combination of low level features: A head consists of two eyes and a mouth which consists of elementary geometric shapes which are composed of a combination of basic lines and edges. In addition to specific features, cats also have a furry texture. Convolutional neural networks (CNN) were designed to specifically excel at computer vision tasks. What a convolutional neural network does is that it learns these hierarchical structures by teaching itself a number of filters to apply to the image (see figure \ref{figkatter}) through an operation called a convolution. These filters are stacked on top of each other in terms of layers and allows the networks to learn higher level features the deeper the network architecture goes. For instance, the first layer might learn how to detect lines and edges, the middle layers might learn to recognize small body parts such as eyes and ears and the last layers can learn how to detect cats, humans or other arbitrary objects. \cite{cs231n}
 
 \begin{figure}[h]
@@ -279,7 +264,7 @@ When humans identify objects by sight we look for specific high level features t
 
 In feed-forward neural networks every neuron in a layer is connected to all the neuron in the next layer. If you would use feed-forward neural networks for a computer vision problem you would reshape the given input image to a single $CHW$-dimensional vector where $W$ and $H$ are the images width and height in pixels and $C$ is the number of color channels in the image. Because every neuron in the previous layer is connected to all the neurons in the proceeding layer most of the spatial information in the image is lost. Convolutional neural networks are different in that they operate on spatially local data. The neurons in layer $l$ are only connected to the neurons in layer $l+1$ that are in the close spatial vicinity of the neurons in layer $l$. In practice this has yielded more accurate predictions over their feed-forward counterparts and has lead to the model becoming the state of the art in computer vision. \cite{cs231n} \cite{convmath} \cite{convarithmetic}
 
-\subsubsection{Model structure, parameters and notation}
+\subsection{Model structure, parameters and notation}
 Convolutional neural networks are constructed out of a number of layers stacked on top of each other, similar to feed-forward neural networks. The difference between these two models is how one layer is connected to the next layer. While feed-forward neural networks only have one type of layer, convolutional neural networks have a wide variety of different layers. The five elementary layers and operations of the convolutional neural network are the convolutional layer, the maxpooling layer, the softmax layer, the activation function layer and batch normalization, which all behave differently. A convolutional neural network can also use fully connected layers where every neuron in a layer $l$ is connected to all neurons in layer $l+1$, which behave exactly the same as feed-forward neural networks. \cite{cs231n} \cite{convmath} \cite{convarithmetic}
 
 At every layer $l$ there are parameters $\theta^{(l)}$ and activations (neurons) $X^{(l)}$. The last layer is denoted by $\hat{y}$ and $X^{(L-1)}$ where $L$ is the number of layers in the network. Given an input $X^{(0)}$ the model predicts values $\hat{y}$. The input is forward propagated recursively by using the activations $X^{(l)}$ and parameters $\theta^{(l)}$ from layer $l$ to compute the activations in layer $l+1$, defined by equation \eqref{CNNeq}. Just like in a feed-forward neural network, the prediction is then used to determine a cost with the use of a loss function $L(\theta)$ which is later used by the backpropagation algorithm together with gradient descent to train the network. \cite{cs231n} \cite{convmath}
@@ -295,20 +280,20 @@ A $H \times W$ slice of the activations is called a feature map or a channel. Co
 \begin{figure}[h]
 	\centering
   		\includegraphics[scale=0.6]{vggnet.png}
-  	\caption{An illustration of a the VGGNet19 convolutional neural network. The different volumes represent the activations of the network at different depths. The numbers  Each two-dimensional slice is a feature map. \cite{vgg}} \label{cs231n}
+  	\caption{An illustration of a the VGGNet19 convolutional neural network. The different volumes represent the activations of the network at different depths. The numbers  Each two-dimensional slice is a feature map. \cite{vgg}} \label{figvgg}
 \end{figure}
 
 \begin{figure}[h]
 	\centering
   		\includegraphics[scale=0.6]{boatcnn.png}
-  	\caption{An illustration of a convolutional neural network. Each two-dimensional slice is a feature map. \cite{figboatcnn}}\label{figboatcnn}
+  	\caption{An illustration of a convolutional neural network. Each two-dimensional slice is a feature map. \cite{figkonv}}\label{figboatcnn}
 \end{figure}
 
 Every single type of layer in a convolutional neural network has to two modes: forward propagation and backpropagation. The model is trained the same way a feed-forward neural network is trained: A given input is forward propagated to get a loss which is then backpropageted though the network. Thus, for every layer there has to be a definition of forward propagation and backpropagation. In the forward propagation the activations from the previous layer are used to calculate the activations in the next layer. In the backpropagation the delta-error from the next layer is used to calculate the delta-error at the previous layer. The delta-error is then used to compute the partial derivatives needed for the gradient. \cite{cs231n} \cite{convmath}
 
 Because every layer operation in the neural network is defined recursively, we only have to define operations for two adjacent layers. Let the size of the tensor of activations at layer $l$ have size $R \times C \times H \times W$. At the next layer, $l+1$, the activations will be of size $R \times C' \times H' \times W'$. The prime notation specifies that the variable originates from the proceeding layer and is the same for the indices. The tensors are zero-indexed by the four-tuple $(r, c, h, w)$. The batch size always stays the same from layer to layer, while the spatial size can decrease depending on the layer type. \cite{cs231n} \cite{convmath}
 
-\subsubsection{Convolution forward propagation}
+\subsection{Convolution forward propagation}
 The basic building block of the convolutional neural network is the convolution and the convolutional layer. It uses the learnable parameters $W^{(l)} \in \mathbb{R}^{C' \times C  \times k \times k}$, called a kernel, and is the before mentioned filter the network learns to apply to images. $k$ is the kernel size of the convolution. \cite{cs231n}
 
 The activations at layer $l+1$ are derived from the activations at layer $l$ by applying the kernel at every possible spatial location on the activations at layer $l$ (see figure \ref{figkonv}). Every neuron is multiplied by the value of the kernel at the same spatial location. The sum of all the products become the activation of a single neuron in layer $l+1$. Applying this operation on every region of neurons in the activation is called a convolution. The convolution operator is denoted by $*$. \cite{cs231n} \cite{convmath} \cite{convarithmetic}
@@ -316,7 +301,7 @@ The activations at layer $l+1$ are derived from the activations at layer $l$ by 
 \begin{figure}[h]
 	\centering
   		\includegraphics[scale=2.1]{convolution.png}
-  	\caption{A kernel of size $1 \times 3 \times 3$ convolving over activations of size $1 \times 7 \times 7$, producing activations of size $1 \times 4 \times 4$ in the next layer. \cite{figkonv}} \label{figkonv}
+  	\caption{A kernel of size $1 \times 3 \times 3$ convolving over activations of size $1 \times 7 \times 7$, producing activations of size $1 \times 4 \times 4$ in the next layer. \cite{figconv}} \label{figkonv}
 \end{figure}
 
 A feature map in layer $l+1$ is the result of a single kernel of size $1 \times C  \times k\times k$ being convolved over the whole activation volume of the previous layer. $C'$ is the number of kernels a layer has and is also the number of feature maps the next layer will have. \cite{cs231n} \cite{convmath}
@@ -356,7 +341,7 @@ The index of the term which shall be used to convolve specifies which dimensions
 
 Convolutions are in practice implemented with the functions $row2im$ and $im2row$ which enable the convolution to be computed with a single dot product. The underlying math is equivalent with the equations shown in this paper. However, $row2im$ and $im2row$ are outside of the scope of this paper and are left to the reader to research if a more computationally efficient implementation is required. \cite{cs231n} \cite{convmath} \cite{convarithmetic}
 
-\subsubsection{Convolution backpropagation}
+\subsection{Convolution backpropagation}
 At every layer $l$ the delta-error of the proceeding layer $\delta^{(l+1)}$ has to be backpropagated to create the delta-error at the current layer. $\delta^{(l)}$ is then used to compute the partial derivatives of the loss with respect to the weights $W^{(l)}$ to be used in the gradient. \cite{cs231n} \cite{convmath}
 
 The backpropagation of the recursive delta-error $\delta^{(l+1)}$ is derived by the use of the chain rule. $\delta^{(l+1)} = \inpd{L(\theta)}{X^{(l+1)}}$ is broken up into two smaller partial derivatives $\inpd{L(\theta)}{X^{(l+1)}}$ and $\inpd{X^{(l+1)}}{X^{(l)}}$. Additionally, because more than one single neuron in layer $l$ is responsible for the delta-error at layer $l+1$, all the neurons of layer $l$ have to be summed over, similar to equation \eqref{dLdW_FCC}, \eqref{dLdb_FCC} and \eqref{dLdX_FCC}. This can be done since the derivative of a sum is equivalent to the sum of the derivatives of each element. $X^{(l+1)}_{r,c',h',w'}$ is then replaced by its definition from equation \eqref{konvolution}: \cite{convmath} \cite{webconv1} \cite{webconv2} \cite{webconv3}
@@ -393,7 +378,7 @@ The partial derivative of the loss $L(\theta)$ with respect to the weights $L(\t
 \end{split}
 \end{align}
 
-\subsubsection{Activation function forward propagation}
+\subsection{Activation function forward propagation}
 In the activation function layer an activation function $f$ is applied element wise on every neuron in the activation tensor. Thus, the size of $X^{(l)}$ and $X^{(l+1)}$ is the same. Any differentiable function can be used as an activation function, but the most commonly used ones are ReLU, sigmoid and $\tanh$. The activation function layer does not have any learnable parameters. \cite{convmath}
  
 Forward propagation is defined by equation \eqref{eqactivation}:
@@ -403,8 +388,8 @@ X^{(l+1)}_{r,c,h,w} = f(X^{(l)}_{r,c,h,w})
 
 Activation functions enable the network to learn faster while also increasing the accuracy of the predictions. \cite{cs231n}
 
-\subsubsection{Activation function backpropagation}
-Because the activation function layer does not have any learnable parameters only the recursive delta-error has to be backpropagated. it is derived by the use of the chain rule. $\inpd{L(\theta)}{X^{(l)}_{r,c,h,w}}$ is split up into $\inpd{L(\theta)}{X^{(l+1)}_{r,c,h,w}}$ and $\inpd{X^{(l+1)}_{r,c,h,w}}{X^{(l)}_{r,c,h,w}}$. The first term is simply the delta-error of the proceeding layer and the second term is the derivative of the activation function: \cite{cs231n} \cite{convmath}
+\subsection{Activation function backpropagation}
+Because the activation function layer does not have any learnable parameters only the recursive delta-error has to be backpropagated. It is derived by the use of the chain rule. $\inpd{L(\theta)}{X^{(l)}_{r,c,h,w}}$ is split up into $\inpd{L(\theta)}{X^{(l+1)}_{r,c,h,w}}$ and $\inpd{X^{(l+1)}_{r,c,h,w}}{X^{(l)}_{r,c,h,w}}$. The first term is simply the delta-error of the proceeding layer and the second term is the derivative of the activation function: \cite{cs231n} \cite{convmath}
 
 \begin{equation}
 \begin{split}
@@ -415,13 +400,13 @@ Because the activation function layer does not have any learnable parameters onl
 \end{split}
 \end{equation}
 
-\subsubsection{Maxpooling forward propagation}
+\subsection{Maxpooling forward propagation}
 Maxpooling is a way to reduce the spatial size of the activations from one layer to the next. Every feature map in layer $l$ is divided into a number of regions of size $k \times k$ where $k$ is the hyperparameter called kernel size. One single $k \times k$ region corresponds to a single activation in the proceeding layer $l+1$. The activation is given by the maximum value of the region (see figure \ref{figmaxpool}). Additionally, maxpooling also has the hyperparameter $s$, called its stride, and works similar to the stride for the convolutional layer. $s$ denotes the step size the $k \times k$ region uses when it traverses the volume of activations. Maxpooling does not have any learnable parameters. \cite{cs231n} \cite{convmath} \cite{convarithmetic}
 
 \begin{figure}[h]
 	\centering
   		\includegraphics[scale=0.7]{maxpool.png}
-  	\caption{Maxpooling with kernel size $k=2$ and stride $s=2$ on an area of size $4 \times 4$. The resulting area has size $2 \times 2$} \label{figmaxpool}
+  	\caption{Maxpooling with kernel size $k=2$ and stride $s=2$ on an area of size $4 \times 4$. The resulting area has size $2 \times 2$ \cite{figkonv}} \label{figmaxpool}
 \end{figure}
 
 Similar to a convolution without zero-padding, the dimensions of the proceeding layer is defined by the following equations. The number of feature maps remain constant: \cite{cs231n} \cite{convmath} \cite{convarithmetic}
@@ -440,8 +425,8 @@ Equation \eqref{maxpool} defines the maxpooling layer algebraically. \cite{cs231
 X^{(l+1)}_{r,c',h',w'} = \underset{0 \leq j < k, \ 0 \leq i < k}{\max} X^{(l)}_{r,c',(h's+j),(w's+i)}
 \end{equation}
 
-\subsubsection{Maxpooling backpropagation}
-Maxpooling does not have any learnable parameters and thus only the recursive delta-error has to be backpropagated. With the use of the chain rule the delta-error at layer $l$ is split into two partial derivatives $\inpd{L(\theta)}{X^{(l+1)}_{r,c',h',w'}}$ and $\inpd{X^{(l+1)}_{r,c',h',w'}}{X^{(l)}_{r,c,h,w}}$. The first term is the delta-error at layer $l+1$. $X^{(l+1)}_{r,c',h',w'}$ is then substituted with its definition from equation \eqref{maxpool}: \cite{cs231n} \cite{convmath} \cite{webconv3}
+\subsection{Maxpooling backpropagation}
+Maxpooling does not have any learnable parameters and thus only the recursive delta-error has to be backpropagated. With the use of the chain rule the delta-error at layer $l$ is split into two partial derivatives $\inpd{L(\theta)}{X^{(l+1)}}$ and $\inpd{X^{(l+1)}}{X^{(l)}}$. The first term is the delta-error at layer $l+1$. $X^{(l+1)}$ is then substituted with its definition from equation \eqref{maxpool}: \cite{cs231n} \cite{convmath} \cite{webconv3}
 
 \begin{equation}
 \begin{split}
@@ -462,7 +447,7 @@ The partial derivative in the last equation will be equal to 1 if and only if $X
 
 The delta-error from layer $l+1$ is thus redirected to the neuron in layer $l$ that is responsible for the activation which the delta error at layer $l+1$ corresponds to. If a neuron in layer $l$ is responsible for two or more activations in layer $l+1$ its delta error will become the sum of the delta-errors of the activations in question. \cite{cs231n} \cite{convmath} \cite{webconv3}
 
-\subsubsection{Batch Normalization forwardpropagation}
+\subsection{Batch Normalization forwardpropagation}
 Neural networks are hard to train because of their recursive nature. A small change in the weights of the first layer will have a cascading effect throughout the network: The changed second layer will create a slightly larger deviation in the third layer, and the change in the third layer will have an even bigger effect on the fourth layer, and so on. One small change in the first layers can have a dramatic effect on the final prediction of the neural network. This is called  the internal covariate shift in the litterature and is what Batch Normalization (BN) sets out to fix. \cite{cs231n} \cite{batchnorm}
 
 Batch Normalization normalizes every feature map by dividing the feature map with the variance of the whole mini-batch's variance at the specified feature map, and subtracting the mean of the whole mini-batch's feature map. The cascading effect of a change in the first layer causing a bigger change in the last layers will no longer take place since every layer aims to have a variance of 1 and mean of 0. The internal covatiate shift is thus minimized. \cite{cs231n} \cite{batchnorm}
@@ -486,7 +471,7 @@ X^{(l+1)}_{r,c,h,w} = \gamma_{c}^{(l)} \hat{X}_{r,c,h,w} + \beta_{c}^{(l)}
 
 When the network is used for predictions outside of the training, also called runtime, the network cannot calculate the needed statistics of the mini-batch to perform forward propagation since a batch size of 1 is usually used at runtime. To combat this, the statistics of the whole training data can be used to approximate the mean and variance of the activations. This can be done for small datasets, but is inpractical for training data with millions of examples. Instead, an exponentially weighted moving average which is updated at every forward propagation can be used to approximate the mean and variance of the whole population. \cite{cs231n} \cite{batchnorm}
 
-Let $\mu_{EWMA_c}$ and $\sigma^2_{EWMA_c}$ denote the exponentially weighted moving average for the mean and variance of the feature map c. Let $\lambda$ be the weight decay term. The moving averages are then defined by equations \eqref{eqewmamu} and \eqref{eqewmasigma}:
+Let $\mu_{EWMA_c}$ and $\sigma^2_{EWMA_c}$ denote the exponentially weighted moving average for the mean and variance of the feature map $c$. Let $\lambda$ be the weight decay term. The moving averages are then defined by equations \eqref{eqewmamu} and \eqref{eqewmasigma}:
 
 \begin{equation}\label{eqewmamu}
 \mu_{EWMA_c} \to \lambda \mu_c + (1-\lambda)\mu_{EWMA_c}
@@ -495,7 +480,7 @@ Let $\mu_{EWMA_c}$ and $\sigma^2_{EWMA_c}$ denote the exponentially weighted mov
 \sigma^2_{EWMA_c} \to \lambda \sigma^2_c + (1-\lambda)\sigma^2_{EWMA_c}
 \end{equation}
 
-\subsubsection{Batch Normalization backpropagation}
+\subsection{Batch Normalization backpropagation}
 At every layer $l$ the delta-error of the previous layer $\delta^{(l+1)}$ has to be backpropagated to create the delta-error at the current layer. The delta-error is then used to compute the partial derivatives of the loss with respect to the learnable parameters $\gamma_{c}^{(l)}$ and $\beta{c}^{(l)}$ to be used in the gradient. To aid the derivation of the backpropagation the kronecker-delta $I$ is used. The kronecker-delta has the following properties: \cite{webBN1} \cite{webBN2}
 \begin{equation}\label{kroneckerdelta}
 I_{i,j} = \begin{cases} 1 & \mbox{if } i = j \\ 0 & \mbox{if } i \neq j  \end{cases}
@@ -592,7 +577,7 @@ The derivation of the derivatives of the loss with respect to the parameters are
 \end{split}
 \end{align}
 
-\subsubsection{Softmax forward propagation}
+\subsection{Softmax forward propagation}
 Softmax is used in the last layer of a neural network to bound the predicted values to the interval [0, 1]. It has the properties that the sum of every training example in the mini-batch is equal to 1. The activations of the softmax layer can therefore be interpreted as probabilities. If the model wants to classify a given input into one of $C$ classes, the output $\hat{y}$ can be interpreted as the the probability that the given input is of class $c$; $0 \leq c \leq C$, for every class prediction in the output vector. \cite{cs231n}
 
 The input to the softmax layer is resized to a tensor of order 2 $X^{(l)} \in \mathbb{R}^{R \times C}$ and produces an output of the same size. Softmax is defined by equation \eqref{softmax}: \cite{cs231n}
@@ -604,7 +589,7 @@ X^{(l+1)}_{r,c}
 \end{split}
 \end{equation}
 
-\subsubsection{Softmax backpropagation}
+\subsection{Softmax backpropagation}
 The softmax layer does not have any layers and therefore only the recursive delta-error has to be backpropagated. The backpropagation of the recursive delta-error $\delta^{(l+1)}$ is derived by the use of the chain rule. $\inpd{L(\theta)}{X^{(l)}}$ is broken up into the two partial derivatives $\inpd{L(\theta)}{X^{(l+1)}}$ and $\inpd{X^{(l+1)}}{X^{(l)}}$ and the sum of all the neurons in the mini-batch is taken, similar to equations \eqref{konvolutionbackprop} and \eqref{BN_delta_error}. $X^{(l+1)}$ is then substituted with its definition from equation \eqref{softmax} and is differentiated with the product rule and the kronecker-delta. The equation is then simplified with the use of basic algebra: \cite{cs231n} \cite{notesonbackprop} \cite{websoftmax} 
 \begin{equation}
 \begin{split}
@@ -617,10 +602,10 @@ The softmax layer does not have any layers and therefore only the recursive delt
 \end{split}
 \end{equation}
 
-\subsection{Problem Cases}
+\section{Results and discussion}
 The code and weights for the models are publically available on my github profile \url{https://github.com/nikitazozoulenko} in the repositories \textit{pytorch-face-recognition} and \textit{FCC-vs-CNN-mnist}.
 
-\subsubsection{Classification of handwritten digits}
+\subsection{Classification of handwritten digits}
 A basic feed-forward or convolutional neural network can be used to classify handwritten digits. To achieve this the MNIST dataset for handwritten digits is used. It contains 60 000 unique training examples in the training set and 10 000 testing examples in the test set. The images are in grayscale and are 28 times 28 pixels in size (see figure \ref{figMNIST}). \cite{MNIST}
 
 \begin{figure}[h]
@@ -641,29 +626,23 @@ L(\theta) = - \sum^{R-1}_{r=0} \sum^{C-1}_{c=0}y_{r,c} \ \log{\hat{y}_{r,c}}
 
 The convolutional model was trained for 5 000 iterations on an a CPU with a learning rate of 0.001 and a batch size of 50 with my own implementation of convolutional neural networks. The total time training time was 4 hours and the model achieved an accuracy of 99.2\% on the test set. Out of 10 000 handwritten the model had not seen previously it managed to classify 9 920 examples correctly. The implementation was deemed too computationally inefficient to do any further testing so I implemented the models in Facebook's GPU-accelerated tensor and dynamic neural network library PyTorch.
 
-The models were trained for 100 000 iterations while tracking training and test loss simultaneously, as well as tracking the test accuracy, shown in figures \ref{figloss} and \ref{figacc}. The initial learning rate was set to 0.001 and divided by 10 at 33 333 and 66 666 iterations. Note that the networks were only trained on the training set, and not on the test set.
-
+The models were trained for 100 000 iterations while tracking training and test loss simultaneously, as well as tracking the test accuracy, shown in figure \ref{figaccloss}. The initial learning rate was set to 0.001 and divided by 10 at 33 333 and 66 666 iterations. Note that the networks were only trained on the training set, and not on the test set.
+za<
 \begin{figure}[h]
-	\centering
-  		\includegraphics[scale=0.4]{accuracy.png}
-  	\caption{The accuracy of the convolutional model (CNN) and the feed-forward model (FCC) as a function of the numbers of iterations trained.} \label{figloss}
-\end{figure}
-
-
-\begin{figure}[h]
-	\centering
-  		\includegraphics[scale=0.4]{losses.png}
-  	\caption{The loss of the convolutional model (CNN) and the feed-forward model (FCC) as a function of the numbers of iterations trained. The training loss is the loss on the training set and the validation loss is the loss on the test of.} \label{figacc}
+    \centering
+    \subfloat[Accuracy]{{\includegraphics[width=8cm]{accuracy.png} }}
+    \subfloat[Losses]{{\includegraphics[width=8cm]{losses.png} }}
+    \caption{The accuracy (a) and loss (b) of the convolutional model (CNN) and the feed-forward model (FCC) as a function of the numbers of iterations trained. The training loss is the loss on the training set and the validation loss is the loss on the test set. Accuracy is measured on the test set.} \label{figaccloss}
 \end{figure}
 
 The convolutional neural network is shown to be able to generalize better on the test set than its feed-forward variant. The final accuracy of the two networks were 99.5\% for the convolutional neural network and 97.3\% for the feed-forward neural network. 
 
-\subsubsection{Dense Face Detection and Localization}
-The model will be trained on the WIDERFace dataset. It is a dataset consisting of 32 203 images of a total of 393 703 number of faces at different scales, lighting and occlusions. Every training example consists of a number of bounding boxes surrounding all the faces in the image. A bounding box consists of four coordinates specifying its location: two for the upper left corner and two for the bottom right corner of the bounding box. The images are labaled by humans and is called the ground truth of the image. \cite{WIDERFace}
+\subsection{Dense face detection and localization}
+The model was trained on the WIDERFace dataset. It is a dataset consisting of 32 203 images of a total of 393 703 number of faces at different scales, lighting and occlusions. Every training example consists of a number of bounding boxes surrounding all the faces in the image. A bounding box consists of four coordinates specifying its location: two for the upper left corner and two for the bottom right corner of the bounding box. The images are labaled by humans and is called the ground truth of the image. \cite{WIDERFace}
 
 A convolutional neural network can be used to detect up to thousands of different faces in a single picture or video in real time. A custom region based one-shot detector is used to achieve this. One-shot detectors were first introduced in the paper \textit{You Only Look Once: Unified, Real-Time Object Detection} and later modified and improved in the papers \textit{SSD: Single Shot MultiBox Detector}, \textit{YOLO9000: Better, Faster, Stronger}, \textit{DSSD: Deconvolutional Single Shot Detector} and \textit{Focal Loss for Dense Object Detection}. A one-shot detector works by predicting up to tens of thousands of bounding boxes in different spatial positions in an image, that sets out to detect every object in that image. In addition to predicting the bounding box coordinates, the model predicts probability scores of how likely it is that there exists an object inside of the bounding box. \cite{yolo} \cite{ssd} \cite{yolo9000} \cite{dssd} \cite{retinanet}
 
-I constructed a model termed FaceResNet based on the current state of the art in object detection: RetinaNet, introduced in the paper \textit{Focal Loss for Dense Object Detection}. It uses a feature pyramid architecture, introduced in the paper \textit{"Feature Pyramid Networks for Object Detection"}, to be able to use feature maps from different depths in the neural network to predict objects of different scales. The backbone network RetinaNet uses for the feature pyramid network is a ResNet-101. The model predicts the bounding boxes by basing their predictions on a number of anchor boxes at different scales and positions in the image. The network then predicts coordinate offsets and probabilities of there being an object in the bounding box. This is done on every pyramid level. RetinaNet uses pyramid layers P3 throughout P7 and uses anchor boxes of sizes $32^2$ to $512^2$. Let the pyramid layers width and height be $W$ and $H$ and let $A$ denote the number of different shaped anchor boxes at every pyramid layer. In total the pyramid layers will have $WHA$ unique anchor boxes spaced out evenly throughout the level. The coordinate offset regression and class probability classification for every anchor box are done by two smaller subnetworks called the regression head and the classification (see figure \ref{figretinanet}). The classification head predicts $KWHA$ probabilities where $K$ is the number of classes it shall predict between for every bounding box. $K$ consists of $1$ foreground class (no object in the bounding box) and $K-1$ foreground classes (objects). The regression head predicts $4WHA$ coordinate offsets: 4 offsets for every bounding box. Both subnetworks consist of 5 $3 \times 3$ convolutions. \cite{retinanet} \cite{fpn}
+I constructed a model termed FaceResNet based on the current state of the art in object detection: RetinaNet, introduced in the paper \textit{Focal Loss for Dense Object Detection}. It uses a feature pyramid architecture, introduced in the paper \textit{"Feature Pyramid Networks for Object Detection"}, to be able to use feature maps from different depths in the neural network to predict objects of different scales. The backbone network RetinaNet uses for the feature pyramid network is a ResNet-101. The model predicts the bounding boxes by basing their predictions on a number of anchor boxes at different scales and positions in the image. The network then predicts coordinate offsets and probabilities of there being an object in the bounding box. This is done on every pyramid level. RetinaNet uses pyramid layers P3 throughout P7 and uses anchor boxes of sizes $32^2$ to $512^2$. Let the pyramid layers width and height be $W$ and $H$ and let $A$ denote the number of different shaped anchor boxes at every pyramid layer. In total the pyramid layers will have $WHA$ unique anchor boxes spaced out evenly throughout the level. The coordinate offset regression and class probability classification for every anchor box are done by two smaller subnetworks called the regression head and the classification (see figure \ref{figretinanet}). The classification head predicts $KWHA$ probabilities where $K$ is the number of classes it shall predict between for every bounding box. $K$ consists of $1$ foreground class (no object in the bounding box) and $K-1$ foreground classes (objects). The regression head predicts $4WHA$ coordinate offsets: 4 offsets for every bounding box. Both subnetworks consist of 5 $3 \times 3$ convolutions. \cite{retinanet} \cite{fpn} \cite{resnet}
 
 \begin{figure}[h]
 	\centering
@@ -706,13 +685,22 @@ The total loss $L(\theta)$ used by FaceResNet is the mean of the regression loss
 \end{split}
 \end{equation}
 
-The model was trained for 700 000 iterations on an Nvidia GTX 1080ti with an initial learning rate of 0.001. Due to memory limitations a batch size of 2 had to be used, the bare minimum for batch normalization to function. Every input image was randomly resized to be of size $512^2$ or $640^2$. Following industry standards for data augmentation, the network was trained on random image crops of the training data to artificially increase the size of the dataset. Additionally, the image was flipped horizontally with a probability of 0.5 and random color jitter was applied. Figure \ref{faceresults} shows quantitative results on the WIDERFace validation set.
+The model was trained for 700 000 iterations on an Nvidia GTX 1080ti with an initial learning rate of 0.001. Due to memory limitations a batch size of 2 had to be used, the bare minimum for batch normalization to function. Every input image was randomly resized to be of size $512^2$ or $640^2$. Following industry standards for data augmentation, the network was trained on random image crops of the training data to artificially increase the size of the dataset. Additionally, the image was flipped horizontally with a probability of 0.5 and random color jitter was applied. Figures \ref{resultscrowd} - \ref{resultscrowd4} show quantitative results on images not found in the WIDERFace data set.
+\begin{figure}[h]
+  		\includegraphics[scale=0.185]{resultscrowd3.png}
+  		\caption{Qualitative results of the model FaceResNet.}\label{resultscrowd3}
+\end{figure}
 
 \begin{figure}[h]
-	\centering
-  		\includegraphics[scale=0.42]{results1.png}
-  	\caption{Qualitative results on the WIDERFace validation set.}\label{faceresults}
+  		\includegraphics[scale=0.11]{resultscrowd4.png}
+  		\caption{Qualitative results of the model FaceResNet.}\label{resultscrowd4}
 \end{figure}
+\begin{figure}[h]
+  		\includegraphics[scale=0.32]{resultscrowd.png}
+  		\caption{Qualitative results of the model FaceResNet.}\label{resultscrowd}
+\end{figure}
+
+
 
 One forward pass of an image of size $512^2$ takes 30 ms, enabling the model to be used in real time for real time applications. The model can for instance be applied to CCTV applications for security cameras or be used as a face detector for automatic tagging on social media or face detection in cameras.
 
@@ -728,6 +716,10 @@ Feed-forward and convolutional neural networks are a type of artificial neural n
     F. Li, A. Karpathy and J. Johnson.
 	Stanford University, university course, winter 2016.
 	
+	\bibitem{batchnorm} 
+	\textit{Batch normalization: Accelerating deep network training by reducing internal covariate shift.}
+    S. Ioffe and C. Szegedy. 
+	arXiv preprint arXiv:1502.03167, 2015.
 
 \bibitem{eigen}
 \textit{Eigen v3}.
@@ -759,68 +751,6 @@ URL https://www.tensorflow.org/.
 A. Paszke,   S. Gross, S. Chintala,   G. Chanan,   E. Yang,   Z. DeVito,   Z. Lin,   A. Desmaison,   L. Antiga,  and A. Lerer
 2017
 
-
-	
-\bibitem{wikiStanford} 
-	\textit{Unsupervised Feature Learning and Deep Learning.}
-    Standford University, Department of Computer Science.
-    URL http://ufldl.stanford.edu/wiki/.
-	Last updated 31 Mars 2013.	
-	
-\bibitem{notesonbackprop} 
-	\textit{Notes on Backpropagation.}
-    P. Sadowski.
-    University of California Irvine	Department of Computer Science.
-    
-\bibitem{convmath} 
-	\textit{Introduction to Convolutional Neural Networks.}
-    J. Wu. 
-    National Key Lab for Novel Software Technology, Nanjing University, China.
-    1 May, 2017.
-
-\bibitem{convarithmetic} 
-	\textit{A guide to convolution arithmetic for deep learning.}
-    V. Dumoulin  and F. Visin.
-    FMILA, Université de Montréal. AIRLab, Politecnico di Milano.
-	24 mars, 2016.
-
-\bibitem{highperformanceconv} 
-	\textit{High Performance Convolutional Neural Networks for Document Processing.}
-    K. Chellapilla, S. Puri, P. Simard.
-    Tenth International Workshop on Frontiers in Handwriting Recognition. 
-    La Baule, Frankrike, Suvisoft.
-	October 2006.
-
-
-	
-\bibitem{gradient} 
-	\textit{Scientific Computing 2013, Worksheet 6: Optimization: Gradient and steepest descent.}
-    University of Tartu, Estonia.
-    2013.
-    
-\bibitem{yolo} 
-	\textit{You only look once: Unified, real-time object detection.}
-    J. Redmon, S. Divvala, R. Girshick, and A. Farhadi. 
-    arXiv preprint arXiv:1506.02640, 2015.
-    
-\bibitem{yolo9000} 
-	\textit{{YOLO9000:} Better, Faster, Stronger.}
-    J. Redmon and
-               A. Farhadi. 
-    arXiv preprint arXiv:1612.08242, 2016.
-    
-\bibitem{batchnorm} 
-	\textit{Batch normalization: Accelerating deep network training by reducing internal covariate shift.}
-    S. Ioffe and C. Szegedy. 
-	arXiv preprint arXiv:1502.03167, 2015.
-    
-\bibitem{webconv1} 
-	\textit{Backpropagation In Convolutional Neural Networks.}
-	J. Kafunah.
-    DeepGrid, Organic Deep Learning. 
-    URL http://www.jefkine.com/.
-	5 September 2016.
-
 \bibitem{hidden12}
 	\textit{A simple neural network with Python and Keras}.
 	A. Rosebrock.
@@ -828,12 +758,71 @@ A. Paszke,   S. Gross, S. Chintala,   G. Chanan,   E. Yang,   Z. DeVito,   Z. Li
 	URL https://www.pyimagesearch.com/.
 	26 September 2016.
 	
-\bibitem{webBN1} 
-	\textit{What does the gradient flowing through batch normalization looks like?}
-	C. Thorey.
-    Machine Learning Blog. 
-    URL http://cthorey.github.io/.
-	28 January 2016.
+\bibitem{wikiStanford} 
+	\textit{Unsupervised Feature Learning and Deep Learning.}
+    Standford University, Department of Computer Science.
+    URL http://ufldl.stanford.edu/wiki/.
+	Last updated 31 Mars 2013.	
+	
+
+	
+\bibitem{gradient} 
+	\textit{Scientific Computing 2013, Worksheet 6: Optimization: Gradient and steepest descent.}
+    University of Tartu, Estonia.
+    2013.
+    
+\bibitem{convmath} 
+	\textit{Introduction to Convolutional Neural Networks.}
+    J. Wu. 
+    National Key Lab for Novel Software Technology, Nanjing University, China.
+    1 May, 2017.
+    
+\bibitem{figSGD}
+	\textit{Pygradsc.}
+	J. Komoroske.
+	URL https://github.com/joshdk/pygradesc.
+	12 October 2012.    
+   
+\bibitem{convarithmetic} 
+	\textit{A guide to convolution arithmetic for deep learning.}
+    V. Dumoulin  and F. Visin.
+    FMILA, Université de Montréal. AIRLab, Politecnico di Milano.
+	24 mars, 2016.
+	
+\bibitem{vgg}
+	\textit{Very Deep Convolutional Networks for Large-Scale Image Recognition.}
+	K. Simonyan and
+    A. Zisserman.
+    arXiv preprint arXiv:1409.1556, 2014
+    
+    
+
+
+
+	
+\bibitem{figkonv}
+	\textit{Understanding Convolutional Neural Networks for NLP.}
+	D. Britz.
+	WildML, Artificial Intelligence, Deep Learning, and NLP.
+	7 November 2015.
+	
+	
+	
+\bibitem{figconv}
+	\textit{Deep learning for complete beginners: convolutional neural networks with keras.}
+	P. Veličković.
+	Camebridge Spark. 
+	URL https://cambridgespark.com/content.
+	Last updated 20 Mars 2017.
+	
+	    
+\bibitem{webconv1} 
+	\textit{Backpropagation In Convolutional Neural Networks.}
+	J. Kafunah.
+    DeepGrid, Organic Deep Learning. 
+    URL http://www.jefkine.com/.
+	5 September 2016.
+	
 	
 \bibitem{webconv2} 
 	\textit{Note on the implementation of a convolutional neural networks.}
@@ -842,17 +831,41 @@ A. Paszke,   S. Gross, S. Chintala,   G. Chanan,   E. Yang,   Z. DeVito,   Z. Li
     URL http://cthorey.github.io/.
 	2 February 2016.
 	
-\bibitem{webBN2} 
-	\textit{Understanding the backward pass through Batch Normalization Layer.}
-	Flaire of Machine Learning
-    URL https://kratzert.github.io.
-	5 September 2016.
+	
 	
 \bibitem{webconv3} 
 	\textit{Convolutional Neural Networks.}
 	A. Gibiansky.
     URL http://andrew.gibiansky.com.
 	24 February 2014.
+	
+	
+	
+
+	
+\bibitem{webBN1} 
+	\textit{What does the gradient flowing through batch normalization looks like?}
+	C. Thorey.
+    Machine Learning Blog. 
+    URL http://cthorey.github.io/.
+	28 January 2016.
+	
+	
+
+	
+\bibitem{webBN2} 
+	\textit{Understanding the backward pass through Batch Normalization Layer.}
+	Flaire of Machine Learning
+    URL https://kratzert.github.io.
+	5 September 2016.
+
+\bibitem{notesonbackprop} 
+	\textit{Notes on Backpropagation.}
+    P. Sadowski.
+    University of California Irvine	Department of Computer Science.
+    
+
+
 	
 \bibitem{websoftmax} 
 	\textit{Classification and Loss Evaluation - Softmax and Cross Entropy Loss.}
@@ -867,41 +880,59 @@ A. Paszke,   S. Gross, S. Chintala,   G. Chanan,   E. Yang,   Z. DeVito,   Z. Li
 	URL http://yann.lecun.com/exdb/mnist/.
 	3 November 2017.
 	
-\bibitem{figSGD}
-	\textit{Pygradsc.}
-	J. Komoroske.
-	URL https://github.com/joshdk/pygradesc.
-	12 October 2012.
 	
-\bibitem{figboatcnn}
-	\textit{Understanding Convolutional Neural Networks for NLP.}
-	D. Britz.
-	WildML, Artificial Intelligence, Deep Learning, and NLP.
-	7 November 2015.
 	
-\bibitem{figkonv}
-	\textit{Understanding Convolutional Neural Networks for NLP.}
-	D. Britz.
-	WildML, Artificial Intelligence, Deep Learning, and NLP.
-	7 November 2015.
-	
-\bibitem{figconv}
-	\textit{Deep learning for complete beginners: convolutional neural networks with keras.}
-	P. Veličković.
-	Camebridge Spark. 
-	URL https://cambridgespark.com/content.
-	Last updated 20 Mars 2017.
+    
+\bibitem{WIDERFace}
+	\textit{WIDER FACE: A Face Detection Benchmark.}
+	Yang, Shuo and Luo, Ping and Loy, Chen Change and Tang, Xiaoou
+    IEEE Conference on Computer Vision and Pattern Recognition (CVPR), 2016
+    
+    
+    
+    
+
+    
+\bibitem{yolo} 
+	\textit{You only look once: Unified, real-time object detection.}
+    J. Redmon, S. Divvala, R. Girshick, and A. Farhadi. 
+    arXiv preprint arXiv:1506.02640, 2015.
+    
+    
+    
+\bibitem{ssd}
+	\textit{{SSD:} Single Shot MultiBox Detector.}
+	W. Liu and
+               D. Anguelov and
+               D. Erhan and
+               C. Szegedy and
+               S. Reed and
+               C. Fu and
+               A. Berg.
+    arXiv preprint arXiv:1512.02325, 2015
 
 
-\bibitem{resnet} 
-	\textit{Deep residual learning for image recognition.}
-    K. He, X. Zhang, S. Ren, and J. Sun. 
-    arXiv preprint arXiv:1512.03385, 2015.
-
-\bibitem{iou}
-	Jaccard Index. Wikipedia.
-    URL https://en.wikipedia.org/wiki/Jaccard{\_}index. 
-    20 January 2018
+    
+\bibitem{yolo9000} 
+	\textit{{YOLO9000:} Better, Faster, Stronger.}
+    J. Redmon and
+               A. Farhadi. 
+    arXiv preprint arXiv:1612.08242, 2016.
+    
+    
+    
+    
+    
+\bibitem{dssd}
+	\textit{{DSSD} : Deconvolutional Single Shot Detector.}
+	C. Fu and
+               W. Liu and
+               A. Ranga and
+               A. Tyagi and
+               A. C. Berg
+    arXiv preprint arXiv:1701.06659, 2017
+    
+    
     
 \bibitem{retinanet}
 	\textit{Focal Loss for Dense Object Detection.}
@@ -922,36 +953,26 @@ A. Paszke,   S. Gross, S. Chintala,   G. Chanan,   E. Yang,   Z. DeVito,   Z. Li
                Serge J. Belongie.
     arXiv preprint arXiv:1612.03144, 2016
     
-\bibitem{WIDERFace}
-	\textit{WIDER FACE: A Face Detection Benchmark.}
-	Yang, Shuo and Luo, Ping and Loy, Chen Change and Tang, Xiaoou
-    IEEE Conference on Computer Vision and Pattern Recognition (CVPR), 2016
-    
-\bibitem{vgg}
-	\textit{Very Deep Convolutional Networks for Large-Scale Image Recognition.}
-	K. Simonyan and
-    A. Zisserman.
-    arXiv preprint arXiv:1409.1556, 2014
-    
-\bibitem{ssd}
-	\textit{{SSD:} Single Shot MultiBox Detector.}
-	W. Liu and
-               D. Anguelov and
-               D. Erhan and
-               C. Szegedy and
-               S. Reed and
-               C. Fu and
-               A. Berg.
-    arXiv preprint arXiv:1512.02325, 2015
 
-\bibitem{dssd}
-	\textit{{DSSD} : Deconvolutional Single Shot Detector.}
-	C. Fu and
-               W. Liu and
-               A. Ranga and
-               A. Tyagi and
-               A. C. Berg
-    arXiv preprint arXiv:1701.06659, 2017
+\bibitem{resnet} 
+	\textit{Deep residual learning for image recognition.}
+    K. He, X. Zhang, S. Ren, and J. Sun. 
+    arXiv preprint arXiv:1512.03385, 2015.
+
+    
+\bibitem{iou}
+	Jaccard Index. Wikipedia.
+    URL https://en.wikipedia.org/wiki/Jaccard{\_}index. 
+    20 January 2018
+
+
+
+%-----------------------------------
+%-----------------------------------
+%-----------------------------------
+%-----------------------------------
+%-----------------------------------
+
 
 \end{thebibliography}
 
