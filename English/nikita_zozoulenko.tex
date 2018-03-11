@@ -40,7 +40,7 @@ Supervisor: Rickard Engström \\*}
 \begin{figure}[h]
 	\centering
   		\includegraphics[scale=0.221]{resultscrowd2.png}
-  	\caption{The proposed convolutional neural network based model FaceResNet is capable of dynamically detecting over 200 faces in a crowded scene for various scales, lighting and occlusions. A detection is shown as a red boudning box.} \label{crowd}
+  	\caption{The proposed convolutional neural-network-based model FaceResNet is capable of dynamically detecting over 200 faces in a crowded scene for various scales, lighting and occlusions. A detection is shown as a red boudning box.} \label{crowd}
 \end{figure}
 \vfill
 
@@ -296,7 +296,7 @@ Every single type of layer in a convolutional neural network has two modes: forw
 Because every layer operation in the neural network is defined sequentially, we only have to define operations for two adjacent layers. Let the size of the tensor of activations at layer $l$ have size $R \times C \times H \times W$. At the next layer, $l+1$, the activations will be of size $R \times C' \times H' \times W'$. The prime notation specifies that the variable originates from the proceeding layer and is the same for the indices. The tensors are indexed by the four-tuple $(r, c, h, w)$. The batch size always stays the same from layer to layer, while the spatial size can decrease depending on the layer type. \cite{cs231n} \cite{convmath}
 
 \subsection{Convolution forward propagation}
-The basic building block of the convolutional neural network is the convolution and the convolutional layer. It uses the learnable parameters $W^{(l)} \in \mathbb{R}^{C' \times C  \times k \times k}$, called a kernel, and is the before mentioned filter the network learns to apply to images. $k$ is the kernel size of the convolution. \cite{cs231n}
+The basic building block of the convolutional neural network is the convolution and the convolutional layer. It uses the learnable parameters $W^{(l)} \in \mathbb{R}^{C' \times C  \times k \times k}$, called a kernel, and is the before mentioned filter the network learns to apply to images. $C$ and $C'$ are the number of channels in layer $l$ and $l+1$ respectively. $k$ is a variable called the kernel size of the convolution. \cite{cs231n}
 
 The activations at layer $l+1$ are derived from the activations at layer $l$ by applying the kernel at every possible spatial location on the activations at layer $l$ (see figure \ref{figkonv}). Every neuron is multiplied by the value of the kernel at the same spatial location. The sum of all the products become the activation of a single neuron in layer $l+1$. Applying this operation on every region of neurons in the activation is called a convolution. The convolution operator is denoted by $*$. \cite{cs231n} \cite{convmath} \cite{convarithmetic}
 
