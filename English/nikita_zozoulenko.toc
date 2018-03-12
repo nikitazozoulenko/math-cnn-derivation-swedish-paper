@@ -8,13 +8,13 @@
 \contentsline {subsection}{\numberline {3.2}Forward propagation}{7}
 \contentsline {subsection}{\numberline {3.3}Loss function}{9}
 \contentsline {subsection}{\numberline {3.4}Gradient Descent}{10}
-\contentsline {subsection}{\numberline {3.5}Backpropagation}{10}
+\contentsline {subsection}{\numberline {3.5}Backpropagation}{11}
 \contentsline {subsection}{\numberline {3.6}Training neural networks}{13}
-\contentsline {section}{\numberline {4}Convolutional neural networks}{13}
+\contentsline {section}{\numberline {4}Convolutional neural networks}{14}
 \contentsline {subsection}{\numberline {4.1}Model structure, parameters and notation}{15}
 \contentsline {subsection}{\numberline {4.2}Convolution forward propagation}{17}
 \contentsline {subsection}{\numberline {4.3}Convolution backpropagation}{19}
-\contentsline {subsection}{\numberline {4.4}Activation function forward propagation}{20}
+\contentsline {subsection}{\numberline {4.4}Activation function forward propagation}{21}
 \contentsline {subsection}{\numberline {4.5}Activation function backpropagation}{21}
 \contentsline {subsection}{\numberline {4.6}Maxpooling forward propagation}{21}
 \contentsline {subsection}{\numberline {4.7}Maxpooling backpropagation}{22}
@@ -24,5 +24,5 @@
 \contentsline {subsection}{\numberline {4.11}Softmax backpropagation}{28}
 \contentsline {section}{\numberline {5}Results and discussion}{29}
 \contentsline {subsection}{\numberline {5.1}Classification of handwritten digits}{29}
-\contentsline {subsection}{\numberline {5.2}Dense face detection and localization}{31}
-\contentsline {section}{\numberline {6}Conclusion}{37}
+\contentsline {subsection}{\numberline {5.2}Dense face detection and localization}{32}
+\contentsline {section}{\numberline {6}Conclusion}{36}
