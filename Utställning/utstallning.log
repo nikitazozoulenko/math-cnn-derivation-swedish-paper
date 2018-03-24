@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Arch Linux) (preloaded format=pdflatex 2018.3.4)  9 MAR 2018 20:42
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Arch Linux) (preloaded format=pdflatex 2018.3.4)  16 MAR 2018 07:37
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -739,55 +739,51 @@ LaTeX Info: Redefining \selectfont on input line 39.
  [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2]
-LaTeX Font Info:    Try loading font information for OT1+ztmcm on input line 85
+LaTeX Font Info:    Try loading font information for OT1+ztmcm on input line 86
 .
  (/usr/share/texmf-dist/tex/latex/psnfss/ot1ztmcm.fd
 File: ot1ztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OT1/ztmcm.
 )
-LaTeX Font Info:    Try loading font information for OML+ztmcm on input line 85
+LaTeX Font Info:    Try loading font information for OML+ztmcm on input line 86
 .
 
 (/usr/share/texmf-dist/tex/latex/psnfss/omlztmcm.fd
 File: omlztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OML/ztmcm.
 )
-LaTeX Font Info:    Try loading font information for OMS+ztmcm on input line 85
+LaTeX Font Info:    Try loading font information for OMS+ztmcm on input line 86
 .
 
 (/usr/share/texmf-dist/tex/latex/psnfss/omsztmcm.fd
 File: omsztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OMS/ztmcm.
 )
-LaTeX Font Info:    Try loading font information for OMX+ztmcm on input line 85
+LaTeX Font Info:    Try loading font information for OMX+ztmcm on input line 86
 .
 
 (/usr/share/texmf-dist/tex/latex/psnfss/omxztmcm.fd
 File: omxztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OMX/ztmcm.
 )
-LaTeX Font Info:    Try loading font information for OT1+ptm on input line 85.
+LaTeX Font Info:    Try loading font information for OT1+ptm on input line 86.
 
 (/usr/share/texmf-dist/tex/latex/psnfss/ot1ptm.fd
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <17.28> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 85.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 86.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 85.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 86.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 85.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 86.
 <entropy-19-00454-g002.png, id=10, 291.7299pt x 220.4235pt>
 File: entropy-19-00454-g002.png Graphic file (type png)
 <use entropy-19-00454-g002.png>
-Package pdftex.def Info: entropy-19-00454-g002.png  used on input line 90.
-(pdftex.def)             Requested size: 481.35136pt x 363.6965pt.
+Package pdftex.def Info: entropy-19-00454-g002.png  used on input line 91.
+(pdftex.def)             Requested size: 434.67809pt x 328.43138pt.
  [3 <./entropy-19-00454-g002.png>] [4]
-<gradient-descent.png, id=26, 423.38174pt x 220.4235pt>
+<gradient-descent.png, id=26, 389.0535pt x 220.4235pt>
 File: gradient-descent.png Graphic file (type png)
 <use gradient-descent.png>
-Package pdftex.def Info: gradient-descent.png  used on input line 145.
-(pdftex.def)             Requested size: 804.42075pt x 418.80225pt.
-
-Overfull \hbox (16.27939pt too wide) in paragraph at lines 145--146
-[][] 
- []
+Package pdftex.def Info: gradient-descent.png  used on input line 143.
+(pdftex.def)             Requested size: 739.19743pt x 418.80225pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
@@ -796,15 +792,15 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 <resultscrowd.png, id=34, 1413.28pt x 1156.32pt>
 File: resultscrowd.png Graphic file (type png)
 <use resultscrowd.png>
-Package pdftex.def Info: resultscrowd.png  used on input line 163.
+Package pdftex.def Info: resultscrowd.png  used on input line 164.
 (pdftex.def)             Requested size: 819.70299pt x 670.66608pt.
 
-Overfull \hbox (31.56163pt too wide) in paragraph at lines 163--164
+Overfull \hbox (31.56163pt too wide) in paragraph at lines 164--165
 [][] 
  []
 
 
-LaTeX Warning: Float too large for page by 130.06369pt on input line 164.
+LaTeX Warning: Float too large for page by 130.06369pt on input line 165.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
@@ -812,15 +808,15 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 <resultscrowd2.png, id=35, 2055.68pt x 1413.28pt>
 File: resultscrowd2.png Graphic file (type png)
 <use resultscrowd2.png>
-Package pdftex.def Info: resultscrowd2.png  used on input line 167.
+Package pdftex.def Info: resultscrowd2.png  used on input line 168.
 (pdftex.def)             Requested size: 842.83427pt x 579.44856pt.
 
-Overfull \hbox (54.69292pt too wide) in paragraph at lines 167--168
+Overfull \hbox (54.69292pt too wide) in paragraph at lines 168--169
 [][] 
  []
 
 
-LaTeX Warning: Float too large for page by 38.84618pt on input line 168.
+LaTeX Warning: Float too large for page by 38.84618pt on input line 169.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
@@ -828,15 +824,15 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 <resultscrowd3.png, id=36, 2441.12pt x 1284.8pt>
 File: resultscrowd3.png Graphic file (type png)
 <use resultscrowd3.png>
-Package pdftex.def Info: resultscrowd3.png  used on input line 171.
+Package pdftex.def Info: resultscrowd3.png  used on input line 172.
 (pdftex.def)             Requested size: 1098.49387pt x 578.15466pt.
 
-Overfull \hbox (310.35251pt too wide) in paragraph at lines 171--172
+Overfull \hbox (310.35251pt too wide) in paragraph at lines 172--173
 [][] 
  []
 
 
-LaTeX Warning: Float too large for page by 37.55228pt on input line 172.
+LaTeX Warning: Float too large for page by 37.55228pt on input line 173.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
@@ -844,15 +840,15 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 <resultscrowd4.png, id=37, 4111.36pt x 2569.6pt>
 File: resultscrowd4.png Graphic file (type png)
 <use resultscrowd4.png>
-Package pdftex.def Info: resultscrowd4.png  used on input line 175.
+Package pdftex.def Info: resultscrowd4.png  used on input line 176.
 (pdftex.def)             Requested size: 1151.17297pt x 719.48311pt.
 
-Overfull \hbox (363.03162pt too wide) in paragraph at lines 175--176
+Overfull \hbox (363.03162pt too wide) in paragraph at lines 176--177
 [][] 
  []
 
 
-LaTeX Warning: Float too large for page by 178.88072pt on input line 176.
+LaTeX Warning: Float too large for page by 178.88072pt on input line 177.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
@@ -860,88 +856,142 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 <lioncubism.png, id=38, 602.25pt x 401.5pt>
 File: lioncubism.png Graphic file (type png)
 <use lioncubism.png>
-Package pdftex.def Info: lioncubism.png  used on input line 185.
-(pdftex.def)             Requested size: 361.35278pt x 240.90184pt.
+Package pdftex.def Info: lioncubism.png  used on input line 183.
+(pdftex.def)             Requested size: 560.0867pt x 373.39113pt.
 <lionmosaic.png, id=39, 602.25pt x 401.5pt>
 File: lionmosaic.png Graphic file (type png)
 <use lionmosaic.png>
-Package pdftex.def Info: lionmosaic.png  used on input line 187.
-(pdftex.def)             Requested size: 361.35278pt x 240.90184pt.
-<lionstarrynight.png, id=40, 602.25pt x 401.5pt>
-File: lionstarrynight.png Graphic file (type png)
-<use lionstarrynight.png>
-Package pdftex.def Info: lionstarrynight.png  used on input line 190.
-(pdftex.def)             Requested size: 361.35278pt x 240.90184pt.
-<lionpolyphoenix.png, id=41, 602.25pt x 401.5pt>
+Package pdftex.def Info: lionmosaic.png  used on input line 186.
+(pdftex.def)             Requested size: 560.0867pt x 373.39113pt.
+<lionpolyphoenix.png, id=40, 803.0pt x 534.99875pt>
 File: lionpolyphoenix.png Graphic file (type png)
 <use lionpolyphoenix.png>
-Package pdftex.def Info: lionpolyphoenix.png  used on input line 192.
-(pdftex.def)             Requested size: 361.35278pt x 240.90184pt.
-<happycubism.jpg, id=42, 652.4375pt x 519.9425pt>
+Package pdftex.def Info: lionpolyphoenix.png  used on input line 189.
+(pdftex.def)             Requested size: 562.09618pt x 374.49657pt.
+<lionpolyfoxstyle.png, id=41, 803.0pt x 534.99875pt>
+File: lionpolyfoxstyle.png Graphic file (type png)
+<use lionpolyfoxstyle.png>
+Package pdftex.def Info: lionpolyfoxstyle.png  used on input line 192.
+(pdftex.def)             Requested size: 562.09618pt x 374.49657pt.
+<lionstarrynight.png, id=42, 803.0pt x 534.99875pt>
+File: lionstarrynight.png Graphic file (type png)
+<use lionstarrynight.png>
+Package pdftex.def Info: lionstarrynight.png  used on input line 195.
+(pdftex.def)             Requested size: 562.09618pt x 374.49657pt.
+File: lioncubism.png Graphic file (type png)
+<use lioncubism.png>
+Package pdftex.def Info: lioncubism.png  used on input line 198.
+(pdftex.def)             Requested size: 560.0867pt x 373.39113pt.
+<lionphoenix.png, id=43, 803.0pt x 534.99875pt>
+File: lionphoenix.png Graphic file (type png)
+<use lionphoenix.png>
+Package pdftex.def Info: lionphoenix.png  used on input line 201.
+(pdftex.def)             Requested size: 562.09618pt x 374.49657pt.
+<happycubism.jpg, id=44, 652.4375pt x 519.9425pt>
 File: happycubism.jpg Graphic file (type jpg)
 <use happycubism.jpg>
-Package pdftex.def Info: happycubism.jpg  used on input line 198.
-(pdftex.def)             Requested size: 228.35654pt x 181.9826pt.
-<starrynight.jpg, id=43, 1284.8pt x 1017.8025pt>
+Package pdftex.def Info: happycubism.jpg  used on input line 207.
+(pdftex.def)             Requested size: 326.21794pt x 259.97061pt.
+<starrynight.jpg, id=45, 1284.8pt x 1017.8025pt>
 File: starrynight.jpg Graphic file (type jpg)
 <use starrynight.jpg>
-Package pdftex.def Info: starrynight.jpg  used on input line 200.
-(pdftex.def)             Requested size: 256.95544pt x 203.5569pt.
-<polyphoenix.jpg, id=44, 1927.2pt x 1084.05pt>
-File: polyphoenix.jpg Graphic file (type jpg)
-<use polyphoenix.jpg>
-Package pdftex.def Info: polyphoenix.jpg  used on input line 201.
-(pdftex.def)             Requested size: 289.06754pt x 162.60048pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 200--202
-[][]
- []
-
-<lion.png, id=45, 2007.5pt x 803.0pt>
-File: lion.png Graphic file (type png)
-<use lion.png>
-Package pdftex.def Info: lion.png  used on input line 204.
-(pdftex.def)             Requested size: 401.49289pt x 160.59715pt.
+Package pdftex.def Info: starrynight.jpg  used on input line 209.
+(pdftex.def)             Requested size: 372.58246pt x 295.15517pt.
 <mosaic.jpg, id=46, 339.669pt x 282.5757pt>
 File: mosaic.jpg Graphic file (type jpg)
 <use mosaic.jpg>
-Package pdftex.def Info: mosaic.jpg  used on input line 205.
-(pdftex.def)             Requested size: 237.76668pt x 197.80162pt.
+Package pdftex.def Info: mosaic.jpg  used on input line 213.
+(pdftex.def)             Requested size: 339.66817pt x 282.575pt.
+<polyphoenix.jpg, id=47, 1927.2pt x 1084.05pt>
+File: polyphoenix.jpg Graphic file (type jpg)
+<use polyphoenix.jpg>
+Package pdftex.def Info: polyphoenix.jpg  used on input line 214.
+(pdftex.def)             Requested size: 423.98532pt x 238.49173pt.
 
-Overfull \hbox (7.42221pt too wide) in paragraph at lines 204--206
+Underfull \hbox (badness 10000) in paragraph at lines 213--215
 [][]
  []
 
 
-LaTeX Warning: Float too large for page by 9.5376pt on input line 207.
+Overfull \hbox (29.91464pt too wide) in paragraph at lines 213--215
+[] 
+ []
 
-[7 <./gradient-descent.png>] [8 <./resultscrowd.png (PNG copy)>] [9 <./resultsc
-rowd2.png (PNG copy)>] [10 <./resultscrowd3.png (PNG copy)>] [11 <./resultscrow
-d4.png (PNG copy)>] [12 <./lioncubism.png (PNG copy)> <./lionmosaic.png (PNG co
-py)> <./lionstarrynight.png (PNG copy)> <./lionpolyphoenix.png (PNG copy)>]
-[13 <./happycubism.jpg> <./starrynight.jpg> <./polyphoenix.jpg> <./lion.png> <.
-/mosaic.jpg>] (./utstallning.aux) ) 
+
+LaTeX Warning: Float too large for page by 15.52339pt on input line 216.
+
+<acidcrop.png, id=48, 642.4pt x 481.8pt>
+File: acidcrop.png Graphic file (type png)
+<use acidcrop.png>
+Package pdftex.def Info: acidcrop.png  used on input line 220.
+(pdftex.def)             Requested size: 353.32109pt x 264.99081pt.
+<graffiti.jpg, id=49, 2007.5pt x 916.42375pt>
+File: graffiti.jpg Graphic file (type jpg)
+<use graffiti.jpg>
+Package pdftex.def Info: graffiti.jpg  used on input line 221.
+(pdftex.def)             Requested size: 481.80984pt x 219.9462pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 220--222
+[][]
+ []
+
+
+Overfull \hbox (87.73917pt too wide) in paragraph at lines 220--222
+[] 
+ []
+
+<polyfoxstyle.png, id=50, 769.87625pt x 770.88pt>
+File: polyfoxstyle.png Graphic file (type png)
+<use polyfoxstyle.png>
+Package pdftex.def Info: polyfoxstyle.png  used on input line 227.
+(pdftex.def)             Requested size: 307.94504pt x 308.34654pt.
+<lion.png, id=51, 2007.5pt x 803.0pt>
+File: lion.png Graphic file (type png)
+<use lion.png>
+Package pdftex.def Info: lion.png  used on input line 228.
+(pdftex.def)             Requested size: 602.25465pt x 240.90186pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 227--229
+[][]
+ []
+
+
+Overfull \hbox (208.18398pt too wide) in paragraph at lines 227--229
+[] 
+ []
+
+
+LaTeX Warning: Float too large for page by 9.64601pt on input line 230.
+
+[7 <./gradient-descent.png (PNG copy)>] [8 <./resultscrowd.png (PNG copy)>]
+[9 <./resultscrowd2.png (PNG copy)>] [10 <./resultscrowd3.png (PNG copy)>]
+[11 <./resultscrowd4.png (PNG copy)>] [12 <./lioncubism.png (PNG copy)>]
+[13 <./lionmosaic.png (PNG copy)>] [14 <./lionpolyphoenix.png (PNG copy)>]
+[15 <./lionpolyfoxstyle.png (PNG copy)>] [16 <./lionstarrynight.png (PNG copy)>
+] [17] [18 <./lionphoenix.png (PNG copy)>] [19 <./happycubism.jpg> <./starrynig
+ht.jpg> <./mosaic.jpg> <./polyphoenix.jpg>] [20 <./acidcrop.png> <./graffiti.jp
+g>] [21 <./polyfoxstyle.png> <./lion.png>] (./utstallning.aux) ) 
 Here is how much of TeX's memory you used:
- 5500 strings out of 492982
- 80867 string characters out of 6138580
- 146977 words of memory out of 5000000
- 8913 multiletter control sequences out of 15000+600000
- 32993 words of font info for 69 fonts, out of 8000000 for 9000
+ 5527 strings out of 492982
+ 81353 string characters out of 6138580
+ 146949 words of memory out of 5000000
+ 8934 multiletter control sequences out of 15000+600000
+ 35715 words of font info for 71 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 44i,9n,42p,848b,286s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texmf-dist/fonts/enc/dvips/base/
-8r.enc}</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/s
-hare/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-dis
-t/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/type1/p
-ublic/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts
-/symbols/msbm10.pfb></usr/share/texmf-dist/fonts/type1/urw/symbol/usyr.pfb></us
-r/share/texmf-dist/fonts/type1/urw/symbol/usyr.pfb></usr/share/texmf-dist/fonts
-/type1/urw/times/utmr8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmri8
-a.pfb>
-Output written on utstallning.pdf (13 pages, 30110616 bytes).
+ 44i,9n,42p,910b,286s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/tex
+mf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texmf-dist/fonts/type1/public/a
+msfonts/cm/cmex10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmm
+i10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/s
+hare/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dis
+t/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texmf-dist/fonts/t
+ype1/urw/symbol/usyr.pfb></usr/share/texmf-dist/fonts/type1/urw/symbol/usyr.pfb
+></usr/share/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf-dist
+/fonts/type1/urw/times/utmri8a.pfb>
+Output written on utstallning.pdf (21 pages, 34173823 bytes).
 PDF statistics:
- 102 PDF objects out of 1000 (max. 8388607)
- 60 compressed objects within 1 object stream
+ 132 PDF objects out of 1000 (max. 8388607)
+ 77 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 76 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 101 words of extra memory for PDF output out of 10000 (max. 10000000)
 
