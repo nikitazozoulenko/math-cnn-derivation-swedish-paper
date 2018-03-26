@@ -1,4 +1,3 @@
-              
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % "ModernCV" CV and Cover Letter
 % LaTeX Template
@@ -24,8 +23,13 @@
 %   PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
 %----------------------------------------------------------------------------------------
 
-\documentclass[11pt,a4paper,sans]{moderncv} % Font sizes: 10, 11, or 12; paper sizes: a4paper, letterpaper, a5paper, legalpaper, executivepaper or landscape; font families: sans or roman
+\documentclass[10pt,a4paper,sans]{moderncv} % Font sizes: 10, 11, or 12; paper sizes: a4paper, letterpaper, a5paper, legalpaper, executivepaper or landscape; font families: sans or roman
 
+% 
+
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
 \usepackage[swedish]{babel}
 
 \moderncvstyle{classic} % CV theme - options include: 'casual' (default), 'classic', 'oldstyle' and 'banking'
@@ -46,12 +50,12 @@
 
 % All information in this block is optional, comment out any lines you don't need
 \title{Curriculum Vitae}
-\address{Ellen keys gata 23}{Link\"oping, Sverige 58437}
+\address{Ellen keys gata 23}{Linköping, Sverige 58437}
 \mobile{+46723053504}
 \email{nikita.zozoulenko@gmail.com}
 %\homepage{https://www.linkedin.com/pub/daniele-perrotta/64/5b9/794} {staff.org.edu/$\sim$jsmith} % The first argument is the url for the clickable link, the second argument is the url displayed in the template - this allows special characters to be displayed such as the tilde in this example
 \extrainfo{991013-8594}
-\photo[70pt][0.4pt]{/hdd/Images/cobain.jpg} % The first bracket is the picture height, the second is the thickness of the frame around the picture (0pt for no frame)
+\photo[116pt][0.4pt]{portrait_orig.jpg} % The first bracket is the picture height, the second is the thickness of the frame around the picture (0pt for no frame)
 %\quote{"A witty and playful quotation" - John Smith}
 
 %----------------------------------------------------------------------------------------
@@ -66,12 +70,12 @@
 
 \section{Utbildning}
 
-% \cventry{2009--2012}{Internationella Engelska Skolan i Link\"oping}{H\"ogstadiet, årskurs 6 till och med 9}
+% \cventry{2009--2012}{Internationella Engelska Skolan i Linköping}{Högstadiet, årskurs 6 till och med 9}ö
 
-\cventry{2011--2015}{Internationella Engelska Skolan i Link\"oping}{H\"ogstadiet, \aa rskurs 6--9}{}{}{}
-\cventry{2015--2018}{Katedralskolan i Link\"oping}{Gymnasiet, naturvetenskapsprogrammet (NANAT)
-F\"orv\"antad gymnasieexamen juni 2018}{}{}{}  % Arguments not required can be left empty
-
+\cventry{2011--2015}{Internationella Engelska Skolan i Linköping}{Högstadiet, årskurs 6--9}{}{}{}
+\cventry{2015--2018}{Katedralskolan i Linköping}{Gymnasiet, naturvetenskapsprogrammet (NANAT)
+Förväntad gymnasieexamen juni 2018}{}{}{}
+\cventry{Våren 2018}{Linköpings Universitet}{Linjär algebra, fristående kurs. Jag har dels läst delar av en- och flervariabelanalys för mitt arbete med maskininlärning och artificiell intelligens}{}{}{}
 %\section{Masters Thesis}
 
 %\cvitem{Title}{\emph{Technologies and characterization of ferroelectric polymers for biomedical sensors}}
@@ -84,19 +88,12 @@ F\"orv\"antad gymnasieexamen juni 2018}{}{}{}  % Arguments not required can be l
 
 \section{Jobberfarenheter}
 
-\cventry{Augusti 2016}{Ungdomskonsult}{\textsc{AB St\aa ng\aa staden}}{Link\"oping}{}{Jag arbetade som gruppledare med andra ungdomskonsulter f\"or att hitta l\"osningar och innovativa id\'eer f\"or ett l\aa ngvarande problem bland St\aa ng\aa stadens bost\"ader.}
+\cventry{Augusti 2016}{Ungdomskonsult}{\textsc{AB Stångåstaden}}{Linköping}{}{Jag arbetade som gruppledare med andra ungdomskonsulter för att hitta lösningar och innovativa id\'eer för ett långvarande problem bland Stångåstadens bostäder.}
 
 
-\cventry{Nått 2017 -- Annat 2017}{Djurskötsel, trädgårdsskötsel och museiguide}{\textsc{Alten SpA}}{Torino}{}{HelpDesk del Sistema Informativo Intesa San Paolo:  Interazione  su Database  (Toad  for Oracle),  utilizzo di Eclipse, utilizzo di Web Service (tramite SOAPUI)  e verifica dei log di Sistema (attraverso  comandi Unix) per l'identificazione dei bug.}
+\cventry{Juni 2017 -- Juli 2017}{Djurskötsel, trädgårdsskötsel och museiguide}{\textsc{Friluftsmuseet Gamla Linköping}}{}{}{På morgornarna tog jag hand om museets djur och var trädgårdsmästare. På eftermiddagen agerade jag som museiguide.}
 
 %------------------------------------------------
-
-%----------------------------------------------------------------------------------------
-%   AWARDS SECTION
-%----------------------------------------------------------------------------------------
-\section{Awards}
-
-\cventry{Ottobre 2012}{Ingegnere Industriale}{\textsc{Arcavacata Campus -- Universita' della Calabria}}{Cosenza}{}{Abilitazione all'esercizio della professione di Ingegnere - Settore industriale}
 
 %----------------------------------------------------------------------------------------
 %   COMPUTER SKILLS SECTION
@@ -104,8 +101,8 @@ F\"orv\"antad gymnasieexamen juni 2018}{}{}{}  % Arguments not required can be l
 
 \section{Tekniska kompetenser}
 
-\cvitem{Programmer\-ingsspr\aa k}{\textsc{Python, C++, Java, GLSL}}
-\cvitem{OS }{\textsc{Linux, Windows}}
+\cvitem{Språk}{\textsc{Python, C++, Java, GLSL}}
+\cvitem{OS}{\textsc{Linux, Windows}}
 \cvitem{Frameworks}{\textsc{Pytorch, TensorFlow, OpenCV, OpenGL, Vulkan}}
 
 %----------------------------------------------------------------------------------------
@@ -121,24 +118,31 @@ F\"orv\"antad gymnasieexamen juni 2018}{}{}{}  % Arguments not required can be l
 %   LANGUAGES SECTION
 %----------------------------------------------------------------------------------------
 
-\section{Spr\aa k}
+\section{Språk}
 
 \cvitemwithcomment{Svenska}{Flytande}{}
 \cvitemwithcomment{Engelska}{Flytande}{}
-\cvitemwithcomment{Ryska}{Goda \"overs\"attningsf\"orm\aa gor i tal}{}
-\cvitemwithcomment{Spanska}{Gymnasieniv\aa , f\"orst\aa r enkla samtal och texter}{}
+\cvitemwithcomment{Ryska}{Goda översättningsförmågor i tal}{}
+\cvitemwithcomment{Spanska}{Gymnasienivå, förstår enkla samtal och texter}{}
 %\cvitemwithcomment{Dutch}{Basic}{Basic words and phrases only}Svenska: Modersmål
 
 %----------------------------------------------------------------------------------------
 %   INTERESTS SECTION
 %----------------------------------------------------------------------------------------
 
-\section{Interessi}
+%----------------------------------------------------------------------------------------
+%   AWARDS SECTION
+%----------------------------------------------------------------------------------------
+\section{Utmärkelser}
 
-\renewcommand{\listitemsymbol}{-~} % Changes the symbol used for lists
+\cventry{Mars 2018}{Vinnare i Finalen av Utställning Unga Forksare}{De 550 skarpaste projektarbetena bland Sveriges gymnasieelever tävlade för att vinna stipeindier av ett totalt värde på 500 000 kr.}{}{}{}
 
-\cvlistdoubleitem{Piano}{}
-\cvlistitem{Atletica}
+\cventry{Maj 2018}{Finalist i Intel Internation Science and Engineering Fair}{Intel ISEF är världens största internationella utställning och tävling för gymnasieelver. Totalt har 1,8 miljoner ungdomar deltagit i uttagningstävlingarna världen över för att de bästa 1800 skulle nå finalen}{}{}{}
+
+\section{Övrigt}
+\renewcommand{\listitemsymbol}{~} % Changes the symbol used for lists
+\cvlistitem{Inom maskininlärning har jag arbetet med objektdetektering för realtidsvideo, automatisk bildtextgenerering och natural language processing. Mina andra intressen inkluderar träning, robotik, automation, 3D-grafik och musik}
+%\cventry{}{}{Inom maskininlärning har jag arbetet med objektdetektering för realtidsvideo, automatisk bildtextgenerering och natural language processing}{}{}{}
 
 %----------------------------------------------------------------------------------------
 %   COVER LETTER
