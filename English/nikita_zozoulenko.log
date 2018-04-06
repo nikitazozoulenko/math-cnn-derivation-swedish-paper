@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Arch Linux) (preloaded format=pdflatex 2018.3.4)  15 MAR 2018 19:54
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Arch Linux) (preloaded format=pdflatex 2018.3.4)  6 APR 2018 10:19
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -557,6 +557,19 @@ Package caption3 Info: TeX engine: e-TeX on input line 67.
 \sf@top=\skip53
 \sf@bottom=\skip54
 )
+(/usr/share/texmf-dist/tex/latex/graphics/epsfig.sty
+Package: epsfig 2017/06/25 v1.7b (e)psfig emulation (SPQR)
+\epsfxsize=\dimen139
+\epsfysize=\dimen140
+)
+(/usr/share/texmf-dist/tex/latex/graphics/color.sty
+Package: color 2016/07/10 v1.1e Standard LaTeX Color (DPC)
+
+(/usr/share/texmf-dist/tex/latex/graphics-cfg/color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package color Info: Driver file: pdftex.def on input line 147.
+)
 (/usr/share/texmf-dist/tex/latex/url/url.sty
 \Urlmuskip=\muskip11
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
@@ -584,21 +597,28 @@ Package: everysel 2011/10/28 v1.2 EverySelectfont Package (MS)
 \RaggedLeftParindent=\skip66
 \RaggedRightParindent=\skip67
 \JustifyingParindent=\skip68
-) (./nikita_zozoulenko.aux)
+) (./nikita_zozoulenko.aux
+
+LaTeX Warning: Label `konvolution' multiply defined.
+
+
+LaTeX Warning: Label `tabseqmnist' multiply defined.
+
+)
 \openout1 = `nikita_zozoulenko.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 36.
-LaTeX Font Info:    ... okay on input line 36.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 36.
-LaTeX Font Info:    ... okay on input line 36.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 36.
-LaTeX Font Info:    ... okay on input line 36.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 36.
-LaTeX Font Info:    ... okay on input line 36.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 36.
-LaTeX Font Info:    ... okay on input line 36.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 36.
-LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -637,13 +657,13 @@ LaTeX Font Info:    ... okay on input line 36.
 (/usr/share/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count114
-\scratchdimen=\dimen139
+\scratchdimen=\dimen141
 \scratchbox=\box28
 \nofMPsegments=\count115
 \nofMParguments=\count116
 \everyMPshowfont=\toks24
 \MPscratchCnt=\count117
-\MPscratchDim=\dimen140
+\MPscratchDim=\dimen142
 \MPnumerator=\count118
 \makeMPintoPDFobject=\count119
 \everyMPtoPDFconversion=\toks25
@@ -704,13 +724,13 @@ Package caption Info: subfig package v1.3 is loaded.
 Package caption Info: End \AtBeginDocument code.
 
 ABD: EverySelectfont initializing macros
-LaTeX Info: Redefining \selectfont on input line 36.
-LaTeX Font Info:    Try loading font information for U+msa on input line 37.
+LaTeX Info: Redefining \selectfont on input line 39.
+LaTeX Font Info:    Try loading font information for U+msa on input line 40.
 
 (/usr/share/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 37.
+LaTeX Font Info:    Try loading font information for U+msb on input line 40.
 
 (/usr/share/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
@@ -718,10 +738,10 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 <resultscrowd2.png, id=1, 2055.68pt x 1413.28pt>
 File: resultscrowd2.png Graphic file (type png)
 <use resultscrowd2.png>
-Package pdftex.def Info: resultscrowd2.png  used on input line 42.
+Package pdftex.def Info: resultscrowd2.png  used on input line 45.
 (pdftex.def)             Requested size: 454.28987pt x 312.32428pt.
 
-Overfull \hbox (1.32198pt too wide) in paragraph at lines 42--43
+Overfull \hbox (1.32198pt too wide) in paragraph at lines 45--46
  [][] 
  []
 
@@ -729,105 +749,96 @@ Overfull \hbox (1.32198pt too wide) in paragraph at lines 42--43
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./resultscrowd2.png (PNG c
 opy)>]
-Underfull \hbox (badness 10000) in paragraph at lines 50--51
+Underfull \hbox (badness 10000) in paragraph at lines 53--54
 
  []
 
-[2] (./nikita_zozoulenko.toc)
+[2] (./nikita_zozoulenko.toc [3])
 \tf@toc=\write3
 \openout3 = `nikita_zozoulenko.toc'.
 
- [3] [4] [5]
-<feedforward.png, id=27, 392.21532pt x 192.72pt>
+ [4] [5] [6]
+<feedforward.png, id=30, 392.21532pt x 192.72pt>
 File: feedforward.png Graphic file (type png)
 <use feedforward.png>
-Package pdftex.def Info: feedforward.png  used on input line 86.
+Package pdftex.def Info: feedforward.png  used on input line 95.
 (pdftex.def)             Requested size: 392.21436pt x 192.71951pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [6 <./feedforward.png>]
-<FCC.png, id=32, 793.46437pt x 352.31625pt>
+ [7 <./feedforward.png>]
+<FCC.png, id=36, 793.46437pt x 352.31625pt>
 File: FCC.png Graphic file (type png)
 <use FCC.png>
-Package pdftex.def Info: FCC.png  used on input line 106.
+Package pdftex.def Info: FCC.png  used on input line 115.
 (pdftex.def)             Requested size: 317.38013pt x 140.924pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[7]
-<activationfunction.png, id=43, 402.00188pt x 273.27094pt>
+[8]
+<activationfunction.png, id=46, 402.00188pt x 273.27094pt>
 File: activationfunction.png Graphic file (type png)
 <use activationfunction.png>
-Package pdftex.def Info: activationfunction.png  used on input line 132.
+Package pdftex.def Info: activationfunction.png  used on input line 141.
 (pdftex.def)             Requested size: 293.45892pt x 199.4861pt.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[8 <./FCC.png>] [9 <./activationfunction.png>]
-<gradient-descent.png, id=53, 389.0535pt x 220.4235pt>
+ [9 <./FCC.png>] [10 <./activationfunction.png>] [11]
+<gradient-descent.png, id=59, 389.0535pt x 220.4235pt>
 File: gradient-descent.png Graphic file (type png)
 <use gradient-descent.png>
-Package pdftex.def Info: gradient-descent.png  used on input line 191.
+Package pdftex.def Info: gradient-descent.png  used on input line 200.
 (pdftex.def)             Requested size: 389.05254pt x 220.42294pt.
+ [12 <./gradient-descent.png (PNG copy)>]
+Underfull \vbox (badness 3078) has occurred while \output is active []
 
+ [13]
+[14]
+LaTeX Font Info:    Try loading font information for T1+cmtt on input line 263.
 
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[10] [11 <./gradient-descent.png (PNG copy)>] [12]
-LaTeX Font Info:    Try loading font information for T1+cmtt on input line 254.
-
-
-(/usr/share/texmf-dist/tex/latex/base/t1cmtt.fd
+ (/usr/share/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
-Overfull \hbox (34.23615pt too wide) in paragraph at lines 254--255
+Overfull \hbox (34.23615pt too wide) in paragraph at lines 263--264
 \T1/cmr/m/it/14.4 neural-network-cpp \T1/cmr/m/n/14.4 re-spec-tively: $\T1/cmtt
 /m/n/14.4 https : / / github . com / nikitazozoulenko$\T1/cmr/m/n/14.4 . 
  []
 
-
-Underfull \vbox (badness 1546) has occurred while \output is active []
-
- [13]
-<katter.png, id=69, 1181.16281pt x 475.02469pt>
+<katter.png, id=70, 1181.16281pt x 475.02469pt>
 File: katter.png Graphic file (type png)
 <use katter.png>
-Package pdftex.def Info: katter.png  used on input line 261.
+Package pdftex.def Info: katter.png  used on input line 270.
 (pdftex.def)             Requested size: 389.78494pt x 156.75862pt.
-
-[14 <./katter.png>] [15]
-<vggnet.png, id=77, 471.7625pt x 277.035pt>
+[15 <./katter.png>] [16]
+<vggnet.png, id=80, 471.7625pt x 277.035pt>
 File: vggnet.png Graphic file (type png)
 <use vggnet.png>
-Package pdftex.def Info: vggnet.png  used on input line 282.
+Package pdftex.def Info: vggnet.png  used on input line 291.
 (pdftex.def)             Requested size: 283.05968pt x 166.22227pt.
-<boatcnn.png, id=78, 781.92125pt x 212.795pt>
+<boatcnn.png, id=81, 781.92125pt x 212.795pt>
 File: boatcnn.png Graphic file (type png)
 <use boatcnn.png>
-Package pdftex.def Info: boatcnn.png  used on input line 288.
+Package pdftex.def Info: boatcnn.png  used on input line 297.
 (pdftex.def)             Requested size: 469.15637pt x 127.67796pt.
 
-Overfull \hbox (16.18848pt too wide) in paragraph at lines 288--289
+Overfull \hbox (16.18848pt too wide) in paragraph at lines 297--298
  [][] 
  []
 
-[16 <./vggnet.png (PNG copy)> <./boatcnn.png>]
-<convolution.png, id=83, 164.25pt x 77.307pt>
+[17 <./vggnet.png (PNG copy)> <./boatcnn.png>]
+<convolution.png, id=86, 164.25pt x 77.307pt>
 File: convolution.png Graphic file (type png)
 <use convolution.png>
-Package pdftex.def Info: convolution.png  used on input line 303.
+Package pdftex.def Info: convolution.png  used on input line 312.
 (pdftex.def)             Requested size: 344.92513pt x 162.34473pt.
- [17 <./convolution.png>]
-<zeropadding.png, id=88, 188.95593pt x 188.95593pt>
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[18]
+<zeropadding.png, id=90, 188.95593pt x 188.95593pt>
 File: zeropadding.png Graphic file (type png)
 <use zeropadding.png>
-Package pdftex.def Info: zeropadding.png  used on input line 313.
+Package pdftex.def Info: zeropadding.png  used on input line 322.
 (pdftex.def)             Requested size: 132.26823pt x 132.26823pt.
 
-Overfull \hbox (12.92256pt too wide) in paragraph at lines 317--318
+Overfull \hbox (12.92256pt too wide) in paragraph at lines 326--327
 []\T1/cmr/m/n/14.4 Let $\OML/cmm/m/it/14.4 W[] \OMS/cmsy/m/n/14.4 2 \U/msb/m/n/
 14.4 R[]$\T1/cmr/m/n/14.4 , $\OML/cmm/m/it/14.4 X[] \OMS/cmsy/m/n/14.4 2 \U/msb
 /m/n/14.4 R[]$ \T1/cmr/m/n/14.4 and $\OML/cmm/m/it/14.4 X[] \OMS/cmsy/m/n/14.4 
@@ -835,224 +846,353 @@ Overfull \hbox (12.92256pt too wide) in paragraph at lines 317--318
  []
 
 
-Overfull \hbox (14.87418pt too wide) in paragraph at lines 323--325
+Overfull \hbox (14.87418pt too wide) in paragraph at lines 332--334
 \T1/cmr/m/n/14.4 The fol-low-ing equa-tion de-fines the con-vo-lu-tional layer 
 al-ge-braically [[]] [[]]: 
  []
 
-[18 <./zeropadding.png>]
-Underfull \vbox (badness 10000) has occurred while \output is active []
+[19 <./convolution.png> <./zeropadding.png>]
+Overfull \hbox (26.74515pt too wide) detected at line 358
+[]
+ []
 
- [19]
-Underfull \vbox (badness 4621) has occurred while \output is active []
 
- [20]
+Overfull \hbox (30.0pt too wide) in paragraph at lines 358--358
+[] 
+ []
+
+[20]
+Overfull \hbox (26.74515pt too wide) detected at line 368
+[]
+ []
+
+
+Overfull \hbox (30.0pt too wide) in paragraph at lines 368--368
+[] 
+ []
+
+
+Overfull \hbox (23.4375pt too wide) detected at line 381
+[]
+ []
+
+
+Overfull \hbox (30.0pt too wide) in paragraph at lines 381--381
+[] 
+ []
+
 [21]
 <maxpool.png, id=103, 548.0475pt x 194.97844pt>
 File: maxpool.png Graphic file (type png)
 <use maxpool.png>
-Package pdftex.def Info: maxpool.png  used on input line 405.
+Package pdftex.def Info: maxpool.png  used on input line 408.
 (pdftex.def)             Requested size: 383.63063pt x 136.48396pt.
 
-Overfull \hbox (4.98537pt too wide) in paragraph at lines 420--421
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[22]
+Overfull \hbox (4.98537pt too wide) in paragraph at lines 423--424
 []\T1/cmr/m/n/14.4 The fol-low-ing equa-tion de-fines the max-pool-ing layer al
 -ge-braically [[]] [[]]: 
+ []
+
+[23 <./maxpool.png>]
+
+Package amsmath Warning: Cannot use `split' here;
+(amsmath)                trying to recover with `aligned' on input line 443.
+
+[24] [25] [26]
+Overfull \hbox (25.4414pt too wide) detected at line 540
+[]
+ []
+
+
+Overfull \hbox (30.0pt too wide) in paragraph at lines 540--540
+[] 
+ []
+
+
+Overfull \hbox (33.37273pt too wide) detected at line 556
+[]
+ []
+
+
+Overfull \hbox (30.0pt too wide) in paragraph at lines 556--556
+[] 
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [27]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [28]
+[29] [30]
+<mnist.png, id=133, 375.65344pt x 143.03438pt>
+File: mnist.png Graphic file (type png)
+<use mnist.png>
+Package pdftex.def Info: mnist.png  used on input line 624.
+(pdftex.def)             Requested size: 375.65251pt x 143.03401pt.
+ [31 <./mnist.png>]
+<accuracy.png, id=139, 635.37375pt x 473.77pt>
+File: accuracy.png Graphic file (type png)
+<use accuracy.png>
+Package pdftex.def Info: accuracy.png  used on input line 676.
+(pdftex.def)             Requested size: 227.62204pt x 169.72571pt.
+<losses.png, id=140, 635.37375pt x 473.77pt>
+File: losses.png Graphic file (type png)
+<use losses.png>
+Package pdftex.def Info: losses.png  used on input line 677.
+(pdftex.def)             Requested size: 227.62204pt x 169.72571pt.
+
+Overfull \hbox (8.94122pt too wide) in paragraph at lines 676--678
+ [][][] 
+ []
+
+[32] [33 <./accuracy.png> <./losses.png>]
+<iou.png, id=150, 883.3pt x 228.855pt>
+File: iou.png Graphic file (type png)
+<use iou.png>
+Package pdftex.def Info: iou.png  used on input line 712.
+(pdftex.def)             Requested size: 441.64893pt x 114.42722pt.
+
+Underfull \vbox (badness 3354) has occurred while \output is active []
+
+ [34 <./iou.png>]
+Underfull \vbox (badness 2261) has occurred while \output is active []
+
+ [35]
+Underfull \vbox (badness 1874) has occurred while \output is active []
+
+ [36]
+Package epstopdf Info: Source file: <figTCNdil.eps>
+(epstopdf)                    date: 2018-04-04 10:20:54
+(epstopdf)                    size: 78502 bytes
+(epstopdf)             Output file: <figTCNdil-eps-converted-to.pdf>
+(epstopdf)                    date: 2018-04-04 10:39:56
+(epstopdf)                    size: 8239 bytes
+(epstopdf)             Command: <repstopdf --outfile=figTCNdil-eps-converted-to
+.pdf figTCNdil.eps>
+(epstopdf)             \includegraphics on input line 782.
+Package epstopdf Info: Output file is already uptodate.
+<figTCNdil-eps-converted-to.pdf, id=161, 341.275pt x 196.735pt>
+File: figTCNdil-eps-converted-to.pdf Graphic file (type pdf)
+<use figTCNdil-eps-converted-to.pdf>
+Package pdftex.def Info: figTCNdil-eps-converted-to.pdf  used on input line 782
+.
+(pdftex.def)             Requested size: 256.0748pt x 147.62892pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[37] [38 <./figTCNdil-eps-converted-to.pdf>]
+Package epstopdf Info: Source file: <figTCNZeropad.eps>
+(epstopdf)                    date: 2018-04-04 10:24:45
+(epstopdf)                    size: 73360 bytes
+(epstopdf)             Output file: <figTCNZeropad-eps-converted-to.pdf>
+(epstopdf)                    date: 2018-04-04 10:47:39
+(epstopdf)                    size: 7188 bytes
+(epstopdf)             Command: <repstopdf --outfile=figTCNZeropad-eps-converte
+d-to.pdf figTCNZeropad.eps>
+(epstopdf)             \includegraphics on input line 804.
+Package epstopdf Info: Output file is already uptodate.
+<figTCNZeropad-eps-converted-to.pdf, id=187, 258.9675pt x 196.735pt>
+File: figTCNZeropad-eps-converted-to.pdf Graphic file (type pdf)
+<use figTCNZeropad-eps-converted-to.pdf>
+Package pdftex.def Info: figTCNZeropad-eps-converted-to.pdf  used on input line
+ 804.
+(pdftex.def)             Requested size: 256.0748pt x 194.55809pt.
+ [39 <./figTCNZeropad-eps-converted-to.pdf>] [40]
+Package epstopdf Info: Source file: <figRadical.eps>
+(epstopdf)                    date: 2018-04-04 10:22:52
+(epstopdf)                    size: 90456 bytes
+(epstopdf)             Output file: <figRadical-eps-converted-to.pdf>
+(epstopdf)                    date: 2018-04-04 13:33:21
+(epstopdf)                    size: 11601 bytes
+(epstopdf)             Command: <repstopdf --outfile=figRadical-eps-converted-t
+o.pdf figRadical.eps>
+(epstopdf)             \includegraphics on input line 837.
+Package epstopdf Info: Output file is already uptodate.
+<figRadical-eps-converted-to.pdf, id=205, 578.16pt x 391.4625pt>
+File: figRadical-eps-converted-to.pdf Graphic file (type pdf)
+<use figRadical-eps-converted-to.pdf>
+Package pdftex.def Info: figRadical-eps-converted-to.pdf  used on input line 83
+7.
+(pdftex.def)             Requested size: 284.52756pt x 192.64857pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+Package epstopdf Info: Source file: <figGraph.eps>
+(epstopdf)                    date: 2018-04-04 10:12:19
+(epstopdf)                    size: 22740 bytes
+(epstopdf)             Output file: <figGraph-eps-converted-to.pdf>
+(epstopdf)                    date: 2018-04-04 10:57:41
+(epstopdf)                    size: 11064 bytes
+(epstopdf)             Command: <repstopdf --outfile=figGraph-eps-converted-to.
+pdf figGraph.eps>
+(epstopdf)             \includegraphics on input line 843.
+Package epstopdf Info: Output file is already uptodate.
+<figGraph-eps-converted-to.pdf, id=206, 759.83875pt x 607.26875pt>
+File: figGraph-eps-converted-to.pdf Graphic file (type pdf)
+<use figGraph-eps-converted-to.pdf>
+Package pdftex.def Info: figGraph-eps-converted-to.pdf  used on input line 843.
+
+(pdftex.def)             Requested size: 455.24408pt x 363.84515pt.
+
+Overfull \hbox (2.27618pt too wide) in paragraph at lines 843--843
+ [] 
+ []
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[41]
+<seqmnistloss.png, id=210, 1927.2pt x 1046.91125pt>
+File: seqmnistloss.png Graphic file (type png)
+<use seqmnistloss.png>
+Package pdftex.def Info: seqmnistloss.png  used on input line 855.
+(pdftex.def)             Requested size: 426.79134pt x 231.83878pt.
+<seqmnistacc.png, id=211, 1927.2pt x 1046.91125pt>
+File: seqmnistacc.png Graphic file (type png)
+<use seqmnistacc.png>
+Package pdftex.def Info: seqmnistacc.png  used on input line 860.
+(pdftex.def)             Requested size: 426.79134pt x 231.83878pt.
+<pmnistloss.png, id=212, 1927.2pt x 1046.91125pt>
+File: pmnistloss.png Graphic file (type png)
+<use pmnistloss.png>
+Package pdftex.def Info: pmnistloss.png  used on input line 865.
+(pdftex.def)             Requested size: 426.79134pt x 231.83878pt.
+<pmnistacc.png, id=213, 1927.2pt x 1046.91125pt>
+File: pmnistacc.png Graphic file (type png)
+<use pmnistacc.png>
+Package pdftex.def Info: pmnistacc.png  used on input line 870.
+(pdftex.def)             Requested size: 426.79134pt x 231.83878pt.
+
+Overfull \hbox (45.54869pt too wide) in paragraph at lines 904--905
+[]\T1/cmr/m/n/14.4 MODEL RE-SULTS HERE, BLAH BLAH WAS SHOWN TO BEAT/GENERALIZE
  []
 
 
 Underfull \vbox (badness 2653) has occurred while \output is active []
 
- [22 <./maxpool.png>]
-
-Package amsmath Warning: Cannot use `split' here;
-(amsmath)                trying to recover with `aligned' on input line 440.
-
-[23] [24] [25]
-Overfull \hbox (25.4414pt too wide) detected at line 537
-[]
- []
-
-
-Overfull \hbox (30.0pt too wide) in paragraph at lines 537--537
-[] 
- []
-
-
-Overfull \hbox (33.37273pt too wide) detected at line 553
-[]
- []
-
-
-Overfull \hbox (30.0pt too wide) in paragraph at lines 553--553
-[] 
- []
-
-[26]
+ [42 <./figRadical-eps-converted-to.pdf>]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [27]
-[28]
-Overfull \hbox (2.85886pt too wide) in paragraph at lines 603--604
-\T1/cmr/m/n/14.4 pro-file $\T1/cmtt/m/n/14.4 https : / / github . com / nikitaz
-ozoulenko$ \T1/cmr/m/n/14.4 in the repos-i-to-ries \T1/cmr/m/it/14.4 pytorch-
+ [43 <./figGraph-eps-converted-to.pdf>] [44 <./seqmnistloss.png> <./seqmnistacc
+.png>]
+[45 <./pmnistloss.png> <./pmnistacc.png>] [46] [47] [48]
+Overfull \hbox (4.16698pt too wide) in paragraph at lines 947--949
+\T1/cmr/m/n/14.4 TCN worse be-cause it couldnt use the fea-tures ef-fec-tively.
+ (only first timestep)
  []
 
-<mnist.png, id=127, 375.65344pt x 143.03438pt>
-File: mnist.png Graphic file (type png)
-<use mnist.png>
-Package pdftex.def Info: mnist.png  used on input line 610.
-(pdftex.def)             Requested size: 375.65251pt x 143.03401pt.
 
-LaTeX Warning: `h' float specifier changed to `ht'.
+Underfull \vbox (badness 2012) has occurred while \output is active []
 
-[29] [30 <./mnist.png>]
-<accuracy.png, id=134, 635.37375pt x 473.77pt>
-File: accuracy.png Graphic file (type png)
-<use accuracy.png>
-Package pdftex.def Info: accuracy.png  used on input line 632.
-(pdftex.def)             Requested size: 227.62204pt x 169.72571pt.
-<losses.png, id=135, 635.37375pt x 473.77pt>
-File: losses.png Graphic file (type png)
-<use losses.png>
-Package pdftex.def Info: losses.png  used on input line 633.
-(pdftex.def)             Requested size: 227.62204pt x 169.72571pt.
-
-Overfull \hbox (8.94122pt too wide) in paragraph at lines 632--634
- [][][] 
- []
-
-[31 <./accuracy.png> <./losses.png>] [32]
-<retinanet.png, id=146, 1181.41376pt x 304.13625pt>
-File: retinanet.png Graphic file (type png)
-<use retinanet.png>
-Package pdftex.def Info: retinanet.png  used on input line 660.
-(pdftex.def)             Requested size: 448.9419pt x 115.57297pt.
-<iou.png, id=147, 883.3pt x 228.855pt>
-File: iou.png Graphic file (type png)
-<use iou.png>
-Package pdftex.def Info: iou.png  used on input line 674.
-(pdftex.def)             Requested size: 441.64893pt x 114.42722pt.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[33 <./retinanet.png (PNG copy)>]
-<resultscrowd3.png, id=151, 2441.12pt x 1284.8pt>
-File: resultscrowd3.png Graphic file (type png)
-<use resultscrowd3.png>
-Package pdftex.def Info: resultscrowd3.png  used on input line 703.
-(pdftex.def)             Requested size: 414.98491pt x 218.4131pt.
- [34 <./iou.png>]
-<resultscrowd4.png, id=156, 4111.36pt x 2569.6pt>
-File: resultscrowd4.png Graphic file (type png)
-<use resultscrowd4.png>
-Package pdftex.def Info: resultscrowd4.png  used on input line 709.
-(pdftex.def)             Requested size: 415.23781pt x 259.52364pt.
-<resultscrowd.png, id=157, 1413.28pt x 1156.32pt>
-File: resultscrowd.png Graphic file (type png)
-<use resultscrowd.png>
-Package pdftex.def Info: resultscrowd.png  used on input line 715.
-(pdftex.def)             Requested size: 452.25885pt x 370.02995pt.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[35 <./resultscrowd3.png (PNG copy)> <./resultscrowd4.png (PNG copy)>] [36 <./r
-esultscrowd.png (PNG copy)>]
-Underfull \hbox (badness 6575) in paragraph at lines 740--742
+ [49]
+Underfull \hbox (badness 6575) in paragraph at lines 970--972
 []\T1/cmr/m/it/14.4 Eigen v3\T1/cmr/m/n/14.4 . G. Guen-nebaud and B. Ja-cob and
  oth-ers. URL
  []
 
-[37]
-Underfull \hbox (badness 10000) in paragraph at lines 777--781
+
+Underfull \hbox (badness 10000) in paragraph at lines 1007--1011
 []\T1/cmr/m/it/14.4 Unsupervised Fea-ture Learn-ing and Deep Learn-ing. \T1/cmr
 /m/n/14.4 Stand-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 777--781
+Underfull \hbox (badness 10000) in paragraph at lines 1007--1011
 \T1/cmr/m/n/14.4 ford Uni-ver-sity, De-part-ment of Com-puter Sci-ence. URL
  []
 
 
-Underfull \hbox (badness 6268) in paragraph at lines 796--800
+Underfull \hbox (badness 6268) in paragraph at lines 1026--1030
 []\T1/cmr/m/it/14.4 Tuning the learn-ing rate in Gra-di-ent De-scent. \T1/cmr/m
 /n/14.4 V. Vryni-o-tis.
  []
 
 
-Underfull \hbox (badness 5374) in paragraph at lines 796--800
+Underfull \hbox (badness 5374) in paragraph at lines 1026--1030
 \T1/cmr/m/n/14.4 URL http://blog.datumbox.com/tuning-the-learning-rate-in-gradi
 ent-
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 827--832
+[50]
+Underfull \hbox (badness 10000) in paragraph at lines 1057--1062
 []\T1/cmr/m/it/14.4 Deep learn-ing for com-plete be-gin-ners: con-vo-lu-tional 
 neu-ral
  []
 
 
-Underfull \hbox (badness 8113) in paragraph at lines 827--832
+Underfull \hbox (badness 8113) in paragraph at lines 1057--1062
 \T1/cmr/m/it/14.4 net-works with keras. \T1/cmr/m/n/14.4 P. Veli£kovi¢. Came-br
 idge Spark. URL
  []
 
 
-Underfull \hbox (badness 1038) in paragraph at lines 843--848
+Underfull \hbox (badness 1038) in paragraph at lines 1073--1078
 \T1/cmr/m/n/14.4 Thorey. Ma-chine Learn-ing Blog. URL http://cthorey.github.io/
 . 2
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 852--856
+Underfull \hbox (badness 10000) in paragraph at lines 1082--1086
 []\T1/cmr/m/it/14.4 Convolutional Neu-ral Net-works. \T1/cmr/m/n/14.4 A. Gib-ia
 n-sky. URL
  []
 
-[38]
-Underfull \hbox (badness 1158) in paragraph at lines 953--960
+[51]
+Underfull \hbox (badness 1158) in paragraph at lines 1183--1190
 \T1/cmr/m/n/14.4 Ross B. Gir-shick, Kaim-ing He and Pi-otr Dol-lár. arXiv prepr
 int
  []
 
-[39]
-Overfull \hbox (39.7873pt too wide) in paragraph at lines 979--982
+
+Overfull \hbox (39.7873pt too wide) in paragraph at lines 1209--1212
 []\T1/cmr/m/n/14.4 Jaccard In-dex. Wikipedia. URL https://en.wikipedia.org/wiki
 /Jaccard_index.
  []
 
-[40] (./nikita_zozoulenko.aux) ) 
+[52] (./nikita_zozoulenko.aux)
+
+LaTeX Warning: There were multiply-defined labels.
+
+ ) 
 Here is how much of TeX's memory you used:
- 6334 strings out of 492982
- 94109 string characters out of 6138580
- 195596 words of memory out of 5000000
- 9759 multiletter control sequences out of 15000+600000
- 17907 words of font info for 55 fonts, out of 8000000 for 9000
+ 6452 strings out of 492982
+ 96226 string characters out of 6138580
+ 197139 words of memory out of 5000000
+ 9864 multiletter control sequences out of 15000+600000
+ 18683 words of font info for 56 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 51i,21n,54p,1760b,380s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texmf-dist/fonts/enc/dvips/cm-super
-/cm-super-t1.enc}</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.p
-fb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share
-/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texmf-dist/fo
-nts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texmf-dist/fonts/type1/publi
-c/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/c
-mr12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/s
-hare/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dis
-t/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texmf-dist/fonts/type1/p
-ublic/amsfonts/symbols/msbm10.pfb></usr/share/texmf-dist/fonts/type1/public/cm-
-super/sfbx1200.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfbx1440.
-pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfrm0800.pfb></usr/share
-/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/share/texmf-dist/fon
-ts/type1/public/cm-super/sfrm1200.pfb></usr/share/texmf-dist/fonts/type1/public
-/cm-super/sfrm1440.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfrm1
-728.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfti1440.pfb></usr/s
-hare/texmf-dist/fonts/type1/public/cm-super/sftt1440.pfb>
-Output written on nikita_zozoulenko.pdf (40 pages, 27590047 bytes).
+ 51i,21n,54p,1484b,393s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/share/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-dist/font
+s/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-dist/fonts/type1/public
+/amsfonts/cm/cmmi12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/c
+mmi7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/
+share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-dis
+t/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-dist/fonts/type1/p
+ublic/amsfonts/cm/cmr7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmr8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></u
+sr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texmf-
+dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texmf-dist/font
+s/type1/public/cm-super/sfbx1000.pfb></usr/share/texmf-dist/fonts/type1/public/
+cm-super/sfbx1200.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfbx14
+40.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfrm0800.pfb></usr/sh
+are/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/share/texmf-dist/
+fonts/type1/public/cm-super/sfrm1200.pfb></usr/share/texmf-dist/fonts/type1/pub
+lic/cm-super/sfrm1440.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sf
+rm1728.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfti1440.pfb></us
+r/share/texmf-dist/fonts/type1/public/cm-super/sftt1440.pfb>
+Output written on nikita_zozoulenko.pdf (52 pages, 6956147 bytes).
 PDF statistics:
- 241 PDF objects out of 1000 (max. 8388607)
- 150 compressed objects within 2 object streams
+ 338 PDF objects out of 1000 (max. 8388607)
+ 221 compressed objects within 3 object streams
  0 named destinations out of 1000 (max. 500000)
- 96 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 116 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -3,9 +3,9 @@ Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
 The top-level auxiliary file: nikita_zozoulenko.aux
 I found no \bibdata command---while reading file nikita_zozoulenko.aux
 I found no \bibstyle command---while reading file nikita_zozoulenko.aux
-You've used 21 entries,
+You've used 32 entries,
             0 wiz_defined-function locations,
-            109 strings with 710 characters,
+            121 strings with 782 characters,
 and the built_in function-call counts, 0 in all, are:
 = -- 0
 > -- 0
