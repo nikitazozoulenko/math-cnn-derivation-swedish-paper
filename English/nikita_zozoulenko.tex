@@ -28,13 +28,11 @@
 \newcommand*{\inpd}[2]{\ensuremath{\frac{\partial #1}{\partial #2}}}
 \DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
 
-\title{Derivation of a Convolutional Neural Network Based Dense Face Detector}
-\title{Dense Face Detection with Convolutional Neural Networks}
-\title{An evaluation of conventional and temporal convolutional networks for automatic image captioning and dense face detection}
+\title{An evaluation of spatial and temporal convolutional networks for automatic image captioning and dense face detection}
 \author{Nikita Zozoulenko \\*
 nikita.zozoulenko@gmail.com \\*
 Katedralskolan Linköping\\*
-Supervisor: Rickard Engström \\*}
+Supervisor: Oleg Burdakov \\*}
 
 \begin{document}
 \maketitle
@@ -51,8 +49,8 @@ Supervisor: Rickard Engström \\*}
 
 %start abstract
 \Large{\textbf{Abstract}}\\
+I suggest two changes to temporal convolutional networks, namely a new zero-padding scheme and linear instead of exponential dilation increase, and empirically evaluate the new model on SequenceMNIST and Permuted SequenceMNIST, beating the test accuracy of the current state of the art (99.53\% vs 99.0\% and 97.86\% vs 97.28\%. The improved temporal convolutional model is then compared to its recurrent neural network counterpart, on a task of automatic image captioning where temporal convolutional networks are traditionally not used. Furthermore, I present a derivation of the general case for a convolutional neural network with an arbitrary input of a tensor of order 4. The derivation is then used for my own neural network library implementation in Python and C++. Additionally, I systematically and empirically investigate how to construct and improve a convolutional-neural-network-based model to detect a variable number of faces in an image. 
 
-Convolutional neural networks are currently the state of the art model for tasks such as image classification, image recognition and object detection for computer vision systems. In this paper the mathematical model behind the standard feed-forward neural network and the convolutional neural network is derived. The performance of two models, a convolutional neural network and a feed-forward neural network, are then compared on the task of classifying handwritten digits. A convolutional neural-network-based model is then constructed to make a cutting edge face detector for real time video, being able to successfully detect over 200 faces in a crowded scene for various scales, lighting and occlusions.
 \newpage
 %end abstract
 
@@ -60,34 +58,14 @@ Convolutional neural networks are currently the state of the art model for tasks
 \newpage
 \section{Introduction}
 
-\subsection{Background}
+An Artificial neural network is a biologically inspired machine learning model that draws inspiration from the biologial brain in mammals. Artificial neural networks can vary in structure and architecture, but the basic principle behind neural networks is that they are made up of a number of layers of neurons. The layers are built sequentially such that the output of one layer is the input to the next layer. The number of layers a neural network is constructed out of is called its depth. How the neurons of the previous layer are connected to the neurons of the next layer depends on the specific type of artificial neural network \cite{cs231n}.
 
-An Artificial neural network is a biologically inspired machine learning model that draws inspiration from the biologial brain in mammals. There are many different kinds of Artificial neural networks which vary in structure and architecture, but the basic principle behind neural networks is that they are made up of a number of layers of neurons. The layers are built sequentially such that the output of one layer is the input to the next layer. The number of layers a neural network is constructed out of is called its depth. How the neurons of the previous layer are connected to the neurons of the next layer depends on the specific type of artificial neural network \cite{cs231n}.
-
-Similar to other machine learning models, an artificial neural network wants to predict a predetermined number of values, given an input of a number of data points. For instance, a neural network can be given $784$ pixel values from a $28 \times 28$ sized image of a handwritten digit as an input. The model can then be used to generate $10$ probabilities that the image is of $10$ different digits (0 to 9). The neural network learns to predict accurate predictions through supervised learning, a process also called training. Data pre-labeled by humans is used to supervise the training. The model is given input data and is asked to predict values as close to the human label as possible. The model does this by optimizing a number of learnable parameters at every layer in the neural network. The human label is called the ground truth of the data \cite{cs231n}.
+Similar to other machine learning models, an artificial neural network wants to predict a predetermined number of values, given a number of input features. For instance, a neural network can be given all the pixel values in an image and classify the content in the image. The neural network is trained to predict accurate predictions through supervised learning. Data pre-labeled by humans is used to supervise the training. The model is given input data and is asked to predict values as close to the human label as possible. The model does this by optimizing a number of learnable parameters at every layer in the neural network. The human label is called the ground truth of the data \cite{cs231n}.
 
 Artificial neural networks, or more specifically convolutional neural networks, were popularized 2012 when the model was used to win the annual ImageNet Large-Scale Visual Recognition Challenge, beating all current machine learning models. Today convolutional neural networks have achieved the state of the art in areas such as self-driving cars, image classification, object localization, automatic image annotation, semantic segmentation of objects in images and natural language processing \cite{cs231n}.
 
-\subsection{Purpose}
-The purpose of the first part of my paper is to 
-When I first started out in the field of deep learning I found that there was a lack of fully derived explanations of the underlying mathematics behind artificial neural networks. Sources had either only explained one simple forward pass through the network, or had only derived the most simple case, ignoring the more complicated general cases. The aim of this paper is to present a clear derivation of the general case for feed-forward neural networks with an arbitrary input of a tensor of order 2, and convolutional neural networks with an arbitrary input of a tensor of order 4. The aim is to use my derivations to implement the models with only elementary math operations in Python and C++, to gain an even deeper understanding of neural networks. I want to validate my implementation by training the models on a basic task of classifying handwritten digits. Furthermore, the aim is to then apply the models on a set of more complicated tasks, namely dense face detection for real-time video, and automatic image captioning, while showing that the convolutional neural network's effectiveness can improve with two improvements.
-
-\subsection{Problem statement}
-How is a feed-forward neural network derived? 
-How is a convolutional neural network derived?
-What is forward and backpropgation and how is it derived in a feed-forward neural network and in a convolutional neural network?
-Can an artificial neural network be trained to classify handwritten digits in images?
-Can a convolutional neural network be used to detect a variable number of faces for video in real-time?
-What is a temporal convolutional network and what changes can be made to the model to increase its effectiveness and accuracy?
-How do temporal convolutional networks compare to their recurrent neural network counterpart on the task of automatic image captioning?
-
-
-\section{Method}
-A major part of the paper and the derivations of the models are based on the material from Stanford's course "CS231n: Convolutional neural networks for Visual Recognition" \cite{cs231n} . Some advanced concepts were directly based off the papers they were first introduced in (e.g. Batch Normalization \cite{batchnorm}) and expanded to fit the general case of an arbitrary input to the model. The general case for the mathematical model of the feed-forward neural network and the convolutional neural network were derived by hand with the help of the simple specific cases and expanded to fit the general case of an arbitrary input to the model. The models were implemented in C++ with the linear algebra library Eigen \cite{eigen} and in Python in pure NumPy \cite{numpy}, a library for scientific computing. The derived partial derivatives required by the models were compared to their numerical approximations using the formal definition of a derivative.  
-
-When my own implementation of the artificial neural networks became too computationally expensive and inefficient for the two problem cases of classifying handwritten digits and dense face detection, the models were re-implemented in Google's machine learning library TensorFlow \cite{tensorflow} and Facebook's GPU-accelerated tensor and dynamic neural network library PyTorch \cite{pytorch}.  
-
-\section{Feed-forward neural networks}
+\subsection{Background}
+\subsection{Feed-forward neural networks}
 A feed-forward neural network is the most elementary version of an artificial neural network. As all varying kinds of artificial neural networks, a feed-forward neural network is made out of a number of layers of neurons. The unique property of a feed-forward neural network is that all the neurons in a layer are connected to every neuron in the next layer (see figure \ref{figfeedforward}) \cite{cs231n}.
 
 \begin{figure}[h]
@@ -96,17 +74,15 @@ A feed-forward neural network is the most elementary version of an artificial ne
   	\caption{An illustration \cite{hidden12} of a simple feed-forward neural network. It consists of four layers: an input layer (red), two hidden layers (blue) and one output layer (green). A circle represents a neuron. Every neuron in a layer is connected to all the neurons in the following layer, shown by the grey lines between the neurons. } \label{figfeedforward}
 \end{figure}
 
-A neuron is represented by a floating point decimal number. The value of a neuron is called its activation. Given an input of $n$ data points the model wants to predict $m$ different values. $n$ and $m$ are set as the size and number of neurons in the input and output layer respectively. The values of the input neurons are transferred to the next layer depending on the strength of the connection between every pair of neurons in two adjacent layers. This is done for every layer until the signal has reached the output layer. The process of propagating the value of the neurons from the input layer to the output layer is called forward propagation \cite{cs231n}.
+A neuron is represented by a floating point decimal number. The value of a neuron is called its activation. Given an input of $n$ features, the model wants to predict $m$ different values. $n$ and $m$ are set as the size and number of neurons in the input and output layer respectively. The values of the input neurons are transferred to the next layer depending on the strength of the connection between every pair of neurons in two adjacent layers. This is done for every layer until the signal has reached the output layer. The process of propagating the values of the input neurons to the output layer is called forward propagation \cite{cs231n}.
 
 The network is trained to predict correct values by optimizing the fixed connections, also called weights, between every pair of neurons in two consecutive layers in the neural network \cite{cs231n}.
 
-\subsection{Tensors, indexing and notation}
+\subsubsection{Tensors, indexing and notation}
 A tensor is the generalization of vectors and matrices. Scalars are tensors of order 0. A tensor of order 1 is a row vector $x \in \mathbb{R}^N$ with $N$ elements. It can also be seen as a one-dimensional array. Matrices $M$ are tensors of order 2 such that $M \in \mathbb{R}^{R \times N}$ and can be viewed as vectors with $R$ elements where every element is another vector with $N$ scalar elements. Matrices can also be seen as a two-dimensional array with $RN$ elements. A tensor of order $n$ is an $n$-dimensional array and is indexed by an $n$-tuple. For instance, a tensor $X \in \mathbb{R}^{R \times C \times H \times W}$ is indexed by the four-tuple $(r,c,h,w)$ where $1 \leq r \leq R$, $1 \leq c \leq C$, $1 \leq h \leq H$ and $1 \leq w \leq W$ \cite{cs231n}.
 
-\subsection{Forward propagation}
-Figure \ref{figfeedforward} only illustrates a single set of input neurons, called a training example, being forward propagated. In practice a mini-batch of $R$ training examples is constructed and forward propagated at the same time \cite{cs231n} \cite{wikiStanford}.
-
-Let $L$ denote the number of layers in the neural network and $l$, $1 \leq l \leq L$, one specific layer in the neural network. $N^{(l)}$ is the number of neurons in layer $l$. The activation (values) of layer $l$ can be expressed as a tensor of order 2: $X^{(l)} \in \mathbb{R}^{R \times N^{(l)}}$ indexed by the two-tuple $(r,i)$ where $1 \leq r \leq R$ and $1 \leq i \leq N^{(l)}$. In addition to the neurons of layer $l$, there is a bias neuron $b^{(l)} \in \mathbb{R}$ (see figure \ref{figFCCmath}). It is called a bias neuron because its value is independent to what input the neural network is given \cite{cs231n} \cite{wikiStanford}.
+\subsubsection{Forward propagation}
+Input data is forward propagated in in mini-batches of $R$ examples at a time. Let $L$ denote the number of layers in the neural network and $l$, $1 \leq l \leq L$, one specific layer in the neural network. $N^{(l)}$ is the number of neurons in layer $l$. The values of the neurons of layer $l$, called the layer's activations, are expressed as a tensor of order 2: $X^{(l)} \in \mathbb{R}^{R \times N^{(l)}}$ indexed by the two-tuple $(r,i)$ where $1 \leq r \leq R$ and $1 \leq i \leq N^{(l)}$. In addition to the neurons of layer $l$, there is a bias neuron $b^{(l)} \in \mathbb{R}$ (see figure \ref{figFCCmath}). It is called a bias neuron because its value is independent to what input the neural network is given \cite{cs231n} \cite{wikiStanford}.
 
 The weights representing the strength of the connections between the neurons of layer $l$ and $l+1$ are also expressed as a tensor of order 2. Let $W^{(l)} \in \mathbb{R}^{N^{(l+1)}  \times N^{(l)}}$ such that the element $W_{j, i}^{(l)}$ is the strength of the connection between neuron $X_{ri}^{(l)}$ and $X_{rj}^{(l+1)}$ for arbitrary example $r$ in the mini-batch \cite{cs231n} \cite{wikiStanford}.
 
@@ -157,7 +133,7 @@ Common activation functions are Rectified Linear Units (ReLU), sigmoid ($\sigma$
 \tanh{(x)} = \frac{e^x-e^{-x}}{e^x+e^{-x}}
 \end{equation}
 
-\subsection{Loss function}
+\subsubsection{Loss function}
 Given an input $X \in \mathbb{R}^{R \times N^{(1)}}$ and a ground truth $y \in \mathbb{R}^{R \times N^{(L)}}$ the model wants to predict values $\hat{y}$ which resembles the ground truth as closely as possible. It is achieved by defining a multivariate loss function $L(\theta; X, y)$  with the network's parameters $\theta$ (all the weights and biases) with respect to a single training mini-batch $(X, y)$. The loss function describes the quality of the neural network's prediction $\hat{y}$ such that a lower loss represents a more accurate prediction. $\hat{y}$ is synonymous with the activations of the last layer $L$ in the network and is a function of the parameters $\theta$ of the network and the input data $X$. $y$ is the human labeled ground truth with the same dimensionality as $\hat{y}$. To simplify noration $L(\theta)$ is used to denote the loss function with respect to one mini-batch $(X, y)$ of training data. One way of defining the loss function is to use the mean squared error defined by the following equation \cite{cs231n}:
 
 \begin{equation}\label{MSE}
@@ -168,7 +144,7 @@ Here $R$ is the batch size and $N^{(L)}$ is the number of neurons in the last la
 
 The process of minimizing the loss function is called training. The model iterates through supervised training data and calculates the loss with respect to a mini-batch of training examples. Since the given input $X$ and ground truth $y$ stays fixed, the network learns by optimizing its weights $W^{(l)}$ and biases $b^{(l)}$ for every layer $l$ to decrease the loss \cite{cs231n} \cite{wikiStanford}.
 
-\subsection{Gradient Descent}
+\subsubsection{Gradient Descent}
 The gradient $\nabla L(\theta)$ is a vector of partial derivatives with respect to the parameters $\theta$ of the function $L$ defined by the following equations \cite{gradient} \cite{convmath}:
 \begin{equation}\label{EQgradientspace}
 \nabla L(\theta) : \mathbb{R}^n \to \mathbb{R}^n
@@ -201,7 +177,7 @@ Gradient descent is the method of iteratively changing the values of the paramet
   	\caption{An illustration \cite{figSGD} of Stochastic Gradient Descent on a function of two variables. Red regions symbolizes a high function value while blue regions symbolizes a low function value. The parameters were initialized near the global maximum and their values are altered iteratively to move in the direction of the negative gradient: the direction of steepest descent, to find a local minimum.} \label{figSGD}
 \end{figure}
 
-\subsection{Backpropagation}
+\subsubsection{Backpropagation}
 Backpropagation is the process of calculating the partial derivatives of the loss function with respect to the model's parameters, or in other terms, the process of computing the gradient. The gradient is then used to modify the network's parameters to minimize the loss function \cite{wikiStanford} \cite{gradient}.
 
 The partial derivatives can be approximated numerically with the formal definition of a derivative defined by the following equation \cite{wikiStanford} \cite{gradient}:
@@ -257,13 +233,37 @@ The partial derivative of the loss function with respect to the biases are found
 \end{split}
 \end{equation}
 
-\subsection{Training neural networks}
+\subsubsection{Training neural networks}
 The model is trained by dividing the training data into mini-batches of size $R$. A mini-batch is then forward propagated and the loss is calculated. The loss is then used to backpropagate the model's deviation from the ground truth (the network's loss) layer by layer. Backpropagation starts at the output layer and propagates through the network backwards until it reaches the input layer. For every layer in the network the delta-error from the proceeding layer is used to calculate the new delta-error. It is then used to calculate the layers contribution to the total gradient by computing the partial derivatives with respect to the loss function. When the gradient has been fully computed, one iteration of the gradient descent algorithm is applied to update the weights and biases of the neural network. This process is repeated until all the networks parameters have converged \cite{cs231n}.
 
-Two implementations of a feed-forward neural network can be found on github in Python and C++ in the repositories \textit{neural-network-python} and \textit{neural-network-cpp} respectively: \url{https://github.com/nikitazozoulenko}.
+\subsection{Purpose}
+When i first stated out in the field of deep learning, I found that the field lacked fully derived examples of convolutional neural networks. Since the model uses tensors of order 4 to represent activations, they cannot be visualized in an effective manner. This causes educational sources to only explain the simple two-dimensional case, instead of the four-dimensional case which is required for the network to perform well. The aim of this paper is to present a clear derivation of the general case for convolutional neural networks with an arbitrary input of a tensor of order 4. The aim is to use my derivations to implement feed-forward and convolutional neural networks with only elementary math operations in Python and C++, to gain an deeper understanding and intuition of neural networks. I want to validate my implementation by training the models on a basic task of classifying handwritten digits.
+
+Furthermore, the aim is to use the knowledge to systematically and empirically evaluate and improve a deep convolutional architecture on the task of detecting a variable number of faces in an image, to then apply the model for real-time video.
+
+Additionally, the purpose of this paper is to suggest improvements to the temporal convolutional network model to achieve a new state-of-the-art, and to then apply the model to a task in which it has never been applied before, namely automatic image captioning, and to compare the convolutional model with its recurrent neural network counterpart.
+
+\subsection{Problem statement}
+How is a convolutional neural network derived with an arbitrary input of a tensor of order 4?
+
+How does a convolutional neural network perform against a feed-forward neural network on the task of classifying handwritten digits?
+
+What improvements can be made to the architecture of a deep convolutional neural network to detect a variable number of faces in an image?
+
+What is a temporal convolutional network and what changes can be made to the model to increase its effectiveness and accuracy?
+
+How do temporal convolutional networks compare to their recurrent counterpart on the task of automatic image captioning?
+
+
+\section{Method}
+A major part of the paper and the derivations of the models are based on the material from Stanford's course "CS231n: Convolutional neural networks for Visual Recognition" \cite{cs231n}. Advanced concepts were directly based off the papers they were first introduced in (e.g. Batch Normalization \cite{batchnorm}) and expanded to fit the general case of an arbitrary input to the model. The general case for the mathematical model of convolutional neural network were derived by hand with pen and paper with the help of the specific two-dimensional cases, and were expanded to fit the general four-dimensional case of an arbitrary input of a tensor of order 4. 
+
+Convolutional neural networks and feed-forward neural networks were then implemented in C++ with the linear algebra library Eigen \cite{eigen} and in Python in pure NumPy \cite{numpy}, a library for scientific computing. The Eigen implementation used the \textit{MatrixXd} class to represent the neurons and weights. In the Python implementation, the NumPy \textit{ndarray} class was used to express tensors of orders higher than a matrix. The forward propagation, backpropagation and stochastic gradient descent algorithms were then implemented as expressed in the mathematical derivation. The derived partial derivatives required by the models were compared to their numerical approximations using the formal definition of a partial derivative, to validate their correctness. 
+
+When my own implementation of the artificial neural networks became too computationally expensive and inefficient for the problem cases of comparing models on classifying handwritten digits, real-time dense face detection, and automatic image captioning, the models were re-implemented in Google's machine learning library TensorFlow \cite{tensorflow} or Facebook's GPU-accelerated tensor and dynamic neural network library PyTorch \cite{pytorch}.
 
 \section{Convolutional neural networks}
-When humans identify objects by sight we look for specific high level features that object has. A cat for example has one head, four legs and a body. These high level features are in turn made up of a combination of low level features: A head consists of two eyes and a mouth which consists of elementary geometric shapes which are composed of a combination of basic lines and edges. In addition to specific features, cats also have a furry texture. Convolutional neural networks (CNN) were designed to specifically excel at computer vision tasks. What a convolutional neural network does is that it learns these hierarchical structures by teaching itself a number of filters to apply to the image (see figure \ref{figkatter}) through an operation called a convolution. These filters are stacked on top of each other in terms of layers and allows the networks to learn higher level features with the network architecture going deeper. For instance, the first layer might learn how to detect lines and edges, the middle layers might learn to recognize small body parts such as eyes and ears and the last layers can learn how to detect cats, humans or any other arbitrary objects \cite{cs231n}.
+When humans identify objects by sight we look for specific high level features that object has. A cat for example has one head, four legs and a body. These high level features are in turn made up of a combination of low level features: A head consists of two eyes and a mouth which consists of elementary geometric shapes which are composed of a combination of basic lines and edges. In addition to specific features, cats also have a furry texture. Convolutional neural networks (CNN) were designed to specifically excel at computer vision tasks. A convolutional neural network learns these hierarchical structures by teaching itself a number of filters, or more specifically discrete convolutions, to apply to the image (see figure \ref{figkatter}). These convolutions are stacked on top of each other in terms of layers and allows the networks to learn higher level features with the network architecture going deeper. For instance, the first layer might learn how to detect lines and edges, the middle layers might learn to recognize small body parts such as eyes and ears and the last layers can learn how to detect cats, humans or any other arbitrary objects \cite{cs231n}.
 
 \begin{figure}[h]
 	\centering
@@ -335,7 +335,7 @@ The following equation defines the convolutional layer algebraically \cite{cs231
 \begin{split}
 	\begin{bmatrix} X^{(l+1)} \end{bmatrix}_{r, c', h', w'}	
 		& = X^{(l)}_{r, c', h', w'} *W^{(l)}_{c'} \\
-		& = \sum^{C}_{c=1} \sum^{k}_{j=1} \sum^{k}_{i=1} X^{(l)}_{r, c, (1+sh'-s+j), (1+sw'-s+i)}W^{(l)}_{c', c, j, i}
+		& = \sum^{C-1 }_{c=0} \sum^{k-1 }_{j=0} \sum^{k-1 }_{i=0} X^{(l)}_{r, c, (1+sh'-s+j), (1+sw'-s+i)}W^{(l)}_{c', c, j, i}
 \end{split}
 \end{equation}
 
@@ -353,7 +353,7 @@ The backpropagation of the recursive delta-error $\delta^{(l+1)}$ is derived by 
 	\delta^{(l)}_{r,c,h,w}
 		& = \pd{L(\theta)}{X^{(l)}_{r,c,h,w}} \\
 		& = \sum^{C' }_{c'=1} \sum^{H' }_{h'=1} \sum^{W' }_{w'=1} \pd{L(\theta)}{X^{(l+1)}_{r,c',h',w'}} \pd{X^{(l+1)}_{r,c',h',w'}}{X^{(l)}_{r,c,h,w}} \\
-		& = \sum^{C' }_{c'=1} \sum^{H' }_{h'=1} \sum^{W' }_{w'=1} \delta^{(l+1)}_{r,c',h',w'} \pd{\sum^{C }_{c=1} \sum^{k }_{j=1} \sum^{k }_{i=1} X^{(l)}_{r, c, (1+sh'-s+j), (1+sw'-s+i)}W^{(l+1)}_{c', c, j, i}}{X^{(l)}_{r,c,h,w}}
+		& = \sum^{C' }_{c'=1} \sum^{H' }_{h'=1} \sum^{W' }_{w'=1} \delta^{(l+1)}_{r,c',h',w'} \pd{\sum^{C-1 }_{c=0} \sum^{k-1 }_{j=0} \sum^{k-1 }_{i=0} X^{(l)}_{r, c, (1+sh'-s+j), (1+sw'-s+i)}W^{(l+1)}_{c', c, j, i}}{X^{(l)}_{r,c,h,w}}
 \end{split}
 \end{equation}
 
@@ -362,7 +362,7 @@ Every partial derivative in the most inner sum will be equal to to zero if $X^{(
 \begin{equation}
 \begin{split}
 	\delta^{(l)}_{r,c,h,w}
-		& = \sum^{C' }_{c'=1} \sum^{H' }_{h'=1} \sum^{W' }_{w'=1} \delta^{(l+1)}_{r,c',h',w'} \pd{\sum^{C }_{c=1} \sum^{k }_{j=1} \sum^{k }_{i=1} X^{(l)}_{r, c, (1+sh'-s+j), (1+sw'-s+i)}W^{(l+1)}_{c', c, j, i}}{X^{(l)}_{r,c,h,w}} \\
+		& = \sum^{C' }_{c'=1} \sum^{H' }_{h'=1} \sum^{W' }_{w'=1} \delta^{(l+1)}_{r,c',h',w'} \pd{\sum^{C-1 }_{c=0} \sum^{k-1 }_{j=0} \sum^{k-1 }_{i=0} X^{(l)}_{r, c, (1+sh'-s+j), (1+sw'-s+i)}W^{(l+1)}_{c', c, j, i}}{X^{(l)}_{r,c,h,w}} \\
 		& = \sum^{C' }_{c'=1} \sum^{H' }_{h'=1} \sum^{W' }_{w'=1} \delta^{(l+1)}_{r,c',h',w'} W^{(l+1)}_{c', c, (h+s-1-sh'), (w+s-1-sw')}     \\
 \end{split}
 \end{equation}
@@ -370,13 +370,13 @@ Every partial derivative in the most inner sum will be equal to to zero if $X^{(
 
 Which one can see is a sum of convolutions (for the special case $s=1$) where a feature map of the delta-error of layer $l+1$ convolves over all the kernels of layer $l$ where the kernels are rotated by $180^\circ$. This is intuitive since every feature map in $X^{(l)}$ is used to create a single feature map in $X^{(l+1)}$.
 
-The partial derivative of the loss $L(\theta)$ with respect to the weights $W^{(l)}$ is derived the same way the backpropagation of the error is derived. The only change is that the $R$-dimension is summed over since every example in the mini-batch is a function of the loss, and affects the gradient \cite{cs231n} \cite{webconv1} \cite{webconv2} \cite{webconv3}. 
+The partial derivative of the loss $L(\theta)$ with respect to the weights $W^{(l)}$ is derived the same way the backpropagation of the error is derived. Now the $R$-dimension is additionally summed over since the loss is a function of every example in the mini-batch, and affects the gradient \cite{cs231n} \cite{webconv1} \cite{webconv2} \cite{webconv3}. 
 \begin{align}
 \begin{split}
 	\pd{L(\theta)}{W^{(l)}_{c',c,h,w}}
-		& = \sum^{R }_{r=1} \sum^{C' }_{c'=1} \sum^{H' }_{h'=1} \sum^{W' }_{w'=1} \pd{L(\theta)}{X^{(l+1)}_{r,c',h',w'}} \pd{X^{(l+1)}_{r,c',h',w'}}{W^{(l)}_{r,c,h,w}} \\
-		& = \sum^{R }_{r=1} \sum_{c'=1}^{C' } \sum^{H' }_{h'=1} \sum^{W' }_{w'=1} \delta^{(l+1)}_{r,c',h',w'} \pd{\sum\limits^{C }_{c=1} \sum\limits^{k }_{j=1} \sum\limits^{k}_{i=1} X^{(l)}_{r, c, (1+sh'-s+j), (1+sw'-s+i)}W^{(l)}_{c', c, j, i}}{W^{(l)}_{c',c,h,w}} \\
-		& = \sum^{R }_{r=1} \sum^{C' }_{c'=1} \sum^{H' }_{h'=1} \sum^{W' }_{w'=1} X^{(l)}_{r, c, (1+sh'-s+h), (1+sw'-s+w)} \delta^{(l+1)}_{r,c',h',w'} \\
+		& = \sum^{R }_{r=1} \sum^{C' }_{c''=1} \sum^{H' }_{h'=1} \sum^{W' }_{w'=1} \pd{L(\theta)}{X^{(l+1)}_{r,c'',h',w'}} \pd{X^{(l+1)}_{r,c'',h',w'}}{W^{(l)}_{c',c,h,w}} \\
+		& = \sum^{R }_{r=1} \sum_{c''=1}^{C' } \sum^{H' }_{h'=1} \sum^{W' }_{w'=1} \delta^{(l+1)}_{r,c'',h',w'} \pd{\sum\limits^{C-1 }_{c=0} \sum\limits^{k-1 }_{j=0} \sum\limits^{k-1}_{i=0} X^{(l)}_{r, c, (1+sh'-s+j), (1+sw'-s+i)}W^{(l)}_{c'', c, j, i}}{W^{(l)}_{c',c,h,w}} \\
+		& = \sum^{R }_{r=1} \sum^{H' }_{h'=1} \sum^{W' }_{w'=1} X^{(l)}_{r, c, (1+sh'-s+h), (1+sw'-s+w)} \delta^{(l+1)}_{r,c',h',w'} \\
 \end{split}
 \end{align}
 
@@ -605,7 +605,18 @@ The softmax layer does not have any learnable parameters and therefore only the 
 \section{Experiments}
 The code and the trained models are publically available on my github profile \url{https://github.com/nikitazozoulenko} in the repositories \textit{pytorch-face-recognition} and \textit{FCC-vs-CNN-mnist}.
 
-\subsection{Classification of handwritten digits}
+\section{Classification of handwritten digits}
+
+\subsection{MNIST}
+The MNIST database for handwritten digits \cite{MNIST} is a dataset consisting of 70000 grayscale images of size $28 \times 28$ pixels, of the digits 0 to 9 (see figure \ref{figMNIST}). The database is split up into two different sets, a training set containing 60000 images used to train the model, and a test set consisting of 10000 images used to evaluate the model. The test set is kept separate from the training set to prevent overfitting on the training data. A model is given all the pixel values of the image as input features, and is asked to predict what digit is in the image.
+
+\begin{figure}[h]
+	\centering
+  		\includegraphics[scale=1]{mnist.png}
+  	\caption{Ten images of handwritten digits from the MNIST dataset. \cite{MNIST}} \label{figMNIST}
+\end{figure}
+
+\subsection{Method}
 A machine learning model can learn to predict what class an object belongs to, from a number of input features, by predicting a $C$-dimensional probability vector $\hat{y}$, where $C$ is the number of object classes to predict. The element $\hat{y}_c$ is the probability that the input to the model is of class $c$, $1 \leq c \leq C$. For neural networks, the probability tensor is a tensor of order 2, $\hat{y} \in \mathbb{R}^{R \times C}$, where $R$ is the batch size and $C$ is the number of object classes.
 
 Let $L(\theta)$ be the loss function used for the classification task. The model is trained by minimizing the cross entropy function which acts on two probability distributions: the predicted probabilities $\hat{y}$ and the real probabilities $y$. Cross entropy and its partial derivative with respect to the last layer of neurons is defined by the following equations \cite{notesonbackprop}: 
@@ -616,15 +627,7 @@ L(\theta) = - \sum^{R }_{r=1} \sum^{C }_{c=1}y_{r,c} \ \log{\hat{y}_{r,c}}
 \pd{L(\theta)}{\hat{y}_{r,c}} = - \frac{y_{r,c}}{\hat{y}_{r,c}}
 \end{equation}
 
-\subsubsection{MNIST}
-The MNIST database for handwritten digits \cite{MNIST} is a dataset consisting of 70000 grayscale images of size $28 \times 28$ pixels, of the digits 0 to 9 (see figure \ref{figMNIST}). The database is split up into two different sets, a training set containing 60000 images used to train the model, and a test set consisting of 10000 images used to evaluate the model. The test set is kept separate from the training set to prevent overfitting on the training data. A model is given all the pixel values of the image as input features, and is asked to predict what digit is in the image.
-
-\begin{figure}[h]
-	\centering
-  		\includegraphics[scale=1]{mnist.png}
-  	\caption{Ten images of handwritten digits from the MNIST dataset. \cite{MNIST}} \label{figMNIST}
-\end{figure}
-
+\subsubsection{Models}
 Two models were compared on the task of classifying handwritten digits, namely a convolutional neural network and a feed-forward neural network. Table \ref{tabCNN} and \ref{tabFCC} show the network architectures which were chosen on the basis to be as simple as possible, and to have approximately the same number of learnable parameters. The feed-forward model consists of 6 sequential hidden layers of size 128 with ReLU activations, except the last layer which has size $C=10$, and uses a softmax activation. The convolutional model consists of a combination of $3 \times 3$ convolutions with stride 1, 64 channels and 0 zero-padding, and $2 \times 2$ maxpooling layers with stride 2. Every convolutional layer is preceeded by Batch Normalization (BN), and proceeded by a ReLU activation layer, except the last layer which uses a softmax activation. Both network's outputs are interpreted as probabilities that the image is of one of $C$ classes.
 
 \begin{table}
@@ -663,7 +666,9 @@ Two models were compared on the task of classifying handwritten digits, namely a
 \end{center}
 \end{table}
 
-The models were trained on a subset of the training set. 5 000 random samples from the training set were chosen as a validation set to track while training the model. The remaining 55 000 images of the training set were used to train the neural networks through Stochastic Gradient Descent.
+\subsection{Results}
+
+The models were trained on a subset of the training set. 5 000 random samples from the training set were chosen as a validation set to track while training the model. The remaining 55 000 images of the training set were used to train the neural networks through SGD with momentum [CITE CITE CITE].
 
 For my own implementation of both convolutional neural networks and feed-forward neural networks, the models were trained on an Intel i7 3770K CPU for 5 000 iterations with a learning rate of 0.001 and a batch size of 50. The total elapsed training time was 6 hours per model. The convolutional and feed-forward models achieved a final accuracy of 99.1\% and 97.0\% respectively on the test set of never before seen handwritten digits. 
 
@@ -690,15 +695,18 @@ The models were trained for 100 000 iterations while tracking the training and v
 \end{center}
 \end{table}
 
+\subsection{Discussion}
+
 The convolutional neural network is shown to have better generalizability on the test set than its feed-forward counterpart: While the training loss is the same for both the convolutional and feed-forward models, the validation loss is approximately 10 times higher for the feed-forward model. The final accuracy of the two networks were 99.5\% for the convolutional neural network and 97.3\% for the feed-forward neural network, tested on the test set consisting of 10 000 handwritten digits. 
 
 
-\subsection{Dense face detection and localization}
+\section{Dense face detection and localization}
+In this section I systematically and empirically investigate how to construct and improve a convolutional-neural-network-based model to detect a variable number of faces in an image. Every factor and suggestion which affects the model performance is evaluated one by one and added to a baseline model.
+
+\subsection{WIDERFace}
 For the task of detecting a variable number of faces in an iamge, the WIDERFace dataset \cite{WIDERFace} was used. It is a dataset consisting of 32 203 images of a total of 393 703 number of faces at different scales, lighting and occlusions. Every training example consists of a number of bounding boxes which describes all the faces in the image. A bounding box consists of four coordinates specifying its location: two for the upper left corner and two for the bottom right corner of the bounding box. The images are labeled by humans and is called the ground truth of the image.
 
-In this section I systematically and empirically investigate how to construct and improve a convolutional-neural-network-based model to detect a variable number of faces in an image.
-
-\subsubsection{One-shot detectors}
+\subsection{One-shot detectors}
 One-shot detectors were first introduced by the model YOLO \cite{yolo} and later modified and improved by the models SSD \cite{ssd}, YOLO9000 \cite{yolo9000}, DSSD \cite{dssd} and RetinaNet \cite{retinanet}. A one-shot detector works by predicting up to tens of thousands of bounding boxes in different spatial positions in an image, that sets out to detect every object in that image. For every set of predetermined spatial positions in the image, the model predicts 4 bounding box coordinates and probability scores that there exists an object inside the specified bounding box.
 
 The model is trained by assigning every bounding box either a negative or a positive label during training, depending on if the bounding box contains a ground truth object or not. A bounding box is said to contain an object if the intersection over union (IoU) \cite{iou} of the area of the bounding box and the area of the ground truth is bigger or equal to a threshold value (0.5). The intersection over union is used to determine how similar two sets $A$ and $B$ are (see figure \ref{figiou}). It bounded by the interval $[0,1]$ and is defined by the following equation: 
@@ -761,11 +769,11 @@ RESULTS HERE
 \subsubsection{FaceNet v1.1, binary classification}
 The baseline model uses a softmax function based on two values, a scalar value of there exisiting a face and a scalar value of there not existing a face. KJHSKJDS showed that using a single scalar value with a logistic function increased the accuracy in binary classification.
 
-\subsection{Temporal convolutional neural networks for time series data}
-\subsubsection{Background}
+\section{Improving temporal convolutional networks}
+\subsection{Background}
 In conventional convolutional neural networks, the model learns to transform a given input by learning to apply a number of two-dimensional discrete convolutions on the input data. Instead of convolving along the spatial dimensions, a convolutional neural network can be used to convolve along the time dimension, and can thus be used as a sequence model for time series data, as long as there is no information leakage from the future into the past. Recent work on Temporal Convolutional Networks (TCN) \cite{tcn} shows that the convolutional model outperforms its recurrant neural network (RNN) variants, including Long Short Term Memory (LSTM), and Gated Recurrent Units (GRU). 
 
-\subsubsection{Method}
+\subsection{Method}
 Given a number of data points at timesteps $t = 1, 2, 3, ..., m$, a sequence model sets out to predict the value at timestep $t = m+1$, through the use of information from the earlier timesteps. A temporal convolutional neural network can achieve this by learning to apply a number of 1-dimensional discrete convolutions across all the available previous timesteps, through the use of smart zero-padding to avoid information leakage from the future into the past.
 
 The activations at layer $l$ is a tensor of order 3 $X^{(l)} \in \mathbb{R}^{R \times C \times T}$ where $C$ is the number of feature channels and $T$ is the maximum length of the sequence. The convolutional weights are also a tensor of order 3 $W^l \in \mathbb{R}^{C' \times C \times k}$, where $C'$ is the number of feature channels of the proceeding layer, and $k$ is the kernel size. In addition to the kernel size $k$ and stride $s$, temporal convolutional layers have one additional hyperparameter compared to conventional convolutions, namely a dilation factor $d$. The dilation controls how the kernel is applied on the activations by allowing the kernel to be spaced out across the activation of neurons (see figure \ref{figTCNdil}). The dilated convolution is expressed as:
@@ -787,7 +795,7 @@ The activations at layer $l$ is a tensor of order 3 $X^{(l)} \in \mathbb{R}^{R \
 
 While TCNs \cite{tcn} were shown to beat the current state of the art in two tasks, SequenceMNIST and the more difficult version PMNIST, I want to adress and improve two problem areas I see with the author's implementation of temporal convolutional networks.
 
-\subsubsection{Smart zero-padding}
+\subsection{Smart zero-padding}
 The temporal dimension size $T$ and $T'$ of layers $l$ and $l+1$ respectively can vary in size since they can be convolved upon by a kernel with kernel size $k \geq 1$. More specifically, $T'$ is dependent on $T$ and five hyperparameters: The zero-padding $p_{left}$ and $p_{right}$, the stride $s$, the kernel size $k$, and the dilation $d$.
 
 \begin{equation}
@@ -805,7 +813,7 @@ I propose only zero-padding the beginning of the activation tensor with zero-pad
 \end{center}
 \end{figure}
 
-\subsubsection{Linear versus exponential dilation increase}
+\subsection{Linear versus exponential dilation increase}
 The original authors propose increasing the dilation by a factor of two at every layer. The dilations enable the output neurons to have a bigger receptive field. The receptive field of an output neuron is the maximum amount of input neurons the model can base its prediction of. The receptive field $r$ at layer $l$ for a neuron with kernel size $k$ and dilation $d$ at layer $l-1$ is defined by: 
 \begin{equation}
 r(d, k) = d(k-1) +1
@@ -820,7 +828,7 @@ I suggest increasing the dilation of the layers linearly instead of exponentiall
 
 Secondly, because a temporal convolutional network has to preserve its temporal dimension $T$ at every layer through the use of zero-padding, an exponentially increasing dilation can cause too much memory usage, since zero-padding increases the memory usage of the model. This is especially important for \cite{tcn} implementation which uses twice as much zero-padding as my implementation.
 
-\subsubsection{Results}
+\subsection{Results}
 To show the effects of these changes I compare my implementation with the suggested modifications to the model, with the original TCN model \cite{tcn} on two different tasks.
 
 \subsubsection{SequenceMNIST (SeqMNIST)}
@@ -829,7 +837,7 @@ SequenceMNIST is a task which uses the MNIST database of handwritten digits \cit
 \subsubsection{Permuted SequenceMNIST (PMNIST)}
 Permuted SequenceMNIST (PMNIST) is a more difficult deviation of the SequenceMNIST task where every pixel in the image is randomly permuted. All images are randomly permuted the same way, and the model is evaluated on images permuted similar to the training data.
 
-\subsubsection{Results}
+\subsubsection{Experiments}
 Three different model architectures were tested on SeqMNIST and PMNIST, namely three models with different residual blocks: Single, Double, and Radical. The Single residual block is the block used in the original TCN \cite{tcn} architecture. It uses two layers made up of a sequence of a convolution, weight normalization of the kernel weights, ReLU activation and dropout. Weight normalization normalizes the kernel weights such that its direction remains constant, while changing the magnitude of the tensor \cite{pytorch}. Dropout randomly sets an activation to be equal to zero during training \cite{cs231n}. The input to the sequential layers is then added element-wise to its output to create the final activations of the last layer. This is called a residual connection. The residual connection in the Simple block is between every second convolution. The Double residual block has an addition residual connections which connects the activations of the first convolution in block $b$ to the activations of the first convolutional block in layer $b+1$. The Radical residual block has 4 convolutions and uses residual connections between the input and the output, the input and the second convolution, the second convolution and the output, and the first convolution and the third convolution. The three architectures are illustrated in figure \ref{figTCNGraph}. The Radical block is additionally illustrated in figure \ref{figTCNRadical}.
 
 \begin{figure}[h]
@@ -840,7 +848,7 @@ Three different model architectures were tested on SeqMNIST and PMNIST, namely t
 
 \begin{figure}[h]
 \begin{center}
-    \includegraphics[width=16cm]{figGraph.eps}\caption{The (a) Single, (b) Double and (c) Radical residual blocks. Every convolution is proceeded by ReLU activations and dropout, and uses weight normalization. The Single block has a residual connection every 2 convolutional layers. The Double block has an addition residual connections which connects the activations of the first convolution in block $l$ to the activations of the first convolutional block in layer $l+1$. The Radical residual block has 4 convolutions and uses residual connections between the input and output, input and the second convolution, the second convolution and the output, and the first convolution and the third convolution.}\label{figTCNGraph}
+    \includegraphics[width=16cm]{figGraph.eps}\caption{The proposed (a) Single, (b) Double and (c) Radical residual blocks. Every convolution is proceeded by ReLU activations and dropout, and uses weight normalization. The Single block has a residual connection every 2 convolutional layers. The Double block has an addition residual connections which connects the activations of the first convolution in block $l$ to the activations of the first convolutional block in layer $l+1$. The Radical residual block has 4 convolutions and uses residual connections between the input and output, input and the second convolution, the second convolution and the output, and the first convolution and the third convolution.}\label{figTCNGraph}
 \end{center}
 \end{figure}
 
@@ -878,9 +886,10 @@ The validation accuracy was used to choose how long to train the models before e
     \begin{tabular}{| l | l | l | l | l | l |}
     \hline
     Model & Test Acc. & Val. Acc. & Val. Loss & Train Loss\\ \hline \hline
-    TCN (Single) & 100.0\% & 100.0\% & 0 & 0 \\ \hline
-    TCN (Double) & 100.0\% & 100.0\% & 0 & 0 \\ \hline
-    TCN (Radical) & 100.0\% & 100.0\% & 0 & 0 \\ \hline
+    TCN (Single) & \textbf{99.53\%} & 99.23\% & 0.046 & \textbf{0.006} \\ \hline
+    TCN (Double) & 99.34\% & 99.07\% & 0.050 & 0.014 \\ \hline
+    TCN (Radical) & 99.37\% & \textbf{99.30\%} & \textbf{0.040} & 0.010 \\ \hline
+    Dilated GRU [CITE CITE] & 99.0\% & N/A & N/A & N/A \\ \hline
     TCN (Original) \cite{tcn} & 99.0\% & N/A & N/A & N/A \\ \hline
     \end{tabular}
     \caption{\textbf{SequenceMNIST}. A table comparing my proposed modified temporal convolutional networks with the current state of the art on the SequenceMNIST task.} \label{tabseqmnist}
@@ -892,9 +901,9 @@ The validation accuracy was used to choose how long to train the models before e
     \begin{tabular}{| l | l | l | l | l | l |}
     \hline
     Model & Test Acc. & Val. Acc. & Val. Loss & Train Loss\\ \hline \hline
-    TCN (Single) & 100.0\% & 100.0\% & 0 & 0 \\ \hline
-    TCN (Double) & 100.0\% & 100.0\% & 0 & 0 \\ \hline
-    TCN (Radical) & 100.0\% & 100.0\% & 0 & 0 \\ \hline
+    TCN (Single) & \textbf{97.86\%} & \textbf{98.28\%} & \textbf{0.094}  & 0.019 \\ \hline
+    TCN (Double) & 97.36\% & 98.10\% & 0.126  & 0.024 \\ \hline
+    TCN (Radical) & 97.82\% & 97.94\% & 0.117  & \textbf{0.017} \\ \hline
     TCN (Original) \cite{tcn} & 97.2\% & N/A & N/A & N/A \\ \hline
     \end{tabular}
     \caption{\textbf{Permuted SequenceMNIST}. A table comparing my proposed modified temporal convolutional networks with the current state of the art on the Permuted SequenceMNIST task.} \label{tabseqmnist}
@@ -903,29 +912,30 @@ The validation accuracy was used to choose how long to train the models before e
 
 MODEL RESULTS HERE, BLAH BLAH WAS SHOWN TO BEAT/GENERALIZE BETTER BLAH BLAH
 
+\subsection{Discussion}
 
-\subsection{Evaluation of TCNs for image captioning}
-\subsubsection{MSCOCO dataset}
-The MSCOCO captions dataset [CITE CITE CITE] is a dataset containing 164 062 images and a total of 1 026 459 human labeled image captions. This paper uses the 2017 train/val split of 115 000 images in the training set, and 5 000 images in the validation set. The remaining images are contained in the test set with the ground truth not publicly available.
+\section{Evaluation of temporal convolutional networks for image captioning}
+\subsection{MSCOCO caption dataset}
+The MSCOCO caption dataset [CITE CITE CITE] is a dataset containing 164 062 images and a total of 1 026 459 human labeled image captions. This paper uses the 2017 train/val split of 115 000 images in the training set, and 5 000 images in the validation set. The remaining images are contained in the test set with the ground truth not publicly available.
 
-\subsubsection{Background}
+\subsection{Background}
 In the Stanford course \textit{Convolutional Neural Networks for Computer Vision} \cite{cs231n}, the lecturer demonstrated that a deep convolutional neural network could be used as a feature extractor in conjunction with a recurrent neural network (RNN) to sequentially generate an image caption. In this following section. A closer look on the current state of the art on image captioning, at the MSCOCO caption leaderboards, reveals that recurrent neural-network-based architectures are used, mainly LSTMs and GRUs. Therefore it is of interest to apply the newly high performing sequence model, temporal convolutional networks (TCN) \cite{tcn}, to the area of automatic image captioning, to compare its performance with the current recurrent architectures. Two models will be trained and compared head-to-head on the task of automatic image captioning: The temporal convolutional network model and the gated recurrent unit model.
 
-\subsubsection{Sequential sentence modeling}
+\subsection{Sequential sentence modeling}
 The models generate image captions by sequentially suggesting the next word in a sentence, from a large vocabulary of allowed words to choose from. This vocabulary was chosen similar to the current state of the art in image captioning [CITE CITE CITE], as well as due to memory limitations: It was picked by iterating through every image caption in the training data and adding words which appeared more than 5 times to the word vocabulary. Only captions in the training set were used, ignoring the available caption in the validation set, to enable the results on the validation to more closely resemble the results on the test set. Capitalization and special characters were ignored when generating the vocabulary. The final vocabulary size was approximately 10 000 words. Words in the training image captions not included in the vocabulary were replaced with an unknown token: \textit{"<UKN>"}. The vocabulary also includes an end of string token, \textit{"<EOS>"}, used by the models to signal that the generated sentence is complete.
 
 Each word is represented as a one-hot vector encoding, where every element but one is set to zero, and the index of the non-zero element determines what word it is. Vector embeddings into continuous space (PyTorch's nn.Embeddings) \cite{pytorch} are used map the one-hot representations into a vector of a specific dimension.
 
 During training, each word is given sequentially to the model, and the model is asked to predict the next word in the sentence. It does this by predicting a vector with $N$ values, where $N$ is the vocabulary size. The vector is then put into a softmax function, and its elements are interpreted as the probability that the selected word should be the next word in the sentence. The model does not ignore the \textit{"<UKN>"} tokens, and trains to predict them the same as any other word. At test time if \textit{"<UKN>"} were to be picked, it is replaced by the word prediction with the second highest probability.
 
-\subsubsection{Loss function}
+\subsection{Loss function}
 The loss function $L(\theta)$ used for automatic image captioning is cross entropy \cite{notesonbackprop}. Let $M$ be the combined number of words of all the captions in the mini-batch, and $S$ be the set of all predicted word probabilities $p$. $\hat{p}$ is the associated ground truth to word prediction $p$. The total loss if given by:
 
 \begin{equation}
 L(\theta) = \frac{1}{M} \sum_{p \in S} p \log{\hat{p}}
 \end{equation}
 
-\subsubsection{TCN}
+\subsection{TCN}
 Based on the results of the previous section regarding improvements on temporal convolutional networks, a model without an exponentially increasing dilation will be used. One additional reason for this is because the sequence size is small, approximately never larger than 30 timesteps (30 words per sentence). Using an exponentially increasing dilation $d_l = 2^{l-1}$ at layer $l$ would result in the network becoming a series of convolutions with kernel size $k=1$ (mathematically equivalent to a fully connected/feed-forward layer) at layers $l>5$. To avoid this, the dilations were picked to make the output neurons receptive field to be equal to approximately 40 timesteps. For simplicity, and because the performance difference of the Single, Double and Radical residual blocks were only marginal, the most basic block is picked: The Single residual block (see figure \ref{figTCNGraph}). 
 Following \cite{tcn} advancements with TCNs on sentence modeling tasks, a kernel size $k=2$ was used. A total of $18$ residual blocks were used. The dilations were subsequently picked to be $d=1$ for every convolution, for a total receptive field of $39$ timesteps.
 
@@ -933,17 +943,15 @@ The word embeddings use 512 channels, and every convolution uses 256 channels, e
 
 At runtime, the model only has access to the 512-dimensional feature vector from the image. The model predicts the next words in the sentence sequentially from the previous available words. At timestep $t=1$, only the feature vector from the ResNet-18 is used. At the next timesteps, the embedded predicted word from the previous timestep is concatenated to the end of the activation tensor at the first layer. To predict the next word in the sequence, the model performs convolutions on the concatenated tensor. This process is repeated until the model predicts an end of string \textit{"<EOS>"} token.
 
-\subsubsection{GRU}
+\subsection{GRU}
 The second model tested is a model often used for image captioning and sequential data, a derivation of a normal recurrent neural network \cite{cs231n} CITE CITE mscoco leaderboards]. The architecture used follows industry standards for GRUs. A ResNet-18 is used, the same as for the TCN model, to predict a 512-dimensional feature vector from the image. This vector is set as the first hidden layer in the GRU. The feature vector is additionally used as a start of string token, similar to the TCN model. Three hidden layers of size 512 are used. The vocabulary used by the GRU is the same as the one used by the TCN. Word embeddings of size 512 are used, similar to the TCN model, to represent words as tensors.
 
 At runtime, keeping all the previous words in memory is not required, unlike the TCN model. To generate an image caption, the ResNet-18 feature vector is given to the GRU as a start of string token. The predicted word is then embedded and given to the model, to predict the next word in the sentence. This process is repeated until the model predicts an end of string \textit{"<EOS>"} token.
 
-\subsubsection{Results}
-Early experiments used the more commonly used ResNet-50 as a feature extractor, but the TCN model would not fit into 11GB of VRAM GPU memory during training. The GRU did not have any memory problems.
+\subsection{Results}
+Early experiments used the more commonly used ResNet-50 as a feature extractor, but the TCN model would not fit into 11GB of VRAM GPU memory during training, and could thus not be used. The GRU did not have any memory problems. Further experimentation reverted to the less deep ResNet-18 for both models.
 
-Each model was trained for 1.75 million iterations on the training set of the MSCOCO dataset, using the train/val 115k/5k split. The validation loss was tracked during training, but was not used by SGD. The models were trained on images resized to $224 \times 224$ pixels, with a batch size of 2 due to memory limitations, the absolute minimum for batch normalization to function. Each image used 5 randomly chosen ground truth image captions during training. An initial learning rate of 0.1 was used for both models, which was divided by a factor of 10 after 1 million iterations, and 1.5 million iterations.
-
-HUMAN, TCN, GRU, RANDOM
+Each model was trained for 1.75 million iterations on the training set of the MSCOCO dataset, using the train/val 115k/5k split. The validation loss was tracked during training, but was not used by SGD. The models were trained on images resized to $224 \times 224$ pixels, with a batch size of 2 due to memory limitations, the absolute minimum for batch normalization to function. Each image used 5 randomly chosen ground truth image captions during training. An initial learning rate of 0.1 was used for both models, which was divided by a factor of 10 after 1 million iterations, and 1.5 million iterations. Table \ref{tabimagecaptioning} shows the final result on the 19283928391823 evaluation metrics used to evaluate the MSCOCO captioning dataset.
 
 \subsubsection{Discussion}
 TCN worse because it couldnt use the features effectively. (only first timestep)
@@ -1225,6 +1233,12 @@ A. Paszke,   S. Gross, S. Chintala,   G. Chanan,   E. Yang,   Z. DeVito,   Z. Li
 	\textit{Dilated Recurrent Neural Networks.}
 	S. Chang, Y. Zhang, W. Han, M. Yu, X. Guo, W. Tan, X. Cui, M. Witbrock, M. Hasegawa-Johnson, T. Huang
 	arXiv preprint arXiv:1710.02224, 2017
+	
+	
+\bibitem{sigmoidvssoftmax}
+\textit{Use Sigmoid instead of Softmax in Focal Loss.}
+Discussion in github repository of a RetinaNet implementation.
+URL https://github.com/kuangliu/pytorch-retinanet/issues/6
 %-----------------------------------
 %-----------------------------------
 %-----------------------------------

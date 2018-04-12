@@ -6,106 +6,103 @@
 \citation{cs231n}
 \citation{cs231n}
 \citation{cs231n}
+\citation{cs231n}
+\citation{hidden12}
+\citation{hidden12}
+\citation{cs231n}
 \@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{5}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {1.1}Background}{5}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.2}Purpose}{5}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.2}Feed-forward neural networks}{5}}
+\citation{cs231n}
+\citation{cs231n}
+\citation{cs231n}
+\citation{wikiStanford}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces An illustration \cite  {hidden12} of a simple feed-forward neural network. It consists of four layers: an input layer (red), two hidden layers (blue) and one output layer (green). A circle represents a neuron. Every neuron in a layer is connected to all the neurons in the following layer, shown by the grey lines between the neurons. \relax }}{6}}
+\newlabel{figfeedforward}{{2}{6}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.2.1}Tensors, indexing and notation}{6}}
+\citation{cs231n}
+\citation{wikiStanford}
+\citation{cs231n}
+\citation{wikiStanford}
+\citation{cs231n}
+\citation{wikiStanford}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.2.2}Forward propagation}{7}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces An example of a 4 layer feed-forward neural network. The input neurons are marked with blue. The bias neurons are marked with red. Black lines between neurons symbolyze the weights between every pair of neurons between two layers.\relax }}{7}}
+\newlabel{figFCCmath}{{3}{7}}
+\citation{cs231n}
+\citation{wikiStanford}
+\citation{cs231n}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces A graph of ReLU, $\sigma $ and $\qopname  \relax o{tanh}$.\relax }}{8}}
+\newlabel{activation_function}{{4}{8}}
+\newlabel{relu}{{5}{8}}
+\citation{cs231n}
+\citation{cs231n}
+\citation{wikiStanford}
+\citation{gradient}
+\citation{convmath}
+\newlabel{sigmoid}{{6}{9}}
+\newlabel{tanh}{{7}{9}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.2.3}Loss function}{9}}
+\newlabel{MSE}{{8}{9}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.2.4}Gradient Descent}{9}}
+\newlabel{EQgradientspace}{{9}{9}}
+\citation{gradient}
+\citation{convmath}
+\citation{wikiStanford}
+\citation{gradient}
+\citation{convmath}
+\citation{figSGD}
+\citation{figSGD}
+\citation{wikiStanford}
+\citation{gradient}
+\citation{wikiStanford}
+\citation{gradient}
+\citation{cs231n}
+\newlabel{EQgradientvector}{{10}{10}}
+\newlabel{EQgradient}{{11}{10}}
+\newlabel{SGD}{{12}{10}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.2.5}Backpropagation}{10}}
+\newlabel{EQderivativeDefinition}{{13}{10}}
+\citation{cs231n}
+\citation{wikiStanford}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces An illustration \cite  {figSGD} of Stochastic Gradient Descent on a function of two variables. Red regions symbolizes a high function value while blue regions symbolizes a low function value. The parameters were initialized near the global maximum and their values are altered iteratively to move in the direction of the negative gradient: the direction of steepest descent, to find a local minimum.\relax }}{11}}
+\newlabel{figSGD}{{5}{11}}
+\newlabel{deltaerrordefinition}{{14}{11}}
+\citation{cs231n}
+\citation{wikiStanford}
+\citation{cs231n}
+\citation{wikiStanford}
+\citation{cs231n}
+\citation{wikiStanford}
+\newlabel{dLdX_FCC}{{15}{12}}
+\newlabel{MSEdelta}{{16}{12}}
+\newlabel{dLdW_FCC}{{17}{12}}
+\citation{cs231n}
+\newlabel{dLdb_FCC}{{18}{13}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.2.6}Training neural networks}{13}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.3}Purpose}{13}}
 \citation{cs231n}
 \citation{batchnorm}
 \citation{eigen}
 \citation{numpy}
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.3}Problem statement}{6}}
-\@writefile{toc}{\contentsline {section}{\numberline {2}Method}{6}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.4}Problem statement}{14}}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Method}{14}}
 \citation{tensorflow}
 \citation{pytorch}
 \citation{cs231n}
-\citation{hidden12}
-\citation{hidden12}
-\citation{cs231n}
-\@writefile{toc}{\contentsline {section}{\numberline {3}Feed-forward neural networks}{7}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces An illustration \cite  {hidden12} of a simple feed-forward neural network. It consists of four layers: an input layer (red), two hidden layers (blue) and one output layer (green). A circle represents a neuron. Every neuron in a layer is connected to all the neurons in the following layer, shown by the grey lines between the neurons. \relax }}{7}}
-\newlabel{figfeedforward}{{2}{7}}
-\citation{cs231n}
-\citation{cs231n}
-\citation{cs231n}
-\citation{wikiStanford}
-\citation{cs231n}
-\citation{wikiStanford}
-\citation{cs231n}
-\citation{wikiStanford}
-\citation{cs231n}
-\citation{wikiStanford}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Tensors, indexing and notation}{8}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Forward propagation}{8}}
-\citation{cs231n}
-\citation{wikiStanford}
-\citation{cs231n}
-\citation{wikiStanford}
-\citation{cs231n}
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces An example of a 4 layer feed-forward neural network. The input neurons are marked with blue. The bias neurons are marked with red. Black lines between neurons symbolyze the weights between every pair of neurons between two layers.\relax }}{9}}
-\newlabel{figFCCmath}{{3}{9}}
-\citation{cs231n}
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces A graph of ReLU, $\sigma $ and $\qopname  \relax o{tanh}$.\relax }}{10}}
-\newlabel{activation_function}{{4}{10}}
-\newlabel{relu}{{5}{10}}
-\newlabel{sigmoid}{{6}{10}}
-\newlabel{tanh}{{7}{10}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Loss function}{10}}
-\citation{cs231n}
-\citation{wikiStanford}
-\citation{gradient}
-\citation{convmath}
-\citation{gradient}
-\citation{convmath}
-\citation{wikiStanford}
-\citation{gradient}
-\citation{convmath}
-\newlabel{MSE}{{8}{11}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Gradient Descent}{11}}
-\newlabel{EQgradientspace}{{9}{11}}
-\newlabel{EQgradientvector}{{10}{11}}
-\citation{figSGD}
-\citation{figSGD}
-\citation{wikiStanford}
-\citation{gradient}
-\citation{wikiStanford}
-\citation{gradient}
-\citation{cs231n}
-\newlabel{EQgradient}{{11}{12}}
-\newlabel{SGD}{{12}{12}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces An illustration \cite  {figSGD} of Stochastic Gradient Descent on a function of two variables. Red regions symbolizes a high function value while blue regions symbolizes a low function value. The parameters were initialized near the global maximum and their values are altered iteratively to move in the direction of the negative gradient: the direction of steepest descent, to find a local minimum.\relax }}{12}}
-\newlabel{figSGD}{{5}{12}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Backpropagation}{12}}
-\newlabel{EQderivativeDefinition}{{13}{12}}
-\citation{cs231n}
-\citation{wikiStanford}
-\citation{cs231n}
-\citation{wikiStanford}
-\newlabel{deltaerrordefinition}{{14}{13}}
-\newlabel{dLdX_FCC}{{15}{13}}
-\citation{cs231n}
-\citation{wikiStanford}
-\citation{cs231n}
-\citation{wikiStanford}
-\citation{cs231n}
-\newlabel{MSEdelta}{{16}{14}}
-\newlabel{dLdW_FCC}{{17}{14}}
-\newlabel{dLdb_FCC}{{18}{14}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.6}Training neural networks}{14}}
-\citation{cs231n}
 \citation{cs231n}
 \citation{convmath}
 \citation{convarithmetic}
-\@writefile{toc}{\contentsline {section}{\numberline {4}Convolutional neural networks}{15}}
-\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces The result of a filter for vertical and horizontal edge detection applied on a picture of a cat.\relax }}{15}}
-\newlabel{figkatter}{{6}{15}}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Convolutional neural networks}{15}}
 \citation{cs231n}
 \citation{convmath}
 \citation{convarithmetic}
 \citation{cs231n}
 \citation{convmath}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces The result of a filter for vertical and horizontal edge detection applied on a picture of a cat.\relax }}{16}}
+\newlabel{figkatter}{{6}{16}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Model structure, parameters and notation}{16}}
 \citation{cs231n}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Model structure, parameters and notation}{16}}
-\newlabel{CNNeq}{{19}{16}}
 \citation{cs231n}
 \citation{convmath}
 \citation{convarithmetic}
@@ -115,10 +112,9 @@
 \citation{figkonv}
 \citation{cs231n}
 \citation{convmath}
+\newlabel{CNNeq}{{19}{17}}
 \@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces An illustration \cite  {vgg} of a the VGGNet19 convolutional neural network. The different volumes represent the activations of the network at different depths. Each two-dimensional slice is a feature map.\relax }}{17}}
 \newlabel{figvgg}{{7}{17}}
-\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces An illustration \cite  {figkonv} of a convolutional neural network. Each two-dimensional slice is a feature map.\relax }}{17}}
-\newlabel{figboatcnn}{{8}{17}}
 \citation{cs231n}
 \citation{convmath}
 \citation{cs231n}
@@ -127,24 +123,23 @@
 \citation{convarithmetic}
 \citation{figconv}
 \citation{figconv}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces An illustration \cite  {figkonv} of a convolutional neural network. Each two-dimensional slice is a feature map.\relax }}{18}}
+\newlabel{figboatcnn}{{8}{18}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Convolution forward propagation}{18}}
 \citation{cs231n}
 \citation{convmath}
 \citation{cs231n}
 \citation{convmath}
 \citation{convarithmetic}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Convolution forward propagation}{18}}
 \citation{cs231n}
 \citation{convmath}
 \citation{convarithmetic}
-\citation{cs231n}
-\citation{convmath}
 \@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces A kernel of size $1 \times 3 \times 3$ convolving over activations of size $1 \times 7 \times 7$, producing activations of size $1 \times 4 \times 4$ in the next layer \cite  {figconv}. \relax }}{19}}
 \newlabel{figkonv}{{9}{19}}
 \@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces An activation with size $1 \times 3 \times 3$ is zero-padded with $p=1$ and the resulting tensor is of size $1 \times 5 \times 5$. White symbolizes the original tensor and grey symbolizes the padded zeros. \relax }}{19}}
 \newlabel{figzeropad}{{10}{19}}
-\newlabel{eqkonvW}{{20}{19}}
-\newlabel{eqkonvH}{{21}{19}}
-\newlabel{konvolution}{{22}{19}}
+\citation{cs231n}
+\citation{convmath}
 \citation{cs231n}
 \citation{convmath}
 \citation{convarithmetic}
@@ -154,203 +149,212 @@
 \citation{webconv1}
 \citation{webconv2}
 \citation{webconv3}
+\newlabel{eqkonvW}{{20}{20}}
+\newlabel{eqkonvH}{{21}{20}}
+\newlabel{konvolution}{{22}{20}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Convolution backpropagation}{20}}
 \citation{webconv1}
 \citation{webconv2}
 \citation{webconv3}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Convolution backpropagation}{20}}
-\newlabel{konvolutionbackprop}{{23}{20}}
 \citation{cs231n}
 \citation{webconv1}
 \citation{webconv2}
 \citation{webconv3}
+\newlabel{konvolutionbackprop}{{23}{21}}
 \citation{cs231n}
 \citation{convmath}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Activation function forward propagation}{21}}
 \citation{cs231n}
 \citation{convmath}
-\citation{cs231n}
-\citation{convmath}
-\citation{convarithmetic}
-\citation{figkonv}
-\citation{figkonv}
-\citation{cs231n}
-\citation{convmath}
-\citation{convarithmetic}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Activation function forward propagation}{22}}
 \newlabel{eqactivation}{{26}{22}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Activation function backpropagation}{22}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Maxpooling forward propagation}{22}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Activation function backpropagation}{22}}
 \citation{cs231n}
 \citation{convmath}
+\citation{convarithmetic}
+\citation{figkonv}
+\citation{figkonv}
 \citation{cs231n}
 \citation{convmath}
-\citation{webconv3}
+\citation{convarithmetic}
 \citation{cs231n}
 \citation{convmath}
-\citation{webconv3}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.6}Maxpooling forward propagation}{23}}
 \@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces Maxpooling with kernel size $k=2$ and stride $s=2$ on an area of size $4 \times 4$. The resulting area has size $2 \times 2$ \cite  {figkonv}\relax }}{23}}
 \newlabel{figmaxpool}{{11}{23}}
-\newlabel{maxpool}{{31}{23}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}Maxpooling backpropagation}{23}}
+\citation{cs231n}
+\citation{convmath}
+\citation{webconv3}
+\citation{cs231n}
+\citation{convmath}
+\citation{webconv3}
 \citation{cs231n}
 \citation{convmath}
 \citation{webconv3}
 \citation{cs231n}
 \citation{batchnorm}
+\newlabel{maxpool}{{31}{24}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.7}Maxpooling backpropagation}{24}}
 \citation{cs231n}
 \citation{batchnorm}
 \citation{cs231n}
 \citation{batchnorm}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.8}Batch Normalization forwardpropagation}{24}}
-\newlabel{eqmuc}{{34}{24}}
 \citation{cs231n}
 \citation{batchnorm}
 \citation{cs231n}
 \citation{batchnorm}
 \citation{cs231n}
 \citation{batchnorm}
-\citation{webBN1}
-\citation{webBN2}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.8}Batch Normalization forwardpropagation}{25}}
+\newlabel{eqmuc}{{34}{25}}
 \newlabel{eqsigmac}{{35}{25}}
 \newlabel{xhat}{{36}{25}}
 \newlabel{eqbn}{{37}{25}}
-\newlabel{eqewmamu}{{38}{25}}
-\newlabel{eqewmasigma}{{39}{25}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.9}Batch Normalization backpropagation}{25}}
 \citation{webBN1}
 \citation{webBN2}
 \citation{webBN1}
 \citation{webBN2}
-\citation{webBN1}
-\citation{webBN2}
-\citation{webBN1}
-\citation{webBN2}
+\newlabel{eqewmamu}{{38}{26}}
+\newlabel{eqewmasigma}{{39}{26}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.9}Batch Normalization backpropagation}{26}}
 \newlabel{kroneckerdelta}{{40}{26}}
 \newlabel{kroneckerdeltaDERIVATIVE}{{41}{26}}
 \newlabel{kroneckerdeltaSUM}{{42}{26}}
-\newlabel{BN_delta_error}{{43}{26}}
-\newlabel{BN_dxdxhat}{{44}{26}}
-\newlabel{BN_kedjeregeln}{{45}{26}}
 \citation{webBN1}
 \citation{webBN2}
+\citation{webBN1}
+\citation{webBN2}
+\citation{webBN1}
+\citation{webBN2}
+\citation{webBN1}
+\citation{webBN2}
+\newlabel{BN_delta_error}{{43}{27}}
+\newlabel{BN_dxdxhat}{{44}{27}}
+\newlabel{BN_kedjeregeln}{{45}{27}}
 \newlabel{mu'}{{46}{27}}
-\newlabel{sigma'}{{47}{27}}
 \citation{webBN1}
 \citation{webBN2}
+\newlabel{sigma'}{{47}{28}}
 \newlabel{finalBNeq}{{48}{28}}
 \citation{cs231n}
 \citation{cs231n}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.10}Softmax forward propagation}{29}}
 \citation{cs231n}
 \citation{notesonbackprop}
 \citation{websoftmax}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.10}Softmax forward propagation}{29}}
-\newlabel{softmax}{{51}{29}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.11}Softmax backpropagation}{29}}
+\citation{MNIST}
+\newlabel{softmax}{{51}{30}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.11}Softmax backpropagation}{30}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{30}}
+\citation{MNIST}
+\citation{MNIST}
 \citation{notesonbackprop}
-\@writefile{toc}{\contentsline {section}{\numberline {5}Experiments}{30}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Classification of handwritten digits}{30}}
-\newlabel{crossentropy}{{53}{30}}
-\citation{MNIST}
-\citation{MNIST}
-\citation{MNIST}
-\newlabel{dydxcrossentropy}{{54}{31}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.1.1}MNIST}{31}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Classification of handwritten digits}{31}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}MNIST}{31}}
 \@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces Ten images of handwritten digits from the MNIST dataset. \cite  {MNIST}\relax }}{31}}
 \newlabel{figMNIST}{{12}{31}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Method}{31}}
+\newlabel{crossentropy}{{53}{31}}
 \@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces \textbf  {Convolutional model architecture.} The convolutional neural network used in the experiments. R stands for the batch size.\relax }}{32}}
 \newlabel{tabCNN}{{1}{32}}
 \@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces \textbf  {Feed-forward model architecture.} The feed-forward neural network used in the experiments. R stands for the batch size. Hidden size is the number of neurons in the feed-forward layer\relax }}{32}}
 \newlabel{tabFCC}{{2}{32}}
-\citation{WIDERFace}
-\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces The accuracy (a) and loss (b) of the convolutional model (CNN) and the feed-forward model (FCC) as a function of the numbers of iterations trained. The training loss is the loss on the training set and the validation loss is the loss on the test set. Accuracy is measured on the test set.\relax }}{33}}
-\newlabel{figaccloss}{{13}{33}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Accuracy}}}{33}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Losses}}}{33}}
+\newlabel{dydxcrossentropy}{{54}{32}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.1}Models}{32}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Results}{33}}
 \@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces The final accuracy and validation loss of the models. The accuracy is measured as the percentage of correctly classified examples from the test set of 10 000 never before seen images of handwritten digits. The validation loss is the loss on the test set.\relax }}{33}}
 \newlabel{tablemnist}{{3}{33}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Dense face detection and localization}{33}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Discussion}{33}}
+\citation{WIDERFace}
 \citation{yolo}
 \citation{ssd}
 \citation{yolo9000}
 \citation{dssd}
 \citation{retinanet}
+\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces The accuracy (a) and loss (b) of the convolutional model (CNN) and the feed-forward model (FCC) as a function of the numbers of iterations trained. The training loss is the loss on the training set and the validation loss is the loss on the test set. Accuracy is measured on the test set.\relax }}{34}}
+\newlabel{figaccloss}{{13}{34}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Accuracy}}}{34}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Losses}}}{34}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Dense face detection and localization}{34}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}WIDERFace}{34}}
 \citation{iou}
 \citation{iou}
 \citation{iou}
 \citation{resnet}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.1}One-shot detectors}{34}}
-\newlabel{eqiou}{{55}{34}}
-\@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces IoU \cite  {iou} is defined as the size of the union divided by the size of the intersection of two sets $A$ and $B$. A bigger IoU implies that the predicted bounding box is closer to the ground truth. \relax }}{34}}
-\newlabel{figiou}{{14}{34}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}One-shot detectors}{35}}
+\newlabel{eqiou}{{55}{35}}
+\@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces IoU \cite  {iou} is defined as the size of the union divided by the size of the intersection of two sets $A$ and $B$. A bigger IoU implies that the predicted bounding box is closer to the ground truth. \relax }}{35}}
+\newlabel{figiou}{{14}{35}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.2.1}FaceNet v1.0, baseline model}{35}}
 \citation{retinanet}
 \citation{retinanet}
 \citation{cs231n}
 \citation{cs231n}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.2}FaceNet v1.0, baseline model}{35}}
-\citation{cs231n}
-\citation{tcn}
 \newlabel{eqfocalloss}{{56}{36}}
 \newlabel{eqsmoothl1loss}{{57}{36}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.3}FaceNet v1.1, binary classification}{36}}
+\citation{cs231n}
 \citation{tcn}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Temporal convolutional neural networks for time series data}{37}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.1}Background}{37}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.2}Method}{37}}
-\newlabel{konvolution}{{59}{37}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.2.2}FaceNet v1.1, binary classification}{37}}
+\@writefile{toc}{\contentsline {section}{\numberline {7}Improving temporal convolutional networks}{37}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.1}Background}{37}}
 \citation{tcn}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.2}Method}{38}}
+\newlabel{konvolution}{{59}{38}}
 \@writefile{lof}{\contentsline {figure}{\numberline {15}{\ignorespaces An illustration of a temporal convolutional network. Every square represents the activations at a single timestep. The different layers of activations represent the layers in the temporal convolutional network. Blue lines represent the kernel applied at a single position on the activation tensor.\relax }}{38}}
 \newlabel{figTCNdil}{{15}{38}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.3}Smart zero-padding}{38}}
-\@writefile{lof}{\contentsline {figure}{\numberline {16}{\ignorespaces A temporal convolution at timestep $t=1$. Dotted squares represent zero-padded activations, while bold squares represent normal activations. Blue lines represent the convolutional kernel. The network is effectively computing convolutions with kernel size $k=1$ since every neuron except at the first timestep is a neuron created by the zero-padding.\relax }}{39}}
-\newlabel{figTCNZeropad}{{16}{39}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.4}Linear versus exponential dilation increase}{39}}
+\citation{tcn}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.3}Smart zero-padding}{39}}
+\@writefile{lof}{\contentsline {figure}{\numberline {16}{\ignorespaces A temporal convolution at timestep $t=1$. Dotted squares represent zero-padded activations, while bold squares represent normal activations. Blue lines represent the convolutional kernel. The network is effectively computing convolutions with kernel size $k=1$ since every neuron except at the first timestep is a neuron created by the zero-padding.\relax }}{40}}
+\newlabel{figTCNZeropad}{{16}{40}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.4}Linear versus exponential dilation increase}{40}}
 \citation{tcn}
 \citation{tcn}
 \citation{MNIST}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.5}Results}{40}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.6}SequenceMNIST (SeqMNIST)}{40}}
 \citation{tcn}
 \citation{pytorch}
 \citation{cs231n}
-\citation{tcn}
-\citation{tcn}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.7}Permuted SequenceMNIST (PMNIST)}{41}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.8}Results}{41}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.5}Results}{41}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.5.1}SequenceMNIST (SeqMNIST)}{41}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.5.2}Permuted SequenceMNIST (PMNIST)}{41}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.5.3}Experiments}{41}}
 \citation{tcn}
 \citation{tcn}
 \@writefile{lof}{\contentsline {figure}{\numberline {17}{\ignorespaces An illustration of a temporal convolutional network. Every square represents the activations at a single timestep. Blue lines represent the kernel applied at a single temporal position on the activation tensor. Green lines represent residual connections between two convolutional layers.\relax }}{42}}
 \newlabel{figTCNRadical}{{17}{42}}
-\citation{cs231n}
-\citation{tcn}
-\@writefile{lof}{\contentsline {figure}{\numberline {18}{\ignorespaces The (a) Single, (b) Double and (c) Radical residual blocks. Every convolution is proceeded by ReLU activations and dropout, and uses weight normalization. The Single block has a residual connection every 2 convolutional layers. The Double block has an addition residual connections which connects the activations of the first convolution in block $l$ to the activations of the first convolutional block in layer $l+1$. The Radical residual block has 4 convolutions and uses residual connections between the input and output, input and the second convolution, the second convolution and the output, and the first convolution and the third convolution.\relax }}{43}}
+\@writefile{lof}{\contentsline {figure}{\numberline {18}{\ignorespaces The proposed (a) Single, (b) Double and (c) Radical residual blocks. Every convolution is proceeded by ReLU activations and dropout, and uses weight normalization. The Single block has a residual connection every 2 convolutional layers. The Double block has an addition residual connections which connects the activations of the first convolution in block $l$ to the activations of the first convolutional block in layer $l+1$. The Radical residual block has 4 convolutions and uses residual connections between the input and output, input and the second convolution, the second convolution and the output, and the first convolution and the third convolution.\relax }}{43}}
 \newlabel{figTCNGraph}{{18}{43}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Evaluation of TCNs for image captioning}{43}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.4.1}MSCOCO dataset}{43}}
+\citation{tcn}
+\citation{tcn}
 \@writefile{lof}{\contentsline {figure}{\numberline {19}{\ignorespaces The training loss on SequenceMNIST of the three models with the Single, Double, and Radical residual blocks. Bold lines show the loss on the training set while dotted lines show the loss on the validation set.\relax }}{44}}
 \newlabel{figseqmnistloss}{{19}{44}}
-\@writefile{lof}{\contentsline {figure}{\numberline {20}{\ignorespaces The validation accuracy on SequenceMNIST of the three models with the Single, Double, and Radical residual blocks. The accuracy is measured as the percentage of correctly classified images over the whole validation set.\relax }}{44}}
-\newlabel{figseqmnistacc}{{20}{44}}
 \@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces \textbf  {SequenceMNIST}. A table comparing my proposed modified temporal convolutional networks with the current state of the art on the SequenceMNIST task.\relax }}{44}}
 \newlabel{tabseqmnist}{{4}{44}}
+\@writefile{lof}{\contentsline {figure}{\numberline {20}{\ignorespaces The validation accuracy on SequenceMNIST of the three models with the Single, Double, and Radical residual blocks. The accuracy is measured as the percentage of correctly classified images over the whole validation set.\relax }}{45}}
+\newlabel{figseqmnistacc}{{20}{45}}
 \@writefile{lof}{\contentsline {figure}{\numberline {21}{\ignorespaces The training loss on SequenceMNIST of the three models with the Single, Double, and Radical residual blocks. Bold lines show the loss on the training set while dotted lines show the loss on the validation set.\relax }}{45}}
 \newlabel{figpmnistloss}{{21}{45}}
-\@writefile{lof}{\contentsline {figure}{\numberline {22}{\ignorespaces The validation accuracy on PMNIST of the three models with the Single, Double, and Radical residual blocks. The accuracy is measured as the percentage of correctly classified images over the whole validation set.\relax }}{45}}
-\newlabel{figpmnistacc}{{22}{45}}
 \@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces \textbf  {Permuted SequenceMNIST}. A table comparing my proposed modified temporal convolutional networks with the current state of the art on the Permuted SequenceMNIST task.\relax }}{45}}
 \newlabel{tabseqmnist}{{5}{45}}
-\citation{pytorch}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.4.2}Background}{46}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.4.3}Sequential sentence modeling}{46}}
-\citation{notesonbackprop}
-\citation{tcn}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.4.4}Loss function}{47}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.4.5}TCN}{47}}
 \citation{cs231n}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.4.6}GRU}{48}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.4.7}Results}{48}}
+\citation{tcn}
+\@writefile{lof}{\contentsline {figure}{\numberline {22}{\ignorespaces The validation accuracy on PMNIST of the three models with the Single, Double, and Radical residual blocks. The accuracy is measured as the percentage of correctly classified images over the whole validation set.\relax }}{46}}
+\newlabel{figpmnistacc}{{22}{46}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.6}Discussion}{46}}
+\@writefile{toc}{\contentsline {section}{\numberline {8}Evaluation of temporal convolutional networks for image captioning}{46}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.1}MSCOCO caption dataset}{46}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.2}Background}{46}}
+\citation{pytorch}
+\citation{notesonbackprop}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {8.2.1}Sequential sentence modeling}{47}}
+\citation{tcn}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {8.2.2}Loss function}{48}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {8.2.3}TCN}{48}}
+\citation{cs231n}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {8.2.4}GRU}{49}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {8.2.5}Results}{49}}
 \bibcite{cs231n}{1}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.4.8}Discussion}{49}}
-\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{49}}
 \bibcite{batchnorm}{2}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {8.2.6}Discussion}{50}}
+\@writefile{toc}{\contentsline {section}{\numberline {9}Conclusion}{50}}
 \bibcite{eigen}{3}
 \bibcite{numpy}{4}
 \bibcite{tensorflow}{5}
@@ -383,3 +387,4 @@
 \bibcite{iou}{32}
 \bibcite{tcn}{33}
 \bibcite{dilatedgru}{34}
+\bibcite{sigmoidvssoftmax}{35}
