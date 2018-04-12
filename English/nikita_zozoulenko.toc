@@ -47,10 +47,10 @@
 \contentsline {section}{\numberline {8}Evaluation of temporal convolutional networks for image captioning}{46}
 \contentsline {subsection}{\numberline {8.1}MSCOCO caption dataset}{46}
 \contentsline {subsection}{\numberline {8.2}Background}{46}
-\contentsline {subsubsection}{\numberline {8.2.1}Sequential sentence modeling}{47}
-\contentsline {subsubsection}{\numberline {8.2.2}Loss function}{48}
-\contentsline {subsubsection}{\numberline {8.2.3}TCN}{48}
-\contentsline {subsubsection}{\numberline {8.2.4}GRU}{49}
-\contentsline {subsubsection}{\numberline {8.2.5}Results}{49}
-\contentsline {subsubsection}{\numberline {8.2.6}Discussion}{50}
+\contentsline {subsection}{\numberline {8.3}Sequential sentence modeling}{47}
+\contentsline {subsection}{\numberline {8.4}Loss function}{48}
+\contentsline {subsection}{\numberline {8.5}TCN}{48}
+\contentsline {subsection}{\numberline {8.6}GRU}{49}
+\contentsline {subsection}{\numberline {8.7}Results}{49}
+\contentsline {subsection}{\numberline {8.8}Discussion}{50}
 \contentsline {section}{\numberline {9}Conclusion}{50}
