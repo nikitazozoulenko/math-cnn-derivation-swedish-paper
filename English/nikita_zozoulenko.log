@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Arch Linux) (preloaded format=pdflatex 2018.4.12)  12 APR 2018 09:31
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Arch Linux) (preloaded format=pdflatex 2018.3.4)  13 APR 2018 21:17
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -599,6 +599,12 @@ Package: everysel 2011/10/28 v1.2 EverySelectfont Package (MS)
 \JustifyingParindent=\skip68
 ) (./nikita_zozoulenko.aux
 
+LaTeX Warning: Label `eqsmoothl1loss' multiply defined.
+
+
+LaTeX Warning: Label `eqsmoothl1loss' multiply defined.
+
+
 LaTeX Warning: Label `konvolution' multiply defined.
 
 
@@ -918,256 +924,251 @@ Overfull \hbox (30.0pt too wide) in paragraph at lines 556--556
 [] 
  []
 
-[28] [29]
-LaTeX Font Info:    Try loading font information for T1+cmtt on input line 606.
-
- (/usr/share/texmf-dist/tex/latex/base/t1cmtt.fd
-File: t1cmtt.fd 2014/09/29 v2.5h Standard LaTeX font definitions
-)
-Underfull \vbox (badness 1983) has occurred while \output is active []
-
- [30]
-<mnist.png, id=134, 375.65344pt x 143.03438pt>
+[28] [29] [30]
+<mnist.png, id=133, 375.65344pt x 143.03438pt>
 File: mnist.png Graphic file (type png)
 <use mnist.png>
-Package pdftex.def Info: mnist.png  used on input line 615.
+Package pdftex.def Info: mnist.png  used on input line 613.
 (pdftex.def)             Requested size: 375.65251pt x 143.03401pt.
 
-[31 <./mnist.png>]
-Underfull \vbox (badness 1472) has occurred while \output is active []
+Underfull \vbox (badness 1694) has occurred while \output is active []
 
- [32]
-<accuracy.png, id=142, 635.37375pt x 473.77pt>
+ [31 <./mnist.png>] [32]
+<accuracy.png, id=141, 635.37375pt x 473.77pt>
 File: accuracy.png Graphic file (type png)
 <use accuracy.png>
-Package pdftex.def Info: accuracy.png  used on input line 681.
+Package pdftex.def Info: accuracy.png  used on input line 677.
 (pdftex.def)             Requested size: 227.62204pt x 169.72571pt.
-<losses.png, id=143, 635.37375pt x 473.77pt>
+<losses.png, id=142, 635.37375pt x 473.77pt>
 File: losses.png Graphic file (type png)
 <use losses.png>
-Package pdftex.def Info: losses.png  used on input line 682.
+Package pdftex.def Info: losses.png  used on input line 678.
 (pdftex.def)             Requested size: 227.62204pt x 169.72571pt.
 
-Overfull \hbox (8.94122pt too wide) in paragraph at lines 681--683
+Overfull \hbox (8.94122pt too wide) in paragraph at lines 677--679
  [][][] 
  []
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[33] [34 <./accuracy.png> <./losses.png>]
-<iou.png, id=153, 883.3pt x 228.855pt>
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [33 <./accuracy.png> <./losses.png>] [34]
+<iou.png, id=152, 883.3pt x 228.855pt>
 File: iou.png Graphic file (type png)
 <use iou.png>
-Package pdftex.def Info: iou.png  used on input line 720.
+Package pdftex.def Info: iou.png  used on input line 716.
 (pdftex.def)             Requested size: 441.64893pt x 114.42722pt.
- [35 <./iou.png>] [36] [37]
+ [35 <./iou.png>] [36] [37] [38]
+Overfull \hbox (7.24103pt too wide) in paragraph at lines 807--808
+\T1/cmr/m/n/14.4 specific ver-sion. The re-sults on the easy/medium/hard set we
+re 87.2/82.5/50.4
+ []
+
+[39] [40]
 Package epstopdf Info: Source file: <figTCNdil.eps>
-(epstopdf)                    date: 2018-04-12 08:38:10
+(epstopdf)                    date: 2018-04-04 10:20:54
 (epstopdf)                    size: 78502 bytes
 (epstopdf)             Output file: <figTCNdil-eps-converted-to.pdf>
-(epstopdf)                    date: 2018-04-12 08:38:10
+(epstopdf)                    date: 2018-04-04 10:39:56
 (epstopdf)                    size: 8239 bytes
 (epstopdf)             Command: <repstopdf --outfile=figTCNdil-eps-converted-to
 .pdf figTCNdil.eps>
-(epstopdf)             \includegraphics on input line 790.
+(epstopdf)             \includegraphics on input line 839.
 Package epstopdf Info: Output file is already uptodate.
-<figTCNdil-eps-converted-to.pdf, id=165, 341.275pt x 196.735pt>
+<figTCNdil-eps-converted-to.pdf, id=173, 341.275pt x 196.735pt>
 File: figTCNdil-eps-converted-to.pdf Graphic file (type pdf)
 <use figTCNdil-eps-converted-to.pdf>
-Package pdftex.def Info: figTCNdil-eps-converted-to.pdf  used on input line 790
+Package pdftex.def Info: figTCNdil-eps-converted-to.pdf  used on input line 839
 .
 (pdftex.def)             Requested size: 256.0748pt x 147.62892pt.
- [38 <./figTCNdil-eps-converted-to.pdf>]
+ [41 <./figTCNdil-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <figTCNZeropad.eps>
-(epstopdf)                    date: 2018-04-12 08:38:10
+(epstopdf)                    date: 2018-04-04 10:24:45
 (epstopdf)                    size: 73360 bytes
 (epstopdf)             Output file: <figTCNZeropad-eps-converted-to.pdf>
-(epstopdf)                    date: 2018-04-12 08:38:10
+(epstopdf)                    date: 2018-04-04 10:47:39
 (epstopdf)                    size: 7188 bytes
 (epstopdf)             Command: <repstopdf --outfile=figTCNZeropad-eps-converte
 d-to.pdf figTCNZeropad.eps>
-(epstopdf)             \includegraphics on input line 812.
+(epstopdf)             \includegraphics on input line 861.
 Package epstopdf Info: Output file is already uptodate.
-<figTCNZeropad-eps-converted-to.pdf, id=187, 258.9675pt x 196.735pt>
+<figTCNZeropad-eps-converted-to.pdf, id=195, 258.9675pt x 196.735pt>
 File: figTCNZeropad-eps-converted-to.pdf Graphic file (type pdf)
 <use figTCNZeropad-eps-converted-to.pdf>
 Package pdftex.def Info: figTCNZeropad-eps-converted-to.pdf  used on input line
- 812.
+ 861.
 (pdftex.def)             Requested size: 256.0748pt x 194.55809pt.
 
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
-LaTeX Warning: `h' float specifier changed to `ht'.
+ [42 <./figTCNZeropad-eps-converted-to.pdf>]
+Underfull \vbox (badness 4686) has occurred while \output is active []
 
-[39] [40 <./figTCNZeropad-eps-converted-to.pdf>] [41]
+ [43]
+[44]
 Package epstopdf Info: Source file: <figRadical.eps>
-(epstopdf)                    date: 2018-04-12 08:38:10
+(epstopdf)                    date: 2018-04-04 10:22:52
 (epstopdf)                    size: 90456 bytes
 (epstopdf)             Output file: <figRadical-eps-converted-to.pdf>
-(epstopdf)                    date: 2018-04-12 08:38:10
+(epstopdf)                    date: 2018-04-04 13:33:21
 (epstopdf)                    size: 11601 bytes
 (epstopdf)             Command: <repstopdf --outfile=figRadical-eps-converted-t
 o.pdf figRadical.eps>
-(epstopdf)             \includegraphics on input line 845.
+(epstopdf)             \includegraphics on input line 894.
 Package epstopdf Info: Output file is already uptodate.
-<figRadical-eps-converted-to.pdf, id=208, 578.16pt x 391.4625pt>
+<figRadical-eps-converted-to.pdf, id=217, 578.16pt x 391.4625pt>
 File: figRadical-eps-converted-to.pdf Graphic file (type pdf)
 <use figRadical-eps-converted-to.pdf>
-Package pdftex.def Info: figRadical-eps-converted-to.pdf  used on input line 84
-5.
+Package pdftex.def Info: figRadical-eps-converted-to.pdf  used on input line 89
+4.
 (pdftex.def)             Requested size: 284.52756pt x 192.64857pt.
 Package epstopdf Info: Source file: <figGraph.eps>
-(epstopdf)                    date: 2018-04-12 08:38:10
+(epstopdf)                    date: 2018-04-04 10:12:19
 (epstopdf)                    size: 22740 bytes
 (epstopdf)             Output file: <figGraph-eps-converted-to.pdf>
-(epstopdf)                    date: 2018-04-12 08:38:10
+(epstopdf)                    date: 2018-04-04 10:57:41
 (epstopdf)                    size: 11064 bytes
 (epstopdf)             Command: <repstopdf --outfile=figGraph-eps-converted-to.
 pdf figGraph.eps>
-(epstopdf)             \includegraphics on input line 851.
+(epstopdf)             \includegraphics on input line 900.
 Package epstopdf Info: Output file is already uptodate.
-<figGraph-eps-converted-to.pdf, id=209, 759.83875pt x 607.26875pt>
+<figGraph-eps-converted-to.pdf, id=218, 759.83875pt x 607.26875pt>
 File: figGraph-eps-converted-to.pdf Graphic file (type pdf)
 <use figGraph-eps-converted-to.pdf>
-Package pdftex.def Info: figGraph-eps-converted-to.pdf  used on input line 851.
+Package pdftex.def Info: figGraph-eps-converted-to.pdf  used on input line 900.
 
 (pdftex.def)             Requested size: 455.24408pt x 363.84515pt.
 
-Overfull \hbox (2.27618pt too wide) in paragraph at lines 851--851
+Overfull \hbox (2.27618pt too wide) in paragraph at lines 900--900
  [] 
  []
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-
-Underfull \vbox (badness 4144) has occurred while \output is active []
-
- [42 <./figRadical-eps-converted-to.pdf>] [43 <./figGraph-eps-converted-to.pdf>
-]
-<seqmnistloss.png, id=235, 1927.2pt x 1046.91125pt>
+[45 <./figRadical-eps-converted-to.pdf>]
+<seqmnistloss.png, id=232, 1927.2pt x 1046.91125pt>
 File: seqmnistloss.png Graphic file (type png)
 <use seqmnistloss.png>
-Package pdftex.def Info: seqmnistloss.png  used on input line 863.
+Package pdftex.def Info: seqmnistloss.png  used on input line 912.
 (pdftex.def)             Requested size: 426.79134pt x 231.83878pt.
-<seqmnistacc.png, id=236, 1927.2pt x 1046.91125pt>
+<seqmnistacc.png, id=233, 1927.2pt x 1046.91125pt>
 File: seqmnistacc.png Graphic file (type png)
 <use seqmnistacc.png>
-Package pdftex.def Info: seqmnistacc.png  used on input line 868.
+Package pdftex.def Info: seqmnistacc.png  used on input line 917.
 (pdftex.def)             Requested size: 426.79134pt x 231.83878pt.
-<pmnistloss.png, id=237, 1927.2pt x 1046.91125pt>
+<pmnistloss.png, id=234, 1927.2pt x 1046.91125pt>
 File: pmnistloss.png Graphic file (type png)
 <use pmnistloss.png>
-Package pdftex.def Info: pmnistloss.png  used on input line 873.
+Package pdftex.def Info: pmnistloss.png  used on input line 922.
 (pdftex.def)             Requested size: 426.79134pt x 231.83878pt.
-<pmnistacc.png, id=238, 1927.2pt x 1046.91125pt>
+<pmnistacc.png, id=235, 1927.2pt x 1046.91125pt>
 File: pmnistacc.png Graphic file (type png)
 <use pmnistacc.png>
-Package pdftex.def Info: pmnistacc.png  used on input line 878.
+Package pdftex.def Info: pmnistacc.png  used on input line 927.
 (pdftex.def)             Requested size: 426.79134pt x 231.83878pt.
 
-Overfull \hbox (45.54869pt too wide) in paragraph at lines 913--914
+Overfull \hbox (45.54869pt too wide) in paragraph at lines 962--963
 []\T1/cmr/m/n/14.4 MODEL RE-SULTS HERE, BLAH BLAH WAS SHOWN TO BEAT/GENERALIZE
  []
 
+[46 <./figGraph-eps-converted-to.pdf>] [47 <./seqmnistloss.png> <./seqmnistacc.
+png>] [48 <./pmnistloss.png> <./pmnistacc.png>] [49] [50] [51] [52]
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
-Underfull \vbox (badness 4608) has occurred while \output is active []
-
- [44 <./seqmnistloss.png>] [45 <./seqmnistacc.png> <./pmnistloss.png>] [46 <./p
-mnistacc.png>]
-Underfull \vbox (badness 2828) has occurred while \output is active []
-
- [47]
-[48] [49] [50]
-Underfull \hbox (badness 6575) in paragraph at lines 993--995
+ [53]
+Underfull \hbox (badness 6575) in paragraph at lines 1042--1044
 []\T1/cmr/m/it/14.4 Eigen v3\T1/cmr/m/n/14.4 . G. Guen-nebaud and B. Ja-cob and
  oth-ers. URL
  []
 
-[51]
-Underfull \hbox (badness 10000) in paragraph at lines 1030--1034
+
+Underfull \hbox (badness 10000) in paragraph at lines 1079--1083
 []\T1/cmr/m/it/14.4 Unsupervised Fea-ture Learn-ing and Deep Learn-ing. \T1/cmr
 /m/n/14.4 Stand-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1030--1034
+Underfull \hbox (badness 10000) in paragraph at lines 1079--1083
 \T1/cmr/m/n/14.4 ford Uni-ver-sity, De-part-ment of Com-puter Sci-ence. URL
  []
 
 
-Underfull \hbox (badness 6268) in paragraph at lines 1049--1053
+Underfull \hbox (badness 6268) in paragraph at lines 1098--1102
 []\T1/cmr/m/it/14.4 Tuning the learn-ing rate in Gra-di-ent De-scent. \T1/cmr/m
 /n/14.4 V. Vryni-o-tis.
  []
 
 
-Underfull \hbox (badness 5374) in paragraph at lines 1049--1053
+Underfull \hbox (badness 5374) in paragraph at lines 1098--1102
 \T1/cmr/m/n/14.4 URL http://blog.datumbox.com/tuning-the-learning-rate-in-gradi
 ent-
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 1080--1085
+[54]
+Underfull \hbox (badness 10000) in paragraph at lines 1129--1134
 []\T1/cmr/m/it/14.4 Deep learn-ing for com-plete be-gin-ners: con-vo-lu-tional 
 neu-ral
  []
 
 
-Underfull \hbox (badness 8113) in paragraph at lines 1080--1085
+Underfull \hbox (badness 8113) in paragraph at lines 1129--1134
 \T1/cmr/m/it/14.4 net-works with keras. \T1/cmr/m/n/14.4 P. Veli£kovi¢. Came-br
 idge Spark. URL
  []
 
 
-Underfull \hbox (badness 1038) in paragraph at lines 1096--1101
+Underfull \hbox (badness 1038) in paragraph at lines 1145--1150
 \T1/cmr/m/n/14.4 Thorey. Ma-chine Learn-ing Blog. URL http://cthorey.github.io/
 . 2
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1105--1109
+Underfull \hbox (badness 10000) in paragraph at lines 1154--1158
 []\T1/cmr/m/it/14.4 Convolutional Neu-ral Net-works. \T1/cmr/m/n/14.4 A. Gib-ia
 n-sky. URL
  []
 
-[52]
-Underfull \hbox (badness 1158) in paragraph at lines 1206--1213
+[55]
+Underfull \hbox (badness 1158) in paragraph at lines 1255--1262
 \T1/cmr/m/n/14.4 Ross B. Gir-shick, Kaim-ing He and Pi-otr Dol-lár. arXiv prepr
 int
  []
 
-[53]
-Overfull \hbox (39.7873pt too wide) in paragraph at lines 1232--1235
+
+Overfull \hbox (39.7873pt too wide) in paragraph at lines 1281--1284
 []\T1/cmr/m/n/14.4 Jaccard In-dex. Wikipedia. URL https://en.wikipedia.org/wiki
 /Jaccard_index.
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1252--1260
+Underfull \hbox (badness 10000) in paragraph at lines 1301--1304
 []\T1/cmr/m/it/14.4 Use Sig-moid in-stead of Soft-max in Fo-cal Loss. \T1/cmr/m
 /n/14.4 Dis-cus-sion
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1252--1260
+Underfull \hbox (badness 10000) in paragraph at lines 1301--1304
 \T1/cmr/m/n/14.4 in github repos-i-tory of a Reti-naNet im-ple-men-ta-tion. URL
 
  []
 
-[54] (./nikita_zozoulenko.aux)
+[56] [57] (./nikita_zozoulenko.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 6454 strings out of 492982
- 96264 string characters out of 6138579
- 192137 words of memory out of 5000000
- 9866 multiletter control sequences out of 15000+600000
- 18683 words of font info for 56 fonts, out of 8000000 for 9000
+ 6434 strings out of 492982
+ 95642 string characters out of 6138580
+ 192126 words of memory out of 5000000
+ 9850 multiletter control sequences out of 15000+600000
+ 18370 words of font info for 55 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 51i,21n,54p,1484b,393s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 51i,21n,54p,1637b,393s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/share/t
 exmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-dist/font
 s/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-dist/fonts/type1/public
@@ -1185,12 +1186,11 @@ cm-super/sfbx1200.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfbx14
 are/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/share/texmf-dist/
 fonts/type1/public/cm-super/sfrm1200.pfb></usr/share/texmf-dist/fonts/type1/pub
 lic/cm-super/sfrm1440.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sf
-rm1728.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfti1440.pfb></us
-r/share/texmf-dist/fonts/type1/public/cm-super/sftt1440.pfb>
-Output written on nikita_zozoulenko.pdf (54 pages, 6962491 bytes).
+rm1728.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfti1440.pfb>
+Output written on nikita_zozoulenko.pdf (57 pages, 6949384 bytes).
 PDF statistics:
- 344 PDF objects out of 1000 (max. 8388607)
- 225 compressed objects within 3 object streams
+ 350 PDF objects out of 1000 (max. 8388607)
+ 229 compressed objects within 3 object streams
  0 named destinations out of 1000 (max. 500000)
  116 words of extra memory for PDF output out of 10000 (max. 10000000)
 

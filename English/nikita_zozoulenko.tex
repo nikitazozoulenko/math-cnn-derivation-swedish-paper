@@ -28,7 +28,7 @@
 \newcommand*{\inpd}[2]{\ensuremath{\frac{\partial #1}{\partial #2}}}
 \DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
 
-\title{An evaluation of spatial and temporal convolutional networks for automatic image captioning and dense face detection}
+\title{Dense face detection and improving temporal convolutional networks for automatic image captioning}
 \author{Nikita Zozoulenko \\*
 nikita.zozoulenko@gmail.com \\*
 Katedralskolan Linköping\\*
@@ -41,7 +41,7 @@ Supervisor: Oleg Burdakov \\*}
 \begin{figure}[h]
 	\centering
   		\includegraphics[scale=0.221]{resultscrowd2.png}
-  	\caption{The proposed convolutional neural-network-based model FaceResNet is capable of dynamically detecting over 200 faces in a crowded scene for various scales, lighting and occlusions. A detection is shown as a red boudning box.} \label{crowd}
+  	\caption{(a) The proposed convolutional-neural-network-based model FaceNet is capable of dynamically detecting over 700 faces in a crowded scene for various scales, lighting and occlusions. (b) A temporal neural network (TCN) and a Gated Recurrent Unit (GRU) automatically captioning an image..} \label{crowd}
 \end{figure}
 \vfill
 
@@ -49,7 +49,7 @@ Supervisor: Oleg Burdakov \\*}
 
 %start abstract
 \Large{\textbf{Abstract}}\\
-I suggest two changes to temporal convolutional networks, namely a new zero-padding scheme and linear instead of exponential dilation increase, and empirically evaluate the new model on SequenceMNIST and Permuted SequenceMNIST, beating the test accuracy of the current state of the art (99.53\% vs 99.0\% and 97.86\% vs 97.28\%. The improved temporal convolutional model is then compared to its recurrent neural network counterpart, on a task of automatic image captioning where temporal convolutional networks are traditionally not used. Furthermore, I present a derivation of the general case for a convolutional neural network with an arbitrary input of a tensor of order 4. The derivation is then used for my own neural network library implementation in Python and C++. Additionally, I systematically and empirically investigate how to construct and improve a convolutional-neural-network-based model to detect a variable number of faces in an image. 
+Convolutional neural networks (CNNs) are traditionally used in computer vision tasks, but have recently gained traction as sequential models. I suggest two improvements to temporal convolutional networks (TCNs) and empirically evaluate them to achieve a new state of the art on the task of SequenceMNIST (99.53\% versus 99.0\%) and Permuted SequenceMNIST (97.86\% versus 97.28\%), using my new zero-padding and dilation scheme which also keeps information from flowing from the future into the past. Three different residual blocks are also experimented on to show how residual connections affect the performance of TCNs. The improved model is then compared to its recurrent neural network counterpart, a Gated Recurrent Unit (GRU), on an area where TCNs have never been applied before; automatic image captioning, and is shown to have similar performances. Additionally, since the field lacks a fully derived order 4 example of a CNN, I present a derivation of the general case for a CNN with an arbitrary input of a tensor of order 4, including varying zero-padding and strides during forward and backpropagation. The derivation is then used for my own neural network library implementation in Python and C++. Furthermore, I systematically construct a region based dense face detector and empirically investigate how factors such as cross entropy loss, focal loss, feature pyramid networks, online hard example mining, color jitter, and network depth affects its performance. The final model is sufficiently efficient and accurate to be used for real time video, for instance CCTV or other surveillance systems.
 
 \newpage
 %end abstract
@@ -260,7 +260,7 @@ A major part of the paper and the derivations of the models are based on the mat
 
 Convolutional neural networks and feed-forward neural networks were then implemented in C++ with the linear algebra library Eigen \cite{eigen} and in Python in pure NumPy \cite{numpy}, a library for scientific computing. The Eigen implementation used the \textit{MatrixXd} class to represent the neurons and weights. In the Python implementation, the NumPy \textit{ndarray} class was used to express tensors of orders higher than a matrix. The forward propagation, backpropagation and stochastic gradient descent algorithms were then implemented as expressed in the mathematical derivation. The derived partial derivatives required by the models were compared to their numerical approximations using the formal definition of a partial derivative, to validate their correctness. 
 
-When my own implementation of the artificial neural networks became too computationally expensive and inefficient for the problem cases of comparing models on classifying handwritten digits, real-time dense face detection, and automatic image captioning, the models were re-implemented in Google's machine learning library TensorFlow \cite{tensorflow} or Facebook's GPU-accelerated tensor and dynamic neural network library PyTorch \cite{pytorch}.
+When my own implementation of the artificial neural networks became too computationally expensive and inefficient for the problem cases of comparing models on classifying handwritten digits, real-time dense face detection, and automatic image captioning, the models were implemented in Google's machine learning library TensorFlow \cite{tensorflow} or Facebook's GPU-accelerated tensor and dynamic neural network library PyTorch \cite{pytorch}.
 
 \section{Convolutional neural networks}
 When humans identify objects by sight we look for specific high level features that object has. A cat for example has one head, four legs and a body. These high level features are in turn made up of a combination of low level features: A head consists of two eyes and a mouth which consists of elementary geometric shapes which are composed of a combination of basic lines and edges. In addition to specific features, cats also have a furry texture. Convolutional neural networks (CNN) were designed to specifically excel at computer vision tasks. A convolutional neural network learns these hierarchical structures by teaching itself a number of filters, or more specifically discrete convolutions, to apply to the image (see figure \ref{figkatter}). These convolutions are stacked on top of each other in terms of layers and allows the networks to learn higher level features with the network architecture going deeper. For instance, the first layer might learn how to detect lines and edges, the middle layers might learn to recognize small body parts such as eyes and ears and the last layers can learn how to detect cats, humans or any other arbitrary objects \cite{cs231n}.
@@ -602,13 +602,11 @@ The softmax layer does not have any learnable parameters and therefore only the 
 \end{split}
 \end{equation}
 
-\section{Experiments}
-The code and the trained models are publically available on my github profile \url{https://github.com/nikitazozoulenko} in the repositories \textit{pytorch-face-recognition} and \textit{FCC-vs-CNN-mnist}.
-
-\section{Classification of handwritten digits}
+\section{Evaluating the models and handwritten digits}
+The code and the trained models are publically available on github in the repository \textit{FCC-vs-CNN-mnist}.
 
 \subsection{MNIST}
-The MNIST database for handwritten digits \cite{MNIST} is a dataset consisting of 70000 grayscale images of size $28 \times 28$ pixels, of the digits 0 to 9 (see figure \ref{figMNIST}). The database is split up into two different sets, a training set containing 60000 images used to train the model, and a test set consisting of 10000 images used to evaluate the model. The test set is kept separate from the training set to prevent overfitting on the training data. A model is given all the pixel values of the image as input features, and is asked to predict what digit is in the image.
+The MNIST database for handwritten digits \cite{MNIST} is a dataset consisting of 70 000 grayscale images of size $28 \times 28$ pixels, of the digits 0 to 9 (see figure \ref{figMNIST}). The database is split up into two different sets, a training set containing 60 000 images used to train the model, and a test set consisting of 10 000 images used to evaluate the model. The test set is kept separate from the training set to prevent overfitting on the training data. A model is given all the pixel values of the image as input features, and is asked to predict what digit is in the image.
 
 \begin{figure}[h]
 	\centering
@@ -619,7 +617,7 @@ The MNIST database for handwritten digits \cite{MNIST} is a dataset consisting o
 \subsection{Method}
 A machine learning model can learn to predict what class an object belongs to, from a number of input features, by predicting a $C$-dimensional probability vector $\hat{y}$, where $C$ is the number of object classes to predict. The element $\hat{y}_c$ is the probability that the input to the model is of class $c$, $1 \leq c \leq C$. For neural networks, the probability tensor is a tensor of order 2, $\hat{y} \in \mathbb{R}^{R \times C}$, where $R$ is the batch size and $C$ is the number of object classes.
 
-Let $L(\theta)$ be the loss function used for the classification task. The model is trained by minimizing the cross entropy function which acts on two probability distributions: the predicted probabilities $\hat{y}$ and the real probabilities $y$. Cross entropy and its partial derivative with respect to the last layer of neurons is defined by the following equations \cite{notesonbackprop}: 
+Let $L(\theta)$ be the loss function used for the classification task. The model is trained by minimizing the cross entropy function which acts on two probability distributions: the predicted probabilities $\hat{y}$ and the real probabilities $y$. Cross entropy and its partial derivative with respect to the last layer of neurons is defined by the following equations \cite{cs231n} \cite{notesonbackprop}: 
 \begin{equation}\label{crossentropy}
 L(\theta) = - \sum^{R }_{r=1} \sum^{C }_{c=1}y_{r,c} \ \log{\hat{y}_{r,c}}
 \end{equation}
@@ -628,9 +626,9 @@ L(\theta) = - \sum^{R }_{r=1} \sum^{C }_{c=1}y_{r,c} \ \log{\hat{y}_{r,c}}
 \end{equation}
 
 \subsubsection{Models}
-Two models were compared on the task of classifying handwritten digits, namely a convolutional neural network and a feed-forward neural network. Table \ref{tabCNN} and \ref{tabFCC} show the network architectures which were chosen on the basis to be as simple as possible, and to have approximately the same number of learnable parameters. The feed-forward model consists of 6 sequential hidden layers of size 128 with ReLU activations, except the last layer which has size $C=10$, and uses a softmax activation. The convolutional model consists of a combination of $3 \times 3$ convolutions with stride 1, 64 channels and 0 zero-padding, and $2 \times 2$ maxpooling layers with stride 2. Every convolutional layer is preceeded by Batch Normalization (BN), and proceeded by a ReLU activation layer, except the last layer which uses a softmax activation. Both network's outputs are interpreted as probabilities that the image is of one of $C$ classes.
+Two models were compared on the task of classifying handwritten digits, namely a convolutional neural network and a feed-forward neural network. Table \ref{tabCNN} and \ref{tabFCC} show the network architectures which were chosen on the basis to be as simple as possible, and to have approximately the same number of learnable parameters. The feed-forward model consists of 6 sequential hidden layers of size 128 with ReLU activations, except the last layer which has size $C=10$, and uses a softmax activation. The convolutional model consists of a combination of $3 \times 3$ convolutions with stride 1, 64 channels and 0 zero-padding, and $2 \times 2$ maxpooling layers with stride 2. Every convolutional layer is preceeded by Batch Normalization (BN), and proceeded by a ReLU activation layer, except the last layer which uses a softmax activation. Both network's outputs are interpreted as probabilities that the image is of one of $C$ classes. The network architectures are shown in tables \ref{tabCNN} and \ref{tabFCC}.
 
-\begin{table}
+\begin{table}[h]
 \begin{center}
     \begin{tabular}{c | c | c | c}
     Layer & Kernel Size & Stride & Activation Size \\ 
@@ -645,11 +643,10 @@ Two models were compared on the task of classifying handwritten digits, namely a
     Maxpooling & 2 & 2 & $R \times 64 \times 3 \times 3$  \\
     BN + Convolution + ReLU & 3 & 1 & $R \times 10 \times 1 \times 1$  \\
     Softmax &  &  & $R \times 10$  \\
-    \end{tabular}\caption{\textbf{Convolutional model architecture.} The convolutional neural network used in the experiments. R stands for the batch size.}\label{tabCNN}
+    \end{tabular}\caption{\textbf{Convolutional model architecture.} The convolutional neural network used in the experiments. Here R is the batch size.}\label{tabCNN}
 \end{center}
 \end{table}
-
-\begin{table}
+\begin{table}[h]
 \begin{center}
     \begin{tabular}{c | c | c }
     Layer & Hidden Size & Activation Size \\ 
@@ -662,13 +659,12 @@ Two models were compared on the task of classifying handwritten digits, namely a
     BN + Fully Connected + ReLU & 128  & $R \times 128$  \\
     BN + Fully Connected + ReLU & 10  & $R \times 10$  \\
     Softmax &  &  $R \times 10$  \\
-    \end{tabular}\caption{\textbf{Feed-forward model architecture.} The feed-forward neural network used in the experiments. R stands for the batch size. Hidden size is the number of neurons in the feed-forward layer}\label{tabFCC}
+    \end{tabular}\caption{\textbf{Feed-forward model architecture.} The feed-forward neural network used in the experiments. Here R is the batch size. Hidden size is the number of neurons in the feed-forward layer.}\label{tabFCC}
 \end{center}
 \end{table}
 
 \subsection{Results}
-
-The models were trained on a subset of the training set. 5 000 random samples from the training set were chosen as a validation set to track while training the model. The remaining 55 000 images of the training set were used to train the neural networks through SGD with momentum [CITE CITE CITE].
+The models were trained on a subset of the training set. 5 000 random samples from the training set were chosen as a validation set to track while training the model. The remaining 55 000 images of the training set were used to train the neural networks through SGD with a momentum \cite{cs231n} of 0.9.
 
 For my own implementation of both convolutional neural networks and feed-forward neural networks, the models were trained on an Intel i7 3770K CPU for 5 000 iterations with a learning rate of 0.001 and a batch size of 50. The total elapsed training time was 6 hours per model. The convolutional and feed-forward models achieved a final accuracy of 99.1\% and 97.0\% respectively on the test set of never before seen handwritten digits. 
 
@@ -709,7 +705,7 @@ For the task of detecting a variable number of faces in an iamge, the WIDERFace 
 \subsection{One-shot detectors}
 One-shot detectors were first introduced by the model YOLO \cite{yolo} and later modified and improved by the models SSD \cite{ssd}, YOLO9000 \cite{yolo9000}, DSSD \cite{dssd} and RetinaNet \cite{retinanet}. A one-shot detector works by predicting up to tens of thousands of bounding boxes in different spatial positions in an image, that sets out to detect every object in that image. For every set of predetermined spatial positions in the image, the model predicts 4 bounding box coordinates and probability scores that there exists an object inside the specified bounding box.
 
-The model is trained by assigning every bounding box either a negative or a positive label during training, depending on if the bounding box contains a ground truth object or not. A bounding box is said to contain an object if the intersection over union (IoU) \cite{iou} of the area of the bounding box and the area of the ground truth is bigger or equal to a threshold value (0.5). The intersection over union is used to determine how similar two sets $A$ and $B$ are (see figure \ref{figiou}). It bounded by the interval $[0,1]$ and is defined by the following equation: 
+The model is trained by assigning every bounding box either a negative or a positive label during training, depending on if the bounding box contains a ground truth object or not. A bounding box is said to contain an object if the intersection over union (IoU) \cite{iou} of the area of the bounding box and the area of the ground truth is bigger or equal to a threshold value (0.55). The intersection over union is used to determine how similar two sets $A$ and $B$ are (see figure \ref{figiou}). It is bounded by the interval $[0,1]$ and is defined by the following equation: 
 
 \begin{equation}\label{eqiou}
 IoU(A, B)=\frac{|A \cap B|}{|A \cup B|}
@@ -724,16 +720,9 @@ IoU(A, B)=\frac{|A \cap B|}{|A \cup B|}
 \subsubsection{FaceNet v1.0, baseline model}
 The baseline model uses the deep residual convolutional neural network ResNet-18 \cite{resnet} as a backbone network and feature extractor. It uses a total of 18 convolutional layers throughout blocks named \textit{conv1} to \textit{conv5} to extract features from the input image. The feature maps created by the backbone model is then fed into two smaller sub-networks, called the classification head and the regression head. They are constructed out of 4 residual bottleneck convolutional layers used by ResNet-50 up to ResNet-152.
 
-Bounding boxes are created from a number of anchor boxes at every spatial position (width and height) from a set of feature maps. An anchor box is a bounding box of a specific size and scale, used to base the bounding box predictions off. Anchor boxes used by FaceNet are of sizes in the range $[16, 406]$ pixels, with a scale factor of $2^{1/3}$ for every new anchor box size. Two ratios of width:height are used at every scale, namely $1:\frac{2}{3}$ and $1:1$, to enable the detection of faces facing sideways and directly into the camera. The anchor boxes are spaced out to include 3 scales with 2 aspect ratios across feature maps from the levels \textit{conv2} to \textit{conv5}, to enable the detection of faces of different scales, similar to RetinaNet \cite{retinanet}.
+Bounding boxes are created from a number of anchor boxes at every spatial position (width and height) from a set of feature maps. An anchor box is a bounding box of a specific size and scale, used to base the bounding box predictions off. Anchor boxes used by FaceNet are set to be of sizes in the range $[16, 406]$ pixels, each increasing by a factor of $2^{1/3}$ for every new anchor box size. Two ratios of width:height are used at every scale, namely $1:\frac{2}{3}$ and $1:1$, to enable the detection of faces facing sideways and directly into the camera. having densely packed anchors makes it that every ground truth bounding box (of sufficient size) has an IoU$>0.55$ with at least one anchor box. The anchor boxes are spaced out to include 3 scales with 2 aspect ratios across feature maps from the levels \textit{conv2} to \textit{conv5}, to enable the detection of faces of different scales, similar to RetinaNet \cite{retinanet}.
 
-The regression and classification sub-networks take in the last convolutional output from a single network level (\textit{conv2} to \textit{conv5}) as input. Let $W$ and $H$ be the width and height of the tensor of activations at a single network level, and $C$ be the amount of classes to classify. FaceNet uses $C=2$, one for a background class (no face) and one for a foreground class (a face). The classification head predicts $C$ probabilities for every anchor $A$, that there exists a face in the anchor box at every spatial location ($W \times H$), for a total of $KWHA$ values. The regression head predicts $4$ coordinate offsets for every point of the anchor box, for it to match the ground truth as closely as possible, for a total of $4WHA$ coordinate offsets. Additionally, similar to RetinaNet \cite{retinanet}, the last conventional layer which predicts class probabilities uses a bias $b = \log{\frac{(C+1)(1-\pi)}{\pi}}$, such that the model, when first initialized, predicts a probability of $\pi$ for the case of there existing a foreground class (a face) in every bounding box. $\pi = 0.001$ was used.
-
-
-%\begin{figure}[h]
-%	\centering
-%  		\includegraphics[scale=0.38]{retinanet.png}
-%  	\caption{The architecuture of RetinaNet. The last feature maps of every pyramid level is %fed into a classification and regression head. \cite{retinanet}}\label{figretinanet}
-%\end{figure}
+The regression and classification sub-networks take in the last convolutional output from a single network level (\textit{conv2} to \textit{conv5}) as input. Let $W$ and $H$ be the width and height of the tensor of activations at a single network level, and $C$ be the amount of classes to classify. FaceNet uses $C=2$, one for a background class (no face) and one for a foreground class (a face). The classification head predicts $C$ probabilities for every anchor $A$, that there exists a face in the anchor box at every spatial location ($W \times H$), for a total of $KWHA$ values. The regression head predicts $4$ coordinate offsets for every point of the anchor box, for it to match the ground truth as closely as possible, for a total of $4WHA$ coordinate offsets. Additionally, similar to RetinaNet \cite{retinanet}, the last conventional layer which predicts class probabilities uses a bias $b = -\log{\frac{C(1-\pi)}{\pi}}$, such that the model, when first initialized, predicts a probability of $\pi$ for the case of there existing a foreground class (a face) in every bounding box. $\pi = 0.001$ was used.
 
 The loss function $L(\theta)$ used by FaceNet is a combination of a coordinate regression loss $L_r$, and a bounding box classification loss $L_c$. $L_r$ is the Smooth L1 Loss \cite{cs231n} defined by equation \eqref{eqsmoothl1loss}. $L_c$ is the cross entropy loss \cite{cs231n} defined by equation \eqref{eqfocalloss}.
 
@@ -745,7 +734,7 @@ L_r(x) = \begin{cases}
 \end{equation}
 
 \begin{equation}\label{eqsmoothl1loss}
-L_c(p, \hat{p}) = p \log{\hat{p}}
+L_c(p, \hat{p}) = -p \log{\hat{p}}
 \end{equation}
 
 The total loss $L(\theta)$ is the mean of the regression losses $L_r$ of all positively assigned anchors plus the mean of the classification losses of all anchors. Negatively assigned anchors do not have any effect on the regression loss. Let $r_a$ and $\hat{r}_a$ be the predicted and ground truth coordinate offsets for anchor box $a$. Let $p_a$ and $\hat{p}_a$ be the predicted and ground truth probability score respectively, for anchor $a$ to contain a face. Let $N$ be the set containing all anchor boxes $a$, and $N_{pos}$ be the set containing every positively assigned anchor box. The total loss can be described as:
@@ -757,17 +746,73 @@ The total loss $L(\theta)$ is the mean of the regression losses $L_r$ of all pos
 \end{split}
 \end{equation}
 
-The model was trained for 700 000 iterations on an Nvidia GTX 1080ti with an initial learning rate of 0.01. Due to memory limitations a batch size of 8 had to be used. Every input image was randomly resized to be of size $512^2$ pixels. Following industry standards for data augmentation, the network was trained on random image crops of the training data to artificially increase the size of the dataset \cite{cs231n}. Additionally, the image was flipped horizontally with a probability of 0.5 and random color jitter was applied.
+If not otherwise stated, FaceNet is trained for 70 000 iterations on an Nvidia GTX 1080ti with an initial learning rate of 0.0001. Due to memory limitations a batch size of 8 is used. The network was trained on square image crops, randomly picked to be of between 0.3 and 1 of the short size of the image, and resized to be of size $512^2$ pixels. This was done to artificially increase the size of the training data. Additionally, the image was flipped horizontally with a probability of 0.5.
 
+When evaluated on the WIDERFACE validation set, the model achieved a 0 mAP \cite{cs231n} across all 3 sets: easy, medium and hard. The model converged to classify every single bounding box as a negative example, resulting in no faces being found for every image.
 
-%One forward pass of an image of size $512^2$ takes 30 ms, enabling the model to be used in real time for real time applications. The model can for instance be applied to CCTV applications for security cameras or be used as a face detector for automatic tagging on social media or face detection in digital cameras.
+\subsubsection{FaceNet v1.1, binary cross entropy}
+The baseline model uses a softmax function based on two values, a scalar value of there exisiting a face and a scalar value of there not existing a face, to base the prediction on. An open source implementation of YOLO \cite{sigmoidvssoftmax} showed that using a binary cross entropy loss function (logistic regression), instead of a categorical cross entropy using a softmax function, increased the models accuracy. The softmax layer in FaceNet is replaced by a sigmoid function, and logistic regression is used instead. Let the new classification loss be denoted by $L_c$. Instead of normalizing the loss by the total number of bounding boxes, the loss is divided by the total number of positively assigned bounding boxes, similar to SSD \cite{ssd} and RetinaNet \cite{retinanet}.
 
-%An area where FaceResNet shows weakness is in detecting small faces. This can be due to there not being enough information in the image for the model to accurately detect the small faces since they only consist of $16$ pixels in width and height. Another reason could be that the classification error of the negative boxes dominates the error of the positive boxes. Since the small bounding boxes are created from the lowest pyramid layer with the biggest spatial height and with, more smaller than bigger bounding boxes are created, while the number of ground truth boxes stays constant for approximately all sizes. The ratio of negative to positive bounding boxes is bigger for the small anchors, resulting in detection performance for small faces.
+\begin{equation}\label{eqsmoothl1loss}
+L_c(p, \hat{p}) = -p \log{(\hat{p})} -(1-p) \log{(1-\hat{p})}
+\end{equation}
 
-RESULTS HERE
+\begin{equation}
+\begin{split}
+	L(\theta) = &  \frac{1}{|N_{pos}|} \sum_{a \in N} L_c(p_a, \hat{p}_a) 
+	 + \frac{1}{|N_{pos}|} \sum_{a \in N_{pos}} L_r(r_a - \hat{r}_a)  \\ 
+\end{split}
+\end{equation}
 
-\subsubsection{FaceNet v1.1, binary classification}
-The baseline model uses a softmax function based on two values, a scalar value of there exisiting a face and a scalar value of there not existing a face. KJHSKJDS showed that using a single scalar value with a logistic function increased the accuracy in binary classification.
+When evaluated on the easy/medium/hard splits of the WIDERFace validation set, FaceNet v1.1 achieved a mAP of xx/yy/zz.
+
+\subsubsection{FaceNet v1.2, focal loss}
+Focal loss, introduced by RetinaNet \cite{retinanet}, introduced a loss function which focused on the examples which were hard to classify. It was showed that using focal loss instead of cross entropy for multi-class object detection increased the final accuracy of the model. Let $F_c$ denote the focal loss used as the classification loss by FaceNet v1.2:
+
+\begin{equation}\label{eqsmoothl1loss}
+L_c(p, \hat{p}) = -p (1-p)^\gamma \log{(\hat{p})} -(1-p) p^\gamma\log{(1-\hat{p})}
+\end{equation}
+
+Since FaceNet proposes a larger number of bounding boxes compared to RetinaNet, a $\gamma$ value of 3 was used, instead 2 used by RetinaNet, to offset the increase in bounding boxes. The total loss $L(\theta)$ is defined by:
+
+\begin{equation}
+\begin{split}
+	L(\theta) = &  \frac{1}{|N_{pos}|} \sum_{a \in N} L_c(p_a, \hat{p}_a) 
+	 + \frac{1}{|N_{pos}|} \sum_{a \in N_{pos}} L_r(r_a - \hat{r}_a)  \\ 
+\end{split}
+\end{equation}
+
+Using the focal loss instead of binary cross entropy led to a decrease in mAP by approximately 10 points in every category. The results of the easy/medium/hard splits were 22.4	/12.1/5.1.
+
+\subsubsection{FaceNet v1.3, feature pyramid}
+Using a feature pyramid network (FPN) together with a standard backbone ResNet network has been shown to yield higher detection and classification accuracies \cite{fpn}. Instead of only basing the face predictions of the feature maps from $conv2$ to $conv6$ of the backbone network, a top-down architecture from the FPN is used to enable the feature maps at lower scales to make use of higher level features. The same binary cross entropy function of FaceNet v1.1, which performed best, was used.
+
+Adding an FPN to FaceNet yielded a dramatical increase in mAP: The results on the easy/medium/hard splits were 89.3/85.9/65.9, a 4000\% inscrease in mAP.
+
+\subsubsection{FaceNet v1.4, feature pyramid, focal loss}
+The focal loss is evaluated once again, but with the addition of a feature pyramid network. Everything but the classification loss is kept the same from FaceNet v1.4. The loss function from FaceNet v1.2 is used.
+
+The results on the easy/medium/hard splits were 81.0/81.0/64.2 mAP. Focal loss performed worse than logistic regression, when all other factors and hyperparameters were kept the same.
+
+\subsubsection{FaceNet v1.5, feature pyramid, CE, level}
+The loss function was modified to study the effects it had on the accuracy. Instead of normalizing all the losses by the total number of positively assigned anchors, each classification and regression loss is computed separately at every pyramid level. Let $P$ be the set of all pyramid levels $p$, $N^p$ be the set of all created anchor boxes at every spatial position at pyramid level $p$, and $N^p_{pos}$ be the set of all positively assigned anchors at pyramid level $p$. The total loss $L(\theta)$ is defined by:
+
+\begin{equation}
+\begin{split}
+	L(\theta) = & \sum_{p \in P} \frac{1}{|N^p_{pos}|} \sum_{a \in N^p} L_c(p_a, \hat{p}_a) \\
+	 & + \sum_{p \in P}  \frac{1}{|N^p_{pos}|} \sum_{a \in N^p_{pos}} L_r(r_a - \hat{r}_a)  \\ 
+\end{split}
+\end{equation}
+
+The level separated loss performed slightly worse than the previous non-level-specific version. The results on the easy/medium/hard set were 87.2/82.5/50.4 mAP.
+
+\subsubsection{FaceNet v1.6, feature pyramid, focal loss, level}
+The loss function from FaceNet v1.5 was used, but replacing the binary cross entropy loss with the focal loss. This resulted in a worse performing model: A decrease of approximately 2 mAP, compared to the binary cross entropy level separated loss. 
+
+The results on the easy/medium/hard set were 87.2/82.5/50.4 mAP.
+
+\subsubsection{FaceNet v1.7, online hard example mining}
+Online hard example mining (OHEM) \cite{ohem} has been shown to increase mAP when training region based object detectors. 
 
 \section{Improving temporal convolutional networks}
 \subsection{Background}
@@ -824,7 +869,7 @@ R_{output} = 1+\sum^L_{l=2} (r(d_l, k_l) -1)
 \end{equation}
 Here $d_l$ and $k_l$ is the receptive field and kernel size of the single neuron in layer $l$, on the previous layer $l-1$.
 
-I suggest increasing the dilation of the layers linearly instead of exponentially. Firstly, a too big of an increase of dilation causes the last layers with kernel size $k \leq 2$ to effectively turn into kernels with kernel size $k=1$. This is due to that the right most kernel weight will be multiplied with the activation at the same timestep, directly down one layer in the network. The rest of the kernel will be placed in intervals of $d$ steps to the left (at previous timesteps). If $d$ is large enough, the next activation used in the convolution will be a zero-padded neuron, and thus the whole layer effectively becomes a convolution with kernel size $k=1$, similar to what's illustrated in figure \ref{figTCNZeropad}. The effect of exponential dilations in deep architectures is that only the first layers use data from previous timesteps, while later layers simply become mathematically equivalent to normal feed-foward layers across a single timestep.
+I suggest increasing the dilation of the layers linearly instead of exponentially. Firstly, a too big of an increase of dilation causes the last layers with kernel size $k \leq 2$ to effectively turn into convolutions with kernel size $k=1$. This is due to that every kernel weight, except those at the same timestep, is being multiplied by a zero-padded neuron. The rest of the kernel will be placed on intervals of $d$ timesteps earlier. If $d$ is large enough, the next activation used in the convolution will always be a zero-padded neuron, and thus the whole layer effectively becomes a convolution with kernel size $k=1$, similar to what's illustrated in figure \ref{figTCNZeropad}. The effect of exponential dilations in deep architectures is that only the first layers use data from previous timesteps, while later layers simply become mathematically equivalent to normal feed-foward layers across a single timestep.
 
 Secondly, because a temporal convolutional network has to preserve its temporal dimension $T$ at every layer through the use of zero-padding, an exponentially increasing dilation can cause too much memory usage, since zero-padding increases the memory usage of the model. This is especially important for \cite{tcn} implementation which uses twice as much zero-padding as my implementation.
 
@@ -914,7 +959,7 @@ MODEL RESULTS HERE, BLAH BLAH WAS SHOWN TO BEAT/GENERALIZE BETTER BLAH BLAH
 
 \subsection{Discussion}
 
-\section{Evaluation of temporal convolutional networks for image captioning}
+\section{Evaluation of TCNs for image captioning}
 \subsection{MSCOCO caption dataset}
 The MSCOCO caption dataset [CITE CITE CITE] is a dataset containing 164 062 images and a total of 1 026 459 human labeled image captions. This paper uses the 2017 train/val split of 115 000 images in the training set, and 5 000 images in the validation set. The remaining images are contained in the test set with the ground truth not publicly available.
 
@@ -1252,11 +1297,19 @@ A. Paszke,   S. Gross, S. Chintala,   G. Chanan,   E. Yang,   Z. DeVito,   Z. Li
 \textit{Use Sigmoid instead of Softmax in Focal Loss.}
 Discussion in github repository of a RetinaNet implementation.
 URL https://github.com/kuangliu/pytorch-retinanet/issues/6
-%-----------------------------------
-%-----------------------------------
-%-----------------------------------
-%-----------------------------------
-%-----------------------------------
+
+
+\bibitem{mscoco}
+	\textit{Microsoft COCO Captions: Data Collection and Evaluation Server.}
+	X. Chen and H. Fang and TY Lin and R. Vedantam and S. Gupta and P. Dollár and C. L. Zitnick. 
+	arXiv preprint arXiv:1504.00325, 2015
+
+\bibitem{ohem}
+	\textit{Training Region-based Object Detectors with Online Hard Example Mining.}
+	A. Shrivastava, A. Gupta, and R. Girshick. 
+	arXiv preprint arXiv:1604.03540, 2017
+
+
 
 
 \end{thebibliography}
