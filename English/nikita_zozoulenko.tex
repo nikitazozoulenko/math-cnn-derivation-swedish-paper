@@ -49,7 +49,7 @@ Supervisor: Oleg Burdakov \\*}
 
 %start abstract
 \Large{\textbf{Abstract}}\\
-Convolutional neural networks (CNNs) are traditionally used in computer vision tasks, but have recently gained traction as sequential models. I suggest two improvements to temporal convolutional networks (TCNs) and empirically evaluate them to achieve a new state of the art on the task of SequenceMNIST (99.53\% versus 99.0\%) and Permuted SequenceMNIST (97.86\% versus 97.28\%), using my new zero-padding and dilation scheme which also keeps information from flowing from the future into the past. Three different residual blocks are also experimented on to show how residual connections affect the performance of TCNs. The improved model is then compared to its recurrent neural network counterpart, a Gated Recurrent Unit (GRU), on an area where TCNs have never been applied before; automatic image captioning, and is shown to have similar performances. Additionally, since the field lacks a fully derived order 4 example of a CNN, I present a derivation of the general case for a CNN with an arbitrary input of a tensor of order 4, including varying zero-padding and strides during forward and backpropagation. The derivation is then used for my own neural network library implementation in Python and C++. Furthermore, I systematically construct a region based dense face detector and empirically investigate how factors such as cross entropy loss, focal loss, feature pyramid networks, online hard example mining, color jitter, and network depth affects its performance. The final model is sufficiently efficient and accurate to be used for real time video, for instance CCTV or other surveillance systems.
+Convolutional neural networks (CNNs) are traditionally used in computer vision, but have recently gained traction as sequential models. I suggest two improvements to temporal convolutional networks (TCNs) and empirically evaluate them to achieve a new state of the art on the task of SequenceMNIST (99.53\% versus 99.0\%) and Permuted SequenceMNIST (97.86\% versus 97.28\%), using my new zero-padding and dilation scheme which also keeps information from flowing from the future into the past. Three different residual blocks are also experimented on to show how residual connections affect the performance of TCNs. The improved model is then compared to its recurrent neural network counterpart, a Gated Recurrent Unit (GRU), on an area where TCNs have never been applied before; automatic image captioning, and is shown to perform similarly. Additionally, since the field lacks a fully derived order 4 example of a CNN, I present a derivation of the general case for a CNN with an arbitrary input of a tensor of order 4, including varying zero-padding and strides during forward and backpropagation. The derivation is then used for my own neural network library implementation in Python and C++. Furthermore, I systematically construct a region based dense face detector and empirically investigate how factors such as cross entropy loss, focal loss, feature pyramid networks, online hard example mining, color jitter, and network depth affects its performance. The final model is sufficiently accurate and computationally efficient to be used for real time video, for instance CCTV or other surveillance systems.
 
 \newpage
 %end abstract
@@ -717,14 +717,21 @@ IoU(A, B)=\frac{|A \cap B|}{|A \cup B|}
   	\caption{IoU \cite{iou} is defined as the size of the union divided by the size of the intersection of two sets $A$ and $B$. A bigger IoU implies that the predicted bounding box is closer to the ground truth. } \label{figiou}
 \end{figure}
 
-\subsubsection{FaceNet v1.0, baseline model}
+\subsection{Baseline model}
 The baseline model uses the deep residual convolutional neural network ResNet-18 \cite{resnet} as a backbone network and feature extractor. It uses a total of 18 convolutional layers throughout blocks named \textit{conv1} to \textit{conv5} to extract features from the input image. The feature maps created by the backbone model is then fed into two smaller sub-networks, called the classification head and the regression head. They are constructed out of 4 residual bottleneck convolutional layers used by ResNet-50 up to ResNet-152.
 
 Bounding boxes are created from a number of anchor boxes at every spatial position (width and height) from a set of feature maps. An anchor box is a bounding box of a specific size and scale, used to base the bounding box predictions off. Anchor boxes used by FaceNet are set to be of sizes in the range $[16, 406]$ pixels, each increasing by a factor of $2^{1/3}$ for every new anchor box size. Two ratios of width:height are used at every scale, namely $1:\frac{2}{3}$ and $1:1$, to enable the detection of faces facing sideways and directly into the camera. having densely packed anchors makes it that every ground truth bounding box (of sufficient size) has an IoU$>0.55$ with at least one anchor box. The anchor boxes are spaced out to include 3 scales with 2 aspect ratios across feature maps from the levels \textit{conv2} to \textit{conv5}, to enable the detection of faces of different scales, similar to RetinaNet \cite{retinanet}.
 
 The regression and classification sub-networks take in the last convolutional output from a single network level (\textit{conv2} to \textit{conv5}) as input. Let $W$ and $H$ be the width and height of the tensor of activations at a single network level, and $C$ be the amount of classes to classify. FaceNet uses $C=2$, one for a background class (no face) and one for a foreground class (a face). The classification head predicts $C$ probabilities for every anchor $A$, that there exists a face in the anchor box at every spatial location ($W \times H$), for a total of $KWHA$ values. The regression head predicts $4$ coordinate offsets for every point of the anchor box, for it to match the ground truth as closely as possible, for a total of $4WHA$ coordinate offsets. Additionally, similar to RetinaNet \cite{retinanet}, the last conventional layer which predicts class probabilities uses a bias $b = -\log{\frac{C(1-\pi)}{\pi}}$, such that the model, when first initialized, predicts a probability of $\pi$ for the case of there existing a foreground class (a face) in every bounding box. $\pi = 0.001$ was used.
 
-The loss function $L(\theta)$ used by FaceNet is a combination of a coordinate regression loss $L_r$, and a bounding box classification loss $L_c$. $L_r$ is the Smooth L1 Loss \cite{cs231n} defined by equation \eqref{eqsmoothl1loss}. $L_c$ is the cross entropy loss \cite{cs231n} defined by equation \eqref{eqfocalloss}.
+If not otherwise stated, each version of FaceNet is trained for 70 000 iterations on an Nvidia GTX 1080ti with an initial learning rate of 0.0001, and lowering the learning rate by a factor of 10 after 50 000 and 60 000 iterations. Due to memory limitations a batch size of 8 is used. The models are trained on square image crops, randomly picked to be of between 0.33 and 0.95 of the short size of the image, and resized to be of size $512^2$ pixels. This is done to artificially increase the size of the training data. Additionally, the image is flipped horizontally with a probability of 0.5.
+
+The models are evaluated on the WIDERFace validation set, using the easy, medium and hard splits provided by the WIDERFace evaluation server. The evaluation metric is mean average precision (mAP), and is the area under the precision-recall curve, when plotting the models precision as a function of the recall.
+
+\subsubsection{v1.0, Cross Entropy (CE)}
+The first loss function tested is a sum of a coordinate regression loss $L_r$, and a bounding box classification loss $L_c$. $L_r$ is the Smooth L1 Loss \cite{cs231n} and $L_c$ is the softmax cross entropy loss (CE).
+
+The total loss $L(\theta)$ is the mean of the regression losses $L_r$ of all positively assigned anchors plus the mean of the classification losses of all anchors. Negatively assigned anchors do not have any effect on the regression loss. Let $r_a$ and $\hat{r}_a$ be the predicted and ground truth coordinate offsets for anchor box $a$. Let $p_a$ and $\hat{p}_a$ be the predicted and ground truth probability score respectively, for anchor $a$ to contain a face. Let $N$ be the set containing all anchor boxes $a$, and $N_{pos}$ be the set containing every positively assigned anchor box. The total loss is defined as:
 
 \begin{equation}\label{eqfocalloss}
 L_r(x) = \begin{cases}
@@ -737,7 +744,7 @@ L_r(x) = \begin{cases}
 L_c(p, \hat{p}) = -p \log{\hat{p}}
 \end{equation}
 
-The total loss $L(\theta)$ is the mean of the regression losses $L_r$ of all positively assigned anchors plus the mean of the classification losses of all anchors. Negatively assigned anchors do not have any effect on the regression loss. Let $r_a$ and $\hat{r}_a$ be the predicted and ground truth coordinate offsets for anchor box $a$. Let $p_a$ and $\hat{p}_a$ be the predicted and ground truth probability score respectively, for anchor $a$ to contain a face. Let $N$ be the set containing all anchor boxes $a$, and $N_{pos}$ be the set containing every positively assigned anchor box. The total loss can be described as:
+
 
 \begin{equation}
 \begin{split}
@@ -746,12 +753,10 @@ The total loss $L(\theta)$ is the mean of the regression losses $L_r$ of all pos
 \end{split}
 \end{equation}
 
-If not otherwise stated, FaceNet is trained for 70 000 iterations on an Nvidia GTX 1080ti with an initial learning rate of 0.0001. Due to memory limitations a batch size of 8 is used. The network was trained on square image crops, randomly picked to be of between 0.3 and 1 of the short size of the image, and resized to be of size $512^2$ pixels. This was done to artificially increase the size of the training data. Additionally, the image was flipped horizontally with a probability of 0.5.
+When evaluated on the WIDERFace validation set, the model achieved an mAP of 0 across all 3 sets: easy, medium and hard. The model converged to classify every single bounding box as a negative example, resulting in no faces being found in any image.
 
-When evaluated on the WIDERFACE validation set, the model achieved a 0 mAP \cite{cs231n} across all 3 sets: easy, medium and hard. The model converged to classify every single bounding box as a negative example, resulting in no faces being found for every image.
-
-\subsubsection{FaceNet v1.1, binary cross entropy}
-The baseline model uses a softmax function based on two values, a scalar value of there exisiting a face and a scalar value of there not existing a face, to base the prediction on. An open source implementation of YOLO \cite{sigmoidvssoftmax} showed that using a binary cross entropy loss function (logistic regression), instead of a categorical cross entropy using a softmax function, increased the models accuracy. The softmax layer in FaceNet is replaced by a sigmoid function, and logistic regression is used instead. Let the new classification loss be denoted by $L_c$. Instead of normalizing the loss by the total number of bounding boxes, the loss is divided by the total number of positively assigned bounding boxes, similar to SSD \cite{ssd} and RetinaNet \cite{retinanet}.
+\subsubsection{v1.1, Binary Cross Entropy (BCE)}
+The baseline model uses a softmax function to base its classification prediction on, based on two values; one for each object class. An open source implementation of YOLO \cite{sigmoidvssoftmax} showed that using a binary cross entropy loss function (logistic regression), instead of a categorical cross entropy using a softmax function, led to a gain in mAP. For FaceNet v1.1, the softmax layer in FaceNet is replaced by a sigmoid function, and logistic regression is used instead. Let the new classification loss be denoted by $L_c$. Instead of normalizing the loss by the total number of bounding boxes, the loss is divided by the total number of positively assigned bounding boxes, similar to SSD \cite{ssd} and RetinaNet \cite{retinanet}.
 
 \begin{equation}\label{eqsmoothl1loss}
 L_c(p, \hat{p}) = -p \log{(\hat{p})} -(1-p) \log{(1-\hat{p})}
@@ -764,9 +769,9 @@ L_c(p, \hat{p}) = -p \log{(\hat{p})} -(1-p) \log{(1-\hat{p})}
 \end{split}
 \end{equation}
 
-When evaluated on the easy/medium/hard splits of the WIDERFace validation set, FaceNet v1.1 achieved a mAP of xx/yy/zz.
+When evaluated on the easy/medium/hard splits of the WIDERFace validation set, FaceNet v1.1 achieves an mAP of 37.4/21.7/9.7. 
 
-\subsubsection{FaceNet v1.2, focal loss}
+\subsubsection{v1.2, Focal Loss (FL)}
 Focal loss, introduced by RetinaNet \cite{retinanet}, introduced a loss function which focused on the examples which were hard to classify. It was showed that using focal loss instead of cross entropy for multi-class object detection increased the final accuracy of the model. Let $F_c$ denote the focal loss used as the classification loss by FaceNet v1.2:
 
 \begin{equation}\label{eqsmoothl1loss}
@@ -782,20 +787,20 @@ Since FaceNet proposes a larger number of bounding boxes compared to RetinaNet, 
 \end{split}
 \end{equation}
 
-Using the focal loss instead of binary cross entropy led to a decrease in mAP by approximately 10 points in every category. The results of the easy/medium/hard splits were 22.4	/12.1/5.1.
+Using the focal loss instead of binary cross entropy led to an average 10 point decrease in mAP in every category. The results of the easy/medium/hard splits were 22.4/12.1/5.1.
 
-\subsubsection{FaceNet v1.3, feature pyramid}
+\subsubsection{v1.3, FPN, BCE}
 Using a feature pyramid network (FPN) together with a standard backbone ResNet network has been shown to yield higher detection and classification accuracies \cite{fpn}. Instead of only basing the face predictions of the feature maps from $conv2$ to $conv6$ of the backbone network, a top-down architecture from the FPN is used to enable the feature maps at lower scales to make use of higher level features. The same binary cross entropy function of FaceNet v1.1, which performed best, was used.
 
-Adding an FPN to FaceNet yielded a dramatical increase in mAP: The results on the easy/medium/hard splits were 89.3/85.9/65.9, a 4000\% inscrease in mAP.
+Adding an FPN to FaceNet yielded a dramatical increase in mAP: The results on the easy/medium/hard splits were 89.3/85.9/65.9, a 1200\% increase in mAP on the hard set.
 
-\subsubsection{FaceNet v1.4, feature pyramid, focal loss}
+\subsubsection{v1.4, FPN, FL}
 The focal loss is evaluated once again, but with the addition of a feature pyramid network. Everything but the classification loss is kept the same from FaceNet v1.4. The loss function from FaceNet v1.2 is used.
 
-The results on the easy/medium/hard splits were 81.0/81.0/64.2 mAP. Focal loss performed worse than logistic regression, when all other factors and hyperparameters were kept the same.
+The results on the easy/medium/hard splits were 81.0/81.0/64.2 mAP. Focal loss performed worse than binary cross entropy, when all other factors and hyperparameters were kept the same.
 
-\subsubsection{FaceNet v1.5, feature pyramid, CE, level}
-The loss function was modified to study the effects it had on the accuracy. Instead of normalizing all the losses by the total number of positively assigned anchors, each classification and regression loss is computed separately at every pyramid level. Let $P$ be the set of all pyramid levels $p$, $N^p$ be the set of all created anchor boxes at every spatial position at pyramid level $p$, and $N^p_{pos}$ be the set of all positively assigned anchors at pyramid level $p$. The total loss $L(\theta)$ is defined by:
+\subsubsection{v1.5, FPN, BCE, level}
+The loss function was modified once again to study the effects it had on the accuracy. Instead of normalizing all the losses by the total number of positively assigned anchors, each classification and regression loss is computed separately at every pyramid level. Let $P$ be the set of all pyramid levels $p$, $N^p$ be the set of all created anchor boxes at every spatial position at pyramid level $p$, and $N^p_{pos}$ be the set of all positively assigned anchors at pyramid level $p$. The total loss $L(\theta)$ is defined by:
 
 \begin{equation}
 \begin{split}
@@ -806,13 +811,26 @@ The loss function was modified to study the effects it had on the accuracy. Inst
 
 The level separated loss performed slightly worse than the previous non-level-specific version. The results on the easy/medium/hard set were 87.2/82.5/50.4 mAP.
 
-\subsubsection{FaceNet v1.6, feature pyramid, focal loss, level}
+\subsubsection{v1.6, FPN, FL, level}
 The loss function from FaceNet v1.5 was used, but replacing the binary cross entropy loss with the focal loss. This resulted in a worse performing model: A decrease of approximately 2 mAP, compared to the binary cross entropy level separated loss. 
 
-The results on the easy/medium/hard set were 87.2/82.5/50.4 mAP.
+The model achieved an mAP of 85.1/80.0/50.6 on the easy/medium/hard splits, performing worse on the easy and medium split, but performing better on the hard split, compared to the binary cross entropy loss.
 
-\subsubsection{FaceNet v1.7, online hard example mining}
-Online hard example mining (OHEM) \cite{ohem} has been shown to increase mAP when training region based object detectors. 
+\subsubsection{v1.7, OHEM, single image}
+Online hard example mining (OHEM) \cite{ohem} has been shown to increase mAP when training region based object detectors. Models using OHEM only train on the top $k$ bounding box classification losses, after non-maxima supression (NMS) is applied, in an effort to balance the ratio of negative to positive bounding boxes. Since FaceNet predicts 250 000 bounding boxes for an image of size $512^2$ pixels, the ratio of negatively to positively assigned bounding boxes is high. FaceNet v1.7 uses OHEM separetely on every image in the mini-batch, and picks out the top 128 classification losses to backpropagate, after NMS is applied, to avoid duplicate regions.
+
+Using OHEM resulted in a decrease in performance, halving the accuracy on the easy set, compared to the best performing model v1.3. Quantitative results showed that the model had trouble detecting large faces. When evaluated on the easy/medium/hard splits, v1.7 achieves an mAP of 46.0/51.8/42.3.
+
+\subsubsection{v1.8, OHEM, whole batch}
+Applying the OHEM algorithm on the whole mini-batch, instead of applying it on every image separately, yielded faster training times and higher accuracies. A $k$ value of 128 was used. The results on the easy/medium/hard set were xx/yy/zz mAP.
+
+\subsection{Discussion}
+benchmark speed
+
+uses: cctv, surveilance, social media tagging, digital cameras.
+
+focal loss is not better
+
 
 \section{Improving temporal convolutional networks}
 \subsection{Background}
@@ -838,9 +856,9 @@ The activations at layer $l$ is a tensor of order 3 $X^{(l)} \in \mathbb{R}^{R \
 \end{center}
 \end{figure}
 
-While TCNs \cite{tcn} were shown to beat the current state of the art in two tasks, SequenceMNIST and the more difficult version PMNIST, I want to adress and improve two problem areas I see with the author's implementation of temporal convolutional networks.
+While TCNs \cite{tcn} were shown to beat the current state of the art in two tasks, SequenceMNIST and the more difficult version PMNIST, I want to adress and improve two problem areas I see with the author's implementation of temporal convolutional networks, namely their zero-padding and dilation scheme.
 
-\subsection{Smart zero-padding}
+\subsubsection{Smart zero-padding}
 The temporal dimension size $T$ and $T'$ of layers $l$ and $l+1$ respectively can vary in size since they can be convolved upon by a kernel with kernel size $k \geq 1$. More specifically, $T'$ is dependent on $T$ and five hyperparameters: The zero-padding $p_{left}$ and $p_{right}$, the stride $s$, the kernel size $k$, and the dilation $d$.
 
 \begin{equation}
@@ -854,11 +872,11 @@ I propose only zero-padding the beginning of the activation tensor with zero-pad
 
 \begin{figure}[h]
 \begin{center}
-    \includegraphics[width=9cm]{figTCNZeropad.eps}\caption{A temporal convolution at timestep $t=1$. Dotted squares represent zero-padded activations, while bold squares represent normal activations. Blue lines represent the convolutional kernel. The network is effectively computing convolutions with kernel size $k=1$ since every neuron except at the first timestep is a neuron created by the zero-padding.}\label{figTCNZeropad}
+    \includegraphics[width=8cm]{figTCNZeropad.eps}\caption{A temporal convolution at timestep $t=1$. Dotted squares represent zero-padded activations, while bold squares represent normal activations. Blue lines represent the convolutional kernel. The network is effectively computing convolutions with kernel size $k=1$ since every neuron except at the first timestep is a neuron created by the zero-padding.}\label{figTCNZeropad}
 \end{center}
 \end{figure}
 
-\subsection{Linear versus exponential dilation increase}
+\subsubsection{Linear versus exponential dilation increase}
 The original authors propose increasing the dilation by a factor of two at every layer. The dilations enable the output neurons to have a bigger receptive field. The receptive field of an output neuron is the maximum amount of input neurons the model can base its prediction of. The receptive field $r$ at layer $l$ for a neuron with kernel size $k$ and dilation $d$ at layer $l-1$ is defined by: 
 \begin{equation}
 r(d, k) = d(k-1) +1
@@ -885,13 +903,13 @@ Permuted SequenceMNIST (PMNIST) is a more difficult deviation of the SequenceMNI
 \subsubsection{Experiments}
 Three different model architectures were tested on SeqMNIST and PMNIST, namely three models with different residual blocks: Single, Double, and Radical. The Single residual block is the block used in the original TCN \cite{tcn} architecture. It uses two layers made up of a sequence of a convolution, weight normalization of the kernel weights, ReLU activation and dropout. Weight normalization normalizes the kernel weights such that its direction remains constant, while changing the magnitude of the tensor \cite{pytorch}. Dropout randomly sets an activation to be equal to zero during training \cite{cs231n}. The input to the sequential layers is then added element-wise to its output to create the final activations of the last layer. This is called a residual connection. The residual connection in the Simple block is between every second convolution. The Double residual block has an addition residual connections which connects the activations of the first convolution in block $b$ to the activations of the first convolutional block in layer $b+1$. The Radical residual block has 4 convolutions and uses residual connections between the input and the output, the input and the second convolution, the second convolution and the output, and the first convolution and the third convolution. The three architectures are illustrated in figure \ref{figTCNGraph}. The Radical block is additionally illustrated in figure \ref{figTCNRadical}.
 
-\begin{figure}[h]
+\begin{figure}%[h]
 \begin{center}
     \includegraphics[width=10cm]{figRadical.eps}\caption{An illustration of a temporal convolutional network. Every square represents the activations at a single timestep. Blue lines represent the kernel applied at a single temporal position on the activation tensor. Green lines represent residual connections between two convolutional layers.}\label{figTCNRadical}
 \end{center}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}%[h]
 \begin{center}
     \includegraphics[width=16cm]{figGraph.eps}\caption{The proposed (a) Single, (b) Double and (c) Radical residual blocks. Every convolution is proceeded by ReLU activations and dropout, and uses weight normalization. The Single block has a residual connection every 2 convolutional layers. The Double block has an addition residual connections which connects the activations of the first convolution in block $l$ to the activations of the first convolutional block in layer $l+1$. The Radical residual block has 4 convolutions and uses residual connections between the input and output, input and the second convolution, the second convolution and the output, and the first convolution and the third convolution.}\label{figTCNGraph}
 \end{center}
@@ -899,9 +917,15 @@ Three different model architectures were tested on SeqMNIST and PMNIST, namely t
 
 The network hyperparameters were picked on the basis of the output neurons having a receptive field bigger than, but not much greater than, the maximum sequence size of 784 timesteps, while being as close as possible to the original TCN model \cite{tcn}. The Single and Double model uses 12 Single blocks, with dilations $d_b=3b-2$ at block $b$. The Radical model uses 6 Radical blocks, with dilations $d_b=6b-5$ at block $b$. The kernel sizes were picked to be the same as the original TCN, namely $k=6$. The total receptive field is 1001 timesteps for the Single and Double model, and 1021 timesteps for the radical model. Every model uses a total of 24 convolutions. The channel size was set to 32, except for the output layer which has 10 channels, one for every digit. The final prediction tensor is put into a softmax function to transform the output into interpretable probabilities. At every timestep $t$ the model predict $R \times 10$ probabilities that the image is of a specific digit. Here $R$ is the batch size. Following \cite{tcn}, the model is only evaluated and trained on the prediction of the last timestep.
 
-5 000 samples in the training set were randomly picked to create a validation set to track during training. The remaining 55 000 images were used to create the new training set. All models were trained simultaneously on the same randomly picked mini-batches of 100 images for 100 000 iterations. During the first iterations of training of the Double and Radical architectures, the loss often diverged. To combat this, the models started with a low learning rate of 0.001, which after 100 and 1000 iterations were increased by a factor of 10. The learning rate was later annealed by a factor of 10 after 70 000 iterations and 90 000 iterations.
+5 000 samples in the training set were randomly picked to create a validation set to track during training. The remaining 55 000 images were used to create the new training set. All models were trained simultaneously on the same randomly picked mini-batches of 100 images.
 
-Figures \ref{figseqmnistloss} to \ref{figpmnistacc} show the loss function of the training set and validation set, and the validation accuracy of all three models, on the SeqMNIST and PMNIST tasks.
+During early experiments, the Double and Radical models diverged when using a too high learning rate. To combat the models started with a learning rate of 0.001, which was, during later iterations, increased by a factor of 10.
+
+For SeqMNIST, the models were trained for 100 000 iterations using SGD with momentum. The learning rate was increased by a factor of 10 after 200 and 1000 iterations, and decreased by a factor of 10 after 70 000 and 90 000 iterations.
+
+For PMNIST, the models were trained for 200 000 iterations using SGD with momentum. The learning rate was increased by a factor of 10 after 200 and 1000 iterations, and decreased by a factor of 10 after 130 000 and 180 000 iterations.
+
+Figures \ref{figseqmnistloss} to \ref{figpmnistacc} show the loss functions of the training and validation sets, and the validation accuracies of all three models, on the SeqMNIST and PMNIST tasks.
 
 \begin{figure}
 \begin{center}
@@ -915,7 +939,7 @@ Figures \ref{figseqmnistloss} to \ref{figpmnistacc} show the loss function of th
 \end{figure}
 \begin{figure}
 \begin{center}
-    \includegraphics[width=15cm]{pmnistloss.png}\caption{The training loss on SequenceMNIST of the three models with the Single, Double, and Radical residual blocks. Bold lines show the loss on the training set while dotted lines show the loss on the validation set.}\label{figpmnistloss}
+    \includegraphics[width=15cm]{pmnistloss.png}\caption{The training loss on PMNIST of the three models with the Single, Double, and Radical residual blocks. Bold lines show the loss on the training set while dotted lines show the loss on the validation set.}\label{figpmnistloss}
 \end{center}
 \end{figure}
 \begin{figure}
@@ -924,7 +948,7 @@ Figures \ref{figseqmnistloss} to \ref{figpmnistacc} show the loss function of th
 \end{center}
 \end{figure}
 
-The validation accuracy was used to choose how long to train the models before evaluating them on the test set of 10 000 never before seen handwritten digits. The version of the model with the highest validation accuracy was picked for evaluation.
+When evaluated on the test set, all models beat the current state of the art on both tasks. The Single model performed best on the test set, but was beaten by the Radical model on the SeqMNIST task regarding validation accuracy and loss.
 
 \begin{table}
 \begin{center}
@@ -955,23 +979,22 @@ The validation accuracy was used to choose how long to train the models before e
 \end{center}
 \end{table}
 
-MODEL RESULTS HERE, BLAH BLAH WAS SHOWN TO BEAT/GENERALIZE BETTER BLAH BLAH
-
 \subsection{Discussion}
+The changes are shown to increase the accuracy of the temporal convolutional model, across all three residual building blocks and both tasks, beating the previous state of the art.  The error rate for Sequential MNIST is halved, compared the the old model, using the new methods.
 
 \section{Evaluation of TCNs for image captioning}
 \subsection{MSCOCO caption dataset}
-The MSCOCO caption dataset [CITE CITE CITE] is a dataset containing 164 062 images and a total of 1 026 459 human labeled image captions. This paper uses the 2017 train/val split of 115 000 images in the training set, and 5 000 images in the validation set. The remaining images are contained in the test set with the ground truth not publicly available.
+The MSCOCO caption dataset \cite{mscoco} is a dataset containing 164 062 images and a total of 1 026 459 human labeled image captions. This paper uses the 2017 train/val split of 115 000 images in the training set, and 5 000 images in the validation set. The remaining images are contained in the test set with the ground truth not publicly available.
 
 \subsection{Background}
 In the Stanford course \textit{Convolutional Neural Networks for Computer Vision} \cite{cs231n}, the lecturer demonstrated that a deep convolutional neural network could be used as a feature extractor in conjunction with a recurrent neural network (RNN) to sequentially generate an image caption. In this following section. A closer look on the current state of the art on image captioning, at the MSCOCO caption leaderboards, reveals that recurrent neural-network-based architectures are used, mainly LSTMs and GRUs. Therefore it is of interest to apply the newly high performing sequence model, temporal convolutional networks (TCN) \cite{tcn}, to the area of automatic image captioning, to compare its performance with the current recurrent architectures. Two models will be trained and compared head-to-head on the task of automatic image captioning: The temporal convolutional network model and the gated recurrent unit model.
 
 \subsection{Sequential sentence modeling}
-The models generate image captions by sequentially suggesting the next word in a sentence, from a large vocabulary of allowed words to choose from. This vocabulary was chosen similar to the current state of the art in image captioning [CITE CITE CITE], as well as due to memory limitations: It was picked by iterating through every image caption in the training data and adding words which appeared more than 5 times to the word vocabulary. Only captions in the training set were used, ignoring the available caption in the validation set, to enable the results on the validation to more closely resemble the results on the test set. Capitalization and special characters were ignored when generating the vocabulary. The final vocabulary size was approximately 10 000 words. Words in the training image captions not included in the vocabulary were replaced with an unknown token: \textit{"<UKN>"}. The vocabulary also includes an end of string token, \textit{"<EOS>"}, used by the models to signal that the generated sentence is complete.
+The models generate image captions by sequentially suggesting the next word in a sentence, from a large vocabulary of allowed words to choose from. The vocabulary was chosen to be limited to every word in the training captions which appear five our more times. Only captions in the training set were used, ignoring the available captions in the validation set, to make the results on the validation more closely resemble the results which will be gotten on the test set. Capitalization and special characters were ignored when generating the vocabulary. The final vocabulary size was approximately 10 000 words. Words in the training image captions not included in the vocabulary were replaced with an unknown token: \textit{<UKN>}. The vocabulary also includes an end of string token, \textit{<EOS>}, used by the models to signal that the generated sentence is complete.
 
 Each word is represented as a one-hot vector encoding, where every element but one is set to zero, and the index of the non-zero element determines what word it is. Vector embeddings into continuous space (PyTorch's nn.Embeddings) \cite{pytorch} are used map the one-hot representations into a vector of a specific dimension.
 
-During training, each word is given sequentially to the model, and the model is asked to predict the next word in the sentence. It does this by predicting a vector with $N$ values, where $N$ is the vocabulary size. The vector is then put into a softmax function, and its elements are interpreted as the probability that the selected word should be the next word in the sentence. The model does not ignore the \textit{"<UKN>"} tokens, and trains to predict them the same as any other word. At test time if \textit{"<UKN>"} were to be picked, it is replaced by the word prediction with the second highest probability.
+During training, each word is given sequentially to the model, and the model is asked to predict the next word in the sentence. It does this by predicting a vector with $N$ values, where $N$ is the vocabulary size. The vector is then put into a softmax function, and its elements are interpreted as the probability that the selected word should be the next word in the sentence. The model does not ignore the \textit{<UKN>} tokens, and trains to predict them the same as any other word. At test time if \textit{<UKN>} were to be picked, it is replaced by the word prediction with the second highest probability.
 
 \subsection{Loss function}
 The loss function $L(\theta)$ used for automatic image captioning is cross entropy \cite{notesonbackprop}. Let $M$ be the combined number of words of all the captions in the mini-batch, and $S$ be the set of all predicted word probabilities $p$. $\hat{p}$ is the associated ground truth to word prediction $p$. The total loss if given by:
@@ -986,7 +1009,7 @@ Following \cite{tcn} advancements with TCNs on sentence modeling tasks, a kernel
 
 The word embeddings use 512 channels, and every convolution uses 256 channels, except the last layer which uses $N \approx $ 10 000 channels, where $N$ is the vocabulary size. A given image is fed into a ResNet-18, up to and including the global average pooling layer, as a feature extractor to extract a 512-feature vector from the image. This feature vector is used as a start of string token and is given to the TCN as a "word" at the first timestep.
 
-At runtime, the model only has access to the 512-dimensional feature vector from the image. The model predicts the next words in the sentence sequentially from the previous available words. At timestep $t=1$, only the feature vector from the ResNet-18 is used. At the next timesteps, the embedded predicted word from the previous timestep is concatenated to the end of the activation tensor at the first layer. To predict the next word in the sequence, the model performs convolutions on the concatenated tensor. This process is repeated until the model predicts an end of string \textit{"<EOS>"} token.
+At runtime, the model only has access to the 512-dimensional feature vector from the image. The model predicts the next words in the sentence sequentially from the previous available words. At timestep $t=1$, only the feature vector from the ResNet-18 is used. At the next timesteps, the embedded predicted word from the previous timestep is concatenated to the end of the activation tensor at the first layer. To predict the next word in the sequence, the model performs convolutions on the concatenated tensor. This process is repeated until the model predicts an end of string \textit{<EOS>} token.
 
 \subsection{GRU}
 The second model tested is a model often used for image captioning and sequential data, a derivation of a normal recurrent neural network \cite{cs231n} CITE CITE mscoco leaderboards]. The architecture used follows industry standards for GRUs. A ResNet-18 is used, the same as for the TCN model, to predict a 512-dimensional feature vector from the image. This vector is set as the first hidden layer in the GRU. The feature vector is additionally used as a start of string token, similar to the TCN model. Three hidden layers of size 512 are used. The vocabulary used by the GRU is the same as the one used by the TCN. Word embeddings of size 512 are used, similar to the TCN model, to represent words as tensors.
@@ -1013,15 +1036,14 @@ Each model was trained for 1.75 million iterations on the training set of the MS
 \end{table}
 
 \subsection{Discussion}
-The temporal convolutional network performed worse across all evaluation metrics compared to the recurrent model. While the convolutional model converged faster on the training set, it failed to generalize to the validation set, shown by the tracked loss function in figure /ref{figimagecaptioning}.
+The temporal convolutional network performed marginally worse across all evaluation metrics compared to the recurrent model. While the convolutional model converged faster on the training set, it failed to generalize to the validation set, shown by the tracked loss function in figure /ref{figimagecaptioning}.
 
-One reason might be that the TCN couldn't effectively make use of the features generated by the backbone feature extractor ResNet. The GRU hda a very efficient method of storing the image features in its first hidden layer, which can be kept in the models memory during the whole sequence. The TCN only has access to the input image features from a single timestep. Even though the output neurons had a receptive field of 39 timesteps, and thus could make use the image features at every timestep, it is possible that this method of incorporating the image features at every timestep is not sufficient to generate accurate predictions. The TCN might just be predicting the next word in the sentence based exclusively on the previous words, with no input from the extracted image features.
+One reason might be that the TCN couldn't effectively make use of the features generated by the backbone feature extractor ResNet. The GRU had a very efficient method of storing the image features in its first hidden layer, which can be kept in the models memory during the whole sequence. The TCN only has access to the input image features from a single timestep. Even though the output neurons had a receptive field of 39 timesteps, and thus could make use the image features at every timestep, it is possible that this method of incorporating the image features at every timestep is not sufficient to generate accurate predictions. The TCN might just be predicting the next word in the sentence based exclusively on the previous words, with no input from the extracted image features.
 
 A solution to the problem of efficiently representing the image features in the TCN could be to concatenate the extracted image features to the embedded input words at every timestep. Further experimentation has to be done to reach a decisive conclusion regarding this problem.
 
 \section{Conclusion} 
-Feed-forward and convolutional neural networks are a type of artificial neural network consisting of sequential layers of neurons. In a feed-forward neural network every neuron from the previous layer is connected to all the neurons in the proceeding layer. In a convolutional neural network, only nearby neurons are connected to the neurons of the proceeding layer through what is called the convolution operation. Forward propagation is the the process of forwarding the signal from your input neurons to your output neurons through the neural network. Backpropagation is the method of training the neural network through repeated use of the chain rule to find how the neural network's parameters should be modified to minimize a determined loss function. Classification of handwritten
-digits was achieved by using a 7 layer deep feed-forward neural network with hidden layer sizes 1000, as well by using a 7 layer deep convolutional neural network with kernel size 5, followed by two fully connected layers. Additionally, a deep convolutional neural network based on a state of the art one-shot detector was used to detect a variable number of faces in an image.
+A mathematical derivation of the general case of a convolutional neural network with an arbitrary input of a tensor of order 4 is presented. Furthermore, the accuracy of temporal convolutional networks could be increased by using a linear dilation increase, together with more efficient zero-padding, to beat the current state of the art, with three different residual building blocks. Temporal convolutional networks were also shown to be a contender to its recurrent variant, the Gated Recurrent Unit, on the task of automatic image captioning, performing only marginally worse, and has the potential to perform better with additional changes. For dense face detection in images, focal loss and other types of loss functions were shown to perform worse than classical binary cross entropy. An addition of a feature pyramid network was shown to dramatically increase mean average precision. The final model is efficient and accurate enough to function as a real time face detector for surveillance and face tagging systems.
 
 \begin{thebibliography}{99}	
  \bibitem{cs231n} 
