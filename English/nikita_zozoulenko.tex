@@ -1,5 +1,5 @@
 \documentclass[a4paper, twoside]{article}
-\usepackage[fontsize=10pt]{scrextend}
+\usepackage[fontsize=11pt]{scrextend}
 %\documentclass[10pt]{extarticle}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
@@ -8,10 +8,15 @@
 \usepackage{amsfonts, amsmath, amssymb}
 \usepackage{mathtools}
 
+\usepackage{pifont}
+
+
 \usepackage{graphicx}
 \usepackage{subfig}
 \usepackage{epsfig}
 \usepackage{color}
+
+\graphicspath{{/hdd/Documents/math-cnn-derivation-swedish-paper/English/images}}
 
 \usepackage{url}
 %%  Defines the command \url{} that can be used to typeset url:s
@@ -39,9 +44,10 @@ Supervisor: Oleg Burdakov \\*}
 
 \vfill
 \begin{figure}[h]
-	\centering
-  		\includegraphics[scale=0.221]{resultscrowd2.png}
-  	\caption{(a) The proposed convolutional-neural-network-based model FaceNet is capable of dynamically detecting over 700 faces in a crowded scene for various scales, lighting and occlusions. (b) A temporal neural network (TCN) and a Gated Recurrent Unit (GRU) automatically captioning an image..} \label{crowd}
+    \centering
+    \subfloat[Dense Face Detection]{{\includegraphics[width=7.5cm]{frontface.png} }}
+    \subfloat[Automatic Image Captioning]{{\includegraphics[width=7.605cm]{captionssmall.png} }}
+  	\caption{(a) The proposed convolutional-neural-network-based model FaceNet is capable of dynamically detecting up to hundreds of faces in a crowded scene for various scales, lighting and occlusions. (b) A temporal convolutional neural network (TCN) and a Gated Recurrent Unit (GRU) automatically captioning an image.} \label{figtitle}
 \end{figure}
 \vfill
 
@@ -49,7 +55,8 @@ Supervisor: Oleg Burdakov \\*}
 
 %start abstract
 \Large{\textbf{Abstract}}\\
-Convolutional neural networks (CNNs) are traditionally used in computer vision, but have recently gained traction as sequential models. I suggest two improvements to temporal convolutional networks (TCNs) and empirically evaluate them to achieve a new state of the art on the task of SequenceMNIST (99.53\% versus 99.0\%) and Permuted SequenceMNIST (97.86\% versus 97.28\%), using my new zero-padding and dilation scheme which also keeps information from flowing from the future into the past. Three different residual blocks are also experimented on to show how residual connections affect the performance of TCNs. The improved model is then compared to its recurrent neural network counterpart, a Gated Recurrent Unit (GRU), on an area where TCNs have never been applied before; automatic image captioning, and is shown to perform similarly. Additionally, since the field lacks a fully derived order 4 example of a CNN, I present a derivation of the general case for a CNN with an arbitrary input of a tensor of order 4, including varying zero-padding and strides during forward and backpropagation. The derivation is then used for my own neural network library implementation in Python and C++. Furthermore, I systematically construct a region based dense face detector and empirically investigate how factors such as cross entropy loss, focal loss, feature pyramid networks, online hard example mining, color jitter, and network depth affects its performance. The final model is sufficiently accurate and computationally efficient to be used for real time video, for instance CCTV or other surveillance systems.
+\normalsize{}
+Convolutional neural networks (CNNs) are traditionally used in computer vision, but have recently gained traction as sequential models. I suggested two improvements to temporal convolutional networks (TCNs) and empirically evaluated them to achieve a new state of the art on the task of SequenceMNIST (99.53\% versus 99.0\%) and Permuted SequenceMNIST (97.86\% versus 97.28\%). Three different residual blocks were also experimented on to find the effect of residual connections on the performance of TCNs. The improved model was then compared to its recurrent neural network counterpart, a Gated Recurrent Unit, on an area where TCNs have never been applied before; automatic image captioning, and is shown to perform similarly. Additionally, since the field lacks a fully derived order 4 example of a CNN, I presented a clear derivation of the general case for a CNN with an arbitrary input of a tensor of order 4, including varying zero-padding and strides during forward and backpropagation. The derivation was then used for my own neural network library implementation in Python and C++. Furthermore, I systematically construct a region based dense face detector and empirically investigate how factors such as cross entropy loss, focal loss, feature pyramid networks, online hard example mining, color jitter, and network depth affects its performance. The final model is sufficiently accurate and computationally efficient to be used for real time video, for instance CCTV or other surveillance systems.
 
 \newpage
 %end abstract
@@ -214,7 +221,9 @@ The delta-error of the last layer $L$ depends on the type of loss function used.
 \end{split}
 \end{equation}
 
-With the delta-error defined at every layer in the network the partial derivative of the loss function with respect to the networks parameters can be calculated. Just like equation (\ref{dLdX_FCC}), the chain rule is applied to break up $\inpd{L(\theta)}{X^{(l)}}$ into three partial derivatives, $\inpd{L(\theta)}{X^{(l+1)}}$, $\inpd{X^{(l+1)}}{Z^{(l+1)}}$ and $\inpd{Z^{(l+1)}}{W^{(l)}}$. All the examples in the mini-batch are summed over since the weights affect every single example. $\inpd{L(\theta)}{X^{(l+1)}}$ is the delta-error and the other two partial derivatives are derived from equations (1) and (2) \cite{cs231n} \cite{wikiStanford}:
+With the delta-error defined at every layer in the network the partial derivative of the loss function with respect to the networks parameters can be calculated. Just like equation (\ref{dLdX_FCC}), the chain rule is applied to break up $\inpd{L(\theta)}{X^{(l)}}$ into three partial derivatives, $\inpd{L(\theta)}{X^{(l+1)}}Potentially hazardous biological agents research:
+a. Give source of the organism and describe BSL assessment process and BSL determination.
+b. Detail safety precautions and discuss methods$, $\inpd{X^{(l+1)}}{Z^{(l+1)}}$ and $\inpd{Z^{(l+1)}}{W^{(l)}}$. All the examples in the mini-batch are summed over since the weights affect every single example. $\inpd{L(\theta)}{X^{(l+1)}}$ is the delta-error and the other two partial derivatives are derived from equations (1) and (2) \cite{cs231n} \cite{wikiStanford}:
 
 \begin{equation}\label{dLdW_FCC}
 \begin{split}
@@ -243,7 +252,7 @@ Furthermore, the aim is to use the knowledge to systematically and empirically e
 
 Additionally, the purpose of this paper is to suggest improvements to the temporal convolutional network model to achieve a new state-of-the-art, and to then apply the model to a task in which it has never been applied before, namely automatic image captioning, and to compare the convolutional model with its recurrent neural network counterpart.
 
-\subsection{Problem statement}
+\subsection{Problem statements}
 How is a convolutional neural network derived with an arbitrary input of a tensor of order 4?
 
 How does a convolutional neural network perform against a feed-forward neural network on the task of classifying handwritten digits?
@@ -602,8 +611,8 @@ The softmax layer does not have any learnable parameters and therefore only the 
 \end{split}
 \end{equation}
 
-\section{Evaluating the models and handwritten digits}
-The code and the trained models are publically available on github in the repository \textit{FCC-vs-CNN-mnist}.
+\section{Evaluating the models on handwritten digits}
+The code and the trained models from this following section are publically available on github in the repository \textit{FCC-vs-CNN-mnist}.
 
 \subsection{MNIST}
 The MNIST database for handwritten digits \cite{MNIST} is a dataset consisting of 70 000 grayscale images of size $28 \times 28$ pixels, of the digits 0 to 9 (see figure \ref{figMNIST}). The database is split up into two different sets, a training set containing 60 000 images used to train the model, and a test set consisting of 10 000 images used to evaluate the model. The test set is kept separate from the training set to prevent overfitting on the training data. A model is given all the pixel values of the image as input features, and is asked to predict what digit is in the image.
@@ -668,9 +677,9 @@ The models were trained on a subset of the training set. 5 000 random samples fr
 
 For my own implementation of both convolutional neural networks and feed-forward neural networks, the models were trained on an Intel i7 3770K CPU for 5 000 iterations with a learning rate of 0.001 and a batch size of 50. The total elapsed training time was 6 hours per model. The convolutional and feed-forward models achieved a final accuracy of 99.1\% and 97.0\% respectively on the test set of never before seen handwritten digits. 
 
-My own implementations of artificial neural network were deemed too computationally inefficient to do any further testing on, so I implemented the models in Facebook's GPU-accelerated tensor and dynamic neural network library PyTorch.
+My own implementations of artificial neural network was deemed to be too computationally inefficient to do any further testing on, so I implemented the models in Facebook's GPU-accelerated tensor and dynamic neural network library PyTorch.
 
-The models were trained for 100 000 iterations while tracking the training and validation loss simultaneously, shown in figure \ref{figaccloss}. The initial learning rate was set to 0.001 and divided by 10 at 70 000 and 90 000 iterations. An Nvidia GTX 1080ti GPU was used to train the models. The total elapsed training time was approximately 1 hour per model. The models weights were saved every 5 000 iterations. The weights which performed best on the validation set were picked and used to compute the final results on the test set. Results are shown in table \ref{tablemnist}.
+The models were trained for 100 000 iterations while tracking the training and validation loss simultaneously, shown in figure \ref{figaccloss}. The initial learning rate was set to 0.001 and divided by 10 at 70 000 and 90 000 iterations. An Nvidia GTX 1080ti GPU was used to train the models. The models weights were saved every 5 000 iterations. The weights which performed best on the validation set were picked and used to compute the final results on the test set. Results are shown in table \ref{tablemnist}.
 
 \begin{figure}[h]
     \centering
@@ -684,8 +693,8 @@ The models were trained for 100 000 iterations while tracking the training and v
     \begin{tabular}{| l | l | l | l | l | l |}
     \hline
     Model & Test Accuracy & Validation Loss & Training Loss & Parameters\\ \hline
-    Feed-forward Neural Network & 97.3\% & 0.15 & 0 & 167 168 \\ \hline
-    Convolutional Neural Network & 99.5\% & 0.016 & 0 & 153 792\\ \hline
+    Feed-forward Neural Network & 97.40\% & 0.146 & 0.0010 & 167 168 \\ \hline
+    Convolutional Neural Network & 99.30\% & 0.026 & 0.0003 & 153 792\\ \hline
     \end{tabular}
     \caption{The final accuracy and validation loss of the models. The accuracy is measured as the percentage of correctly classified examples from the test set of 10 000 never before seen images of handwritten digits. The validation loss is the loss on the test set.} \label{tablemnist}
 \end{center}
@@ -693,7 +702,7 @@ The models were trained for 100 000 iterations while tracking the training and v
 
 \subsection{Discussion}
 
-The convolutional neural network is shown to have better generalizability on the test set than its feed-forward counterpart: While the training loss is the same for both the convolutional and feed-forward models, the validation loss is approximately 10 times higher for the feed-forward model. The final accuracy of the two networks were 99.5\% for the convolutional neural network and 97.3\% for the feed-forward neural network, tested on the test set consisting of 10 000 handwritten digits. 
+The convolutional neural network is shown to have better generalizability on the test set than its feed-forward counterpart: While the number of parameters and training loss is approximately the same for both the convolutional and feed-forward models, the validation loss is approximately 7 times higher for the feed-forward model. The final accuracy of the two networks were 99.30\% for the convolutional neural network and 97.40\% for the feed-forward neural network, tested on the test set consisting of 10 000 handwritten digits. 
 
 
 \section{Dense face detection and localization}
@@ -718,7 +727,7 @@ IoU(A, B)=\frac{|A \cap B|}{|A \cup B|}
 \end{figure}
 
 \subsection{Baseline model}
-The baseline model uses the deep residual convolutional neural network ResNet-18 \cite{resnet} as a backbone network and feature extractor. It uses a total of 18 convolutional layers throughout blocks named \textit{conv1} to \textit{conv5} to extract features from the input image. The feature maps created by the backbone model is then fed into two smaller sub-networks, called the classification head and the regression head. They are constructed out of 4 residual bottleneck convolutional layers used by ResNet-50 up to ResNet-152.
+The baseline model uses the deep residual convolutional neural network ResNet-18 \cite{resnet} as a backbone network and feature extractor. It uses a total of 18 convolutional layers throughout blocks named \textit{conv1} to \textit{conv5} to extract features from the input image. An additional \textit{conv6} block is created after the last layer to create one additional scale of feature maps. The block consists of one convolutional layer with stride 2, and 2 residual bottleneck layers used by Resnet-50 up to ResNet-152. The feature maps created by the backbone model is then fed into two smaller sub-networks, called the classification head and the regression head. They are constructed out of 4 residual bottleneck layers.
 
 Bounding boxes are created from a number of anchor boxes at every spatial position (width and height) from a set of feature maps. An anchor box is a bounding box of a specific size and scale, used to base the bounding box predictions off. Anchor boxes used by FaceNet are set to be of sizes in the range $[16, 406]$ pixels, each increasing by a factor of $2^{1/3}$ for every new anchor box size. Two ratios of width:height are used at every scale, namely $1:\frac{2}{3}$ and $1:1$, to enable the detection of faces facing sideways and directly into the camera. having densely packed anchors makes it that every ground truth bounding box (of sufficient size) has an IoU$>0.55$ with at least one anchor box. The anchor boxes are spaced out to include 3 scales with 2 aspect ratios across feature maps from the levels \textit{conv2} to \textit{conv5}, to enable the detection of faces of different scales, similar to RetinaNet \cite{retinanet}.
 
@@ -758,7 +767,7 @@ When evaluated on the WIDERFace validation set, the model achieved an mAP of 0 a
 \subsubsection{v1.1, Binary Cross Entropy (BCE)}
 The baseline model uses a softmax function to base its classification prediction on, based on two values; one for each object class. An open source implementation of YOLO \cite{sigmoidvssoftmax} showed that using a binary cross entropy loss function (logistic regression), instead of a categorical cross entropy using a softmax function, led to a gain in mAP. For FaceNet v1.1, the softmax layer in FaceNet is replaced by a sigmoid function, and logistic regression is used instead. Let the new classification loss be denoted by $L_c$. Instead of normalizing the loss by the total number of bounding boxes, the loss is divided by the total number of positively assigned bounding boxes, similar to SSD \cite{ssd} and RetinaNet \cite{retinanet}.
 
-\begin{equation}\label{eqsmoothl1loss}
+\begin{equation}
 L_c(p, \hat{p}) = -p \log{(\hat{p})} -(1-p) \log{(1-\hat{p})}
 \end{equation}
 
@@ -774,7 +783,7 @@ When evaluated on the easy/medium/hard splits of the WIDERFace validation set, F
 \subsubsection{v1.2, Focal Loss (FL)}
 Focal loss, introduced by RetinaNet \cite{retinanet}, introduced a loss function which focused on the examples which were hard to classify. It was showed that using focal loss instead of cross entropy for multi-class object detection increased the final accuracy of the model. Let $F_c$ denote the focal loss used as the classification loss by FaceNet v1.2:
 
-\begin{equation}\label{eqsmoothl1loss}
+\begin{equation}
 L_c(p, \hat{p}) = -p (1-p)^\gamma \log{(\hat{p})} -(1-p) p^\gamma\log{(1-\hat{p})}
 \end{equation}
 
@@ -822,14 +831,73 @@ Online hard example mining (OHEM) \cite{ohem} has been shown to increase mAP whe
 Using OHEM resulted in a decrease in performance, halving the accuracy on the easy set, compared to the best performing model v1.3. Quantitative results showed that the model had trouble detecting large faces. When evaluated on the easy/medium/hard splits, v1.7 achieves an mAP of 46.0/51.8/42.3.
 
 \subsubsection{v1.8, OHEM, whole batch}
-Applying the OHEM algorithm on the whole mini-batch, instead of applying it on every image separately, yielded faster training times and higher accuracies. A $k$ value of 128 was used. The results on the easy/medium/hard set were xx/yy/zz mAP.
+Applying the OHEM algorithm on the whole mini-batch, instead of applying it on every image separately, yielded faster training times and higher accuracies. A top $k$ value of 128 was used. The results on the easy/medium/hard set were 55.9/36.8/15.6 mAP. This version of OHEM performed worse than the previous, image-specific version.
+
+\subsubsection{v1.9, 1:1.5 anchor ratio, 0.65 threshold}
+For FaceNet v1.9, a new anchor width to height ratio was used, namely 1:1.5. Looking at quantitative results of anchor assignment showed that the 1:2 ratio was always higher than required for every assigned ground truth bounding box. Adjusting the ratio accordingly should in theory lead to better quality bounding boxes, and a higher number of assigned ground truth bounding boxes. To offset the higher number of assigned bounding boxes, a higher IoU threshold is used: 0.65.
+
+Empirical results on the easy/medium/hard shows that the model attained an mAP of 88.7/86.4/64.8. The model performed worse than its earlier, lower threshold.
+
+\subsubsection{v2.0, features from \textit{conv3} to \textit{conv7}}
+Instead of using features from block \textit{conv2}, which is very computationally expensive, FaceNet v2.0 uses features starting from \textit{conv3}, in an effort to increase its speed. Using features from a deeper layer may also enable the model to give more accurate predictions as an effect of a deeper architecture. A \textit{conv7} layer is added, similarly to the \textit{conv6} layer, to offset the increase in depth to still be able to predict bounding boxes of size $416^2$ pixels. All other model details are the same as in v1.9.
+
+FaceNet v2.0 acheves an mAP of 84.4/83.4/57.1 on the easy/medium/hard validation splits. Sliding a face across an image and feeding the images as inputs to the model shows that the model fails to predict faces at regularly spaced out areas on the image. This shows that the current anchor boxes are too spaced out across the image, leading to ground truths not being assigned to any anchor during training.
+
+\subsubsection{v2.1, adding feature map upsampling}
+To fix the problems of version 2.1, bi-linear interpolation is added to the classification and regression head. After the first 2 residual bottleneck layer, the feature maps were upscaled by a factor of 2. This will in turn create more spaced out anchor boxes across the final image.
+
+Results on the easy/medium/hard validation splits were 89.1/86.6/64.4
+
+\subsubsection{v2.2, 0.55 IoU threshold}
+Changing the threshold to the previously best performing threshold decreases the performance of the model. Other than the threshold, the same hyperparameters and network architecture as FaceNet v2.2 was used.
+
+Results on the easy/medium/hard validation splits were 87.1/84.1/61.3 mAP.
+
+\subsubsection{v2.3, random color jitter}
+Augmenting the training data with random color jitter, through adding random noise and randomly shifting hues, was shown to increase accuracy. Results on the easy/medium/hard validation splits were 89.5/87.7/67.4 mAP.
+
+\subsubsection{v2.4, features from \textit{conv2} to \textit{conv7}}
+Even though the model performs better with using features from \textit{conv2} to \textit{conv6}, a change to \textit{conv3} to \textit{conv7} has to be done for the following reason: The model performs badly on small faces. This is due to there not being any anchor boxes of sufficient size for any small ground truth to get assigned to an anchor. To deal with this issue, three additional anchor scales, $\{8^2, 10^2, 13^2\}$, are added, for a final scale coverage of $8^2$ to $416^2$ pixels. Feature maps used by FaceNet v2.4 are \textit{conv2} to \textit{conv7}, to have a sufficiently dense anchors to guarantee the ground truth has a minimum IoU overlap of 0.65 with at least one anchor box. Using features from \textit{conv1} is too computationally inefficient and will use up too much vRAM, which my GPU has too little of. Therefore, the transition to \textit{conv2} to \textit{conv7} features has to be done.
+
+This change led to an increase in mAP on the hard set, with a minimal decrease in mAP on the easy and medium sets: Results on the easy/medium/hard validation splits were 88.5/85.6/72.3 mAP.
+
+\subsubsection{v2.5, increased depth}
+Since an increase in network depth increases training times and model size, thus being limited by the GPU memory, this factor was tested last. FaceNet 2.5 uses the architecture of the best performing model so far, version 2.4, only varying the network depth. Experimentation showd that the network failed to converge using ResNet-50, ResNet-101 and ResNet-152 as backbone networks. The models resulted to predict only negative bounding boxes at every location in the image. Due to the increase in memory, the batch size had to be lowered. This might have been a factor in the failure of effective convergence. An mAP of 0 was reached for all models with increased depth.
+
+\subsection{Final Model Results}
+The experiments are summarized in table \ref{tablefacenet}. The best performing models FaceNet v2.4 for the hard split, and FaceNet v2.3 for the easy and medium splits, complete one forward iteration in 24ms and 22ms respectively. This enables the model to run approximately 50 times a second. Quantitative results on the WIDERFace validation set can be seen in figure \ref{figwiderfaceval}
+
+\begin{table}[h]
+\begin{center}
+    \begin{tabular}{| c | c | c | c | c | c | c | l | l | l |}
+    \hline
+    Model & Features & BCE & FL & FPN & OHEM & Jitter & mAP$_{e}$ & mAP$_{m}$ & mAP$_{h}$\\  \hline
+    v1.0 & \textit{conv2}-\textit{conv6} &  &  &  & && 0& 0&0 \\ \hline 
+    v1.1 & \textit{conv2}-\textit{conv6} &  \ding{52} &  &  & && 37.4& 21.7& 9.7 \\ \hline 
+    v1.2 & \textit{conv2}-\textit{conv6} &  & \ding{52} &  & && 22.4& 12.1& 5.1\\ \hline 
+    v1.3 & \textit{conv2}-\textit{conv6} &  \ding{52}&  & \ding{52} && & 89.3 & 85.9 & 65.9 \\ \hline 
+    v1.4 & \textit{conv2}-\textit{conv6} &  & \ding{52} & \ding{52} & && 81.0& 81.0&  64.2\\ \hline 
+    v1.7 & \textit{conv2}-\textit{conv6} & \ding{52} &  & \ding{52} & \ding{52} && 46.0 & 51.8 &42.3 \\ \hline 
+    v1.8 & \textit{conv2}-\textit{conv6} & \ding{52} &  & \ding{52} & \ding{52} && 55.9& 36.8& 15.6\\ \hline 
+    v2.0 & \textit{conv3}-\textit{conv7} & \ding{52} &  & \ding{52} & && 84.4& 83.4& 57.1\\ \hline 
+	v2.1 & \textit{conv3}-\textit{conv7} & \ding{52} &  & \ding{52} & && 89.1& 86.6& 64.4\\ \hline 
+	v2.3 & \textit{conv3}-\textit{conv7} & \ding{52} &  & \ding{52} & & \ding{52}& \textbf{89.5}& \textbf{87.7}& 67.4\\ \hline
+	v2.4 & \textit{conv2}-\textit{conv7} & \ding{52} &  & \ding{52} & & \ding{52}& 88.5& 85.6& \textbf{72.3}\\ \hline 
+    \end{tabular}
+    \caption{\textbf{FaceNet Face Detection}. A table comparing the different FaceNet versions.} \label{tablefacenet}
+\end{center}
+\end{table}
+
+\begin{figure}[h]
+\begin{center}
+    \includegraphics[width=16cm]{figfacedetection.png}\caption{The detections of FaceNet v2.3 on four images of the WIDERFace validation set \cite{WIDERFace}.} \label{figwiderfaceval}
+\end{center}
+\end{figure}
 
 \subsection{Discussion}
-benchmark speed
+Contrary to research done on multi-class object detection, various methods which have shown to increase accuracy, such as online hard example mining and focal loss, has led to a decrease in accuracy. Using networks of larger depth, as research shows \cite{retinanet} \cite{resnet}, should also increase the accuracy of models, but the contrary was found in this study.
 
-uses: cctv, surveilance, social media tagging, digital cameras.
-
-focal loss is not better
+One reason for which the deeper networks, ResNet-50, ResNet-101 and ResNet-151, failed to detect any positive examples, might be the batch size. Since the early experiments used a ResNet-18 as a backbone network, a larger batch size could be used due to smaller model size. This larger batch size could reduce the stochasticity of the SGD by giving a more accuracy approximation of the true gradient. Using a small batch size could have led the model to converge to only detect negative bounding box suggestions.
 
 
 \section{Improving temporal convolutional networks}
@@ -841,7 +909,7 @@ Given a number of data points at timesteps $t = 1, 2, 3, ..., m$, a sequence mod
 
 The activations at layer $l$ is a tensor of order 3 $X^{(l)} \in \mathbb{R}^{R \times C \times T}$ where $C$ is the number of feature channels and $T$ is the maximum length of the sequence. The convolutional weights are also a tensor of order 3 $W^l \in \mathbb{R}^{C' \times C \times k}$, where $C'$ is the number of feature channels of the proceeding layer, and $k$ is the kernel size. In addition to the kernel size $k$ and stride $s$, temporal convolutional layers have one additional hyperparameter compared to conventional convolutions, namely a dilation factor $d$. The dilation controls how the kernel is applied on the activations by allowing the kernel to be spaced out across the activation of neurons (see figure \ref{figTCNdil}). The dilated convolution is expressed as:
 
-\begin{equation}\label{konvolution}
+\begin{equation}
 \begin{split}
 	X^{(l+1)}_{r, c', t'}	
 		& = \sum^{C}_{c=1} \sum^{k}_{i=1} X^{(l)}_{r, c, (1 + st'-s+di)}W^{(l)}_{c', c, i}
@@ -958,7 +1026,7 @@ When evaluated on the test set, all models beat the current state of the art on 
     TCN (Single) & \textbf{99.53\%} & 99.23\% & 0.046 & \textbf{0.006} \\ \hline
     TCN (Double) & 99.34\% & 99.07\% & 0.050 & 0.014 \\ \hline
     TCN (Radical) & 99.37\% & \textbf{99.30\%} & \textbf{0.040} & 0.010 \\ \hline
-    Dilated GRU [CITE CITE] & 99.0\% & N/A & N/A & N/A \\ \hline
+    Dilated GRU \cite{dilatedgru} & 99.0\% & N/A & N/A & N/A \\ \hline
     TCN (Original) \cite{tcn} & 99.0\% & N/A & N/A & N/A \\ \hline
     \end{tabular}
     \caption{\textbf{SequenceMNIST}. A table comparing my proposed modified temporal convolutional networks with the current state of the art on the SequenceMNIST task.} \label{tabseqmnist}
@@ -975,7 +1043,7 @@ When evaluated on the test set, all models beat the current state of the art on 
     TCN (Radical) & 97.82\% & 97.94\% & 0.117  & \textbf{0.017} \\ \hline
     TCN (Original) \cite{tcn} & 97.2\% & N/A & N/A & N/A \\ \hline
     \end{tabular}
-    \caption{\textbf{Permuted SequenceMNIST}. A table comparing my proposed modified temporal convolutional networks with the current state of the art on the Permuted SequenceMNIST task.} \label{tabseqmnist}
+    \caption{\textbf{Permuted SequenceMNIST}. A table comparing my proposed modified temporal convolutional networks with the current state of the art on the Permuted SequenceMNIST task.} \label{tabpmnist}
 \end{center}
 \end{table}
 
@@ -1014,12 +1082,12 @@ At runtime, the model only has access to the 512-dimensional feature vector from
 \subsection{GRU}
 The second model tested is a model often used for image captioning and sequential data, a derivation of a normal recurrent neural network \cite{cs231n} CITE CITE mscoco leaderboards]. The architecture used follows industry standards for GRUs. A ResNet-18 is used, the same as for the TCN model, to predict a 512-dimensional feature vector from the image. This vector is set as the first hidden layer in the GRU. The feature vector is additionally used as a start of string token, similar to the TCN model. Three hidden layers of size 512 are used. The vocabulary used by the GRU is the same as the one used by the TCN. Word embeddings of size 512 are used, similar to the TCN model, to represent words as tensors.
 
-At runtime, keeping all the previous words in memory is not required, unlike the TCN model. To generate an image caption, the ResNet-18 feature vector is given to the GRU as a start of string token. The predicted word is then embedded and given to the model, to predict the next word in the sentence. This process is repeated until the model predicts an end of string \textit{"<EOS>"} token.
+At runtime, keeping all the previous words in memory is not required, unlike the TCN model. To generate an image caption, the ResNet-18 feature vector is given to the GRU as a start of string token. The predicted word is then embedded and given to the model, to predict the next word in the sentence. This process is repeated until the model predicts an end of string \textit{<EOS>} token.
 
 \subsection{Results}
 Early experiments used the more commonly used ResNet-50 as a feature extractor, but the TCN model would not fit into 11GB of VRAM GPU memory during training, and could thus not be used. The GRU did not have any memory problems. Further experimentation reverted to the less deep ResNet-18 for both models.
 
-Each model was trained for 1.75 million iterations on the training set of the MSCOCO dataset, using the train/val 115k/5k split. The validation loss was tracked during training, but was not used by SGD. The models were trained on images resized to $224 \times 224$ pixels, with a batch size of 2 due to memory limitations, the absolute minimum for batch normalization to function. Each image used 5 randomly chosen ground truth image captions during training. An initial learning rate of 0.1 was used for both models, which was divided by a factor of 10 after 1 million iterations, and 1.5 million iterations. Table \ref{tabimagecaptioning} shows the final result on the 5 evaluation metrics used by the MSCOCO test set evaluation server: CIDEr-D, METEOR, Rogue-L, BLUE and SPICE
+Each model was trained for 1.75 million iterations on the training set of the MSCOCO dataset, using the train/val 115k/5k split. The validation loss was tracked during training, but was not used by SGD. The models were trained on images resized to $224 \times 224$ pixels, with a batch size of 2 due to memory limitations, the absolute minimum for batch normalization to function. Each image used 5 randomly chosen ground truth image captions during training. An initial learning rate of 0.1 was used for both models, which was divided by a factor of 10 after 1 million iterations, and 1.5 million iterations. Table \ref{tabimagecaptioning} shows the final result on the 5 evaluation metrics used by the MSCOCO test set evaluation server: CIDEr-D, METEOR, Rogue-L, BLUE and SPICE. Figure \ref{figimagecaptioning} shows quantitative results on the MSCOCO Captions validation set.
 
 \begin{table}
 \begin{center}
@@ -1035,15 +1103,27 @@ Each model was trained for 1.75 million iterations on the training set of the MS
 \end{center}
 \end{table}
 
+\begin{figure}[h]
+\begin{center}
+    \includegraphics[width=15cm]{captionsbig.png}\caption{Comparative results of the TCN and GRU model on images from the MSCOCO Captions validation set \cite{mscoco}.} \label{figimagecaptioning}
+\end{center}
+\end{figure}
+
 \subsection{Discussion}
-The temporal convolutional network performed marginally worse across all evaluation metrics compared to the recurrent model. While the convolutional model converged faster on the training set, it failed to generalize to the validation set, shown by the tracked loss function in figure /ref{figimagecaptioning}.
+The temporal convolutional network performed marginally worse across all evaluation metrics compared to the recurrent model. While the convolutional model converged faster on the training set, it failed to generalize to the validation set, shown by the tracked loss function in figure \ref{figimagecaptioning}.
 
 One reason might be that the TCN couldn't effectively make use of the features generated by the backbone feature extractor ResNet. The GRU had a very efficient method of storing the image features in its first hidden layer, which can be kept in the models memory during the whole sequence. The TCN only has access to the input image features from a single timestep. Even though the output neurons had a receptive field of 39 timesteps, and thus could make use the image features at every timestep, it is possible that this method of incorporating the image features at every timestep is not sufficient to generate accurate predictions. The TCN might just be predicting the next word in the sentence based exclusively on the previous words, with no input from the extracted image features.
 
 A solution to the problem of efficiently representing the image features in the TCN could be to concatenate the extracted image features to the embedded input words at every timestep. Further experimentation has to be done to reach a decisive conclusion regarding this problem.
 
+On the other hand, as quantitative results as shown in figure \ref{figimagecaptioning}, the TCN suggests more accurate captions compared to the GRU model, when evaluated by humans.
+
 \section{Conclusion} 
-A mathematical derivation of the general case of a convolutional neural network with an arbitrary input of a tensor of order 4 is presented. Furthermore, the accuracy of temporal convolutional networks could be increased by using a linear dilation increase, together with more efficient zero-padding, to beat the current state of the art, with three different residual building blocks. Temporal convolutional networks were also shown to be a contender to its recurrent variant, the Gated Recurrent Unit, on the task of automatic image captioning, performing only marginally worse, and has the potential to perform better with additional changes. For dense face detection in images, focal loss and other types of loss functions were shown to perform worse than classical binary cross entropy. An addition of a feature pyramid network was shown to dramatically increase mean average precision. The final model is efficient and accurate enough to function as a real time face detector for surveillance and face tagging systems.
+A mathematical derivation of the general case of a convolutional neural network with an arbitrary input of a tensor of order 4 was presented, with varying strides and zero-padding, including both forward and backpropagation. 
+
+Furthermore, a dense face detector was systematically constructed and improved by investigating how techniques such as the focal loss, feature pyramid networks, and online hard example mining (OHEM) affected the final accuracy of the model. Contrary to previous research, OHEM and focal loss was shown to decrease the accuracy of the object detector. The final model is efficient and accurate enough to function as a real time face detector for surveillance and face tagging systems.
+
+Additionally, the accuracy of temporal convolutional networks could be increased by using a linear dilation increases, together with more efficient zero-padding, to beat the current state of the art, with all three different residual building blocks. Temporal convolutional networks were also shown to be a contender to its recurrent variant, the Gated Recurrent Unit, on the task of automatic image captioning, performing only marginally worse on automatic evaluation metrics, and has the potential to perform better with additional changes. 
 
 \begin{thebibliography}{99}	
  \bibitem{cs231n} 
