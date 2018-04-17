@@ -69,14 +69,147 @@ How can temporal neural networks be improved in regards to computational efficie
 
 How do temporal convolutional networks compare to Gated Recurrent Units on the task of automatic image captioning?
 
-\section{Hypothesis}
+\section{Hypothesis / Engineering goals and Expected Outcome}
+\subsection{Derivation of a CNN}
+The goal is to present a clear derivation of the general case for a CNN with an arbitrary input of a tensor of order 4. The derivation should be based on first principles, using the definition of what a discrete convolution does, and expanding it for a varying batch size, number of channels, width, and height. The derivation should be clear to follow and should serve as a baseline for anyone who wants to it as an educational resource to understand the underlying mathematics behind convolutional neural networks. It is then to be used for my own open-source implementation of feed-forward and convolutional neural networks.
 
-\section{Engineering goals}
+\subsection{Dense Face Detection}
+The engineering goal is to construct a face detector which is capable of detecting up to hundreds of faces in an image or video, in real time. The model should satisfy three ciretia: 1. Be able to run more than 30 times a second, 2. Be able to detect faces of widely different scales, and 3. Be fully convolutional. The face detector should be able to serve as a baseline for any system which incorporates surveillance, security, or the detection of humans (e.g. tagging on social media or face focusing for digital cameras), at a variety of scales and sizes.
 
-\section{Expected outcomes}
+In addition to the engineering goals, this work will serve as research into how modern computer vision techniques affect the performance of the model. Factors which will be systematically tested and evaluated will be Online Hard Example Mining (OHEM), Focal Loss, binary cross entropy, random color jitter data augmentation, the addition of a Feature Pyramid Network (FPN) architecture, and increased network depth.
 
-\section{Procedures}
+All of these factors, OHEM, FPN, focal loss, network depth, has been shown to increase the accuracy of multi-class object detectors. Because of this, I hypothesize that they also will increase the accuracy of my single-class object detector. Increased network depth for ResNets have shown to increase classification accuracy. OHEM and focal loss were designed to improve negative to positive class imbalance, which will be of importance to my face detector. FPNs have shown to create feature maps of higher quality for object detectors, which should increase the accuracy of my single-class object detector.
 
-\section{Bibliography}
+\subsection{Improving TCNs for Image Captioning}
+For my first improvement to TCNs, I hypothesize that using a linear instead of an exponential dilation increase will increase the accuracy of the model. In the original implementation with an exponential dilation scheme, every input neuron's value is used exactly once to predict the final output neuron for an arbitrary timestep. This is can be compared to using the same value for a layers kernel size and stride in a conventional spatial CNN, which the best performing models doesn't use. Using linear dilation increases will enable the receptive field of neurons to overlap, similar to normal CNNs. 
+
+Additionally, a too big of an increase of dilation causes the last layers with kernel size $k \leq 2$ to effectively turn into convolutions with kernel size $k=1$. This is due to that every kernel weight, except those at the same timestep, is being multiplied by a zero-padded neuron. The rest of the kernel will be placed on intervals of $d$ timesteps earlier, where $d$ is the dilation. If $d$ is large enough, the next activation used in the convolution will always be a zero-padded neuron, and thus the whole layer effectively becomes a convolution with kernel size $k=1$. The effect of exponential dilations in deep architectures is that only the first layers use data from previous timesteps, while later layers simply become mathematically equivalent to normal feed-foward layers across a single timestep.
+
+The second improvement is to use a more efficient zero-padding scheme which is mathematically equivalent to the original implementation, but is slightly more computationally efficient. The implementation details are detailed in the next section.
+
+For the task of automatic image captioning, I hypothesize that the temporal convolutional model will perform better than its recurrent counterpart, a Gated Recurrent Unit (GRU). This is based on the fact that TCNs have been shown to perform better than recurrent models (GRUs, LSTMs and vanilla RNNs), on a variety of more simple tasks.
+
+\section{Procedures and Data Analysis}
+\subsection{Derivation of a CNN}
+I will derive the convolutional neural network based on first principles, based on the definition of forward propagation, backpropagation and a discrete convolution, and expand it to fit an arbitrary input of a tensor of order 4. This will be done with pen and paper and then transferred over digitally to LaTeX. The derived partial derivatives required to compute the gradient of the loss function will be approximated and compared to its numerical approximated using the formal definition of a partial derivative.
+
+For my own library implementation of feed-forward and convolutional neural networks, I will use the linear algebra library Eigen for matrix operations in C++, and the scientific computing library NumPy for tensor operations in Python. The Eigen implementation will use the \textit{MatrixXd} class to represent the neurons and weights. In the Python implementation, the NumPy \textit{ndarray} class will be used to express tensors. The forward propagation, backpropagation and stochastic gradient descent algorithms will be implemented as described by my mathematical derivation of the general case.
+
+To evaluate my implementation, I will train a feed-forward neural network and a convolutional neural network on the task of classifying handwritten digits using the MNIST dataset.
+
+\subsection{Dense Face Detection}
+For the task of detecting a variable number of faces for real time video, I will systematically investigate how focal loss, binary cross entropy, online hard example mining, feature pyramid networks, color jitter, anchors settings, and network depths affects model performance. This will be done by starting with a baseline model, using a ResNet-18, extracting feature tensors at different depths of the network, to enable the detection of faces at different scales. These features will be given as an input to two sub-networks, a classification head and a regression head. The classification head predicts the probability that certain baseline bounding boxes scattered across the image, called anchor boxes, contains a face. The regression head predicts coordinate offsets for all 4 coordinates of the anchor box, to more closely match the ground truth. During training, every predicted bounding box will be given either a negative or positive label, and a loss function will be constructed as a function of the positive and negative bounding boxes, using a combination of a cross entropy classification loss and a smooth L1 regression loss. The GPU-accelerated dynamic tensor library PyTorch will be used to enable the model to be efficient enough to run in real time.
+
+The model will be trained and evaluated on the WIDERFace dataset. The evaluation metric used will be mean average precision (mAP). It is calculated by plotting the accuracy of the model as a function of its recall. The mean average precision is given by the integral of accuracy with respect to the recall. The model will be evaluted on the easy, medium and hard validation splits, given by the dataset authors.
+
+All training will take place on a GPU I bought exclusively for training machine learning models, an Nvidia GTX 1080 ti, on my personal computer. Since my computational resources will be limited to a single GPU, I cannot test all combinations of factors one by one, which would require training a minimum of $2^6=64$ unique models. Therefore, I will use my baseline model and change one architecture design decision at a time, iteratively improving the model.
+
+\subsection{Improving TCNs for Image Captioning}
+\subsubsection{Improving TCNs}
+I will implement an open-source model of my improved TCN in PyTorch, based on my two suggested improvements. The network architecture hyperparameters and structure will be picked to be as similar to the original model as possible, only varying the dilations, such that the total receptive field of the output neurons is slightly bigger than the maximum sequence size. In addition to using the same residual block presented in the original implementation, I will experiment on two additional residual blocks to see their effect on the accuracy of the model.
+
+The models will be evaluated on the SequenceMNIST and Permuted SequenceMNIST tasks.
+
+\subsubsection{Automatic Image Captioning}
+For the task of automatic image captioning, I will compare a TCN with a traditionally used Gated Recurrent Unit (GRU) on the the MSCOCO Captions dataset.
+
+The models will generate image captions by sequentially suggesting the next word in a sentence, from a large vocabulary of allowed words to choose from. The vocabulary will be chosen based on the most used words in the training data. Words in the training image captions not included in the vocabulary were replaced with an unknown token: \textit{<UKN>}. The vocabulary also includes an end of string token, \textit{<EOS>}, used by the models to signal that the generated sentence is complete. Each word will be represented as a one-hot vector encoding, where every element but one is set to zero, and the index of the non-zero element determines what word it is.
+
+During training, each word will be given sequentially to the model, and the model will predict the next word in the sentence. It will do this by predicting a vector with $N$ values, where $N$ is the vocabulary size. The vector will then be put into a softmax function, and its elements interpreted as the probability that the selected word should be the next word in the sentence. The model will not ignore the \textit{<UKN>} tokens, and will train to predict them the same as any other word. At test time if \textit{<UKN>} were to be picked, it will be replaced by the word prediction with the second highest probability.
+
+A ResNet will be used to extract features from the input images, which will be incorporated by the sequential model to base their predictions off. The GRU will initialize its first hidden layer with the features from the image extractor. Both models will use the extracted image feature vector as a start of string token, at timestep $t=1$.
+
+The models will be evaluated using the MSCOCO Captions evaluation server on the publically unavailable test set, on five different automated evaluation metrics: CIDEr-D, METEOR, Rogue-L, BLUE and SPICE.
+
+\section{Risk and Safety}
+No special risk and safety precautions have to be taken. Data used will be taken from a publicly available datasets and will not be used for anything other than training the machine learning model. I will not for example distribute or use the data for any other means.
+
+\begin{thebibliography}{99}	
+
+\bibitem{mscoco}
+	\textit{Microsoft COCO Captions: Data Collection and Evaluation Server.}
+	X. Chen and H. Fang and TY Lin and R. Vedantam and S. Gupta and P. Dollár and C. L. Zitnick. 
+	arXiv preprint arXiv:1504.00325, 2015
+
+\bibitem{ohem}
+	\textit{Training Region-based Object Detectors with Online Hard Example Mining.}
+	A. Shrivastava, A. Gupta, and R. Girshick. 
+	arXiv preprint arXiv:1604.03540, 2017
+	
+	
+\bibitem{tcn} 
+	\textit{An Empirical Evaluation of Generic Convolutional and Recurrent Networks for Sequence Modeling.}
+	B. Shaojie, K. Zico, and K. Vladlen
+    arXiv preprint arXiv:1803.01271, 2018.
+    
+    
+    
+    \bibitem{retinanet}
+	\textit{Focal Loss for Dense Object Detection.}
+	Tsung{-}Yi Lin,
+    Priya Goyal,
+    Ross B. Girshick,
+    Kaiming He and
+    Piotr Doll{\'{a}}r.
+    arXiv preprint arXiv:1708.02002, 2017
+
+\bibitem{fpn}
+	\textit{Feature Pyramid Networks for Object Detection.}
+	Tsung{-}Yi Lin,
+               Piotr Doll{\'{a}}r,
+               Ross B. Girshick,
+               Kaiming He,
+               Bharath Hariharan and
+               Serge J. Belongie.
+    arXiv preprint arXiv:1612.03144, 2016
+    
+
+\bibitem{resnet} 
+	\textit{Deep residual learning for image recognition.}
+    K. He, X. Zhang, S. Ren, and J. Sun. 
+    arXiv preprint arXiv:1512.03385, 2015.
+    
+    \bibitem{MNIST}
+	\textit{The MNIST database of handwritten digits}
+	Y. LeCun, C. Cortes and C. Burges. Courant Institute, NYU. Google Labs, New York. Microsoft Research, Redmond. 
+	URL http://yann.lecun.com/exdb/mnist/.
+	3 November 2017.
+	
+	
+	
+    
+\bibitem{WIDERFace}
+	\textit{WIDER FACE: A Face Detection Benchmark.}
+	Yang, Shuo and Luo, Ping and Loy, Chen Change and Tang, Xiaoou
+    IEEE Conference on Computer Vision and Pattern Recognition (CVPR), 2016
+    
+    
+    
+\bibitem{pytorch}
+\textit{Automatic differentiation in PyTorch}.
+A. Paszke,   S. Gross, S. Chintala,   G. Chanan,   E. Yang,   Z. DeVito,   Z. Lin,   A. Desmaison,   L. Antiga,  and A. Lerer
+2017
+
+
+ \bibitem{cs231n} 
+	\textit{CS231n: Convolutional Neural Networks for Visual Recognition.}
+    F. Li, A. Karpathy and J. Johnson.
+	Stanford University, university course, winter 2016.
+	
+	\bibitem{batchnorm} 
+	\textit{Batch normalization: Accelerating deep network training by reducing internal covariate shift.}
+    S. Ioffe and C. Szegedy. 
+	arXiv preprint arXiv:1502.03167, 2015.
+
+\bibitem{eigen}
+\textit{Eigen v3}.
+G. Guennebaud and B. Jacob and others. URL http://eigen.tuxfamily.org. 2010
+
+\bibitem{numpy}
+\textit{The NumPy Array: A Structure for Efficient Numerical Computation, Computing in Science \& Engineering, 13, 22-30}.
+S. van der Walt, S. C. Colbert and G. Varoquaux.  (2011), DOI:10.1109/MCSE.2011.37 
+
+\end{thebibliography}
+
 
 \end{document}

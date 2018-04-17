@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Arch Linux) (preloaded format=pdflatex 2018.3.4)  16 APR 2018 21:32
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Arch Linux) (preloaded format=pdflatex 2018.3.4)  17 APR 2018 17:59
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1081,7 +1081,7 @@ Here is how much of TeX's memory you used:
  9899 multiletter control sequences out of 15000+600000
  18081 words of font info for 50 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 51i,21n,54p,1534b,385s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 51i,21n,54p,1571b,385s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf-dist/fonts/enc/dvips/cm-
 super/cm-super-t1.enc}</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cme
 x10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/
@@ -1102,7 +1102,7 @@ sr/share/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb></usr/share/texmf-
 dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/share/texmf-dist/fonts/type
 1/public/cm-super/sfrm1728.pfb></usr/share/texmf-dist/fonts/type1/public/cm-sup
 er/sfti1095.pfb></usr/share/texmf-dist/fonts/type1/urw/zapfding/uzdr.pfb>
-Output written on nikita_zozoulenko.pdf (49 pages, 7142099 bytes).
+Output written on nikita_zozoulenko.pdf (49 pages, 7142188 bytes).
 PDF statistics:
  339 PDF objects out of 1000 (max. 8388607)
  218 compressed objects within 3 object streams
