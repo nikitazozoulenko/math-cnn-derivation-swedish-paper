@@ -285,6 +285,8 @@ Convolutional neural networks and feed-forward neural networks were then impleme
 
 When our implementation of the artificial neural networks became too computationally expensive and inefficient for the problem cases of comparing models on classifying handwritten digits, real-time dense face detection, and automatic image captioning, the models were implemented in Google's machine learning library TensorFlow \cite{tensorflow} or Facebook's GPU-accelerated tensor and dynamic neural network library PyTorch \cite{pytorch}.
 
+For a detailed description of the method used for dense face detection and the improving of temporal convolutional networks for automatic image captioning, see their corresponding sections.
+
 \section{Convolutional neural networks}
 When humans identify objects by sight we look for specific high level features that object has. A cat for example has one head, four legs and a body. These high level features are in turn made up of a combination of low level features: A head consists of two eyes and a mouth which consists of elementary geometric shapes which are composed of a combination of basic lines and edges. In addition to specific features, cats also have a furry texture. Convolutional neural networks (CNN) were designed to specifically excel at computer vision tasks. A convolutional neural network learns these hierarchical structures by teaching itself a number of filters, or more specifically discrete convolutions, to apply to the image (see figure \ref{figkatter}). These convolutions are stacked on top of each other in terms of layers and allows the networks to learn higher level features with the network architecture going deeper. For instance, the first layer might learn how to detect lines and edges, the middle layers might learn to recognize small body parts such as eyes and ears and the last layers can learn how to detect cats, humans or any other arbitrary objects \cite{cs231n}.
 
@@ -1032,7 +1034,9 @@ Figures \ref{figseqmnistloss} to \ref{figpmnistacc} show the loss functions of t
 \end{center}
 \end{figure}
 
-When evaluated on the test set, all models beat the current state of the art on both tasks. The Single model performed best on the test set, but was beaten by the Radical model on the SeqMNIST task regarding validation accuracy and loss. Tables \ref{tabseqmnist} and \ref{tabpmnist} show the results of the experiments and compares them to the current, now previous, state of the art.
+When evaluated on the test set, all models beat the current state of the art on both tasks. The previous state of the art was The Single model performed best on the test set, but was beaten by the Radical model on the SeqMNIST task regarding validation accuracy and loss. Tables \ref{tabseqmnist} and \ref{tabpmnist} show the results of the experiments and compares them to the current state of the art.
+
+The proposed changes resulted in halving the test loss on the task of SequenceMNIST, and increasing the accuracy on Permuted SequenceMNIST. The improved model achieved a test accuracy of 99.53\% and 97.86\% on SequenceMNIST and Permuted SequenceMNIST, compared to the previous state of the art which achieved an accuracy of 99.0\% \cite{dilatedgru} and 97.2\% \cite{tcn}. The best performing residual block was the most basic residual block, the same as in \cite{tcn}. Adding extra residual connections led to a decrease in accuracy, and made models unstable during early training iterations.
 
 \begin{table}
 \begin{center}
@@ -1109,9 +1113,9 @@ Each model was trained for 1.75 million iterations on the training set of the MS
 
 \begin{figure}[h]
     \centering
-    \subfloat[Dense Face Detection]{{\includegraphics[width=7.5cm]{graphtcn.png} }}
-    \subfloat[Automatic Image Captioning]{{\includegraphics[width=7.605cm]{graphgru.png} }}
-  	\caption{(a) The proposed convolutional-neural-network-based model FaceNet is capable of dynamically detecting up to hundreds of faces in a crowded scene for various scales, lighting and occlusions. (b) A temporal convolutional neural network (TCN) and a Gated Recurrent Unit (GRU) automatically captioning an image. Images were taken from the WIDERFace \cite{WIDERFace} and MSCOCO \cite{mscoco} validation datasets.} \label{figtcntraingraph}
+    \subfloat[Temporal Convolutional Network]{{\includegraphics[width=7.5cm]{graphtcn.png} }}
+    \subfloat[Gated Recurrent Unit]{{\includegraphics[width=7.605cm]{graphgru.png} }}
+  	\caption{The cross entropy loss of the (a) temporal convolutional network (TCN) and (b) Gated Recurrent Unit (GRU) as a function of the total number of iterations.} \label{figtcntraingraph}
 \end{figure}
 
 \begin{table}
