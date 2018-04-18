@@ -899,10 +899,12 @@ Contrary to research done on multi-class object detection, various methods which
 
 One reason for which the deeper networks, ResNet-50, ResNet-101 and ResNet-151, failed to detect any positive examples, might be the batch size. Since the early experiments used a ResNet-18 as a backbone network, a larger batch size could be used due to smaller model size. This larger batch size could reduce the stochasticity of the SGD by giving a more accuracy approximation of the true gradient. Using a small batch size could have led the model to converge to only detect negative bounding box suggestions.
 
+The final model is capable of running in faster than real time speeds, approximately 50 times a second, for an image of size $512^2$ pixels. It can be used as a baseline model for any system which incorporates surveillance, security, or the detection of humans (e.g. tagging on social media or face focusing for digital cameras), at a variety of scales and sizes. The model can be upscaled or downscaled through varying the input image size.
+
 
 \section{Improving temporal convolutional networks}
 \subsection{Background}
-In conventional convolutional neural networks, the model learns to transform a given input by learning to apply a number of two-dimensional discrete convolutions on the input data. Instead of convolving along the spatial dimensions, a convolutional neural network can be used to convolve along the time dimension, and can thus be used as a sequence model for time series data, as long as there is no information leakage from the future into the past. Recent work on Temporal Convolutional Networks (TCN) \cite{tcn} shows that the convolutional model outperforms its recurrant neural network (RNN) variants, including Long Short Term Memory (LSTM), and Gated Recurrent Units (GRU). 
+In conventional convolutional neural networks, the model learns to transform a given input by learning to apply a number of two-dimensional discrete convolutions on the input data. Instead of convolving along the spatial dimensions, a convolutional neural network can be used to convolve along the time dimension, and can thus be used as a sequence model for time series data, as long as there is no information leakage from the future into the past. Recent work on Temporal Convolutional Networks (TCN) \cite{tcn} shows that the convolutional model outperforms its recurrent neural network (RNN) variants, including Long Short Term Memory (LSTM), and Gated Recurrent Units (GRU). 
 
 \subsection{Method}
 Given a number of data points at timesteps $t = 1, 2, 3, ..., m$, a sequence model sets out to predict the value at timestep $t = m+1$, through the use of information from the earlier timesteps. A temporal convolutional neural network can achieve this by learning to apply a number of 1-dimensional discrete convolutions across all the available previous timesteps, through the use of smart zero-padding to avoid information leakage from the future into the past.
@@ -1048,7 +1050,9 @@ When evaluated on the test set, all models beat the current state of the art on 
 \end{table}
 
 \subsection{Discussion}
-The changes are shown to increase the accuracy of the temporal convolutional model, across all three residual building blocks and both tasks, beating the previous state of the art.  The error rate for Sequential MNIST is halved, compared the the old model, using the new methods.
+The changes are shown to increase the accuracy of the temporal convolutional model, across all three residual building blocks and both tasks, beating the previous state of the art.  The error rate for Sequential MNIST is halved, compared the original model, using the new methods.
+
+If temporal convolutional networks are shown to heavily outperform their recurrent variants, a transition from traditional recurrent architectures, into temporal convolutional architectures can be made to increase the performance on a large variety of tasks, which currently doesn't use temporal convolutional models.
 
 \section{Evaluation of TCNs for image captioning}
 \subsection{MSCOCO caption dataset}

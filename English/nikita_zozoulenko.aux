@@ -322,12 +322,12 @@
 \citation{WIDERFace}
 \citation{retinanet}
 \citation{resnet}
-\citation{tcn}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.16}v2.5, increased depth}{34}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Final Model Results}{34}}
 \@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces \textbf  {FaceNet Face Detection}. A table comparing the different FaceNet versions.\relax }}{34}}
 \newlabel{tablefacenet}{{4}{34}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Discussion}{34}}
+\citation{tcn}
 \@writefile{lof}{\contentsline {figure}{\numberline {15}{\ignorespaces The detections of FaceNet v2.3 on four images of the WIDERFace validation set \cite  {WIDERFace}.\relax }}{35}}
 \newlabel{figwiderfaceval}{{15}{35}}
 \@writefile{toc}{\contentsline {section}{\numberline {6}Improving temporal convolutional networks}{35}}
@@ -338,10 +338,10 @@
 \@writefile{lof}{\contentsline {figure}{\numberline {16}{\ignorespaces An illustration of a temporal convolutional network. Every square represents the activations at a single timestep. The different layers of activations represent the layers in the temporal convolutional network. Blue lines represent the kernel applied at a single position on the activation tensor.\relax }}{36}}
 \newlabel{figTCNdil}{{16}{36}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {6.2.1}Smart zero-padding}{36}}
-\citation{tcn}
 \@writefile{lof}{\contentsline {figure}{\numberline {17}{\ignorespaces A temporal convolution at timestep $t=1$. Dotted squares represent zero-padded activations, while bold squares represent normal activations. Blue lines represent the convolutional kernel. The network is effectively computing convolutions with kernel size $k=1$ since every neuron except at the first timestep is a neuron created by the zero-padding.\relax }}{37}}
 \newlabel{figTCNZeropad}{{17}{37}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {6.2.2}Linear versus exponential dilation increase}{37}}
+\citation{tcn}
 \citation{tcn}
 \citation{MNIST}
 \citation{tcn}
@@ -355,14 +355,10 @@
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {6.3.3}Experiments}{38}}
 \citation{dilatedgru}
 \citation{tcn}
-\citation{tcn}
 \@writefile{lof}{\contentsline {figure}{\numberline {18}{\ignorespaces An illustration of a temporal convolutional network. Every square represents the activations at a single timestep. Blue lines represent the kernel applied at a single temporal position on the activation tensor. Green lines represent residual connections between two convolutional layers.\relax }}{39}}
 \newlabel{figTCNRadical}{{18}{39}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.4}Discussion}{39}}
 \@writefile{lof}{\contentsline {figure}{\numberline {19}{\ignorespaces The proposed (a) Single, (b) Double and (c) Radical residual blocks. Every convolution is proceeded by ReLU activations and dropout, and uses weight normalization. The Single block has a residual connection every 2 convolutional layers. The Double block has an addition residual connections which connects the activations of the first convolution in block $l$ to the activations of the first convolutional block in layer $l+1$. The Radical residual block has 4 convolutions and uses residual connections between the input and output, input and the second convolution, the second convolution and the output, and the first convolution and the third convolution.\relax }}{40}}
 \newlabel{figTCNGraph}{{19}{40}}
-\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces \textbf  {SequenceMNIST}. A table comparing my proposed modified temporal convolutional networks with the current state of the art on the SequenceMNIST task.\relax }}{40}}
-\newlabel{tabseqmnist}{{5}{40}}
 \@writefile{lof}{\contentsline {figure}{\numberline {20}{\ignorespaces The training loss on SequenceMNIST of the three models with the Single, Double, and Radical residual blocks. Bold lines show the loss on the training set while dotted lines show the loss on the validation set.\relax }}{41}}
 \newlabel{figseqmnistloss}{{20}{41}}
 \@writefile{lof}{\contentsline {figure}{\numberline {21}{\ignorespaces The validation accuracy on SequenceMNIST of the three models with the Single, Double, and Radical residual blocks. The accuracy is measured as the percentage of correctly classified images over the whole validation set.\relax }}{41}}
@@ -371,37 +367,41 @@
 \newlabel{figpmnistloss}{{22}{42}}
 \@writefile{lof}{\contentsline {figure}{\numberline {23}{\ignorespaces The validation accuracy on PMNIST of the three models with the Single, Double, and Radical residual blocks. The accuracy is measured as the percentage of correctly classified images over the whole validation set.\relax }}{42}}
 \newlabel{figpmnistacc}{{23}{42}}
+\citation{tcn}
 \citation{mscoco}
 \citation{cs231n}
 \citation{tcn}
-\citation{pytorch}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces \textbf  {SequenceMNIST}. A table comparing my proposed modified temporal convolutional networks with the current state of the art on the SequenceMNIST task.\relax }}{43}}
+\newlabel{tabseqmnist}{{5}{43}}
 \@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces \textbf  {Permuted SequenceMNIST}. A table comparing my proposed modified temporal convolutional networks with the current state of the art on the Permuted SequenceMNIST task.\relax }}{43}}
 \newlabel{tabpmnist}{{6}{43}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.4}Discussion}{43}}
 \@writefile{toc}{\contentsline {section}{\numberline {7}Evaluation of TCNs for image captioning}{43}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {7.1}MSCOCO caption dataset}{43}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {7.2}Background}{43}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.3}Sequential sentence modeling}{43}}
+\citation{pytorch}
 \citation{notesonbackprop}
 \citation{tcn}
-\citation{cs231n}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.3}Sequential sentence modeling}{44}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {7.4}Loss function}{44}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {7.5}TCN}{44}}
-\citation{mscoco}
-\citation{mscoco}
-\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces \textbf  {MSCOCO Caption Results}. A table comparing the results of the temporal convolutional model (TCN) to a Gated Recurrent Unit (GRU) on the evaluation metrics used by the MSCOCO Caption evaluation server. Bold scores show the best results.\relax }}{45}}
-\newlabel{tabimagecaptioning}{{7}{45}}
+\citation{cs231n}
 \@writefile{toc}{\contentsline {subsection}{\numberline {7.6}GRU}{45}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {7.7}Results}{45}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.8}Discussion}{45}}
+\citation{mscoco}
+\citation{mscoco}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces \textbf  {MSCOCO Caption Results}. A table comparing the results of the temporal convolutional model (TCN) to a Gated Recurrent Unit (GRU) on the evaluation metrics used by the MSCOCO Caption evaluation server. Bold scores show the best results.\relax }}{46}}
+\newlabel{tabimagecaptioning}{{7}{46}}
 \@writefile{lof}{\contentsline {figure}{\numberline {24}{\ignorespaces Comparative results of the TCN and GRU model on images from the MSCOCO Captions validation set \cite  {mscoco}.\relax }}{46}}
 \newlabel{figimagecaptioning}{{24}{46}}
-\@writefile{toc}{\contentsline {section}{\numberline {8}Conclusion}{46}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.8}Discussion}{46}}
 \bibcite{cs231n}{1}
 \bibcite{batchnorm}{2}
 \bibcite{eigen}{3}
 \bibcite{numpy}{4}
 \bibcite{tensorflow}{5}
 \bibcite{pytorch}{6}
+\@writefile{toc}{\contentsline {section}{\numberline {8}Conclusion}{47}}
 \bibcite{hidden12}{7}
 \bibcite{wikiStanford}{8}
 \bibcite{gradient}{9}

@@ -59,14 +59,14 @@
 \contentsline {subsubsection}{\numberline {6.3.1}SequenceMNIST (SeqMNIST)}{38}
 \contentsline {subsubsection}{\numberline {6.3.2}Permuted SequenceMNIST (PMNIST)}{38}
 \contentsline {subsubsection}{\numberline {6.3.3}Experiments}{38}
-\contentsline {subsection}{\numberline {6.4}Discussion}{39}
+\contentsline {subsection}{\numberline {6.4}Discussion}{43}
 \contentsline {section}{\numberline {7}Evaluation of TCNs for image captioning}{43}
 \contentsline {subsection}{\numberline {7.1}MSCOCO caption dataset}{43}
 \contentsline {subsection}{\numberline {7.2}Background}{43}
-\contentsline {subsection}{\numberline {7.3}Sequential sentence modeling}{43}
+\contentsline {subsection}{\numberline {7.3}Sequential sentence modeling}{44}
 \contentsline {subsection}{\numberline {7.4}Loss function}{44}
 \contentsline {subsection}{\numberline {7.5}TCN}{44}
 \contentsline {subsection}{\numberline {7.6}GRU}{45}
 \contentsline {subsection}{\numberline {7.7}Results}{45}
-\contentsline {subsection}{\numberline {7.8}Discussion}{45}
-\contentsline {section}{\numberline {8}Conclusion}{46}
+\contentsline {subsection}{\numberline {7.8}Discussion}{46}
+\contentsline {section}{\numberline {8}Conclusion}{47}
