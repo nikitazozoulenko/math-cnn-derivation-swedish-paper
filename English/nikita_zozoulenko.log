@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Arch Linux) (preloaded format=pdflatex 2018.3.4)  18 APR 2018 23:59
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Arch Linux) (preloaded format=pdflatex 2018.3.4)  21 APR 2018 09:03
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -939,7 +939,13 @@ Overfull \hbox (2.27618pt too wide) in paragraph at lines 910--910
  [] 
  []
 
-[35] [36 <./figfacedetection.png>]
+[35]
+Overfull \hbox (1.84682pt too wide) in paragraph at lines 923--924
+\T1/cmr/m/n/10.95 The im-ple-men-ta-tion and code is pub-licly avail-able in th
+e github repos-i-tory \T1/cmr/m/it/10.95 nikitazozoulenko/time-
+ []
+
+[36 <./figfacedetection.png>]
 Package epstopdf Info: Source file: <figTCNdil.eps>
 (epstopdf)                    date: 2018-04-04 10:20:54
 (epstopdf)                    size: 78502 bytes
@@ -948,12 +954,12 @@ Package epstopdf Info: Source file: <figTCNdil.eps>
 (epstopdf)                    size: 8239 bytes
 (epstopdf)             Command: <repstopdf --outfile=figTCNdil-eps-converted-to
 .pdf figTCNdil.eps>
-(epstopdf)             \includegraphics on input line 940.
+(epstopdf)             \includegraphics on input line 941.
 Package epstopdf Info: Output file is already uptodate.
 <figTCNdil-eps-converted-to.pdf, id=167, 341.275pt x 196.735pt>
 File: figTCNdil-eps-converted-to.pdf Graphic file (type pdf)
 <use figTCNdil-eps-converted-to.pdf>
-Package pdftex.def Info: figTCNdil-eps-converted-to.pdf  used on input line 940
+Package pdftex.def Info: figTCNdil-eps-converted-to.pdf  used on input line 941
 .
 (pdftex.def)             Requested size: 256.0748pt x 147.62892pt.
  [37 <./figTCNdil-eps-converted-to.pdf>]
@@ -965,16 +971,15 @@ Package epstopdf Info: Source file: <figTCNZeropad.eps>
 (epstopdf)                    size: 7188 bytes
 (epstopdf)             Command: <repstopdf --outfile=figTCNZeropad-eps-converte
 d-to.pdf figTCNZeropad.eps>
-(epstopdf)             \includegraphics on input line 961.
+(epstopdf)             \includegraphics on input line 962.
 Package epstopdf Info: Output file is already uptodate.
 <figTCNZeropad-eps-converted-to.pdf, id=190, 258.9675pt x 196.735pt>
 File: figTCNZeropad-eps-converted-to.pdf Graphic file (type pdf)
 <use figTCNZeropad-eps-converted-to.pdf>
 Package pdftex.def Info: figTCNZeropad-eps-converted-to.pdf  used on input line
- 961.
+ 962.
 (pdftex.def)             Requested size: 227.62204pt x 172.92918pt.
-
-[38 <./figTCNZeropad-eps-converted-to.pdf>]
+ [38 <./figTCNZeropad-eps-converted-to.pdf>] [39]
 Package epstopdf Info: Source file: <figRadical.eps>
 (epstopdf)                    date: 2018-04-04 10:22:52
 (epstopdf)                    size: 90456 bytes
@@ -983,13 +988,13 @@ Package epstopdf Info: Source file: <figRadical.eps>
 (epstopdf)                    size: 11601 bytes
 (epstopdf)             Command: <repstopdf --outfile=figRadical-eps-converted-t
 o.pdf figRadical.eps>
-(epstopdf)             \includegraphics on input line 994.
+(epstopdf)             \includegraphics on input line 995.
 Package epstopdf Info: Output file is already uptodate.
-<figRadical-eps-converted-to.pdf, id=204, 578.16pt x 391.4625pt>
+<figRadical-eps-converted-to.pdf, id=207, 578.16pt x 391.4625pt>
 File: figRadical-eps-converted-to.pdf Graphic file (type pdf)
 <use figRadical-eps-converted-to.pdf>
 Package pdftex.def Info: figRadical-eps-converted-to.pdf  used on input line 99
-4.
+5.
 (pdftex.def)             Requested size: 398.33858pt x 269.7092pt.
 Package epstopdf Info: Source file: <figGraph.eps>
 (epstopdf)                    date: 2018-04-04 10:12:19
@@ -999,91 +1004,96 @@ Package epstopdf Info: Source file: <figGraph.eps>
 (epstopdf)                    size: 11064 bytes
 (epstopdf)             Command: <repstopdf --outfile=figGraph-eps-converted-to.
 pdf figGraph.eps>
-(epstopdf)             \includegraphics on input line 1000.
+(epstopdf)             \includegraphics on input line 1001.
 Package epstopdf Info: Output file is already uptodate.
-<figGraph-eps-converted-to.pdf, id=205, 759.83875pt x 607.26875pt>
+<figGraph-eps-converted-to.pdf, id=208, 759.83875pt x 607.26875pt>
 File: figGraph-eps-converted-to.pdf Graphic file (type pdf)
 <use figGraph-eps-converted-to.pdf>
-Package pdftex.def Info: figGraph-eps-converted-to.pdf  used on input line 1000
+Package pdftex.def Info: figGraph-eps-converted-to.pdf  used on input line 1001
 .
 (pdftex.def)             Requested size: 455.24408pt x 363.84515pt.
 
-Overfull \hbox (2.27618pt too wide) in paragraph at lines 1000--1000
+Overfull \hbox (2.27618pt too wide) in paragraph at lines 1001--1001
  [] 
  []
 
-[39] [40 <./figRadical-eps-converted-to.pdf>] [41 <./figGraph-eps-converted-to.
-pdf>]
+[40 <./figRadical-eps-converted-to.pdf>] [41 <./figGraph-eps-converted-to.pdf>]
 <seqmnistloss.png, id=234, 957.5775pt x 632.3625pt>
 File: seqmnistloss.png Graphic file (type png)
 <use seqmnistloss.png>
-Package pdftex.def Info: seqmnistloss.png  used on input line 1018.
+Package pdftex.def Info: seqmnistloss.png  used on input line 1019.
 (pdftex.def)             Requested size: 426.79134pt x 281.83946pt.
 <seqmnistacc.png, id=235, 955.57pt x 647.41875pt>
 File: seqmnistacc.png Graphic file (type png)
 <use seqmnistacc.png>
-Package pdftex.def Info: seqmnistacc.png  used on input line 1023.
+Package pdftex.def Info: seqmnistacc.png  used on input line 1024.
 (pdftex.def)             Requested size: 426.79134pt x 289.15253pt.
 <pmnistloss.png, id=236, 920.43875pt x 642.4pt>
 File: pmnistloss.png Graphic file (type png)
 <use pmnistloss.png>
-Package pdftex.def Info: pmnistloss.png  used on input line 1028.
+Package pdftex.def Info: pmnistloss.png  used on input line 1029.
 (pdftex.def)             Requested size: 426.79134pt x 297.86992pt.
 <pmnistacc.png, id=237, 953.5625pt x 643.40375pt>
 File: pmnistacc.png Graphic file (type png)
 <use pmnistacc.png>
-Package pdftex.def Info: pmnistacc.png  used on input line 1033.
+Package pdftex.def Info: pmnistacc.png  used on input line 1034.
 (pdftex.def)             Requested size: 426.79134pt x 287.97784pt.
- [42 <./seqmnistloss.png>] [43 <./seqmnistacc.png> <./pmnistloss.png>]
-[44 <./pmnistacc.png>] [45] [46]
+[42 <./seqmnistloss.png>] [43 <./seqmnistacc.png> <./pmnistloss.png>] [44 <./pm
+nistacc.png>]
+Overfull \hbox (1.84682pt too wide) in paragraph at lines 1077--1078
+\T1/cmr/m/n/10.95 The im-ple-men-ta-tion and code is pub-licly avail-able in th
+e github repos-i-tory \T1/cmr/m/it/10.95 nikitazozoulenko/time-
+ []
+
+[45]
+Underfull \vbox (badness 1348) has occurred while \output is active []
+
+ [46]
 <graphtcn.png, id=258, 564.1075pt x 431.6125pt>
 File: graphtcn.png Graphic file (type png)
 <use graphtcn.png>
-Package pdftex.def Info: graphtcn.png  used on input line 1116.
+Package pdftex.def Info: graphtcn.png  used on input line 1118.
 (pdftex.def)             Requested size: 213.39566pt x 163.27682pt.
 <graphgru.png, id=259, 564.1075pt x 431.6125pt>
 File: graphgru.png Graphic file (type png)
 <use graphgru.png>
-Package pdftex.def Info: graphgru.png  used on input line 1117.
+Package pdftex.def Info: graphgru.png  used on input line 1119.
 (pdftex.def)             Requested size: 216.38307pt x 165.56212pt.
 <captionsbig.png, id=260, 997.7275pt x 682.55pt>
 File: captionsbig.png Graphic file (type png)
 <use captionsbig.png>
-Package pdftex.def Info: captionsbig.png  used on input line 1137.
+Package pdftex.def Info: captionsbig.png  used on input line 1139.
 (pdftex.def)             Requested size: 426.79134pt x 291.97021pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[47 <./graphtcn.png> <./graphgru.png>]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [48 <./captionsbig.png>] [49]
-Underfull \hbox (badness 10000) in paragraph at lines 1225--1229
+[47 <./graphtcn.png> <./graphgru.png>] [48 <./captionsbig.png>] [49]
+Underfull \hbox (badness 10000) in paragraph at lines 1227--1231
 []\T1/cmr/m/it/10.95 Tuning the learn-ing rate in Gra-di-ent De-scent. \T1/cmr/
 m/n/10.95 V. Vryni-o-tis. URL
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1225--1229
+Underfull \hbox (badness 10000) in paragraph at lines 1227--1231
 \T1/cmr/m/n/10.95 http://blog.datumbox.com/tuning-the-learning-rate-in-gradient
 -descent/. 27 Oc-to-ber
  []
 
 
-Underfull \hbox (badness 1210) in paragraph at lines 1322--1326
+Underfull \hbox (badness 1210) in paragraph at lines 1324--1328
 []\T1/cmr/m/it/10.95 The MNIST database of hand-writ-ten dig-its \T1/cmr/m/n/10
 .95 Y. Le-Cun, C. Cortes and C. Burges.
  []
 
-
-Underfull \hbox (badness 1147) in paragraph at lines 1361--1365
+[50]
+Underfull \hbox (badness 1147) in paragraph at lines 1363--1367
 []\T1/cmr/m/it/10.95 YOLO9000: Bet-ter, Faster, Stronger. \T1/cmr/m/n/10.95 J. 
 Red-mon and A. Farhadi. arXiv preprint
  []
 
-[50]
-Underfull \hbox (badness 1248) in paragraph at lines 1391--1399
+
+Underfull \hbox (badness 1248) in paragraph at lines 1393--1401
 []\T1/cmr/m/it/10.95 Feature Pyra-mid Net-works for Ob-ject De-tec-tion. \T1/cm
 r/m/n/10.95 Tsung-Yi Lin, Pi-otr Dol-lár, Ross
  []
@@ -1096,7 +1106,7 @@ Here is how much of TeX's memory you used:
  9925 multiletter control sequences out of 15000+600000
  18081 words of font info for 50 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 51i,21n,54p,1553b,385s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 51i,21n,54p,1556b,385s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf-dist/fonts/enc/dvips/cm-super
 /cm-super-t1.enc}</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.p
 fb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share
@@ -1117,7 +1127,7 @@ are/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb></usr/share/texmf-dist/
 fonts/type1/public/cm-super/sfrm1200.pfb></usr/share/texmf-dist/fonts/type1/pub
 lic/cm-super/sfrm1728.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sf
 ti1095.pfb></usr/share/texmf-dist/fonts/type1/urw/zapfding/uzdr.pfb>
-Output written on nikita_zozoulenko.pdf (51 pages, 9372798 bytes).
+Output written on nikita_zozoulenko.pdf (51 pages, 9373093 bytes).
 PDF statistics:
  350 PDF objects out of 1000 (max. 8388607)
  222 compressed objects within 3 object streams

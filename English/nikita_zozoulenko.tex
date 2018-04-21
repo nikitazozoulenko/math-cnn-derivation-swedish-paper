@@ -57,7 +57,7 @@ Supervisor: Oleg Burdakov \\*}
 %start abstract
 \section*{Abstract}
 \normalsize{}
-Convolutional neural networks (CNNs) are traditionally used in computer vision, but have recently gained traction as sequential models. In this paper two improvements to temporal convolutional networks (TCN) are suggested, together with three different residual blocks, and empirically evaluated to achieve a new state of the art on the task of SequenceMNIST (99.53\% versus 99.0\%) and Permuted SequenceMNIST (97.86\% versus 97.28\%). The improved model was then compared to a Gated Recurrent Unit, on an area where TCNs have never been applied before, namely automatic image captioning, and is shown to perform similarly. Additionally, since the field lacks a fully derived order 4 example of a convolutional neural network (CNN), we presented a clear derivation of the general case for a CNN with an arbitrary input of a tensor of order 4, including varying zero-padding and strides during forward and backpropagation. The derivation was then used for our convolutional neural network library implementation in Python and C++. Furthermore, we systematically construct a region based dense face detector and empirically investigate how factors such as binary cross entropy loss, focal loss, feature pyramid networks, online hard example mining, color jitter data augmentation, and network depth affects its performance. The final model is sufficiently accurate and computationally efficient to be used for real time video, to serve as a baseline model for any system incorporating surveillance, security or detection of humans.
+Convolutional neural networks (CNN) are traditionally used in computer vision, but have recently gained traction as sequential models. In this paper two improvements to temporal convolutional networks (TCN) are suggested, together with three different residual blocks, and empirically evaluated to achieve a new state of the art on the task of SequenceMNIST (99.53\% versus 99.0\%) and Permuted SequenceMNIST (97.86\% versus 97.28\%). The improved model was then compared to a Gated Recurrent Unit in an area where TCNs have never been applied before, namely automatic image captioning, and is shown to perform similarly. Additionally, since the field lacks a fully derived order 4 example of a convolutional neural network (CNN), we presented a clear derivation of the general case for a CNN with an arbitrary input of a tensor of order 4, including varying zero-padding and strides during forward and backpropagation. The derivation was then used for our convolutional neural network library implementation in Python and C++. Furthermore, we systematically construct a one-shot dense face detector and empirically investigate how factors such as binary cross entropy loss, focal loss, feature pyramid networks, online hard example mining, color jitter data augmentation, and network depth affects its performance. The final model is sufficiently accurate and computationally efficient to be used for real time video, to serve as a baseline model for any system which incorporates surveillance, security or the detection of humans.
 \thispagestyle{empty}
 \newpage
 %end abstract
@@ -628,7 +628,7 @@ The softmax layer does not have any learnable parameters and therefore only the 
 \end{equation}
 
 \section{Evaluating the models on handwritten digits}
-The code and the trained models from this following section are publically available on github in the repository \textit{FCC-vs-CNN-mnist}.
+The code and the trained models from this following section are publically available in the github repository \textit{nikitazozoulenko/FCC-vs-CNN-mnist}.
 
 \subsection{MNIST}
 The MNIST database for handwritten digits \cite{MNIST} is a dataset consisting of 70 000 grayscale images of size $28 \times 28$ pixels, of the digits 0 to 9 (see figure \ref{figMNIST}). The database is split up into two different sets, a training set containing 60 000 images used to train the model, and a test set consisting of 10 000 images used to evaluate the model. The test set is kept separate from the training set to prevent overfitting on the training data. A model is given all the pixel values of the image as input features, and is asked to predict what digit is in the image.
@@ -721,7 +721,7 @@ The models were trained for 100 000 iterations while tracking the training and v
 From the experiments, the convolutional neural network is shown to have better generalizability on the test set than its feed-forward counterpart: While the number of parameters and training loss is approximately the same for both the convolutional and feed-forward models, the validation loss is approximately 7 times higher for the feed-forward model. The final accuracy of the two networks were 99.30\% for the convolutional neural network and 97.40\% for the feed-forward neural network, tested on the test set consisting of 10 000 handwritten digits. 
 
 \section{Dense face detection and localization}
-In this section we systematically and empirically investigate how to construct and improve a convolutional-neural-network-based model to detect a variable number of faces in an image. Every factor and suggestion which affects the model performance is evaluated one by one and added to a baseline model.
+In this section we systematically and empirically investigate how to construct and improve a convolutional-neural-network-based model to detect a variable number of faces in an image. Every factor and suggestion which affects the model performance is evaluated one by one and added to a baseline model. The implementation and code is publicly available in the github repository \textit{nikitazozoulenko/face-detection}
 
 \subsection{WIDERFace}
 For the task of detecting a variable number of faces in an iamge, the WIDERFace dataset \cite{WIDERFace} was used. It is a dataset consisting of 32 203 images of a total of 393 703 number of faces at different scales, lighting and occlusions. Every training example consists of a number of bounding boxes which describes all the faces in the image. A bounding box consists of four coordinates specifying its location: two for the upper left corner and two for the bottom right corner of the bounding box. The images are labeled by humans and is called the ground truth of the image.
@@ -920,6 +920,7 @@ The final model is capable of running in faster than real time speeds, approxima
 
 
 \section{Improving temporal convolutional networks}
+The implementation and code is publicly available in the github repository \textit{nikitazozoulenko/time-series-CNN}
 \subsection{Background}
 In conventional convolutional neural networks, the model learns to transform a given input by learning to apply a number of two-dimensional discrete convolutions on the input data. Instead of convolving along the spatial dimensions, a convolutional neural network can be used to convolve along the time dimension, and can thus be used as a sequence model for time series data, as long as there is no information leakage from the future into the past. Recent work on Temporal Convolutional Networks (TCN) \cite{tcn} shows that the convolutional model outperforms its recurrent neural network (RNN) variants, including Long Short Term Memory (LSTM), and Gated Recurrent Units (GRU). 
 
@@ -1073,6 +1074,7 @@ Our proposed improvements to the model are shown to increase the accuracy of the
 If temporal convolutional networks are shown to heavily outperform their recurrent variants on a wider variety of tasks, a transition from traditional recurrent architectures, into temporal convolutional architectures can be made in the future to increase the overall performance of sequential tasks which currently use recurrent neural networks.
 
 \section{Evaluation of TCNs for image captioning}
+The implementation and code is publicly available in the github repository \textit{nikitazozoulenko/time-series-CNN}
 \subsection{MSCOCO caption dataset}
 The MSCOCO caption dataset \cite{mscoco} is a dataset containing 164 062 images and a total of 1 026 459 human labeled image captions. This paper uses the 2017 train/val split of 115 000 images in the training set, and 5 000 images in the validation set. The remaining images are contained in the test set with the ground truth not publicly available.
 

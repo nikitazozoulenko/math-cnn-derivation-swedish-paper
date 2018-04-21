@@ -69,7 +69,7 @@
 \contentsline {subsection}{\numberline {7.3}Sequential sentence modeling}{45}
 \contentsline {subsection}{\numberline {7.4}Loss function}{46}
 \contentsline {subsection}{\numberline {7.5}TCN}{46}
-\contentsline {subsection}{\numberline {7.6}GRU}{46}
+\contentsline {subsection}{\numberline {7.6}GRU}{47}
 \contentsline {subsection}{\numberline {7.7}Results}{47}
-\contentsline {subsection}{\numberline {7.8}Discussion}{47}
+\contentsline {subsection}{\numberline {7.8}Discussion}{48}
 \contentsline {section}{\numberline {8}Conclusion}{49}
