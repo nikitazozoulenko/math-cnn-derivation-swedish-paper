@@ -1,59 +1,60 @@
 \contentsline {section}{\numberline {1}Introduction}{5}
-\contentsline {subsection}{\numberline {1.1}Background}{5}
-\contentsline {subsection}{\numberline {1.2}Feed-forward neural networks}{5}
-\contentsline {subsubsection}{\numberline {1.2.1}Tensors, indexing and notation}{5}
-\contentsline {subsubsection}{\numberline {1.2.2}Forward propagation}{6}
-\contentsline {subsubsection}{\numberline {1.2.3}Loss function}{8}
-\contentsline {subsubsection}{\numberline {1.2.4}Gradient Descent}{8}
-\contentsline {subsubsection}{\numberline {1.2.5}Backpropagation}{9}
-\contentsline {subsubsection}{\numberline {1.2.6}Training neural networks}{11}
-\contentsline {subsection}{\numberline {1.3}Purpose}{11}
-\contentsline {subsubsection}{\numberline {1.3.1}Derivation of a CNN}{11}
-\contentsline {subsubsection}{\numberline {1.3.2}Dense Face Detection}{12}
-\contentsline {subsubsection}{\numberline {1.3.3}Improving TCNs for Image Captioning}{12}
-\contentsline {subsection}{\numberline {1.4}Research Questions}{13}
+\contentsline {subsection}{\numberline {1.1}Purpose}{5}
+\contentsline {subsubsection}{\numberline {1.1.1}Derivation of a Convolutional Neural Network}{5}
+\contentsline {subsubsection}{\numberline {1.1.2}Dense Face Detection}{6}
+\contentsline {subsubsection}{\numberline {1.1.3}Improving TCNs for Image Captioning}{6}
+\contentsline {subsection}{\numberline {1.2}Research Questions}{6}
+\contentsline {subsection}{\numberline {1.3}Background}{7}
+\contentsline {subsubsection}{\numberline {1.3.1}Feed-forward neural networks}{7}
+\contentsline {subsubsection}{\numberline {1.3.2}Tensors, indexing and notation}{8}
+\contentsline {subsubsection}{\numberline {1.3.3}Forward propagation}{8}
+\contentsline {subsubsection}{\numberline {1.3.4}Loss function}{10}
+\contentsline {subsubsection}{\numberline {1.3.5}Gradient Descent}{10}
+\contentsline {subsubsection}{\numberline {1.3.6}Backpropagation}{11}
+\contentsline {subsubsection}{\numberline {1.3.7}Training neural networks}{13}
 \contentsline {section}{\numberline {2}Method}{13}
-\contentsline {section}{\numberline {3}Convolutional neural networks}{14}
-\contentsline {subsection}{\numberline {3.1}Model structure, parameters and notation}{14}
-\contentsline {subsection}{\numberline {3.2}Convolution forward propagation}{16}
-\contentsline {subsection}{\numberline {3.3}Convolution backpropagation}{18}
-\contentsline {subsection}{\numberline {3.4}Activation function forward propagation}{19}
-\contentsline {subsection}{\numberline {3.5}Activation function backpropagation}{19}
-\contentsline {subsection}{\numberline {3.6}Maxpooling forward propagation}{19}
-\contentsline {subsection}{\numberline {3.7}Maxpooling backpropagation}{20}
-\contentsline {subsection}{\numberline {3.8}Batch Normalization forwardpropagation}{21}
-\contentsline {subsection}{\numberline {3.9}Batch Normalization backpropagation}{22}
-\contentsline {subsection}{\numberline {3.10}Softmax forward propagation}{25}
-\contentsline {subsection}{\numberline {3.11}Softmax backpropagation}{25}
-\contentsline {section}{\numberline {4}Evaluating the models on handwritten digits}{25}
-\contentsline {subsection}{\numberline {4.1}MNIST}{26}
+\contentsline {section}{\numberline {3}Derivation of a Convolutional Neural Network}{13}
+\contentsline {subsection}{\numberline {3.1}Background}{13}
+\contentsline {subsection}{\numberline {3.2}Method}{14}
+\contentsline {subsection}{\numberline {3.3}Model Structure, Parameters and Notation}{14}
+\contentsline {subsection}{\numberline {3.4}Convolution}{16}
+\contentsline {subsubsection}{\numberline {3.4.1}Forward Propagation}{16}
+\contentsline {subsubsection}{\numberline {3.4.2}Backpropagation}{17}
+\contentsline {subsection}{\numberline {3.5}Activation Function}{19}
+\contentsline {subsubsection}{\numberline {3.5.1}Forward Propagation}{19}
+\contentsline {subsubsection}{\numberline {3.5.2}Backpropagation}{19}
+\contentsline {subsection}{\numberline {3.6}Maxpooling}{19}
+\contentsline {subsubsection}{\numberline {3.6.1}Forward Propagation}{19}
+\contentsline {subsubsection}{\numberline {3.6.2}Backpropagation}{20}
+\contentsline {subsection}{\numberline {3.7}Batch Normalization}{21}
+\contentsline {subsubsection}{\numberline {3.7.1}Forward Propagation}{21}
+\contentsline {subsubsection}{\numberline {3.7.2}Backpropagation}{22}
+\contentsline {subsection}{\numberline {3.8}Softmax}{24}
+\contentsline {subsubsection}{\numberline {3.8.1}Forward Propagation}{24}
+\contentsline {subsubsection}{\numberline {3.8.2}Backpropagation}{24}
+\contentsline {section}{\numberline {4}Evaluating the Model on Handwritten Digits}{25}
+\contentsline {subsection}{\numberline {4.1}MNIST}{25}
 \contentsline {subsection}{\numberline {4.2}Method}{26}
 \contentsline {subsubsection}{\numberline {4.2.1}Models}{26}
-\contentsline {subsection}{\numberline {4.3}Results}{27}
-\contentsline {subsection}{\numberline {4.4}Discussion}{28}
-\contentsline {section}{\numberline {5}Dense face detection and localization}{28}
-\contentsline {subsection}{\numberline {5.1}WIDERFace}{29}
-\contentsline {subsection}{\numberline {5.2}One-shot detectors}{29}
-\contentsline {subsection}{\numberline {5.3}Baseline model}{29}
-\contentsline {subsubsection}{\numberline {5.3.1}v1.0, Cross Entropy (CE)}{30}
-\contentsline {subsubsection}{\numberline {5.3.2}v1.1, Binary Cross Entropy (BCE)}{31}
-\contentsline {subsubsection}{\numberline {5.3.3}v1.2, Focal Loss (FL)}{31}
-\contentsline {subsubsection}{\numberline {5.3.4}v1.3, FPN, BCE}{32}
-\contentsline {subsubsection}{\numberline {5.3.5}v1.4, FPN, FL}{32}
-\contentsline {subsubsection}{\numberline {5.3.6}v1.5, FPN, BCE, level}{32}
-\contentsline {subsubsection}{\numberline {5.3.7}v1.6, FPN, FL, level}{33}
-\contentsline {subsubsection}{\numberline {5.3.8}v1.7, OHEM, single image}{33}
-\contentsline {subsubsection}{\numberline {5.3.9}v1.8, OHEM, whole batch}{33}
-\contentsline {subsubsection}{\numberline {5.3.10}v1.9, 1:1.5 anchor ratio, 0.65 threshold}{33}
-\contentsline {subsubsection}{\numberline {5.3.11}v2.0, features from \textit {conv3} to \textit {conv7}}{33}
-\contentsline {subsubsection}{\numberline {5.3.12}v2.1, adding feature map upsampling}{34}
-\contentsline {subsubsection}{\numberline {5.3.13}v2.2, 0.55 IoU threshold}{34}
-\contentsline {subsubsection}{\numberline {5.3.14}v2.3, random color jitter}{34}
-\contentsline {subsubsection}{\numberline {5.3.15}v2.4, features from \textit {conv2} to \textit {conv7}}{34}
-\contentsline {subsubsection}{\numberline {5.3.16}v2.5, increased depth}{35}
-\contentsline {subsection}{\numberline {5.4}Final Model Results}{35}
-\contentsline {subsection}{\numberline {5.5}Discussion}{35}
-\contentsline {section}{\numberline {6}Improving temporal convolutional networks}{36}
+\contentsline {subsection}{\numberline {4.3}Results}{26}
+\contentsline {subsection}{\numberline {4.4}Discussion}{27}
+\contentsline {section}{\numberline {5}Dense Face Detection and Localization}{28}
+\contentsline {subsection}{\numberline {5.1}Background}{28}
+\contentsline {subsubsection}{\numberline {5.1.1}WIDERFace}{28}
+\contentsline {subsubsection}{\numberline {5.1.2}One-shot detectors}{28}
+\contentsline {subsection}{\numberline {5.2}Method}{29}
+\contentsline {subsubsection}{\numberline {5.2.1}FaceNet Baseline Model}{29}
+\contentsline {subsubsection}{\numberline {5.2.2}Training}{30}
+\contentsline {subsection}{\numberline {5.3}Experiments}{30}
+\contentsline {subsubsection}{\numberline {5.3.1}Baseline}{30}
+\contentsline {subsubsection}{\numberline {5.3.2}Loss Functions}{31}
+\contentsline {subsubsection}{\numberline {5.3.3}Feature Pyramid Network}{32}
+\contentsline {subsubsection}{\numberline {5.3.4}Online Hard Example Mining}{32}
+\contentsline {subsubsection}{\numberline {5.3.5}New Features}{33}
+\contentsline {subsubsection}{\numberline {5.3.6}Increased Depth}{34}
+\contentsline {subsubsection}{\numberline {5.3.7}Final Model Results}{34}
+\contentsline {subsection}{\numberline {5.4}Discussion}{34}
+\contentsline {section}{\numberline {6}Improving Temporal Convolutional Networks}{36}
 \contentsline {subsection}{\numberline {6.1}Background}{36}
 \contentsline {subsection}{\numberline {6.2}Method}{36}
 \contentsline {subsubsection}{\numberline {6.2.1}Smart zero-padding}{37}
@@ -63,13 +64,14 @@
 \contentsline {subsubsection}{\numberline {6.3.2}Permuted SequenceMNIST (PMNIST)}{39}
 \contentsline {subsubsection}{\numberline {6.3.3}Experiments}{39}
 \contentsline {subsection}{\numberline {6.4}Discussion}{42}
-\contentsline {section}{\numberline {7}Evaluation of TCNs for image captioning}{45}
-\contentsline {subsection}{\numberline {7.1}MSCOCO caption dataset}{45}
-\contentsline {subsection}{\numberline {7.2}Background}{45}
-\contentsline {subsection}{\numberline {7.3}Sequential sentence modeling}{45}
-\contentsline {subsection}{\numberline {7.4}Loss function}{46}
-\contentsline {subsection}{\numberline {7.5}TCN}{46}
-\contentsline {subsection}{\numberline {7.6}GRU}{47}
-\contentsline {subsection}{\numberline {7.7}Results}{47}
-\contentsline {subsection}{\numberline {7.8}Discussion}{48}
-\contentsline {section}{\numberline {8}Conclusion}{49}
+\contentsline {section}{\numberline {7}Evaluation of TCNs for Image Captioning}{42}
+\contentsline {subsection}{\numberline {7.1}Background}{42}
+\contentsline {subsubsection}{\numberline {7.1.1}MSCOCO caption dataset}{43}
+\contentsline {subsection}{\numberline {7.2}Method}{43}
+\contentsline {subsubsection}{\numberline {7.2.1}Sequential sentence modeling}{43}
+\contentsline {subsubsection}{\numberline {7.2.2}Loss function}{43}
+\contentsline {subsubsection}{\numberline {7.2.3}TCN}{44}
+\contentsline {subsubsection}{\numberline {7.2.4}GRU}{44}
+\contentsline {subsection}{\numberline {7.3}Results}{45}
+\contentsline {subsection}{\numberline {7.4}Discussion}{45}
+\contentsline {section}{\numberline {8}Conclusion}{47}
