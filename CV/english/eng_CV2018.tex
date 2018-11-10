@@ -1,0 +1,209 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% "ModernCV" CV and Cover Letter
+% LaTeX Template
+% Version 1.11 (19/6/14)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Original author:
+% Xavier Danaux (xdanaux@gmail.com)
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+% Important note:
+% This template requires the moderncv.cls and .sty files to be in the same 
+% directory as this .tex file. These files provide the resume style and themes 
+% used for structuring the document.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%   PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[10pt,a4paper,sans]{moderncv} % Font sizes: 10, 11, or 12; paper sizes: a4paper, letterpaper, a5paper, legalpaper, executivepaper or landscape; font families: sans or roman
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[swedish]{babel}
+
+\moderncvstyle{classic} % CV theme - options include: 'casual' (default), 'classic', 'oldstyle' and 'banking'
+\moderncvcolor{blue} % CV color - options include: 'blue' (default), 'orange', 'green', 'red', 'purple', 'grey' and 'black'
+
+\usepackage{lipsum} % Used for inserting dummy 'Lorem ipsum' text into the template
+
+\usepackage[scale=0.78, top=2.5cm]{geometry} % Reduce document margins
+%\usepackage[scale=0.75, top=0.5cm, bottom=0.5cm, left=0.5cm, right=0.5cm]{geometry} 
+%\setlength{\hintscolumnwidth}{3cm} % Uncomment to change the width of the dates column
+%\setlength{\makecvtitlenamewidth}{10cm} % For the 'classic' style, uncomment to adjust the width of the space allocated to your name
+
+%----------------------------------------------------------------------------------------
+%   NAME AND CONTACT INFORMATION SECTION
+%----------------------------------------------------------------------------------------
+
+\firstname{Nikita} % Your first name
+\familyname{Zozoulenko} % Your last name
+
+% All information in this block is optional, comment out any lines you don't need
+\title{Curriculum Vitae}
+\address{Tyrgatan 2}{Stockholm, Sweden 114 27}
+\mobile{+46723053504}
+\email{nikita.zozoulenko@gmail.com}
+%\homepage{https://www.linkedin.com/pub/daniele-perrotta/64/5b9/794} {staff.org.edu/$\sim$jsmith} % The first argument is the url for the clickable link, the second argument is the url displayed in the template - this allows special characters to be displayed such as the tilde in this example
+\photo[116pt][0.4pt]{portrait_orig.jpg} % The first bracket is the picture height, the second is the thickness of the frame around the picture (0pt for no frame)
+%\quote{"A witty and playful quotation" - John Smith}
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+
+\makecvtitle % Print the CV title
+
+%----------------------------------------------------------------------------------------
+%   EDUCATION SECTION
+%----------------------------------------------------------------------------------------
+
+\section{Education}
+\cventry{2018--present}{KTH Royal Institute of Technology}{Engineering Physics}{GPA 5.0/5.0}{}{}
+%2018--present
+
+\cventry{2015--2018}{Katedralskolan in Linköping}{High school, specialization in the natural sciences (NANAT)}{GPA 21.8/22.5. During my final year I read linear algebra at Linköping University}{}{}
+
+\cventry{2011--2015}{International English School in Linköping}{School year 6--9}{}{}{}
+
+
+%\section{Masters Thesis}
+
+%\cvitem{Title}{\emph{Technologies and characterization of ferroelectric polymers for biomedical sensors}}
+%\cvitem{Supervisors}{Professor Antonino Fiorillo}
+%\cvitem{Description}{This thesis is based on the implementation of a temperature sensor.}
+
+%----------------------------------------------------------------------------------------
+%   WORK EXPERIENCE SECTION
+%----------------------------------------------------------------------------------------
+
+\section{Work Experience}
+
+\cventry{June 2018 -- August 2018}{Machine Learning Engineer}{\textsc{ContextVision AB}}{Linköping}{}{I worked in the field of digital pathology and developing new instance segmentation algorithms to detect cancer in hematoxylin and eosin stained medical images. During my employment I wrote a paper named \textit{Gland Instance Segmentation Through Overlapping Contour Regions and Random Transformation Sampling}.}
+
+\cventry{Summer 2017}{Museum Guide, Animal Handler and Gardener}{\textsc{Open-air Museum Gamla Linköping}}{Linköping}{}{During the day I acted as a museum guide. During the mornings before we opened the museum I worked in the garden and tended to the museum's various animals.}
+
+\cventry{Summer 2016}{Junior Consultant}{\textsc{AB Stångåstaden}}{Linköping}{}{
+I worked as a group leader together with other junior consultants to find creative and innovative solution to problems facing Stångåstaden's real estate.}
+
+
+
+
+%------------------------------------------------
+
+%----------------------------------------------------------------------------------------
+%   COMPUTER SKILLS SECTION
+%----------------------------------------------------------------------------------------
+
+\section{Computer Skills}
+
+\cvitem{Languages}{\textsc{Python, C++, Java, GLSL}}
+\cvitem{OS}{\textsc{Linux, Windows}}
+\cvitem{Frameworks}{\textsc{Pytorch, TensorFlow, OpenGL, \LaTeX}}
+
+
+%----------------------------------------------------------------------------------------
+%   COMMUNICATION SKILLS SECTION
+%----------------------------------------------------------------------------------------
+
+%\section{Communication Skills}
+
+%\cvitem{2010}{Oral Presentation at the California Business Conference}
+%\cvitem{2009}{Poster at the Annual Business Conference in Oregon}
+
+%----------------------------------------------------------------------------------------
+%   LANGUAGES SECTION
+%----------------------------------------------------------------------------------------
+
+\section{Languages}
+
+\cvitemwithcomment{Swedish}{Fluent}{}
+\cvitemwithcomment{English}{Fluent}{}
+\cvitemwithcomment{Russian}{Good translation skills in speech}{}
+\cvitemwithcomment{Spanish}{High school level, basic conversation and text}{}
+%\cvitemwithcomment{Dutch}{Basic}{Basic words and phrases only}Svenska: Modersmål
+
+%----------------------------------------------------------------------------------------
+%   INTERESTS SECTION
+%----------------------------------------------------------------------------------------
+
+%----------------------------------------------------------------------------------------
+%   AWARDS SECTION
+%----------------------------------------------------------------------------------------
+\section{Awards and Distinctions}
+
+\cventry{Mars 2018}{Winner in \textit{Utställningen Unga Forskare} (english: Exhibition Young Scientists)}{\textsc{Sweden}}{}{}{It was a national pre-collage science and engineering fair where Sweden's best pre-collage students competed with their science or engineering projects. I entered with my machine learning project \textit{Dense Face Detection} and won the first prize to represent Sweden internationally in the world biggest science and engineering fair, Intel ISEF, together with 2 other students.}
+
+\cventry{May 2018}{Intel Interational Science and Engineering Fair Finalist}{\textsc{USA}}{}{}{Intel ISEF is the worlds best biggest science and engineering fair where 1.8 million people all over the world have competed for the best 1800 to reach the final. I had the honor of receiving and winning one grand prize and two special prizes: 
+\begin{itemize}
+\item 1:st award from \textit{Association for the Advancement of Artificial Intelligence}
+\item 3:rd award in the category of \textit{Robotics and Intelligent Machines}
+\item 4:th award from \textit{Association for Computing Machinery}
+\end{itemize}
+}
+
+\cventry{June 2018}{Tre Bröders Scholarship}{\textsc{Linköping}}{}{}{A scholarship for distinctions in studies in mathematics.}
+
+\cventry{June 2018}{\textit{Framtidsstipendiet} (english: The Future Scholarship) from Östsvenska Handelskammaren}{\textsc{Linköping}}{}{}{A scholarship awarded to me for my development of a mathematical model for face detection in big crowds.}
+
+\section{Personal Projects}
+
+\cventry{October 2018}{AlphaZero Pytorch Implementation}{}{}{}{Open source PyTorch implementation of a single threaded self play reinforcement learning agent with Monte Carlo Tree Search (MCTS). The model was used to learn $n \times n$ tic-tac-toe with arbitrary size $n$.}
+
+\cventry{August 2018}{Rubiks Cube Agent}{}{}{}{A Rubik's Cube reinforcement learning agent. Trained without any human knowledge to solve any arbitrary cube by learning to predict the outcome of a Monte Carlo Tree Search predicting the Q-value of a certain action. Learned to solve any $2 \times 2$ cube in an average time of 2.5 seconds.}
+
+\cventry{July 2018}{Gland Instance Segmentation Through Overlapping Contour Regions and Random Transformation Sampling}{}{}{}{This paper was written during my employment at ContextVision AB. I developed an algorithm for instance segmentation of glands in hematoxylin and eosin stained medical images with limited data using random transformation sampling.}
+
+\cventry{May 2018}{Improving Temporal Convolutional Networks}{}{}{}{I improved temporal convolutional neural networks and compared them to the traditional long short-term memory LSTM networks on the task of automatic image captioning.}
+
+\cventry{Mars 2018}{Real-time Style Transfer}{}{}{}{A collaborative Python and JavaScript project where the content of a camera stream gets transferred into a given artistic style in real time using style transfer, convolutional neural networks and a website GUI.}
+
+\cventry{Mars 2018}{Dense Face Detection}{}{}{}{My winning project for \textit{Utställningen Unga Forskare}, using state of the art object detection algorithms. The final model is able to detect hundreds of faces in different shapes and sizes, in real time.}
+
+\section{Other}
+I believe that a balanced lifestyle is important in life, and that character development is just as important as academic or professional development. That is why I try to be as active as i can outside of my studies and work. In my free time when I'm not working on personal projects I like to sing in a choir and train at least three times a week. My interests include music, training, personal development, artificial intelligence, nature and meeting new interesting people.
+
+\section{References}
+\begin{itemize}
+\item \textbf{Martin Hedlund.}
+Chief Technology Officer (CTO) and co-founder of ContextVision AB \\
+E-mail: martin.hedlund@contextvision.se \\
+Telephone: +46 70 328 09 52
+
+\vspace{10pt}
+
+\item \textbf{Gabriel Skantze}, Professor in Speech Communication and Technology at KTH Royal Institute of Technology. \\
+E-mail: gabriel@speech.kth.se \\
+Telephone: +46 8 790 78 74
+\end{itemize}
+
+%----------------------------------------------------------------------------------------
+%   COVER LETTER
+%----------------------------------------------------------------------------------------
+
+% To remove the cover letter, comment out this entire block
+
+%\clearpage
+
+%\recipient{HR Department}{Corporation\\123 Pleasant Lane\\12345 City, State} % Letter recipient
+%\date{\today} % Letter date
+%\opening{Dear Sir or Madam,} % Opening greeting
+%\closing{Sincerely yours,} % Closing phrase
+%\enclosure[Attached]{curriculum vit\ae{}} % List of enclosed documents
+
+%\makelettertitle % Print letter title
+
+%\lipsum[1-3] % Dummy text
+
+%\makeletterclosing % Print letter signature
+
+%----------------------------------------------------------------------------------------
+
+\end{document}
