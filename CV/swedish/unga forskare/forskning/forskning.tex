@@ -1,0 +1,42 @@
+\documentclass[11pt,a4paper]{article} % Font sizes: 10, 11, or 12; paper sizes: a4paper, letterpaper, a5paper, legalpaper, executivepaper or landscape; font families: sans or roman
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[swedish]{babel}
+\usepackage[a4paper, total={6in, 9in}]{geometry}
+
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
+\begin{document}
+
+%----------------------------------------------------------------------------------------
+%   COVER LETTER
+%----------------------------------------------------------------------------------------
+\begin{center}
+\textbf{Forskning}
+\end{center}
+
+Min forskning är inom området maskininlärning, ofta kallat artificiell intelligens. Forskningen började i samband med Utställningen Unga Forskare. Där bidrog jag med ett projekt i diverse områden inom maskininlärning, vilket inkluderar bland annat dataseende och tidsserieanalys. I projektet härledde jag godtyckliga neurala faltningsnärverk från grunden och implementerade dem i programspråken Python och C++. Jag använde teori från \textit{Focal Loss}, \textit{RetinaNet}, \textit{Residual Convolutional Networks}, \textit{Feature Pyramid Networks} och \textit{Hard Example Mining} för att skapa en modell på frontlinjen av forskningen inom dataseende. På 22 millisekunder kan min modell detektera ansikten av olika storlekar och i olika ljus i stora folkmassor. 
+
+En annan del av mitt projekt var en modell som behandlade så kallad style transfer i realtid. Style transfer är ett problem där man vill överföra den konstnärliga stilen en bild är målad i till innehållet av en annan bild. Detta är ett optimeringsproblem där man skapar en kostnadsfunktion som beskriver den slutgiltiga bildens kvalité med hjälp av artificiella neurala nätverk som man sedan minimerar med stokastiska metoder. Jag implementerade denna metod med hjälp av de relevanta vetenskapliga publikationerna och tränade sedan ett neuralt faltningsnätverk att lära sig att optimera detta problem. På sådant sätt kunde style transfer göras i realtid. Sedan utvecklade jag och en partner en hemsida som kunde ta emot ett videoflöde från en kamera och sedan göra denna style transfer i realtid på kameraflödet. Juryns motivering av mitt projekt lät som sådan: \textit{“Fantastiskt arbete på doktorandnivå som dessutom är helt självständigt. Utställaren har härlett all matematik själv och implementerat den från grunden för att testa nya sätt att applicera metoderna på ett flertal olika projektområden”} .
+
+Att läsa nypublicerade vetenskapliga artiklar har blivit en vana för mig som student. Deep learning med artificiella neurala nätverk är ett relativt nytt område, vilket betyder att all information som är relevant till ny forskning endast kan hittas i vetenskapliga publikationer. Det var detta som inspirerade mitt bidrag till världens största studentvetenskapstävling i USA, Intel International Science and Engineering Fair (Intel ISEF). Vid slutet av Utställningen Unga Forskare publicerades det ett papper om tidsmässiga faltningsnätverk som ett alternativ till traditionella long short-term memory LSTM-nätverk. När jag läste denna artikel hittade jag dock två stora brister i teorin och jag bestämde mig för att se om jag kunde förbättra dessa modeller. Jag grävde mig in i den matematiska teorin och la till dessa förbättringar till mitt Intel ISEF-projekt. Med min insats lyckades jag slå de bästa forskarnas rekord i ett problem inom tidsserieanalys. Sedan använde jag min modell för att skapa ett förbättrat program inom för automatisk textning av bilder i vardagliga situiationer. Detta projekt var det som imponerade domarna på Intel ISEF vilket gjorde att jag vann första pris i världen inom utvecklingen av artificiell intelligens, tredje pris i kategorin \textit{robotics and intelligent machines} och fjärde pris av \textit{Association for Computing Machinery}. 
+
+Efter alla tävlingar har jag drivits av en ökad lust för kunskap och utveckling, både karaktärsmässigt och akademiskt. Efter Utställningen Unga Forskare blev jag erbjuden att forska på KTH innan jag började studera teknisk fysik. På samma sommar blev jag anställd som forskningsingenjör på ContextVision där jag arbetade inom digital patologi för att detektera cancer på mikrometer-nivå i hematoxylin-eosin-färgningar av medicinska bilder. Under anställningen skrev jag en vetenskaplig artikel med namnet \textit{Gland Instance Segmentation Through Overlapping Contour Regions and Random Transformation Sampling}. Artikeln behandlade hur man med begränsad mängd data kan segmentera körtlar på mikrometer-nivå för att underlätta detekteringen av cancer.
+
+Vid sidan av mina studier på universitetet har jag ägnat mig åt personliga projekt. Under dessa tre månader har jag huvudsakligen arbetat med och avslutat två större projekt. Det första är en maskininlärnings-agent som utan någon mänsklig kunskap lärt sig själv en algoritm för att lösa alla möjliga 2x2 Rubiks Kuber. Jag löste detta problem genom att träna en reinforcement learning agent att förutse resultatet av en Monte Carlo Tree Search för en godtyckligt given position med hjälp av Q-värden. Agenten fick en kub att interagera med och efter ett par dagar hade den lärt sig själv en mycket optimal strategi. Om en dator ska gå igenom alla möjliga konfigurationer av en 2x2 Rubiks Kub så kommer det att ta omkring 600 år att lösa kuben.  Den slutgiltiga modellen kan lösa en godtycklig $2 \times 2$ kub på 2,5 sekunder i genomsnitt. 
+
+Det andra projektet jag gjorde under oktober månad var en tillämpning av den teori Google använde för att slå världsmästaren i brädspelet Go. Jag skapade en modell som enbart genom spel mot sig själv blir bättre än en människa i spel med två spelare, givet tillräckligt mycket träningstid. Modellen använde jag för att skapa en AI som spelar $n \times n$ tic-tac-toe med godtyckliga storlekar och spelregler. 
+
+Jag söker detta stipendium för att ge stöd till min forskning. Att skapa projekt inom maskininlärning kräver en enorm beräkningskraft och är väldigt dyrt för en student. Det som begränsar min forskning vid detta tillfälle är just begränsad datakraft. För att få ett bättre perspektiv så kan man jämföra den hårvaran Google använde för sin Go-bot jämfört med den jag använde för min egna version. Jag gör all min forskning på en egenbyggd linuxmaskin som jag investerade 15 000 SEK i som är specialbyggd för beräkningar inom maskininlärning. Google använde däremot 5 000 specialbyggda \textit{Tensor Processing Units} vilket motsvarar ungefär 10 000 exemplar av min egen dator. Detta stipendium skulle möjliggöra att jag kan fortsätta med min forskning inom maskininlärning och artificiell intelligens, och producera resultat som jag inte kan göra i dagsläget. Just nu vill jag utöka min Rubiks kub-agent till 4x4 Kuber som ingen annan har gjort tidigare, och låta min self-play reinforcement learning agent lösa spel som ingen annan har löst tidigare. Detta är omöjligt att göra med den begränsade beräkningskraft som jag har i dagsläget. 
+
+Tillgång till stipendiatnätverket tror jag skulle vara en lika stor fördel som stödet i beräkningskraft. Det finns stor potential för oss unga forskare i framtiden, men i min erfarenhet är det tillsammans som vi kan lösa de svåra problemen i samhället. Jag tror att förmågor inom ledarskap och kommunikation är lika viktiga att utveckla som olika tekniska kompetenser. Med tillgång till Wallumni tror jag att nya spännande samarbeten kan formas.  
+
+Tack för att ni har läst min ansökan. 
+
+Nikita Zozoulenko 
+
+
+%----------------------------------------------------------------------------------------
+
+\end{document}

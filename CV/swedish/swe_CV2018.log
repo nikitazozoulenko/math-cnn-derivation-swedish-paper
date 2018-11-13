@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018/Arch Linux) (preloaded format=pdflatex 2018.8.24)  10 NOV 2018 18:17
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018/Arch Linux) (preloaded format=pdflatex 2018.8.24)  12 NOV 2018 09:20
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1016,7 +1016,7 @@ File: mt-mvs.cfg 2006/07/05 v1.1 microtype config. file: Marvosym Euro (RS)
 File: portrait_orig.jpg Graphic file (type jpg)
 <use portrait_orig.jpg>
 Package pdftex.def Info: portrait_orig.jpg  used on input line 62.
-(pdftex.def)             Requested size: 116.0pt x 76.80176pt.
+(pdftex.def)             Requested size: 130.0pt x 86.06448pt.
 \makecvheaddetailswidth=\skip81
 \makecvheadpicturewidth=\skip82
 \makecvheadnamebox=\box59
@@ -1107,11 +1107,11 @@ Package rerunfilecheck Info: File `swe_CV2018.out' has not changed.
 (rerunfilecheck)             Checksum: 7325AC2351331D1182E18615059FEC12;859.
  ) 
 Here is how much of TeX's memory you used:
- 30243 strings out of 492649
- 559643 string characters out of 6135778
+ 30245 strings out of 492649
+ 559663 string characters out of 6135778
  747891 words of memory out of 5000000
  33661 multiletter control sequences out of 15000+600000
- 590319 words of font info for 83 fonts, out of 8000000 for 9000
+ 590428 words of font info for 84 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  69i,12n,58p,10362b,353s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/usr/share/texmf-dist/fo
@@ -1127,7 +1127,7 @@ msso10.pfb></usr/share/texmf-dist/fonts/type1/public/lm/lmsso17.pfb></usr/share
 /texmf-dist/fonts/type1/public/lm/lmsso9.pfb></usr/share/texmf-dist/fonts/type1
 /public/lm/lmsy9.pfb></usr/share/texmf-dist/fonts/type1/public/marvosym/marvosy
 m.pfb>
-Output written on swe_CV2018.pdf (2 pages, 511911 bytes).
+Output written on swe_CV2018.pdf (2 pages, 480627 bytes).
 PDF statistics:
  113 PDF objects out of 1000 (max. 8388607)
  94 compressed objects within 1 object stream
