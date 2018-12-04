@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018/Arch Linux) (preloaded format=pdflatex 2018.8.24)  2 DEC 2018 19:07
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018/Arch Linux) (preloaded format=pdflatex 2018.8.24)  2 DEC 2018 22:06
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1112,7 +1112,7 @@ Package rerunfilecheck Info: File `eng_CV2018.out' has not changed.
 Here is how much of TeX's memory you used:
  30249 strings out of 492649
  559741 string characters out of 6135778
- 748890 words of memory out of 5000000
+ 747890 words of memory out of 5000000
  33664 multiletter control sequences out of 15000+600000
  593214 words of font info for 85 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
